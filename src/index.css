@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Noto Serif", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-surface: #0b1326;
+  --color-surface-low: #131b2e;
+  --color-surface-high: #222a3d;
+  --color-surface-highest: #2d3449;
+  --color-primary: #f2ca50;
+  --color-primary-foreground: #0b1326;
+  --color-primary-gold: #f2ca50;
+  --color-primary-container: #d4af37;
+  --color-on-surface: #dae2fd;
+  --color-on-surface-variant: #d0c5af;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body antialiased;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+  
+  .glass-nav {
+    @apply bg-surface/70 backdrop-blur-xl border-b border-white/5;
+  }
+
+  .gold-gradient {
+    @apply bg-gradient-to-br from-primary-gold to-primary-container;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
