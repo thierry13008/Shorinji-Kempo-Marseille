@@ -57,13 +57,13 @@ export default function Home() {
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 transform rotate-2 glass-card p-2">
                 <img 
                   className="w-full aspect-[4/5] object-cover rounded-xl" 
-                  src="/header-sensei.jpg" 
+                  src="https://i.ibb.co/39sdZqv0/gassho-rei.jpg" 
                   alt="Le Salut - Gassho Rei"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-surface/80 via-transparent to-transparent"></div>
                 <div className="absolute bottom-6 left-6 right-6 p-6 bg-surface-low/60 backdrop-blur-md rounded-xl border border-white/10">
-                  <p className="font-headline italic text-lg text-primary-gold">"Le Salut"</p>
+                  <p className="font-headline italic text-lg text-primary-gold">"Le Salut - Gassho Rei"</p>
                   <p className="text-xs text-on-surface-variant uppercase tracking-widest mt-1">L'entrée dans la voie</p>
                 </div>
               </div>
