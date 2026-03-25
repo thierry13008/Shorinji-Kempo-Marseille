@@ -123,7 +123,11 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
     setIsAnalyzing(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey || apiKey === '') {
+        throw new Error("API_KEY_MISSING");
+      }
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
         contents: inputValue,
@@ -141,10 +145,16 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
       setMessages(prev => [...prev, aiMsg]);
     } catch (error) {
       console.error('Gemini API Error:', error);
+      let content = "Une erreur technique est survenue. Pour toute question, n'hésitez pas à nous appeler au [ 06 89 09 05 44].";
+      
+      if (error instanceof Error && error.message === "API_KEY_MISSING") {
+        content = "Configuration incomplète : La clé API Gemini est manquante sur le serveur de déploiement. Veuillez configurer la variable d'environnement GEMINI_API_KEY dans vos paramètres Netlify.";
+      }
+
       const errorMsg: Message = {
         id: (Date.now() + 1).toString(),
         type: 'ai',
-        content: "Une erreur technique est survenue. Pour toute question, n'hésitez pas à nous appeler au [ 06 89 09 05 44].",
+        content,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMsg]);
