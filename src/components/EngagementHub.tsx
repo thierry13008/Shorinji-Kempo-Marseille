@@ -14,53 +14,68 @@ import { cn } from '@/src/lib/utils';
 
 // --- Knowledge Base ---
 const KNOWLEDGE_BASE = `
-Fiche de Connaissances : Shorinji Kempo Marseille — Saint-Giniez (V4 OMNI-CONNECT)
-
-📍 Coordonnées :
-- Adresse : 38 Rue Raphaël Ponson, 13008 Marseille (Proximité Prado/Castellane, Bus 41).
-- Téléphone : 06 89 09 05 44.
-
-🕒 Horaires des cours :
-- Lundi : 20h00 - 21h30
-- Mercredi : 19h45 - 21h15
-- Vendredi : 20h15 - 21h45
-
-🥋 Pédagogie & Concepts :
-- Goho : Techniques de frappes (atemi).
-- Juho : Techniques de dégagements, clés et projections.
-- Accessibilité : Dès 7-8 ans.
-- Premier cours : Gratuit et sans engagement toute l'année.
-
-✨ Points forts (Avis Google) :
-- Pédagogie bienveillante, mixité, efficacité de la self-défense, ambiance conviviale et studieuse.
+Fiche de Connaissances : Shorinji Kempo Marseille — Saint-Giniez
+26: 🟢 Pour les Grands Débutants & Curieux
+27: 1. C’est quoi le Shorinji Kempo ? Une discipline japonaise complète combinant self-défense (atemi, dégagements, projections) et philosophie pour l'équilibre corps-esprit.
+28: 2. Est-ce que c’est violent ? Non, l'accent est mis sur le contrôle de soi et le respect du partenaire. On apprend à se défendre, pas à agresser.
+29: 3. Puis-je faire un cours d'essai ? Oui, le premier cours est gratuit et sans engagement toute l'année.
+30: 4. Faut-il être souple ou sportif ? Pas du tout. La souplesse et la condition physique viennent avec la pratique régulière.
+31: 5. Quelle est la différence avec le Karaté ou le Judo ? Le Shorinji Kempo est plus varié : il utilise à la fois des techniques de frappe (Goho) et des techniques de dégagement/clés (Juho).
+32: 6. Y a-t-il de la compétition ? Non, nous privilégions l'entraide (Kumite主体 - Kumite shutai) plutôt que la victoire sur l'autre.
+33: 7. Peut-on s'inscrire en cours d'année ? Oui, l'enseignement est adapté pour intégrer des débutants à tout moment.
+34: 8. Est-ce efficace pour la self-défense ? Oui, les techniques sont basées sur des principes de levier et de points vitaux, permettant de répondre à une agression même face à plus fort que soi.
+35: 9. Quelle est l'ambiance au club ? Conviviale, studieuse et respectueuse. On s'entraide pour progresser ensemble.
+36: 10. Dois-je acheter un équipement tout de suite ? Non, un simple jogging et un t-shirt suffisent pour les premiers cours.
+37: 🧒 Pour les Parents (Section Enfants/Ados)
+38: 11. À partir de quel âge peut-on commencer ? Les enfants sont acceptés dès 9 ans (Section 9-13 ans).
+39: 12. Qu’est-ce que ça apporte à mon enfant ? Confiance en soi, discipline, respect des autres et meilleure coordination motrice.
+40: 13. Est-ce dangereux pour la croissance ? Non, les chutes sont apprises en douceur et les frappes sont contrôlées.
+41: 14. Mon enfant est timide, est-ce une bonne idée ? C'est idéal. Le travail en binôme aide énormément à sortir de sa bulle.
+42: 15. Mon enfant est très énergique, va-t-il se canaliser ? Oui, le rituel du dojo et la concentration demandée aident à apaiser le trop-plein d'énergie.
+43: 16. Dois-je rester pendant le cours ? C'est possible au début pour rassurer l'enfant, mais le laisser seul favorise son autonomie.
+44: 17. Y a-t-il des passages de grades pour les enfants ? Oui, il y a des examens de ceintures pour marquer leur progression.
+45: 18. L'équipement enfant est-il cher ? Le Dogi (kimono) enfant est très abordable (environ 25-30€).
+46: 19. Que se passe-t-il pendant les vacances scolaires ? Les cours s'arrêtent généralement (sauf stages exceptionnels).
+47: 20. Y a-t-il une assurance ? Oui, la licence fédérale inclut une assurance spécifique pour la pratique.
+48: 💰 Tarifs, Horaires et Logistique
+49: 21. Quels sont les jours de cours à Saint-Giniez ? Lundi, Mercredi et Vendredi.
+50: 22. Quels sont les horaires ? Lundi 20h00-21h30, Mercredi 19h30-21h00, Vendredi 20h15-21h45.
+51: 23. Combien coûte l'adhésion annuelle ? Contactez-nous pour les tarifs détaillés 2026.
+52: 24. Peut-on payer en plusieurs fois ? Oui, nous acceptons les paiements échelonnés (3 fois généralement).
+53: 25. Prenez-vous les chèques vacances ou coupons sport ? Oui.
+54: 26. Y a-t-il un tarif famille (réduction) ? Oui, réduction pour le deuxième membre de la même famille.
+55: 27. Où se trouve précisément le dojo ? Dojo Saint-Giniez, Avenue du Prado, 13008 Marseille.
+56: 28. Y a-t-il un parking à proximité ? Oui, stationnement possible aux alentours du Prado.
+57: 29. Y a-t-il des douches et vestiaires ? Oui, des vestiaires séparés sont disponibles.
+58: 30. Faut-il un certificat médical ? Oui, un certificat de "non-contre-indication à la pratique des arts martiaux" est obligatoire.
+59: 🥋 Pour les Pratiquants (Avancés ou Transferts)
+60: 31. De quelle fédération dépendez-vous ? Nous sommes affiliés à France Shorinji Kempo (FSK) et à la World Shorinji Kempo Organization (WSKO).
+61: 32. Le grade d'un autre club est-il valable chez vous ? Oui, les grades WSKO sont reconnus mondialement.
+62: 33. Pratiquez-vous le Seiho (massage/remise en forme) ? Oui, cela fait partie intégrante de notre cursus.
+63: 34. Pratiquez-vous le Chinkon (méditation Zazen) ? Oui, chaque cours commence ou finit par un moment de méditation.
+64: 35. Peut-on participer aux stages nationaux ? Bien sûr, c'est même encouragé pour rencontrer d'autres pratiquants.
+65: 36. Vendez-vous des Dogis (kimonos) officiels ? Nous pouvons vous conseiller sur les marques officielles (Ozaki, Isami) ou fournir des modèles standards.
+66: 37. Quelles sont les protections nécessaires pour les gradés ? Protège-dents, coquille, et éventuellement protège-tibias.
+67: 38. Faites-vous du Randori (combat souple) ? Oui, de manière éducative pour tester l'application des techniques.
+68: 39. Y a-t-il des cours d'armes ? Le Shorinji Kempo se pratique principalement à mains nues, mais le travail du Shakujo (bâton) existe pour les hauts gradés.
+40: 40. Peut-on devenir enseignant au club ? Oui, via le cursus de formation fédéral une fois le 1er ou 2ème Dan obtenu.
+70: ✨ Questions diverses (Le "Hub Prédictif")
+71: 41. Puis-je venir regarder un cours avant d'essayer ? Bien sûr, vous êtes les bienvenus sur le bord du tapis.
+72: 42. Est-ce trop tard pour commencer à 50 ans ? Jamais. Le Shorinji Kempo s'adapte aux capacités physiques de chacun.
+73: 43. Le club est-il ouvert pendant l'été ? Généralement fermé en août, stages possibles en juillet.
+74: 44. Comment s'appelle le professeur ? Contactez-nous pour plus de détails sur l'équipe enseignante.
+75: 45. Comment s'inscrire ? Directement au dojo après votre cours d'essai avec le dossier d'inscription.
+76: 46. Peut-on faire du Shorinji Kempo pour perdre du poids ? Oui, c'est une activité physique complète qui brûle beaucoup de calories.
+77: 47. Y a-t-il des stages pour les débutants ? Oui, nous organisons régulièrement des stages de découverte le week-end.
+78: 48. Est-ce que vous apprenez à crier (Kiai) ? Oui, le Kiai aide à libérer l'énergie et à surprendre l'adversaire.
+79: 49. Puis-je venir avec un ami ? C'est même recommandé, c'est plus sympa de débuter à deux !
+80: 50. Que signifie "Shorinji Kempo" ? "La loi du poing de la forêt de la petite cloche" (référence au temple Shaolin).
 `;
 
-const SYSTEM_INSTRUCTION = `🤖 PROMPT SYSTÈME : MAJORDOME SHORINJI KEMPO V4 (OMNI-CONNECT)
+const SYSTEM_INSTRUCTION = `Tu es l'assistant du club Shorinji Kempo Marseille. Réponds aux questions des visiteurs en utilisant EXCLUSIVEMENT ce document :
+${KNOWLEDGE_BASE}
 
-RÔLE :
-Tu es l'assistant expert et ambassadeur du Dojo Shorinji Kempo Marseille — Saint-Giniez. Ton rôle est de transformer chaque visiteur en futur élève en utilisant des preuves réelles et des informations à jour.
-
-STRATÉGIE DE RECHERCHE (VÉRIFICATION LIVE) :
-Avant chaque réponse concernant la vie du club, effectue une recherche Google pour : "Shorinji Kempo Marseille Saint-Giniez avis récents posts google".
-
-Priorité 1 : Les Google Posts (Actus). Si un post récent annonce un événement, un stage ou une fermeture, mentionne-le en priorité avec enthousiasme.
-Priorité 2 : Les Avis Clients (Marketing). Si l'utilisateur exprime une hésitation ou pose une question sur l'ambiance, cite un extrait d'un avis récent trouvé sur Google Maps (ex: "Comme le disait un parent il y a 2 semaines, l'ambiance est très bienveillante pour les enfants").
-
-DONNÉES DE SECOURS (Fallback immuable) :
-Utilise ces informations si la recherche ne donne pas de résultats récents :
-\${KNOWLEDGE_BASE}
-
-CONSIGNES DE RÉPONSE :
-1. Gestion des Avis : Encourage les gens à lire les avis sur Google. Cite les points forts récurrents (pédagogie, mixité, efficacité).
-2. Itinéraire : Propose systématiquement de guider vers le 38 Rue Raphaël Ponson.
-3. Pédagogie : Explique Goho et Juho avec clarté. Rappelle l'accessibilité dès 7-8 ans.
-4. Preuve Sociale : Termine souvent par : "Nos élèves nous ont laissé d'excellents avis sur Google, n'hésitez pas à les consulter pour vous rassurer !".
-
-APPEL À L'ACTION FINAL :
-Toute discussion sur les horaires ou l'inscription doit se terminer par : "Le premier cours est gratuit. Appelez-nous au 06 89 09 05 44 pour nous prévenir de votre passage au cours d'essai !".
-
-STYLE :
-Professionnel, martial (respectueux), moderne et ancré dans le quartier Saint-Giniez.`;
+Si la réponse n'y est pas, demande-leur de nous appeler au [ 06 89 09 05 44]. Ne sors jamais de ce cadre documentaire. Sois poli, concis et encourageant.`;
 
 type Message = {
   id: string;
@@ -118,7 +133,6 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
         contents: inputValue,
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
-          tools: [{ googleSearch: {} }],
         },
       });
 
