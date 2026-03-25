@@ -62,7 +62,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="hidden lg:block relative"
+              className="relative mt-12 lg:mt-0"
             >
               <div className="relative rounded-[24px] overflow-hidden shadow-2xl border border-white/10 transform rotate-2 glass-card ki-aura-dark p-2">
                 <img 
