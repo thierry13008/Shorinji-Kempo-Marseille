@@ -42,7 +42,7 @@ export default function Navbar() {
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  "font-label tracking-widest uppercase text-[10px] font-bold transition-colors",
+                  "font-label tracking-[0.02em] uppercase text-[15px] font-semibold transition-colors",
                   location.pathname === link.path ? "text-primary-gold" : "text-slate-400 hover:text-primary-gold"
                 )}
               >
@@ -54,9 +54,12 @@ export default function Navbar() {
             <button className="text-primary-gold hover:scale-110 transition-transform">
               <MessageSquare size={20} />
             </button>
-            <button className="gold-gradient text-on-primary font-bold px-6 py-2.5 rounded-lg transition-all hover:brightness-110 active:scale-95 font-label text-[10px] uppercase tracking-wider">
+            <a 
+              href="#contact"
+              className="gold-gradient text-on-primary font-semibold px-6 py-2.5 rounded-lg transition-all hover:brightness-110 active:scale-95 font-label text-[15px] uppercase tracking-[0.02em] flex items-center justify-center"
+            >
               S'inscrire
-            </button>
+            </a>
           </div>
         </div>
 
@@ -85,16 +88,20 @@ export default function Navbar() {
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "font-label tracking-widest uppercase text-xs font-bold",
+                    "font-label tracking-[0.02em] uppercase text-[15px] font-semibold",
                     location.pathname === link.path ? "text-primary-gold" : "text-slate-400"
                   )}
                 >
                   {link.name}
                 </Link>
               ))}
-              <button className="gold-gradient text-on-primary font-bold py-3 rounded-lg font-label text-xs uppercase tracking-wider">
+              <a 
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="gold-gradient text-on-primary font-semibold py-3 rounded-lg font-label text-[15px] uppercase tracking-[0.02em] flex items-center justify-center"
+              >
                 S'inscrire
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

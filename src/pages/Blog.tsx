@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, ArrowRight, Loader2, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ScrollReveal from '@/src/components/ScrollReveal';
 
 // API Configuration
 const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
@@ -203,7 +204,7 @@ export default function Blog() {
             className={`px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all ${
               selectedYear === 'Tout' 
                 ? 'bg-primary text-primary-foreground font-bold' 
-                : 'glass-card text-white hover:text-primary-gold'
+                : 'glass-card ki-aura-dark text-white hover:text-primary-gold'
             }`}
           >
             Tout
@@ -215,7 +216,7 @@ export default function Blog() {
               className={`px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all ${
                 selectedYear === year 
                   ? 'bg-primary text-primary-foreground font-bold' 
-                  : 'glass-card text-white hover:text-primary-gold'
+                  : 'glass-card ki-aura-dark text-white hover:text-primary-gold'
               }`}
             >
               {year}
@@ -247,13 +248,9 @@ export default function Blog() {
                 const isLatest = index === 0;
                 const isSecond = index === 1;
                 return (
-                  <motion.div
+                  <ScrollReveal
                     key={post.id}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4 }}
+                    delay={index * 0.1}
                     className={
                       isLatest ? 'lg:col-span-3 md:col-span-2' : 
                       isSecond ? 'lg:col-span-2 md:col-span-2' : ''
@@ -267,7 +264,7 @@ export default function Blog() {
                         <img 
                           src={getPostImage(post)} 
                           alt={decodeHtml(post.title.rendered)}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                           referrerPolicy="no-referrer"
                         />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
@@ -307,12 +304,12 @@ export default function Blog() {
                         </div>
                       </div>
                     </Link>
-                  </motion.div>
+                  </ScrollReveal>
                 );
               })}
             </AnimatePresence>
           ) : (
-            <div className="col-span-full py-20 text-center glass-card rounded-2xl">
+            <div className="col-span-full py-20 text-center glass-card ki-aura-dark rounded-[24px]">
               <AlertCircle className="w-12 h-12 text-primary-gold mx-auto mb-4 opacity-50" />
               <h3 className="text-xl text-white font-headline italic">Aucun article pour cette année.</h3>
               <p className="text-on-surface-variant mt-2">L'IA suggère d'élargir votre recherche.</p>

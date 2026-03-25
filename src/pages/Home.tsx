@@ -4,6 +4,8 @@ import { cn } from '@/src/lib/utils';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import EngagementHub from '@/src/components/EngagementHub';
+import InstructorsSection from '@/src/components/InstructorsSection';
+import ScrollReveal from '@/src/components/ScrollReveal';
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -30,23 +32,29 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="inline-block px-4 py-1 mb-6 border border-primary-gold/20 bg-primary-gold/5 text-primary-gold text-xs font-label uppercase tracking-widest rounded-full">
+              <span className="micro-copy mb-6 inline-block px-4 py-1 border border-primary-gold/20 bg-primary-gold/5 rounded-full">
                 Art Martial Traditionnel
               </span>
-              <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight mb-8">
+              <h1 className="text-white leading-tight mb-8">
                 Maîtrisez votre <span className="italic text-primary-gold">esprit</span>, forgez votre <span className="text-primary-container">corps</span>.
               </h1>
-              <p className="text-on-surface-variant text-lg md:text-xl max-w-xl mb-10 font-light leading-relaxed">
+              <p className="text-on-surface-variant max-w-xl mb-10">
                 Découvrez le Shorinji Kempo à Marseille. Une discipline japonaise unique alliant self-défense efficace, méditation zen et philosophie de vie.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="gold-gradient text-on-primary font-bold px-8 py-4 rounded-xl shadow-xl shadow-primary-gold/10 flex items-center justify-center gap-2 group transition-all duration-300">
+                <a 
+                  href="#contact"
+                  className="gold-gradient text-on-primary font-bold px-8 py-4 rounded-xl shadow-xl shadow-primary-gold/10 flex items-center justify-center gap-2 group transition-all duration-300 text-[14px] uppercase tracking-widest"
+                >
                   Réserver un cours gratuit
                   <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                </button>
-                <button className="bg-white/5 text-on-surface border border-white/10 hover:bg-white/10 px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition-all backdrop-blur-md">
+                </a>
+                <a 
+                  href="#planning"
+                  className="bg-white/5 text-on-surface border border-white/10 hover:bg-white/10 px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition-all backdrop-blur-md text-[14px] uppercase tracking-widest"
+                >
                   Voir le planning
-                </button>
+                </a>
               </div>
             </motion.div>
 
@@ -56,7 +64,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="hidden lg:block relative"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 transform rotate-2 glass-card p-2">
+              <div className="relative rounded-[24px] overflow-hidden shadow-2xl border border-white/10 transform rotate-2 glass-card ki-aura-dark p-2">
                 <img 
                   className="w-full aspect-[4/5] object-cover rounded-xl" 
                   src="https://i.ibb.co/39sdZqv0/gassho-rei.jpg" 
@@ -65,8 +73,8 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-surface/80 via-transparent to-transparent"></div>
                 <div className="absolute bottom-6 left-6 right-6 p-6 bg-surface-low/60 backdrop-blur-md rounded-xl border border-white/10">
-                  <p className="font-headline italic text-lg text-primary-gold">"Le Salut - Gassho Rei"</p>
-                  <p className="text-xs text-on-surface-variant uppercase tracking-widest mt-1">L'entrée dans la voie</p>
+                  <p className="italic text-lg text-primary-gold font-headline">"Le Salut - Gassho Rei"</p>
+                  <p className="micro-copy mt-1">L'entrée dans la voie</p>
                 </div>
               </div>
               <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary-gold/10 rounded-full blur-3xl"></div>
@@ -76,11 +84,11 @@ export default function Home() {
       </section>
 
       {/* Personas Section */}
-      <section className="py-32 bg-surface relative">
+      <section className="py-32 bg-ivory-silk relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="font-headline text-4xl text-white mb-4">Le Shorinji Kempo est fait pour vous</h2>
-            <p className="text-on-surface-variant max-w-2xl mx-auto">Que vous soyez parent, débutant ou pratiquant confirmé, trouvez votre voie</p>
+            <h2 className="text-surface mb-4">Le Shorinji Kempo est fait pour vous</h2>
+            <p className="max-w-2xl mx-auto text-slate-600">Que vous soyez parent, débutant ou pratiquant confirmé, trouvez votre voie</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -123,47 +131,49 @@ export default function Home() {
                 ]
               }
             ].map((card, i) => (
-              <motion.div
+              <ScrollReveal
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                delay={i * 0.1}
                 className={cn(
-                  "group p-8 rounded-2xl transition-all duration-500 flex flex-col border",
-                  card.featured ? "bg-primary-gold/5 border-primary-gold/20 md:scale-105 shadow-2xl" : "glass-card border-white/5"
+                  "group p-8 rounded-[24px] transition-all duration-500 flex flex-col border",
+                  card.featured ? "bg-surface glass-card ki-aura-dark border-white/10 md:scale-105 shadow-2xl text-white" : "glass-card-light ki-aura-light border-slate-200 shadow-sm"
                 )}
               >
                 <div className="mb-6 overflow-hidden rounded-xl">
-                  <img src={card.img} alt={card.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  <img src={card.img} alt={card.title} className="w-full h-48 object-cover parallax-reveal" referrerPolicy="no-referrer" />
                 </div>
                 <div className="flex-grow text-center">
-                  <div className="text-primary-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-4">{card.tag}</div>
-                  <h3 className="font-headline text-xl text-white mb-4 leading-tight">{card.title}</h3>
-                  <p className="text-on-surface-variant mb-6 text-sm italic">{card.desc}</p>
+                  <div className={cn("micro-copy mb-4", card.featured ? "text-primary-gold" : "")}>{card.tag}</div>
+                  <h3 className={cn("mb-4 leading-tight", card.featured ? "text-white" : "text-surface")}>
+                    <span>{card.title}</span>
+                  </h3>
+                  <p className={cn("mb-6 italic", card.featured ? "text-slate-300" : "text-slate-600")}>{card.desc}</p>
                   <ul className="space-y-4 mb-8 text-left">
                     {card.points.map((p, j) => (
-                      <li key={j} className="flex items-start gap-3 text-on-surface/80 text-[11px] leading-relaxed">
+                      <li key={j} className={cn("flex items-start gap-3 text-[14px] leading-relaxed", card.featured ? "text-slate-300" : "text-slate-700")}>
                         <CheckCircle className="text-primary-gold shrink-0" size={14} />
                         <span><strong>{p.label} :</strong> {p.text}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <button className="w-full bg-primary-gold text-on-primary font-bold py-3.5 rounded-lg hover:brightness-110 transition-all text-[10px] uppercase tracking-widest mt-auto">
+                <a 
+                  href="#contact"
+                  className="w-full bg-primary-gold text-on-primary font-bold py-3.5 rounded-lg hover:brightness-110 transition-all text-[12px] uppercase tracking-widest mt-auto flex items-center justify-center"
+                >
                   Essayer gratuitement
-                </button>
-              </motion.div>
+                </a>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Planning Section */}
-      <section className="relative py-32 min-h-[80vh] flex items-center">
+      <section id="planning" className="relative py-32 min-h-[80vh] flex items-center bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover brightness-[0.2]" 
+            className="w-full h-full object-cover opacity-10 grayscale" 
             src="https://i.ibb.co/SwqgBGQK/fond-planing.png" 
             alt="Dojo"
             referrerPolicy="no-referrer"
@@ -172,53 +182,57 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
-            <div className="lg:w-1/3">
-              <span className="text-primary-gold text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Calendrier des Sessions</span>
-              <h2 className="font-headline text-4xl md:text-5xl text-white mb-6">Planning du Dojo</h2>
-              <p className="text-slate-300 text-lg leading-relaxed mb-8">Rejoignez l'élite du Budo au cœur de Marseille (13008).</p>
+          <div className="flex flex-col lg:flex-row gap-20 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-32">
+              <span className="micro-copy mb-4 block">Calendrier des Sessions</span>
+              <h2 className="text-white mb-6">Planning du Dojo</h2>
+              <p className="text-slate-300 mb-8">Rejoignez l'élite du Budo au cœur de Marseille (13008).</p>
               <div className="bg-primary-gold/10 border border-primary-gold/20 px-6 py-4 rounded-xl inline-flex items-center gap-3">
                 <MapPin className="text-primary-gold" size={20} />
                 <span className="font-bold text-sm tracking-wide uppercase text-white">Dojo Saint-Giniez</span>
               </div>
             </div>
 
-            <div className="lg:w-2/3 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="lg:w-2/3 w-full space-y-6">
               {[
                 { day: "Lundi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "01" },
                 { day: "Mercredi", time: "19h30 — 21h00", cat: "Adultes", level: "Tous Niveaux", id: "02", featured: true },
                 { day: "Vendredi", time: "20h15 — 21h45", cat: "Mixte", level: "Adultes & Enf", id: "03" }
               ].map((session, i) => (
-                <div 
+                <ScrollReveal 
                   key={i}
+                  delay={i * 0.1}
                   className={cn(
-                    "rounded-2xl p-8 transition-all duration-500 group border",
-                    session.featured ? "bg-primary-gold/10 border-primary-gold/30 md:scale-105 shadow-2xl" : "glass-card border-white/10 hover:bg-white/10"
+                    "rounded-[24px] p-8 transition-all duration-500 group border flex flex-col md:flex-row md:items-center justify-between gap-6 glass-card ki-aura-dark",
+                    session.featured ? "bg-primary-gold/10 border-primary-gold/30 shadow-2xl" : "border-white/10 hover:bg-white/10"
                   )}
                 >
-                  <div className="flex justify-between items-start mb-12">
-                    <div>
-                      <p className="text-primary-gold font-bold text-[10px] tracking-widest uppercase mb-1">Session {session.id}</p>
-                      <h3 className="text-3xl font-headline text-white">{session.day}</h3>
-                    </div>
+                  <div className="flex items-center gap-8">
                     <div className={cn(
-                      "w-10 h-10 rounded-full flex items-center justify-center italic text-sm",
+                      "w-12 h-12 rounded-full flex items-center justify-center italic text-lg shrink-0",
                       session.featured ? "bg-primary-gold text-on-primary font-bold" : "border border-white/20 text-white/40 group-hover:text-primary-gold"
                     )}>{session.id}</div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <Clock className="text-primary-gold" size={16} />
-                      <span className="text-white font-bold text-sm">{session.time}</span>
+                    <div>
+                      <p className="micro-copy mb-1">Session {session.id}</p>
+                      <h3 className="text-white">
+                        <span>{session.day}</span>
+                      </h3>
                     </div>
-                    <div className="pt-4 border-t border-white/10">
-                      <p className="text-white font-medium mb-3">{session.cat}</p>
-                      <span className="px-3 py-1 bg-white/10 text-primary-gold text-[10px] font-bold rounded-full uppercase tracking-tighter border border-primary-gold/20">
+                  </div>
+                  
+                  <div className="flex flex-wrap items-center gap-8 md:gap-12">
+                    <div className="flex items-center gap-3">
+                      <Clock className="text-primary-gold" size={18} />
+                      <span className="text-white font-bold">{session.time}</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <p className="text-white font-medium">{session.cat}</p>
+                      <span className="micro-copy bg-white/10 px-4 py-1.5 rounded-full border border-primary-gold/20">
                         {session.level}
                       </span>
                     </div>
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -233,11 +247,11 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-32 bg-surface">
+      <section className="py-32 bg-ivory-silk">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-headline text-4xl text-white mb-4">Ce que disent nos pratiquants</h2>
-            <p className="text-on-surface-variant">Des témoignages authentiques de notre communauté</p>
+            <h2 className="text-surface mb-4">Ce que disent nos pratiquants</h2>
+            <p className="text-slate-600">Des témoignages authentiques de notre communauté</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -245,53 +259,62 @@ export default function Home() {
               { name: "Marc", role: "Pratiquant depuis 1 an", text: "À 42 ans, je n'avais pas fait de sport depuis des années et j'appréhendais de pousser la porte d'un dojo à Marseille. J'ai été immédiatement mis à l'aise : ici, pas de jugement sur la condition physique, on progresse à son rythme. C'est devenu ma véritable soupape de sécurité pour évacuer le stress de la journée. Je repars des cours avec une énergie physique et mentale que je n'avais plus. Un équilibre parfait trouvé en plein cœur de Saint-Giniez.", img: "https://picsum.photos/seed/p2/100/100", featured: true },
               { name: "Julien", role: "Ceinture Noire", text: "Après plusieurs années dans d'autres styles, je cherchais une pratique plus complète, alliant percussions et techniques de clés (Juho). La qualité de l'enseignement au dojo de Saint-Giniez est exceptionnelle. Mes acquis ont été immédiatement valorisés et le fait que les grades soient reconnus par la WSKO au Japon est un gage de sérieux indispensable. C'est un dojo de référence pour quiconque cherche la profondeur martiale et philosophique.", img: "https://picsum.photos/seed/p3/100/100" }
             ].map((t, i) => (
-              <div key={i} className={cn(
-                "p-10 rounded-2xl relative border shadow-xl",
-                t.featured ? "bg-primary-gold/5 border-primary-gold/20" : "glass-card border-white/10"
-              )}>
+              <ScrollReveal 
+                key={i}
+                delay={i * 0.1}
+                className={cn(
+                  "p-10 rounded-[24px] relative border shadow-xl transition-all duration-500",
+                  t.featured ? "bg-surface glass-card ki-aura-dark border-white/10 text-white" : "glass-card-light ki-aura-light border-slate-200 text-slate-600"
+                )}
+              >
                 <div className="flex items-center gap-4 mb-8">
-                  <img src={t.img} className="w-12 h-12 rounded-full border-2 border-primary-gold/20" alt={t.name} referrerPolicy="no-referrer" />
+                  <img src={t.img} className="w-12 h-12 rounded-full border-2 border-primary-gold/20 parallax-reveal" alt={t.name} referrerPolicy="no-referrer" />
                   <div>
-                    <p className="text-white font-bold">{t.name}</p>
-                    <p className="text-xs text-primary-gold">{t.role}</p>
+                    <p className={cn("font-bold", t.featured ? "text-white" : "text-surface")}>{t.name}</p>
+                    <p className="micro-copy">{t.role}</p>
                   </div>
                 </div>
-                <p className="text-on-surface-variant italic leading-relaxed text-sm">"{t.text}"</p>
-              </div>
+                <p className={cn("italic leading-relaxed", t.featured ? "text-slate-300" : "text-slate-600")}>"{t.text}"</p>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Instructors Section */}
+      <InstructorsSection />
+
       {/* FAQ Section */}
-      <section className="py-32 bg-surface-low">
+      <section className="py-32 bg-ivory-silk">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-headline text-4xl text-white mb-4">Questions Fréquentes</h2>
-            <p className="text-on-surface-variant">Tout ce qu'il faut savoir avant de franchir les portes du dojo.</p>
+            <h2 className="text-surface mb-4">Questions Fréquentes</h2>
+            <p className="text-slate-600">Tout ce qu'il faut savoir avant de franchir les portes du dojo.</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div className="glass-card p-10 rounded-[2rem] flex flex-col items-center text-center justify-center border-primary-gold/20">
+            <ScrollReveal className="bg-surface glass-card p-10 rounded-[24px] flex flex-col items-center text-center justify-center border border-white/10 shadow-sm ki-aura-dark">
               <div className="w-20 h-20 rounded-full bg-primary-gold/10 flex items-center justify-center mb-8 border border-primary-gold/30">
                 <Sparkles className="text-primary-gold w-10 h-10 animate-pulse" />
               </div>
-              <h3 className="text-3xl font-headline text-white mb-6 italic">Hub d'Engagement Intelligent</h3>
-              <p className="text-on-surface-variant mb-10 max-w-md">
+              <h3 className="text-white mb-6 italic">
+                <span>Hub d'assistance Intelligent</span>
+              </h3>
+              <p className="text-slate-300 mb-10 max-w-md">
                 Découvrez notre nouvelle interface de contact assistée par IA. 
                 Analyse d'intention, réponse instantanée et connexion directe avec nos experts.
               </p>
               <button 
                 onClick={() => setIsHubOpen(true)}
-                className="w-full gold-gradient text-on-primary font-bold py-5 rounded-2xl flex items-center justify-center gap-3 uppercase tracking-widest text-sm hover:brightness-110 transition-all shadow-xl shadow-primary-gold/20"
+                className="w-full gold-gradient text-on-primary font-bold py-5 rounded-2xl flex items-center justify-center gap-3 uppercase tracking-widest text-[12px] hover:brightness-110 transition-all shadow-xl shadow-primary-gold/20"
               >
                 Accéder au Hub <ArrowRight size={20} />
               </button>
-              <div className="mt-8 flex items-center gap-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest">
+              <div className="mt-8 flex items-center gap-4 micro-copy text-slate-500">
                 <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> IA Native</span>
                 <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> Temps Réel</span>
                 <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> Sécurisé</span>
               </div>
-            </div>
+            </ScrollReveal>
             <div className="space-y-4">
               {[
                 { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 6 ans. Nous proposons des cours adaptés pour les enfants (6-12 ans), les adolescents (13-17 ans) et les adultes. Il n'y a pas d'âge maximum pour débuter. Nous accueillons régulièrement des débutants de 40, 50 ans et plus !" },
@@ -301,10 +324,10 @@ export default function Home() {
                 { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont compétitifs et incluent l'adhésion à la fédération française. Cotisation annuelle : 290€ pour les adultes, 240€ pour les enfants. Possibilité de paiement en plusieurs fois. Une réduction famille est disponible pour les fratries." },
                 { q: "Que faut-il apporter pour le premier cours ?", a: "Pour votre premier cours, venez avec une tenue de sport confortable (jogging, t-shirt). Vous pratiquerez pieds nus. Le gi (tenue traditionnelle) peut être acheté plus tard si vous décidez de continuer. Pensez à apporter une bouteille d'eau." }
               ].map((item, i) => (
-                <div key={i} className="glass-card rounded-xl overflow-hidden border border-white/5">
+                <ScrollReveal key={i} delay={i * 0.1} className="glass-card-light rounded-[24px] overflow-hidden border border-slate-200 shadow-sm ki-aura-light">
                   <button 
                     onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                    className="w-full flex justify-between items-center p-6 text-left text-white hover:text-primary-gold transition-colors"
+                    className="w-full flex justify-between items-center p-6 text-left text-surface hover:text-primary-gold transition-colors"
                   >
                     <span className="font-medium">{i + 1}. {item.q}</span>
                     <ChevronDown className={cn("transition-transform duration-300", activeFaq === i && "rotate-180")} size={20} />
@@ -314,9 +337,9 @@ export default function Home() {
                     animate={{ height: activeFaq === i ? "auto" : 0 }}
                     className="overflow-hidden"
                   >
-                    <p className="p-6 pt-0 text-on-surface-variant text-sm leading-relaxed">{item.a}</p>
+                    <p className="p-6 pt-0 text-slate-600 italic leading-relaxed">{item.a}</p>
                   </motion.div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -336,13 +359,13 @@ export default function Home() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="font-headline text-5xl text-white mb-4">Prêt à commencer ?</h2>
-            <p className="text-slate-300 text-lg">Réservez vos 2 cours d'essai gratuits dès maintenant</p>
+            <h2 className="text-white mb-4">Prêt à commencer ?</h2>
+            <p className="text-slate-300">Réservez vos 2 cours d'essai gratuits dès maintenant</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="space-y-8">
-              <div className="glass-card p-10 rounded-3xl">
-                <h3 className="font-headline text-2xl text-white mb-10">Informations de Contact</h3>
+              <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px]">
+                <h3 className="text-white mb-10">Informations de Contact</h3>
                 <div className="space-y-8">
                   <div className="flex items-start gap-6">
                     <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20">
@@ -350,7 +373,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold mb-1">Adresse</h4>
-                      <p className="text-slate-400 text-sm">Dojo Principal, Avenue du Prado, 13008 Marseille</p>
+                      <p className="text-slate-400 text-[14px]">Dojo Principal, Avenue du Prado, 13008 Marseille</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-6">
@@ -359,7 +382,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold mb-1">Téléphone</h4>
-                      <p className="text-slate-400 text-sm">06 12 34 56 78</p>
+                      <p className="text-slate-400 text-[14px]">06 12 34 56 78</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-6">
@@ -368,7 +391,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold mb-1">Email</h4>
-                      <p className="text-slate-400 text-sm">contact@shorinjikempo-marseille.fr</p>
+                      <p className="text-slate-400 text-[14px]">contact@shorinjikempo-marseille.fr</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-6">
@@ -377,12 +400,12 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold mb-1">Horaires d'accueil</h4>
-                      <p className="text-slate-400 text-sm">Lundi - Vendredi: 17h00 - 21h00<br />Samedi: 10h00 - 12h00</p>
+                      <p className="text-slate-400 text-[14px]">Lundi - Vendredi: 17h00 - 21h00<br />Samedi: 10h00 - 12h00</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="bg-primary-gold/5 border border-primary-gold/20 rounded-3xl p-10">
+              </ScrollReveal>
+              <ScrollReveal className="bg-surface glass-card border border-primary-gold/20 rounded-[24px] p-10 ki-aura-dark">
                 <div className="flex items-center gap-4 mb-6">
                   <CheckCircle className="text-primary-gold" size={24} />
                   <h4 className="text-white font-bold uppercase tracking-widest">Offre Découverte</h4>
@@ -393,51 +416,51 @@ export default function Home() {
                   <li className="flex items-center gap-2">✓ Prêt du matériel pour l'essai</li>
                   <li className="flex items-center gap-2">✓ Accompagnement personnalisé</li>
                 </ul>
-              </div>
+              </ScrollReveal>
             </div>
 
-            <div className="glass-card p-10 rounded-[2rem] border-primary-gold/20">
-              <h3 className="text-2xl font-headline text-white mb-2">Nous contacter directement</h3>
-              <p className="text-on-surface-variant text-sm mb-8">
+            <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px] border-primary-gold/20">
+              <h3 className="text-white mb-2">Nous contacter directement</h3>
+              <p className="text-on-surface-variant mb-8">
                 Remplissez le formulaire ci-dessous ou contactez-nous via WhatsApp
               </p>
               
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-white uppercase tracking-widest">Prénom *</label>
+                    <label className="micro-copy text-white">Prénom *</label>
                     <input type="text" placeholder="Jean" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-white uppercase tracking-widest">Nom *</label>
+                    <label className="micro-copy text-white">Nom *</label>
                     <input type="text" placeholder="Dupont" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-white uppercase tracking-widest">Email *</label>
+                    <label className="micro-copy text-white">Email *</label>
                     <input type="email" placeholder="jean@example.com" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-white uppercase tracking-widest">Téléphone</label>
+                    <label className="micro-copy text-white">Téléphone</label>
                     <input type="tel" placeholder="06 12 34 56 78" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-white uppercase tracking-widest">Sujet *</label>
+                  <label className="micro-copy text-white">Sujet *</label>
                   <input type="text" placeholder="Ex: Inscription essai pour enfants" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-white uppercase tracking-widest">Message *</label>
+                  <label className="micro-copy text-white">Message *</label>
                   <textarea placeholder="Dites-nous comment nous pouvons vous aider..." rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all resize-none"></textarea>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-white uppercase tracking-widest">Catégorie d'âge</label>
+                    <label className="micro-copy text-white">Catégorie d'âge</label>
                     <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
                       <option className="bg-surface">Sélectionner</option>
                       <option className="bg-surface">Enfant (6-12 ans)</option>
@@ -446,7 +469,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-white uppercase tracking-widest">Préféré de contact *</label>
+                    <label className="micro-copy text-white">Préféré de contact *</label>
                     <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
                       <option className="bg-surface">Email</option>
                       <option className="bg-surface">Téléphone</option>
@@ -457,26 +480,26 @@ export default function Home() {
 
                 <div className="flex items-center gap-3">
                   <input type="checkbox" id="exp" className="w-4 h-4 rounded border-white/10 bg-white/5 text-primary-gold focus:ring-primary-gold/50" />
-                  <label htmlFor="exp" className="text-xs text-on-surface-variant">J'ai une expérience préalable en arts martiaux</label>
+                  <label htmlFor="exp" className="micro-copy text-on-surface-variant">J'ai une expérience préalable en arts martiaux</label>
                 </div>
 
-                <button type="submit" className="w-full gold-gradient text-on-primary font-bold py-4 rounded-xl shadow-xl shadow-primary-gold/20 hover:brightness-110 transition-all uppercase tracking-widest text-sm">
+                <button type="submit" className="w-full gold-gradient text-on-primary font-bold py-4 rounded-xl shadow-xl shadow-primary-gold/20 hover:brightness-110 transition-all uppercase tracking-widest text-[14px]">
                   Envoyer mon message
                 </button>
                 
-                <p className="text-center text-[10px] text-on-surface-variant uppercase tracking-widest">* Champs obligatoires</p>
+                <p className="text-center micro-copy text-on-surface-variant">* Champs obligatoires</p>
 
                 <div className="pt-6 border-t border-white/10 space-y-4">
-                  <p className="text-center text-[10px] text-on-surface-variant uppercase tracking-widest">Ou contactez-nous directement :</p>
-                  <button type="button" className="w-full bg-[#25D366] text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-sm">
+                  <p className="text-center micro-copy text-on-surface-variant">Ou contactez-nous directement :</p>
+                  <button type="button" className="w-full bg-[#25D366] text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-[14px] uppercase tracking-widest">
                     WhatsApp
                   </button>
-                  <button type="button" className="w-full bg-white text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-sm">
+                  <button type="button" className="w-full bg-white text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-[14px] uppercase tracking-widest">
                     06 12 34 56 78
                   </button>
                 </div>
               </form>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -493,9 +516,15 @@ export default function Home() {
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10"
+              onViewportEnter={(entry) => {
+                if (entry?.target) {
+                  entry.target.classList.add('is-visible');
+                }
+              }}
+              className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
             >
               <EngagementHub onClose={() => setIsHubOpen(false)} />
             </motion.div>

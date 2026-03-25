@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Loader2, AlertCircle, Clock, Share2, Bookmark, MessageSquare } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
+import ScrollReveal from '@/src/components/ScrollReveal';
 
 const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
 
@@ -63,7 +64,7 @@ export default function BlogPost() {
   if (error || !post) {
     return (
       <div className="pt-32 pb-20 min-h-screen bg-surface flex items-center justify-center">
-        <div className="text-center glass-card p-12 rounded-2xl max-w-md mx-6">
+        <div className="text-center glass-card ki-aura-dark p-12 rounded-[24px] max-w-md mx-6">
           <AlertCircle className="w-12 h-12 text-primary-gold mx-auto mb-4 opacity-50" />
           <h3 className="text-xl text-white font-headline italic mb-4">Article introuvable</h3>
           <p className="text-on-surface-variant mb-8">L'IA n'a pas pu localiser cette ressource dans le flux temporel.</p>
@@ -89,13 +90,13 @@ export default function BlogPost() {
         {/* Sidebar Actions (Sticky) */}
         <aside className="hidden lg:block lg:col-span-1">
           <div className="sticky top-40 flex flex-col gap-6 items-center">
-            <button className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-on-surface-variant hover:text-primary-gold hover:border-primary-gold/40 transition-all">
+            <button className="w-10 h-10 rounded-full glass-card ki-aura-dark flex items-center justify-center text-on-surface-variant hover:text-primary-gold hover:border-primary-gold/40 transition-all">
               <Share2 className="w-4 h-4" />
             </button>
-            <button className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-on-surface-variant hover:text-primary-gold hover:border-primary-gold/40 transition-all">
+            <button className="w-10 h-10 rounded-full glass-card ki-aura-dark flex items-center justify-center text-on-surface-variant hover:text-primary-gold hover:border-primary-gold/40 transition-all">
               <Bookmark className="w-4 h-4" />
             </button>
-            <button className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-on-surface-variant hover:text-primary-gold hover:border-primary-gold/40 transition-all">
+            <button className="w-10 h-10 rounded-full glass-card ki-aura-dark flex items-center justify-center text-on-surface-variant hover:text-primary-gold hover:border-primary-gold/40 transition-all">
               <MessageSquare className="w-4 h-4" />
             </button>
           </div>
@@ -109,11 +110,7 @@ export default function BlogPost() {
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Retour au flux
           </Link>
 
-          <motion.article
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <ScrollReveal
             className="relative"
           >
             <header className="mb-12">
@@ -133,20 +130,15 @@ export default function BlogPost() {
             </header>
 
             {featuredImage && (
-              <motion.div 
-                initial={{ scale: 1.05, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1 }}
-                className="aspect-video mb-16 rounded-3xl overflow-hidden border border-white/10 relative shadow-2xl"
-              >
+              <div className="aspect-video mb-16 rounded-3xl overflow-hidden border border-white/10 relative shadow-2xl">
                 <img 
                   src={featuredImage} 
                   alt={decodeHtml(post.title.rendered)} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover parallax-reveal"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
-              </motion.div>
+              </div>
             )}
 
             <div className="prose prose-invert prose-gold max-w-none text-on-surface-variant leading-relaxed text-lg 
@@ -167,7 +159,7 @@ export default function BlogPost() {
                  </div>
               </div>
             </footer>
-          </motion.article>
+          </ScrollReveal>
         </div>
       </div>
 

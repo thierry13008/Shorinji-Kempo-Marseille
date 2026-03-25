@@ -11,6 +11,7 @@ import {
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import EngagementHub from '@/src/components/EngagementHub';
+import ScrollReveal from '@/src/components/ScrollReveal';
 
 export default function Contact() {
   const [intentScore] = useState(85);
@@ -22,10 +23,8 @@ export default function Contact() {
         
         {/* --- Left Column: Contextual Insights & Trust --- */}
         <div className="lg:col-span-4 space-y-8">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="glass-card p-8 rounded-[2rem] border-primary-gold/10"
+          <ScrollReveal 
+            className="glass-card ki-aura-dark p-8 rounded-[24px] border-primary-gold/10"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-2 bg-primary-gold/10 rounded-lg">
@@ -65,14 +64,12 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Privacy & Ethics */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="glass-card p-8 rounded-[2rem] border-white/5"
+          <ScrollReveal 
+            delay={0.2}
+            className="glass-card ki-aura-dark p-8 rounded-[24px] border-white/5"
           >
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
@@ -101,7 +98,7 @@ export default function Contact() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
 
         {/* --- Right Column: Multimodal Interaction Hub --- */}
@@ -113,7 +110,7 @@ export default function Contact() {
 
       {/* --- Strategic Note Section --- */}
       <div className="max-w-7xl mx-auto mt-32 border-t border-white/5 pt-20">
-        <div className="glass-card p-12 rounded-[3rem] border-white/5">
+        <ScrollReveal className="glass-card ki-aura-dark p-12 rounded-[24px] border-white/5">
           <h2 className="font-headline text-3xl text-white mb-8 italic">Note Stratégique : Hub d'Engagement 2026</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -151,7 +148,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
   );

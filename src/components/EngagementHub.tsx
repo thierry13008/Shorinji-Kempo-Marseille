@@ -167,7 +167,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={cn("glass-card flex flex-col rounded-[2.5rem] overflow-hidden border-white/5 relative h-full", className)}
+      className={cn("glass-card ki-aura-dark flex flex-col rounded-[2.5rem] overflow-hidden border-white/5 relative h-full", className)}
     >
       {/* Header */}
       <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
@@ -179,8 +179,8 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-surface" />
           </div>
           <div>
-            <h3 className="text-white font-headline text-lg">Engagement Hub 2026</h3>
-            <p className="text-[10px] font-label uppercase tracking-widest text-primary-gold">IA Conversationnelle Multimodale</p>
+            <h3 className="text-white text-lg">Engagement Hub 2026</h3>
+            <p className="micro-copy text-primary-gold">IA Conversationnelle Multimodale</p>
           </div>
         </div>
         
