@@ -1,93 +1,20 @@
-import { motion, AnimatePresence } from 'motion/react';
 import { 
-  MessageSquare, 
-  Mic, 
-  Image as ImageIcon, 
-  Send, 
   User, 
   ShieldCheck, 
   Clock, 
   Zap, 
   ArrowRight,
-  Sparkles,
-  CheckCircle2,
-  Lock,
   Eye,
+  Lock,
   Leaf
 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
-import { cn } from '@/src/lib/utils';
-
-// --- Types ---
-type Message = {
-  id: string;
-  type: 'user' | 'ai' | 'system';
-  content: string;
-  timestamp: Date;
-  metadata?: any;
-};
-
-type InteractionState = 'idle' | 'analyzing' | 'routing' | 'human_connected';
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import EngagementHub from '@/src/components/EngagementHub';
 
 export default function Contact() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      type: 'ai',
-      content: "Bonjour ! Je suis votre assistant intelligent. Je vois que vous avez consulté nos articles sur le Shorinji Kempo pour enfants. Souhaitez-vous des informations spécifiques sur les inscriptions pour les 9-13 ans ?",
-      timestamp: new Date(),
-    }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [state, setState] = useState<InteractionState>('idle');
-  const [intentScore, setIntentScore] = useState(85); // Simulated intent score
+  const [intentScore] = useState(85);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll to bottom of chat
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  const handleSendMessage = () => {
-    if (!inputValue.trim()) return;
-
-    const userMsg: Message = {
-      id: Date.now().toString(),
-      type: 'user',
-      content: inputValue,
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, userMsg]);
-    setInputValue('');
-    setState('analyzing');
-
-    // Simulate AI Response
-    setTimeout(() => {
-      const aiMsg: Message = {
-        id: (Date.now() + 1).toString(),
-        type: 'ai',
-        content: "Parfait. J'analyse votre demande... Il semble que vous ayez besoin d'un contact direct avec notre instructeur technique. Je vous connecte à Maître Tanaka (disponible dans 2 min).",
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, aiMsg]);
-      setState('routing');
-
-      // Simulate Human Connection
-      setTimeout(() => {
-        setState('human_connected');
-        setMessages(prev => [...prev, {
-          id: (Date.now() + 2).toString(),
-          type: 'system',
-          content: "Maître Tanaka a rejoint la conversation. Il a reçu le résumé de votre échange.",
-          timestamp: new Date(),
-        }]);
-      }, 3000);
-    }, 1500);
-  };
 
   return (
     <div className="min-h-screen bg-surface pt-32 pb-20 px-6">
@@ -179,163 +106,12 @@ export default function Contact() {
 
         {/* --- Right Column: Multimodal Interaction Hub --- */}
         <div className="lg:col-span-8 flex flex-col h-[700px]">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="glass-card flex-1 flex flex-col rounded-[2.5rem] overflow-hidden border-white/5 relative"
-          >
-            {/* Header */}
-            <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-full bg-primary-gold/20 flex items-center justify-center border border-primary-gold/30">
-                    <Sparkles className="text-primary-gold w-6 h-6" />
-                  </div>
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-surface" />
-                </div>
-                <div>
-                  <h3 className="text-white font-headline text-lg">Engagement Hub 2026</h3>
-                  <p className="text-[10px] font-label uppercase tracking-widest text-primary-gold">IA Conversationnelle Multimodale</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="w-8 h-8 rounded-full border-2 border-surface bg-white/10 flex items-center justify-center overflow-hidden">
-                      <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt="Expert" referrerPolicy="no-referrer" />
-                    </div>
-                  ))}
-                </div>
-                <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">Experts Disponibles</span>
-              </div>
-            </div>
-
-            {/* Messages Area */}
-            <div 
-              ref={scrollRef}
-              className="flex-1 overflow-y-auto p-8 space-y-6 scrollbar-hide"
-            >
-              <AnimatePresence initial={false}>
-                {messages.map((msg) => (
-                  <motion.div
-                    key={msg.id}
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    className={cn(
-                      "flex max-w-[80%]",
-                      msg.type === 'user' ? "ml-auto flex-row-reverse" : "mr-auto",
-                      msg.type === 'system' ? "max-w-full mx-auto" : ""
-                    )}
-                  >
-                    {msg.type !== 'system' && (
-                      <div className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1",
-                        msg.type === 'user' ? "ml-3 bg-primary-gold" : "mr-3 bg-white/10"
-                      )}>
-                        {msg.type === 'user' ? <User size={14} className="text-on-primary" /> : <Sparkles size={14} className="text-primary-gold" />}
-                      </div>
-                    )}
-
-                    <div className={cn(
-                      "p-4 rounded-2xl text-sm leading-relaxed",
-                      msg.type === 'user' ? "bg-primary-gold text-on-primary rounded-tr-none" : "bg-white/5 text-on-surface-variant border border-white/5 rounded-tl-none",
-                      msg.type === 'system' ? "bg-primary-gold/10 border border-primary-gold/20 text-primary-gold text-center italic text-xs w-full" : ""
-                    )}>
-                      {msg.content}
-                      <div className={cn(
-                        "text-[9px] mt-2 opacity-50",
-                        msg.type === 'user' ? "text-right" : "text-left"
-                      )}>
-                        {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-              
-              {state === 'analyzing' && (
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex items-center gap-2 text-primary-gold text-[10px] font-label uppercase tracking-widest"
-                >
-                  <div className="flex gap-1">
-                    <span className="w-1 h-1 bg-primary-gold rounded-full animate-bounce" />
-                    <span className="w-1 h-1 bg-primary-gold rounded-full animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1 h-1 bg-primary-gold rounded-full animate-bounce [animation-delay:0.4s]" />
-                  </div>
-                  Analyse de l'intention par l'IA...
-                </motion.div>
-              )}
-            </div>
-
-            {/* Input Area */}
-            <div className="p-6 bg-white/[0.02] border-t border-white/5">
-              <div className="flex items-center gap-4 bg-surface-low border border-white/10 rounded-2xl p-2 focus-within:border-primary-gold/50 transition-all">
-                <div className="flex items-center gap-1 px-2">
-                  <button className="p-2 text-on-surface-variant hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
-                    <Mic size={20} />
-                  </button>
-                  <button className="p-2 text-on-surface-variant hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
-                    <ImageIcon size={20} />
-                  </button>
-                </div>
-                
-                <input 
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Posez votre question ou décrivez votre besoin..."
-                  className="flex-1 bg-transparent border-none outline-none text-white text-sm py-3"
-                />
-
-                <button 
-                  onClick={handleSendMessage}
-                  disabled={!inputValue.trim()}
-                  className="gold-gradient p-3 rounded-xl text-on-primary disabled:opacity-50 disabled:grayscale transition-all hover:scale-105 active:scale-95"
-                >
-                  <Send size={20} />
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-center gap-6 mt-4">
-                <div className="flex items-center gap-2 text-[9px] text-on-surface-variant uppercase tracking-widest">
-                  <CheckCircle2 size={12} className="text-green-500" /> Chiffrement Quantique
-                </div>
-                <div className="flex items-center gap-2 text-[9px] text-on-surface-variant uppercase tracking-widest">
-                  <CheckCircle2 size={12} className="text-green-500" /> RGPD 2026 Compliant
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Contextual Suggestions */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            {[
-              "Horaires des cours enfants",
-              "Tarifs inscriptions 2026",
-              "Localisation du dojo",
-              "Parler à un instructeur"
-            ].map((suggestion, i) => (
-              <motion.button
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                onClick={() => setInputValue(suggestion)}
-                className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[11px] text-on-surface-variant hover:border-primary-gold/50 hover:text-primary-gold transition-all"
-              >
-                {suggestion}
-              </motion.button>
-            ))}
-          </div>
+          <EngagementHub />
         </div>
 
       </div>
 
-      {/* --- Strategic Note Section (Hidden/Expandable) --- */}
+      {/* --- Strategic Note Section --- */}
       <div className="max-w-7xl mx-auto mt-32 border-t border-white/5 pt-20">
         <div className="glass-card p-12 rounded-[3rem] border-white/5">
           <h2 className="font-headline text-3xl text-white mb-8 italic">Note Stratégique : Hub d'Engagement 2026</h2>
