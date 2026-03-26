@@ -27,11 +27,11 @@
   }
 
   h1, h2 {
-    @apply text-[34px] md:text-[56px] font-extrabold tracking-[-0.03em] leading-tight;
+    @apply text-[34px] md:text-[56px] font-medium tracking-[-0.02em] leading-tight;
   }
 
   h3, .section-title, .card-title {
-    @apply text-[24px] md:text-[28px] font-bold;
+    @apply text-[24px] md:text-[28px] font-medium;
   }
 
   p {

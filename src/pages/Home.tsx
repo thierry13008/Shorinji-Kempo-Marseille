@@ -127,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* Storytelling Section - Pourquoi nous rejoindre ? */}
-      <section className="py-32 bg-bg-main relative overflow-hidden">
+      <section className="py-48 bg-bg-main relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <ScrollReveal className="relative">
@@ -200,7 +200,7 @@ export default function Home() {
       </section>
 
       {/* Benefits Section - 3 Pillars */}
-      <section className="py-32 bg-surface relative overflow-hidden border-y border-white/5">
+      <section className="py-48 bg-surface relative overflow-hidden border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Transformation</span>
@@ -261,11 +261,11 @@ export default function Home() {
       </section>
 
       {/* Personas Section - Storytelling Immersif */}
-      <section className="py-32 bg-bg-main relative overflow-hidden">
+      <section className="py-48 bg-bg-main relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Pour qui ?</span>
-            <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Le Shorinji Kempo est fait pour vous.</h2>
+            <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Le Shorinji Kempo est fait pour vous.</h2>
             <p className="max-w-2xl mx-auto text-slate-600 text-xl">Que vous cherchiez la sérénité, la force ou la discipline, trouvez votre voie parmi nos sections dédiées.</p>
           </div>
 
@@ -276,7 +276,9 @@ export default function Home() {
                 title: "L’école de la confiance pour votre enfant.",
                 desc: "Offrez-lui un cadre structurant pour grandir sereinement et s'affirmer face aux défis de la vie.",
                 img: "https://i.ibb.co/8L2sN6qz/enfants.png",
-                cta: "Réserver son essai gratuit"
+                cta: "Réserver son essai gratuit",
+                icon: <Sparkles className="text-primary-gold" size={24} />,
+                bg: "bg-white"
               },
               {
                 tag: "Adultes Débutants",
@@ -284,14 +286,18 @@ export default function Home() {
                 desc: "Votre bulle de décompression à Marseille. Apprenez à vous défendre dans une ambiance 100% bienveillante.",
                 img: "https://i.ibb.co/tpbN1KW4/image-debutant.png",
                 featured: true,
-                cta: "Je commence maintenant"
+                cta: "Je commence maintenant",
+                icon: <TrendingUp className="text-primary-gold" size={24} />,
+                bg: "bg-surface"
               },
               {
                 tag: "Pratiquant Confirmé",
                 title: "Exigence Technique & Lignage Officiel.",
                 desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement (WSKO).",
                 img: "https://i.ibb.co/yc6vzy0T/image-pratiquant-confirm.png",
-                cta: "Rejoindre le dojo"
+                cta: "Rejoindre le dojo",
+                icon: <CheckCircle className="text-primary-gold" size={24} />,
+                bg: "bg-bg-secondary"
               }
             ].map((card, i) => (
               <ScrollReveal
@@ -299,15 +305,19 @@ export default function Home() {
                 delay={i * 0.1}
                 className={cn(
                   "group p-10 rounded-[48px] transition-all duration-700 flex flex-col border",
-                  card.featured ? "bg-surface text-white border-white/10 md:scale-105 shadow-[0_40px_80px_rgba(0,0,0,0.2)]" : "bg-white border-slate-100 shadow-xl shadow-surface/5"
+                  card.bg,
+                  card.featured ? "text-white border-white/10 md:scale-105 shadow-[0_40px_80px_rgba(0,0,0,0.2)]" : "border-slate-100 shadow-xl shadow-surface/5"
                 )}
               >
-                <div className="mb-8 overflow-hidden rounded-[32px] aspect-video">
+                <div className="mb-8 overflow-hidden rounded-[32px] aspect-video relative">
                   <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  <div className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                    {card.icon}
+                  </div>
                 </div>
                 <div className="flex-grow text-center">
                   <div className={cn("micro-copy mb-4 font-bold uppercase tracking-widest", card.featured ? "text-primary-gold" : "text-primary-gold")}>{card.tag}</div>
-                  <h3 className={cn("mb-6 text-2xl md:text-3xl font-black leading-tight", card.featured ? "text-white" : "text-surface")}>
+                  <h3 className={cn("mb-6 text-2xl md:text-3xl font-medium leading-tight", card.featured ? "text-white" : "text-surface")}>
                     {card.title}
                   </h3>
                   <p className={cn("mb-10 text-lg leading-relaxed", card.featured ? "text-ivory-silk/60" : "text-slate-500")}>{card.desc}</p>
@@ -328,7 +338,7 @@ export default function Home() {
       </section>
 
       {/* Planning Section */}
-      <section id="planning" className="relative py-32 min-h-[80vh] flex items-center bg-surface overflow-hidden">
+      <section id="planning" className="relative py-48 min-h-[80vh] flex items-center bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover opacity-10 grayscale" 
@@ -408,7 +418,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-32 bg-bg-secondary relative overflow-hidden">
+      <section className="py-48 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
@@ -506,70 +516,98 @@ export default function Home() {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-32 bg-bg-main relative overflow-hidden border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-24">
-            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
-            <h2 className="text-surface text-4xl md:text-6xl font-black">Comment nous rejoindre ?</h2>
-            <p className="text-slate-600 mt-6 text-xl">Une démarche simple pour une transformation profonde.</p>
+      <section className="py-48 bg-surface relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.05] pointer-events-none">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:40px_40px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-32">
+            <ScrollReveal>
+              <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
+              <h2 className="text-white text-4xl md:text-6xl font-medium">Comment nous rejoindre ?</h2>
+              <p className="text-slate-400 mt-6 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
+            </ScrollReveal>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 relative">
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary-gold/20 to-transparent -translate-y-1/2 z-0"></div>
+
             {[
               {
                 step: "01",
                 title: "Réservez votre séance",
                 desc: "Remplissez le formulaire en 30s. C'est gratuit, sans engagement et accessible à tous.",
-                icon: <Calendar className="text-primary-gold" size={40} />
+                icon: <Calendar className="text-primary-gold" size={32} />,
+                delay: 0.1
               },
               {
                 step: "02",
                 title: "Participez au cours",
                 desc: "Nous vous accueillons avec bienveillance. L'équipement vous est prêté pour votre premier cours.",
-                icon: <User className="text-primary-gold" size={40} />
+                icon: <User className="text-primary-gold" size={32} />,
+                delay: 0.3
               },
               {
                 step: "03",
                 title: "Progressez pas à pas",
                 desc: "Pratiquez, ressentez l'énergie du groupe et découvrez votre potentiel inexploité.",
-                icon: <TrendingUp className="text-primary-gold" size={40} />
+                icon: <TrendingUp className="text-primary-gold" size={32} />,
+                delay: 0.5
               }
-            ].map((step, i) => (
+            ].map((item, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
-                className="relative group"
+                transition={{ duration: 0.8, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group h-full"
               >
-                <div className="p-12 rounded-[48px] bg-white border border-slate-100 hover:border-primary-gold/30 transition-all duration-500 h-full flex flex-col items-center text-center group-hover:scale-[1.02] shadow-xl hover:shadow-2xl ki-aura-light">
-                  <div className="text-9xl font-black text-slate-50 absolute -top-10 -left-4 select-none group-hover:text-primary-gold/5 transition-colors duration-500">{step.step}</div>
-                  <div className="mb-8 p-6 rounded-3xl bg-slate-50 border border-slate-100 group-hover:scale-110 transition-transform duration-500 shadow-xl relative z-10">
-                    {step.icon}
+                <div className="relative z-10 p-12 rounded-[48px] bg-white/5 backdrop-blur-xl border border-white/10 hover:border-primary-gold/40 transition-all duration-500 h-full flex flex-col items-center text-center shadow-2xl hover:shadow-primary-gold/10 group-hover:-translate-y-2 ki-aura-dark">
+                  {/* Step Number Overlay */}
+                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/5 group-hover:text-primary-gold/10 transition-colors duration-500 select-none z-0 italic">
+                    {item.step}
                   </div>
-                  <h3 className="text-surface text-2xl font-bold mb-4 relative z-10">{step.title}</h3>
-                  <p className="text-slate-500 leading-relaxed text-lg relative z-10 mb-6">{step.desc}</p>
-                  <div className="mt-auto pt-6 border-t border-slate-50 w-full">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary-gold/60">Accessible débutants – sans engagement</span>
+
+                  {/* Icon Container */}
+                  <div className="mb-10 w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center group-hover:bg-primary-gold group-hover:text-surface transition-all duration-500 shadow-lg group-hover:shadow-primary-gold/30 relative z-10">
+                    <div className="group-hover:scale-110 transition-transform duration-500">
+                      {item.icon}
+                    </div>
+                  </div>
+
+                  <h3 className="text-white text-2xl font-medium mb-6 relative z-10">{item.title}</h3>
+                  <p className="text-slate-400 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
+                  
+                  <div className="mt-auto w-full pt-8 border-t border-white/10">
+                    <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60">
+                      <CheckCircle size={12} />
+                      <span>Accessible débutants</span>
+                    </div>
                   </div>
                 </div>
-                {i < 2 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-6 w-12 h-[1px] bg-gradient-to-r from-primary-gold/30 to-transparent z-10"></div>
-                )}
               </motion.div>
             ))}
           </div>
           
-          <div className="mt-20 text-center">
+          <div className="mt-32 text-center">
             <ScrollReveal>
-              <div className="flex flex-col items-center gap-6">
+              <div className="flex flex-col items-center gap-8">
                 <a 
                   href="#contact"
-                  className="cta-button inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
+                  className="cta-button inline-flex items-center justify-center gap-4 text-lg px-16 py-7"
                 >
                   Rejoignez le dojo
+                  <ArrowRight size={20} />
                 </a>
-                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Accessible débutants – sans engagement</p>
+                <div className="flex items-center gap-6 text-slate-400 text-sm font-bold uppercase tracking-widest">
+                  <span>Sans engagement</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-gold/30"></span>
+                  <span>Premier cours offert</span>
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -580,11 +618,11 @@ export default function Home() {
       <InstructorsSection />
 
       {/* FAQ Section */}
-      <section className="py-32 bg-bg-secondary relative overflow-hidden">
+      <section className="py-48 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">FAQ</span>
-            <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Questions Fréquentes</h2>
+            <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Questions Fréquentes</h2>
             <p className="text-slate-600 text-xl">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
             <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
               <div className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
@@ -652,7 +690,7 @@ export default function Home() {
                         transition={{ duration: 0.4, ease: "circOut" }}
                         className="overflow-hidden"
                       >
-                        <div className="p-8 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2">
+                        <div className="p-8 pt-0 text-slate-600 leading-[1.6] text-lg border-t border-slate-100 mt-2">
                           {item.a}
                           <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
                             <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
@@ -669,7 +707,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section - Conversion Focus */}
-      <section id="contact" className="relative py-32 bg-surface overflow-hidden">
+      <section id="contact" className="relative py-48 bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover opacity-10 grayscale" 
