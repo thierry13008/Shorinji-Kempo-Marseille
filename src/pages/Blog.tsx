@@ -161,71 +161,130 @@ export default function Blog() {
   }, [posts, selectedYear]);
 
   return (
-    <div className="pt-32 pb-20 min-h-screen bg-surface">
-      <header className="px-6 md:px-24 mb-20 relative">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
-        
-        <div className="max-w-4xl">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="inline-flex items-center gap-4 text-primary-gold mb-8"
-          >
-            <div className="h-[1px] w-12 bg-primary-gold" />
-            <span className="font-label text-[11px] tracking-[0.5em] uppercase font-bold">Le Flux Officiel</span>
-          </motion.div>
+    <div className="min-h-screen">
+      <section className="pt-32 pb-20 bg-surface">
+        <header className="px-6 md:px-24 mb-20 relative">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="font-headline text-6xl md:text-8xl text-white mb-10 leading-[1.05] tracking-tight"
-          >
-            Chroniques <br />
-            <span className="italic text-primary-gold">du Dojo</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 1 }}
-            className="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed font-light"
-          >
-            Découvrez l'actualité du Shorinji Kempo Marseille : stages, événements, et réflexions sur la voie martiale.
-          </motion.p>
-        </div>
-      </header>
+          <div className="max-w-4xl">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-4 text-primary-gold mb-8"
+            >
+              <div className="h-[1px] w-12 bg-primary-gold" />
+              <span className="font-label text-[11px] tracking-[0.5em] uppercase font-bold">Le Flux Officiel</span>
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              className="font-headline text-6xl md:text-8xl text-white mb-10 leading-[1.05] tracking-tight"
+            >
+              Chroniques <br />
+              <span className="italic text-primary-gold">du Dojo</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              className="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed font-light"
+            >
+              Découvrez l'actualité du Shorinji Kempo Marseille : stages, événements, et réflexions sur la voie martiale.
+            </motion.p>
+          </div>
+        </header>
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Year Filters */}
-        <div className="flex flex-wrap gap-3 mb-12 overflow-x-auto pb-4 no-scrollbar">
-          <button
-            onClick={() => setSelectedYear('Tout')}
-            className={`px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all ${
-              selectedYear === 'Tout' 
-                ? 'bg-primary text-primary-foreground font-bold' 
-                : 'glass-card ki-aura-dark text-white hover:text-primary-gold'
-            }`}
-          >
-            Tout
-          </button>
-          {years.map(year => (
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Year Filters */}
+          <div className="flex flex-wrap gap-3 mb-12 overflow-x-auto pb-4 no-scrollbar">
             <button
-              key={year}
-              onClick={() => setSelectedYear(year)}
+              onClick={() => setSelectedYear('Tout')}
               className={`px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all ${
-                selectedYear === year 
+                selectedYear === 'Tout' 
                   ? 'bg-primary text-primary-foreground font-bold' 
                   : 'glass-card ki-aura-dark text-white hover:text-primary-gold'
               }`}
             >
-              {year}
+              Tout
             </button>
-          ))}
-        </div>
+            {years.map(year => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year)}
+                className={`px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all ${
+                  selectedYear === year 
+                    ? 'bg-primary text-primary-foreground font-bold' 
+                    : 'glass-card ki-aura-dark text-white hover:text-primary-gold'
+                }`}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
 
-        {/* Standard Grid Posts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {/* First Article (Latest) */}
+          {!loading && filteredPosts.length > 0 && (
+            <div className="mb-12">
+              <ScrollReveal delay={0.1}>
+                <Link 
+                  to={`/blog/${filteredPosts[0].slug}`} 
+                  className="group flex flex-col lg:flex-row-reverse h-full bg-white border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/20 hover:border-primary-gold/50 transition-all duration-500"
+                >
+                  <div className="relative lg:w-3/5 aspect-[16/10] lg:aspect-auto overflow-hidden">
+                    <img 
+                      src={getPostImage(filteredPosts[0])} 
+                      alt={decodeHtml(filteredPosts[0].title.rendered)}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
+                  </div>
+                  
+                  <div className="p-8 lg:p-12 flex flex-col flex-1 lg:justify-center">
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold bg-primary-gold/10 px-3 py-1 rounded-full">
+                        {new Date(filteredPosts[0].date).getFullYear()}
+                      </span>
+                      <span className="text-[10px] font-label uppercase tracking-widest text-surface/60">
+                        {new Date(filteredPosts[0].date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+                      </span>
+                      <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse" />
+                        Dernière minute
+                      </span>
+                    </div>
+                    
+                    <h3 className="font-headline text-3xl md:text-5xl text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic">
+                      {decodeHtml(filteredPosts[0].title.rendered)}
+                    </h3>
+                    
+                    <p className="text-surface/70 text-base font-light leading-relaxed line-clamp-3 mb-8 flex-1">
+                      {stripHtml(filteredPosts[0].excerpt.rendered)}
+                    </p>
+                    
+                    <div className="flex items-center justify-between pt-6 border-t border-surface/5">
+                      <span className="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
+                        <Clock className="w-3 h-3" /> 4 min
+                      </span>
+                      <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lire <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="bg-bg-secondary py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Remaining Grid Posts */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {loading ? (
             // Skeleton Loaders
             Array.from({ length: 6 }).map((_, i) => (
@@ -233,69 +292,67 @@ export default function Blog() {
                 i === 0 ? 'lg:flex-row-reverse lg:col-span-3 md:col-span-2' : 
                 i === 1 ? 'lg:flex-row-reverse lg:col-span-2 md:col-span-2' : ''
               } gap-10`}>
-                <div className={`bg-white/5 rounded-[2rem] ${i === 0 || i === 1 ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'}`} />
+                <div className={`bg-surface/5 rounded-[2rem] ${i === 0 || i === 1 ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'}`} />
                 <div className={`space-y-6 flex-1 ${i === 0 || i === 1 ? 'lg:p-12 lg:justify-center flex flex-col' : ''}`}>
-                  <div className="h-4 bg-white/5 w-1/4 rounded-full" />
-                  <div className="h-12 bg-white/5 w-full rounded-2xl" />
-                  <div className="h-24 bg-white/5 w-full rounded-2xl" />
-                  <div className="h-10 bg-white/5 w-full rounded-full mt-auto" />
+                  <div className="h-4 bg-surface/5 w-1/4 rounded-full" />
+                  <div className="h-12 bg-surface/5 w-full rounded-2xl" />
+                  <div className="h-24 bg-surface/5 w-full rounded-2xl" />
+                  <div className="h-10 bg-surface/5 w-full rounded-full mt-auto" />
                 </div>
               </div>
             ))
-          ) : filteredPosts.length > 0 ? (
+          ) : filteredPosts.length > 1 ? (
             <AnimatePresence mode="popLayout">
-              {filteredPosts.map((post, index) => {
-                const isLatest = index === 0;
-                const isSecond = index === 1;
+              {filteredPosts.slice(1).map((post, index) => {
+                const isSecond = index === 0; // index 0 of slice(1) is the 2nd overall
                 return (
                   <ScrollReveal
                     key={post.id}
                     delay={index * 0.1}
                     className={
-                      isLatest ? 'lg:col-span-3 md:col-span-2' : 
                       isSecond ? 'lg:col-span-2 md:col-span-2' : ''
                     }
                   >
                       <Link 
                         to={`/blog/${post.slug}`} 
-                        className={`group flex flex-col ${isLatest || isSecond ? 'lg:flex-row-reverse' : ''} h-full bg-white/[0.02] border border-white/5 rounded-[2rem] overflow-hidden hover:bg-white/[0.04] hover:border-primary-gold/30 transition-all duration-500`}
+                        className={`group flex flex-col ${isSecond ? 'lg:flex-row-reverse' : ''} h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/5 hover:border-primary-gold/50 transition-all duration-500`}
                       >
-                      <div className={`relative ${isLatest || isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
+                      <div className={`relative ${isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
                         <img 
                           src={getPostImage(post)} 
                           alt={decodeHtml(post.title.rendered)}
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                       </div>
                       
-                      <div className={`p-8 flex flex-col flex-1 ${isLatest || isSecond ? 'lg:p-12 lg:justify-center' : ''}`}>
+                      <div className={`p-8 flex flex-col flex-1 ${isSecond ? 'lg:p-12 lg:justify-center' : ''}`}>
                         <div className="flex items-center gap-3 mb-6">
                           <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold bg-primary-gold/10 px-3 py-1 rounded-full">
                             {new Date(post.date).getFullYear()}
                           </span>
-                          <span className="text-[10px] font-label uppercase tracking-widest text-on-surface-variant/60">
+                          <span className="text-[10px] font-label uppercase tracking-widest text-surface/60">
                             {new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
                           </span>
-                          {(isLatest || isSecond) && (
+                          {isSecond && (
                             <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse" />
-                              {isLatest ? 'Dernière minute' : 'À la une'}
+                              À la une
                             </span>
                           )}
                         </div>
                         
-                        <h3 className={`font-headline ${isLatest || isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-white mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
+                        <h3 className={`font-headline ${isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
                           {decodeHtml(post.title.rendered)}
                         </h3>
                         
-                        <p className={`text-on-surface-variant ${isLatest || isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
+                        <p className={`text-surface/70 ${isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
                           {stripHtml(post.excerpt.rendered)}
                         </p>
                         
-                        <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                          <span className="text-[10px] font-label uppercase tracking-widest text-on-surface-variant flex items-center gap-2">
+                        <div className="flex items-center justify-between pt-6 border-t border-surface/5">
+                          <span className="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
                             <Clock className="w-3 h-3" /> 4 min
                           </span>
                           <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
@@ -308,11 +365,17 @@ export default function Blog() {
                 );
               })}
             </AnimatePresence>
-          ) : (
-            <div className="col-span-full py-20 text-center glass-card ki-aura-dark rounded-[24px]">
+          ) : filteredPosts.length === 1 ? (
+            <div className="col-span-full py-20 text-center bg-white border border-surface/10 rounded-[24px]">
               <AlertCircle className="w-12 h-12 text-primary-gold mx-auto mb-4 opacity-50" />
-              <h3 className="text-xl text-white font-headline italic">Aucun article pour cette année.</h3>
-              <p className="text-on-surface-variant mt-2">L'IA suggère d'élargir votre recherche.</p>
+              <h3 className="text-xl text-surface font-headline italic">Plus d'articles à découvrir.</h3>
+              <p className="text-surface/60 mt-2">Revenez bientôt pour de nouvelles chroniques.</p>
+            </div>
+          ) : (
+            <div className="col-span-full py-20 text-center bg-white border border-surface/10 rounded-[24px]">
+              <AlertCircle className="w-12 h-12 text-primary-gold mx-auto mb-4 opacity-50" />
+              <h3 className="text-xl text-surface font-headline italic">Aucun article pour cette année.</h3>
+              <p className="text-surface/60 mt-2">L'IA suggère d'élargir votre recherche.</p>
             </div>
           )}
         </div>
@@ -325,6 +388,7 @@ export default function Blog() {
           </div>
         )}
       </div>
+      </section>
     </div>
   );
 }

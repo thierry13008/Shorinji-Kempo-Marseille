@@ -13,7 +13,7 @@ import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/src/lib/utils';
 
 // --- Knowledge Base ---
-const KNOWLEDGE_BASE = `
+let KNOWLEDGE_BASE = `
 Fiche de Connaissances : Shorinji Kempo Marseille — Saint-Giniez
 26: 🟢 Pour les Grands Débutants & Curieux
 27: 1. C’est quoi le Shorinji Kempo ? Une discipline japonaise complète combinant self-défense (atemi, dégagements, projections) et philosophie pour l'équilibre corps-esprit.
@@ -72,8 +72,8 @@ Fiche de Connaissances : Shorinji Kempo Marseille — Saint-Giniez
 80: 50. Que signifie "Shorinji Kempo" ? "La loi du poing de la forêt de la petite cloche" (référence au temple Shaolin).
 `;
 
-const SYSTEM_INSTRUCTION = `Tu es l'assistant du club Shorinji Kempo Marseille. Réponds aux questions des visiteurs en utilisant EXCLUSIVEMENT ce document :
-${KNOWLEDGE_BASE}
+const DEFAULT_SYSTEM_INSTRUCTION = (kb: string) => `Tu es l'assistant du club Shorinji Kempo Marseille. Réponds aux questions des visiteurs en utilisant EXCLUSIVEMENT ce document :
+${kb}
 
 Si la réponse n'y est pas, demande-leur de nous appeler au [ 06 89 09 05 44]. Ne sors jamais de ce cadre documentaire. Sois poli, concis et encourageant.`;
 
@@ -100,7 +100,12 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [knowledgeBase, setKnowledgeBase] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Dynamic fetching removed as per user request
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -132,7 +137,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
         model: "gemini-3-flash-preview",
         contents: inputValue,
         config: {
-          systemInstruction: SYSTEM_INSTRUCTION,
+          systemInstruction: DEFAULT_SYSTEM_INSTRUCTION(knowledgeBase || KNOWLEDGE_BASE),
         },
       });
 
@@ -179,7 +184,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-surface" />
           </div>
           <div>
-            <h3 className="text-white text-lg">Engagement Hub 2026</h3>
+            <h3 className="text-text-primary text-lg">Engagement Hub 2026</h3>
             <p className="micro-copy text-primary-gold">IA Conversationnelle Multimodale</p>
           </div>
         </div>
@@ -188,7 +193,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
           {onClose && (
             <button 
               onClick={onClose}
-              className="p-2 text-on-surface-variant hover:text-primary-gold transition-colors rounded-full hover:bg-white/5"
+              className="p-2 text-text-secondary hover:text-primary-gold transition-colors rounded-full hover:bg-white/5"
             >
               <X size={20} />
             </button>
@@ -202,7 +207,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
                   </div>
                 ))}
               </div>
-              <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-tighter">Experts Disponibles</span>
+              <span className="text-[10px] font-label text-text-secondary uppercase tracking-tighter">Experts Disponibles</span>
             </div>
           )}
         </div>
@@ -228,12 +233,12 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
                 "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1",
                 msg.type === 'user' ? "ml-3 bg-primary-gold" : "mr-3 bg-white/10"
               )}>
-                {msg.type === 'user' ? <User size={14} className="text-on-primary" /> : <Sparkles size={14} className="text-primary-gold" />}
+                {msg.type === 'user' ? <User size={14} className="text-text-primary" /> : <Sparkles size={14} className="text-primary-gold" />}
               </div>
 
               <div className={cn(
                 "p-4 rounded-2xl text-sm leading-relaxed",
-                msg.type === 'user' ? "bg-primary-gold text-on-primary rounded-tr-none" : "bg-white/5 text-on-surface-variant border border-white/5 rounded-tl-none"
+                msg.type === 'user' ? "bg-primary-gold text-text-primary rounded-tr-none" : "bg-white/5 text-text-secondary border border-white/5 rounded-tl-none"
               )}>
                 {msg.content}
                 <div className={cn(
@@ -265,12 +270,12 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
 
       {/* Input Area */}
       <div className="p-6 bg-white/[0.02] border-t border-white/5">
-        <div className="flex items-center gap-4 bg-surface-low border border-white/10 rounded-2xl p-2 focus-within:border-primary-gold/50 transition-all">
+        <div className="flex items-center gap-4 bg-surface-secondary border border-white/10 rounded-2xl p-2 focus-within:border-primary-gold/50 transition-all">
           <div className="flex items-center gap-1 px-2">
-            <button className="p-2 text-on-surface-variant hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
+            <button className="p-2 text-text-secondary hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
               <Mic size={20} />
             </button>
-            <button className="p-2 text-on-surface-variant hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
+            <button className="p-2 text-text-secondary hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
               <ImageIcon size={20} />
             </button>
           </div>
@@ -281,23 +286,23 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             placeholder="Posez votre question..."
-            className="flex-1 bg-transparent border-none outline-none text-white text-sm py-3"
+            className="flex-1 bg-transparent border-none outline-none text-text-primary text-sm py-3"
           />
 
           <button 
             onClick={handleSendMessage}
             disabled={!inputValue.trim()}
-            className="gold-gradient p-3 rounded-xl text-on-primary disabled:opacity-50 disabled:grayscale transition-all hover:scale-105 active:scale-95"
+            className="gold-gradient p-3 rounded-xl text-text-primary disabled:opacity-50 disabled:grayscale transition-all hover:scale-105 active:scale-95"
           >
             <Send size={20} />
           </button>
         </div>
         
         <div className="flex items-center justify-center gap-6 mt-4">
-          <div className="flex items-center gap-2 text-[9px] text-on-surface-variant uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-[9px] text-text-secondary uppercase tracking-widest">
             <CheckCircle2 size={12} className="text-green-500" /> Chiffrement Quantique
           </div>
-          <div className="flex items-center gap-2 text-[9px] text-on-surface-variant uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-[9px] text-text-secondary uppercase tracking-widest">
             <CheckCircle2 size={12} className="text-green-500" /> RGPD 2026 Compliant
           </div>
         </div>
@@ -314,7 +319,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
           <button
             key={i}
             onClick={() => setInputValue(suggestion)}
-            className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] text-on-surface-variant hover:border-primary-gold/50 hover:text-primary-gold transition-all"
+            className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] text-text-secondary hover:border-primary-gold/50 hover:text-primary-gold transition-all"
           >
             {suggestion}
           </button>

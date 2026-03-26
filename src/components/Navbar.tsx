@@ -16,7 +16,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Accueil', path: '/' },
     { name: 'Encyclopédie', path: '/encyclopedia' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
@@ -24,84 +24,113 @@ export default function Navbar() {
 
   return (
     <nav className={cn(
-      "fixed top-0 z-50 w-full transition-all duration-300",
-      isScrolled ? "glass-nav py-3" : "bg-transparent py-6"
+      "fixed top-0 z-50 w-full transition-all duration-500",
+      // Hauteur navbar augmentée (70-90px) et effet sticky moderne
+      isScrolled ? "glass-nav h-20 shadow-2xl" : "bg-transparent h-24"
     )}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-headline text-xl text-white tracking-tight">
-            MARSEILLE <span className="text-primary-gold">Shorinji Kempo</span>
-          </span>
+      <div className="max-w-7xl mx-auto h-full px-8 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-4 group shrink-0">
+          <img 
+            src="https://i.ibb.co/NdY9fVdD/logo-fond-sombre-compress.png" 
+            alt="Marseille Shorinji Kempo" 
+            className={cn(
+              "transition-all duration-500 object-contain group-hover:scale-110",
+              isScrolled ? "h-16" : "h-20"
+            )}
+            referrerPolicy="no-referrer"
+          />
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="flex items-center gap-8 mr-8 border-r border-white/10 pr-8">
+        {/* Desktop Nav - Taille texte augmentée et hiérarchie claire */}
+        <div className="hidden lg:flex items-center gap-10">
+          <div className="flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  "font-label tracking-[0.02em] uppercase text-[15px] font-semibold transition-colors",
-                  location.pathname === link.path ? "text-primary-gold" : "text-slate-400 hover:text-primary-gold"
+                  "relative font-label tracking-wide text-[19px] font-bold transition-all duration-300 group/link hover:scale-105",
+                  location.pathname === link.path ? "text-primary-gold" : "text-ivory-silk hover:text-primary-gold"
                 )}
               >
                 {link.name}
+                {/* Micro-interaction : Underline animé plus épais */}
+                <span className={cn(
+                  "absolute -bottom-1 left-0 h-[3px] bg-primary-gold transition-all duration-300 rounded-full",
+                  location.pathname === link.path ? "w-full" : "w-0 group-hover/link:w-full"
+                )} />
               </Link>
             ))}
           </div>
-          <div className="flex items-center gap-4">
-            <button className="text-primary-gold hover:scale-110 transition-transform">
-              <MessageSquare size={20} />
+          
+          <div className="flex items-center gap-6 ml-4">
+            <button className="text-primary-gold hover:scale-125 transition-transform duration-300 p-2">
+              <MessageSquare size={24} />
             </button>
-            <a 
-              href="#contact"
-              className="gold-gradient text-on-primary font-semibold px-6 py-2.5 rounded-lg transition-all hover:brightness-110 active:scale-95 font-label text-[15px] uppercase tracking-[0.02em] flex items-center justify-center"
-            >
-              S'inscrire
-            </a>
+            <div className="flex flex-col items-end gap-1">
+              <span className="text-[10px] text-primary-gold/60 uppercase tracking-widest font-bold">Contactez-nous pour plus d’infos</span>
+              <a 
+                href="#contact"
+                className="cta-secondary"
+              >
+                Contactez-nous
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        {/* Mobile Actions - CTA visible directement même sur mobile */}
+        <div className="flex items-center gap-4 lg:hidden">
+          <a 
+            href="#contact"
+            className="cta-secondary px-4 py-2 text-[12px]"
+          >
+            Contact
+          </a>
+          <button 
+            className="text-white p-2 min-w-[48px] min-h-[48px] flex items-center justify-center"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu"
+          >
+            {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Structure simplifiée et moderne */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full glass-nav border-t border-white/5 py-6 px-6 md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="absolute top-full left-0 w-full glass-nav border-t border-white/10 overflow-hidden lg:hidden"
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col p-8 gap-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "font-label tracking-[0.02em] uppercase text-[15px] font-semibold",
-                    location.pathname === link.path ? "text-primary-gold" : "text-slate-400"
+                    "font-label tracking-widest text-xl font-bold transition-all",
+                    location.pathname === link.path ? "text-primary-gold" : "text-ivory-silk"
                   )}
                 >
                   {link.name}
                 </Link>
               ))}
-              <a 
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="gold-gradient text-on-primary font-semibold py-3 rounded-lg font-label text-[15px] uppercase tracking-[0.02em] flex items-center justify-center"
-              >
-                S'inscrire
-              </a>
+              <div className="h-[1px] bg-white/10 w-full my-2" />
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] text-primary-gold/60 uppercase tracking-widest font-bold text-center">Contactez-nous pour plus d’infos</span>
+                <a 
+                  href="#contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="cta-secondary w-full flex items-center justify-center"
+                >
+                  Contactez-nous
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

@@ -11,12 +11,14 @@
   --color-surface-high: #222a3d;
   --color-surface-highest: #2d3449;
   --color-ivory-silk: #FAF9F6;
-  --color-primary: #f2ca50;
-  --color-primary-foreground: #0b1326;
-  --color-primary-gold: #f2ca50;
-  --color-primary-container: #d4af37;
+  --color-primary: #FFD700;
+  --color-primary-foreground: #111111;
+  --color-primary-gold: #FFD700;
+  --color-primary-container: #FFEB3B;
   --color-on-surface: #dae2fd;
   --color-on-surface-variant: #d0c5af;
+  --color-bg-main: #FFFFFF;
+  --color-bg-secondary: #F9F9F9;
 }
 
 @layer base {
@@ -37,11 +39,23 @@
   }
 
   .micro-copy {
-    @apply text-[14px] font-medium tracking-[0.1em] text-primary-container uppercase;
+    @apply text-[14px] font-medium tracking-[0.1em] text-primary-gold uppercase;
   }
 }
 
 @layer components {
+  .gold-gradient {
+    @apply bg-gradient-to-br from-[#FFEB3B] to-[#FFD700];
+  }
+
+  .cta-button {
+    @apply bg-gradient-to-br from-[#FFEB3B] to-[#FFD700] text-[#111111] font-bold px-10 py-5 rounded-2xl shadow-2xl shadow-primary-gold/30 hover:scale-105 hover:shadow-primary-gold/50 active:scale-95 transition-all uppercase tracking-widest text-xs;
+  }
+
+  .cta-secondary {
+    @apply bg-transparent border-2 border-primary-gold text-primary-gold font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-primary-gold hover:text-[#111111] hover:scale-105 active:scale-95 uppercase tracking-widest text-[13px];
+  }
+
   .glass-card {
     @apply bg-surface/80 backdrop-blur-xl border border-white/10 rounded-[24px] transition-all duration-500 overflow-hidden;
     filter: grayscale(0.1);
@@ -80,8 +94,31 @@
     @apply bg-surface/70 backdrop-blur-xl border-b border-white/5;
   }
 
-  .gold-gradient {
-    @apply bg-gradient-to-br from-primary-gold to-primary-container;
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 20px 50px rgba(242, 202, 80, 0.3); }
+    50% { box-shadow: 0 20px 70px rgba(242, 202, 80, 0.6); }
+  }
+
+  .animate-pulse-gold {
+    animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  @keyframes zoom-slow {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.15); }
+  }
+
+  .animate-zoom-slow {
+    animation: zoom-slow 20s ease-in-out infinite alternate;
   }
 
   /* Kinetic Typography System */

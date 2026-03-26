@@ -16,16 +16,16 @@ const instructors = [
 
 export default function InstructorsSection() {
   return (
-    <section className="relative py-32 overflow-hidden bg-surface">
+    <section className="relative py-32 overflow-hidden bg-surface-secondary">
       {/* Background with parallax-like feel */}
       <div className="absolute inset-0 z-0">
         <img 
-          className="w-full h-full object-cover opacity-20 grayscale" 
+          className="w-full h-full object-cover opacity-10 grayscale" 
           src="https://i.ibb.co/84x3GJHv/fond-header.png" 
           alt="Background"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-surface-secondary via-transparent to-surface-secondary"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -34,7 +34,7 @@ export default function InstructorsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-white mb-4"
+            className="text-text-primary mb-4"
           >
             Nos Instructeurs
           </motion.h2>

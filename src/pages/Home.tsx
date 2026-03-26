@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import EngagementHub from '@/src/components/EngagementHub';
 import InstructorsSection from '@/src/components/InstructorsSection';
@@ -9,52 +9,95 @@ import ScrollReveal from '@/src/components/ScrollReveal';
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isHubOpen, setIsHubOpen] = useState(false);
+  const testimonials = [
+    { name: "Julie, 28 ans", role: "Débutante", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://picsum.photos/seed/julie/200/200" },
+    { name: "Marc, 42 ans", role: "Pratiquant (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://picsum.photos/seed/marc/200/200", featured: true },
+    { name: "Thierry, 35 ans", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://picsum.photos/seed/thierry/200/200" }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+  const [mapZoom, setMapZoom] = useState(17);
+  const [contactInfo, setContactInfo] = useState({
+    address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
+    phone: "06 89 09 05 44",
+    email: "thguey@gmail.com",
+    hours: "Lundi: 20h00 - 21h30\nMercredi: 19h30 - 21h00\nVendredi: 20h15 - 21h45",
+    discoveryOffer: [
+      "2 cours d'essai gratuits",
+      "Aucune obligation d'inscription",
+      "Prêt du matériel pour l'essai",
+      "Accompagnement personnalisé"
+    ],
+    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.023473145455!2d5.3916423!3d43.2719266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9b96434863459%3A0x6a0f8b8b8b8b8b8b!2sCentre%20Social%20Saint-Giniez!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr"
+  });
+
+  useEffect(() => {
+    // Dynamic fetching removed as per user request
+  }, []);
 
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img 
-            className="w-full h-full object-cover opacity-20 grayscale" 
+            className="w-full h-full object-cover opacity-40 grayscale-[0.5] animate-zoom-slow" 
             src="https://i.ibb.co/84x3GJHv/fond-header.png" 
-            alt="Dojo background"
+            alt="Dojo Shorinji Kempo Marseille"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"></div>
+          {/* Overlay plus profond pour une immersion immédiate et une lisibilité parfaite */}
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/90 via-surface/40 to-surface"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
             >
-              <span className="micro-copy mb-6 inline-block px-4 py-1 border border-primary-gold/20 bg-primary-gold/5 rounded-full">
-                Art Martial Traditionnel
+              <span className="micro-copy mb-6 inline-flex items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold">
+                <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
-              <h1 className="text-white leading-tight mb-8">
-                Maîtrisez votre <span className="italic text-primary-gold">esprit</span>, forgez votre <span className="text-primary-container">corps</span>.
+              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight">
+                Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
               </h1>
-              <p className="text-on-surface-variant max-w-xl mb-10">
-                Découvrez le Shorinji Kempo à Marseille. Une discipline japonaise unique alliant self-défense efficace, méditation zen et philosophie de vie.
+              <p className="text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed">
+                Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="#contact"
-                  className="gold-gradient text-on-primary font-bold px-8 py-4 rounded-xl shadow-xl shadow-primary-gold/10 flex items-center justify-center gap-2 group transition-all duration-300 text-[14px] uppercase tracking-widest"
+              <div className="flex flex-col items-start gap-6">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
                 >
-                  Réserver un cours gratuit
-                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                </a>
-                <a 
-                  href="#planning"
-                  className="bg-white/5 text-on-surface border border-white/10 hover:bg-white/10 px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition-all backdrop-blur-md text-[14px] uppercase tracking-widest"
+                  <a 
+                    href="#contact"
+                    className="cta-button flex items-center justify-center gap-3 text-[16px] animate-float animate-pulse-gold group"
+                  >
+                    Réservez votre séance gratuite (places limitées)
+                    <ArrowRight className="group-hover:translate-x-2 transition-transform" size={22} />
+                  </a>
+                </motion.div>
+                {/* Micro-copy de réassurance pour renforcer la confiance */}
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 1.2 }}
+                  className="text-ivory-silk/60 text-sm font-bold uppercase tracking-[0.15em] ml-2"
                 >
-                  Voir le planning
-                </a>
+                  Séance d’essai gratuite – Sans engagement, accessible débutants
+                </motion.p>
               </div>
             </motion.div>
 
@@ -83,85 +126,200 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Personas Section */}
-      <section className="py-32 bg-ivory-silk relative">
+      {/* Storytelling Section - Pourquoi nous rejoindre ? */}
+      <section className="py-32 bg-bg-main relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <ScrollReveal className="relative">
+              <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
+                <img 
+                  src="https://i.ibb.co/tpbN1KW4/image-debutant.png" 
+                  alt="Pratique du Shorinji Kempo" 
+                  className="w-full aspect-square object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
+              </div>
+              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-primary-gold/20 rounded-full blur-3xl -z-10"></div>
+            </ScrollReveal>
+
+            <div className="space-y-12">
+              <ScrollReveal>
+                <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">L'Expérience Shorinji Kempo</span>
+                <h2 className="text-surface text-4xl md:text-6xl font-black leading-tight mb-8">
+                  Pourquoi franchir les portes de notre dojo ?
+                </h2>
+                <p className="text-slate-600 text-xl leading-relaxed">
+                  Plus qu'un simple entraînement, nous vous proposons un voyage vers la meilleure version de vous-même. 
+                  Rejoignez une communauté qui valorise l'entraide autant que l'efficacité.
+                </p>
+              </ScrollReveal>
+
+              <div className="space-y-8">
+                {[
+                  {
+                    title: "Confiance Absolue",
+                    desc: "Prenez confiance en vous, non seulement sur le tatami, mais dans chaque défi de votre vie quotidienne.",
+                    icon: <Sparkles className="text-primary-gold" />
+                  },
+                  {
+                    title: "Discipline de Fer",
+                    desc: "Développez un mental solide, structuré et capable de rester calme sous la pression.",
+                    icon: <Clock className="text-primary-gold" />
+                  },
+                  {
+                    title: "Défense Efficace",
+                    desc: "Apprenez à vous protéger et à protéger vos proches avec des techniques réalistes et intelligentes.",
+                    icon: <CheckCircle className="text-primary-gold" />
+                  }
+                ].map((item, i) => (
+                  <ScrollReveal key={i} delay={i * 0.1} className="flex gap-6 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center shrink-0 group-hover:bg-primary-gold group-hover:text-white transition-all duration-300">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-surface text-xl font-bold mb-2">{item.title}</h4>
+                      <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              <ScrollReveal className="pt-8">
+                <a 
+                  href="#contact"
+                  className="inline-flex items-center gap-4 text-surface font-black uppercase tracking-widest group"
+                >
+                  <span className="h-[2px] w-12 bg-primary-gold group-hover:w-20 transition-all duration-500"></span>
+                  Essayez maintenant (offert)
+                </a>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section - 3 Pillars */}
+      <section className="py-32 bg-surface relative overflow-hidden border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-surface mb-4">Le Shorinji Kempo est fait pour vous</h2>
-            <p className="max-w-2xl mx-auto text-slate-600">Que vous soyez parent, débutant ou pratiquant confirmé, trouvez votre voie</p>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Transformation</span>
+            <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Nos 3 Piliers Fondamentaux</h2>
+            <p className="text-slate-400 text-xl max-w-2xl mx-auto">Développez votre confiance et votre force dès les premières séances grâce à une méthode éprouvée.</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               {
-                tag: "Section : Enfants & Ados (9-13 ans)",
-                title: "L’école de la confiance pour votre enfant à Saint-Giniez",
-                desc: "Offrez-lui bien plus qu’un sport : un cadre structurant pour grandir sereinement à Marseille 8ème.",
+                icon: <Sparkles className="text-primary-gold" size={40} />,
+                title: "Confiance",
+                desc: "Développez votre confiance dès la première séance",
+                variant: "bg-white/5 shadow-primary-gold/5"
+              },
+              {
+                icon: <ArrowRight className="text-primary-gold rotate-[-45deg]" size={40} />,
+                title: "Discipline",
+                desc: "Renforcez votre mental et votre concentration",
+                variant: "bg-white/[0.07] shadow-primary-gold/10"
+              },
+              {
+                icon: <CheckCircle className="text-primary-gold" size={40} />,
+                title: "Défense",
+                desc: "Apprenez à vous protéger efficacement",
+                variant: "bg-white/[0.09] shadow-primary-gold/15"
+              }
+            ].map((benefit, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
+                className={cn(
+                  "text-center p-10 rounded-[40px] glass-card border border-white/5 hover:scale-105 transition-all duration-500 group shadow-2xl ki-aura-dark",
+                  benefit.variant
+                )}
+              >
+                <div className="mb-8 flex justify-center group-hover:scale-110 transition-transform duration-500">{benefit.icon}</div>
+                <h3 className="text-white mb-4 text-3xl font-bold">{benefit.title}</h3>
+                <p className="text-slate-400 leading-relaxed text-lg font-medium">{benefit.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+          
+            <ScrollReveal className="pt-8">
+              <div className="flex flex-col items-center gap-6">
+                <a 
+                  href="#contact"
+                  className="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
+                >
+                  Essayez maintenant
+                </a>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
+              </div>
+            </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Personas Section - Storytelling Immersif */}
+      <section className="py-32 bg-bg-main relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-24">
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Pour qui ?</span>
+            <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Le Shorinji Kempo est fait pour vous.</h2>
+            <p className="max-w-2xl mx-auto text-slate-600 text-xl">Que vous cherchiez la sérénité, la force ou la discipline, trouvez votre voie parmi nos sections dédiées.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              {
+                tag: "Enfants & Ados (9-13 ans)",
+                title: "L’école de la confiance pour votre enfant.",
+                desc: "Offrez-lui un cadre structurant pour grandir sereinement et s'affirmer face aux défis de la vie.",
                 img: "https://i.ibb.co/8L2sN6qz/enfants.png",
-                points: [
-                  { label: "Confiance & Affirmation", text: "Des outils concrets pour gérer les conflits sans violence et s'affirmer face aux défis du collège." },
-                  { label: "Discipline Positive", text: "Un cadre martial bienveillant qui enseigne le respect des règles, de soi et d'autrui." },
-                  { label: "Réussite Scolaire", text: "Améliore la concentration et la gestion des émotions grâce à la respiration et à l'effort physique." },
-                  { label: "Proximité & Sécurité", text: "Un dojo familial situé à deux pas des écoles du quartier (Prado/Michelet), encadré par des instructeurs certifiés." }
-                ]
+                cta: "Réserver son essai gratuit"
               },
               {
-                tag: "Section : Adultes Débutants",
-                title: "Retrouvez l’équilibre : Votre bulle de décompression à Marseille",
-                desc: "Évacuez le stress de la journée et apprenez à vous défendre dans une ambiance 100% bienveillante, sans aucun prérequis.",
+                tag: "Adultes Débutants",
+                title: "Retrouvez l’équilibre et évacuez le stress.",
+                desc: "Votre bulle de décompression à Marseille. Apprenez à vous défendre dans une ambiance 100% bienveillante.",
                 img: "https://i.ibb.co/tpbN1KW4/image-debutant.png",
-                points: [
-                  { label: "Zéro Complexe", text: "Que vous soyez sportif ou non, nous adaptons chaque séance à votre condition physique actuelle." },
-                  { label: "Self-Défense & Sérénité", text: "Apprenez des techniques efficaces et réalistes pour vous sentir plus en sécurité au quotidien dans la cité phocéenne." },
-                  { label: "Santé Martiale", text: "Un travail complet sur la souplesse, la posture et l'énergie pour recharger vos batteries après le travail." },
-                  { label: "Accès Facilité", text: "Situé à Saint-Giniez (13008), notre dojo est le point de chute idéal pour les actifs du secteur Prado / Euroméditerranée." }
-                ],
-                featured: true
+                featured: true,
+                cta: "Je commence maintenant"
               },
               {
-                tag: "Section : Pratiquants Confirmés",
-                title: "Exigence Technique & Lignage Officiel (WSKO)",
-                desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement.",
+                tag: "Pratiquant Confirmé",
+                title: "Exigence Technique & Lignage Officiel.",
+                desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement (WSKO).",
                 img: "https://i.ibb.co/yc6vzy0T/image-pratiquant-confirm.png",
-                points: [
-                  { label: "Cursus Technique Complet", text: "Maîtrisez l'équilibre parfait entre Goho (percussions) et Juho (clés et projections) pour une efficacité totale." },
-                  { label: "Grades Internationaux", text: "Pratiquez dans un club affilié à la Fédération Française et à la WSKO (Japon), garantissant la reconnaissance de votre progression." },
-                  { label: "Philosophie en Action", text: "Approfondissez le Kongo Zen et le Seiho (restauration du corps) pour unifier l'esprit et la technique." },
-                  { label: "Dynamique de Groupe", text: "Un cadre rigoureux et passionné pour préparer vos hauts grades et perfectionner votre art." }
-                ]
+                cta: "Rejoindre le dojo"
               }
             ].map((card, i) => (
               <ScrollReveal
                 key={i}
                 delay={i * 0.1}
                 className={cn(
-                  "group p-8 rounded-[24px] transition-all duration-500 flex flex-col border",
-                  card.featured ? "bg-surface glass-card ki-aura-dark border-white/10 md:scale-105 shadow-2xl text-white" : "glass-card-light ki-aura-light border-slate-200 shadow-sm"
+                  "group p-10 rounded-[48px] transition-all duration-700 flex flex-col border",
+                  card.featured ? "bg-surface text-white border-white/10 md:scale-105 shadow-[0_40px_80px_rgba(0,0,0,0.2)]" : "bg-white border-slate-100 shadow-xl shadow-surface/5"
                 )}
               >
-                <div className="mb-6 overflow-hidden rounded-xl">
-                  <img src={card.img} alt={card.title} className="w-full h-48 object-cover parallax-reveal" referrerPolicy="no-referrer" />
+                <div className="mb-8 overflow-hidden rounded-[32px] aspect-video">
+                  <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
                 </div>
                 <div className="flex-grow text-center">
-                  <div className={cn("micro-copy mb-4", card.featured ? "text-primary-gold" : "")}>{card.tag}</div>
-                  <h3 className={cn("mb-4 leading-tight", card.featured ? "text-white" : "text-surface")}>
-                    <span>{card.title}</span>
+                  <div className={cn("micro-copy mb-4 font-bold uppercase tracking-widest", card.featured ? "text-primary-gold" : "text-primary-gold")}>{card.tag}</div>
+                  <h3 className={cn("mb-6 text-2xl md:text-3xl font-black leading-tight", card.featured ? "text-white" : "text-surface")}>
+                    {card.title}
                   </h3>
-                  <p className={cn("mb-6 italic", card.featured ? "text-slate-300" : "text-slate-600")}>{card.desc}</p>
-                  <ul className="space-y-4 mb-8 text-left">
-                    {card.points.map((p, j) => (
-                      <li key={j} className={cn("flex items-start gap-3 text-[14px] leading-relaxed", card.featured ? "text-slate-300" : "text-slate-700")}>
-                        <CheckCircle className="text-primary-gold shrink-0" size={14} />
-                        <span><strong>{p.label} :</strong> {p.text}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className={cn("mb-10 text-lg leading-relaxed", card.featured ? "text-ivory-silk/60" : "text-slate-500")}>{card.desc}</p>
                 </div>
                 <a 
                   href="#contact"
-                  className="w-full bg-primary-gold text-on-primary font-bold py-3.5 rounded-lg hover:brightness-110 transition-all text-[12px] uppercase tracking-widest mt-auto flex items-center justify-center"
+                  className={cn(
+                    "w-full font-bold py-5 rounded-2xl transition-all uppercase tracking-widest text-sm mt-auto flex items-center justify-center hover:scale-[1.05] active:scale-95",
+                    card.featured ? "cta-button" : "cta-secondary"
+                  )}
                 >
-                  Essayer gratuitement
+                  {card.cta}
                 </a>
               </ScrollReveal>
             ))}
@@ -187,10 +345,13 @@ export default function Home() {
               <span className="micro-copy mb-4 block">Calendrier des Sessions</span>
               <h2 className="text-white mb-6">Planning du Dojo</h2>
               <p className="text-slate-300 mb-8">Rejoignez l'élite du Budo au cœur de Marseille (13008).</p>
-              <div className="bg-primary-gold/10 border border-primary-gold/20 px-6 py-4 rounded-xl inline-flex items-center gap-3">
-                <MapPin className="text-primary-gold" size={20} />
+              <button 
+                onClick={() => setIsMapOpen(true)}
+                className="bg-primary-gold/10 border border-primary-gold/20 px-6 py-4 rounded-xl inline-flex items-center gap-3 hover:bg-primary-gold/20 transition-all group"
+              >
+                <MapPin className="text-primary-gold group-hover:scale-110 transition-transform" size={20} />
                 <span className="font-bold text-sm tracking-wide uppercase text-white">Dojo Saint-Giniez</span>
-              </div>
+              </button>
             </div>
 
             <div className="lg:w-2/3 w-full space-y-6">
@@ -247,36 +408,170 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-32 bg-ivory-silk">
+      <section className="py-32 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-surface mb-4">Ce que disent nos pratiquants</h2>
-            <p className="text-slate-600">Des témoignages authentiques de notre communauté</p>
+          <div className="text-center mb-20">
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
+            <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
+            <p className="text-slate-600 text-xl">Rejoignez une communauté bienveillante et motivée.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { name: "Thierry", role: "Papa de Gabriel G.", text: "Un vrai déclic pour la confiance de mon fils. Nous cherchions une activité pour Lucas (10 ans) qui était assez timide et avait du mal à s'imposer à l'école. Ce que j'apprécie au club de Saint-Giniez, c'est ce mélange rare de discipline martiale et de bienveillance. En un trimestre, il a gagné une assurance incroyable et il est beaucoup plus serein dans ses relations avec les autres. C'est rassurant de savoir qu'il apprend à se défendre tout en cultivant le respect. Un pilier éducatif précieux dans le 8ème !", img: "https://picsum.photos/seed/p1/100/100" },
-              { name: "Marc", role: "Pratiquant depuis 1 an", text: "À 42 ans, je n'avais pas fait de sport depuis des années et j'appréhendais de pousser la porte d'un dojo à Marseille. J'ai été immédiatement mis à l'aise : ici, pas de jugement sur la condition physique, on progresse à son rythme. C'est devenu ma véritable soupape de sécurité pour évacuer le stress de la journée. Je repars des cours avec une énergie physique et mentale que je n'avais plus. Un équilibre parfait trouvé en plein cœur de Saint-Giniez.", img: "https://picsum.photos/seed/p2/100/100", featured: true },
-              { name: "Julien", role: "Ceinture Noire", text: "Après plusieurs années dans d'autres styles, je cherchais une pratique plus complète, alliant percussions et techniques de clés (Juho). La qualité de l'enseignement au dojo de Saint-Giniez est exceptionnelle. Mes acquis ont été immédiatement valorisés et le fait que les grades soient reconnus par la WSKO au Japon est un gage de sérieux indispensable. C'est un dojo de référence pour quiconque cherche la profondeur martiale et philosophique.", img: "https://picsum.photos/seed/p3/100/100" }
-            ].map((t, i) => (
-              <ScrollReveal 
-                key={i}
-                delay={i * 0.1}
-                className={cn(
-                  "p-10 rounded-[24px] relative border shadow-xl transition-all duration-500",
-                  t.featured ? "bg-surface glass-card ki-aura-dark border-white/10 text-white" : "glass-card-light ki-aura-light border-slate-200 text-slate-600"
-                )}
+          
+          <div className="relative group/slider">
+            <div className="flex flex-col items-center">
+              <AnimatePresence mode="wait">
+                {testimonials.map((t, i) => i === activeTestimonial && (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.6, ease: "circOut" }}
+                    className={cn(
+                      "p-12 md:p-16 rounded-[48px] relative border transition-all duration-700 max-w-4xl w-full mx-auto",
+                      t.featured ? "bg-surface text-white border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.15)]" : "bg-white border-slate-100 shadow-2xl shadow-surface/5"
+                    )}
+                  >
+                    <div className="flex flex-col md:flex-row items-center gap-8 mb-10">
+                      <div className="relative shrink-0">
+                        <img src={t.img} className="w-24 h-24 rounded-3xl object-cover border-4 border-primary-gold/30" alt={t.name} referrerPolicy="no-referrer" />
+                        <div className="absolute -bottom-3 -right-3 bg-primary-gold text-on-primary rounded-xl p-2 shadow-lg">
+                          <Sparkles size={20} fill="currentColor" />
+                        </div>
+                      </div>
+                      <div className="text-center md:text-left">
+                        <p className={cn("font-black text-2xl mb-1", t.featured ? "text-white" : "text-surface")}>{t.name}</p>
+                        <p className="text-primary-gold text-sm uppercase tracking-widest font-bold">{t.role}</p>
+                      </div>
+                    </div>
+                    <p className={cn("italic leading-relaxed text-2xl md:text-3xl font-medium", t.featured ? "text-ivory-silk/90" : "text-slate-600")}>
+                      "{t.text}"
+                    </p>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Navigation Arrows - Desktop Only */}
+              <div className="hidden lg:block">
+                <button 
+                  onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center text-surface hover:bg-primary-gold hover:text-white transition-all duration-300 opacity-0 group-hover/slider:opacity-100 group-hover/slider:-translate-x-16"
+                  aria-label="Témoignage précédent"
+                >
+                  <ArrowRight className="rotate-180" size={24} />
+                </button>
+                <button 
+                  onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center text-surface hover:bg-primary-gold hover:text-white transition-all duration-300 opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-16"
+                  aria-label="Témoignage suivant"
+                >
+                  <ArrowRight size={24} />
+                </button>
+              </div>
+
+              <div className="flex items-center gap-4 mt-12">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveTestimonial(i)}
+                    className={cn(
+                      "w-3 h-3 rounded-full transition-all duration-300",
+                      activeTestimonial === i ? "bg-primary-gold w-10" : "bg-slate-300 hover:bg-primary-gold/50"
+                    )}
+                    aria-label={`Témoignage ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-20 text-center">
+            <ScrollReveal>
+              <a 
+                href="#contact"
+                className="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
               >
-                <div className="flex items-center gap-4 mb-8">
-                  <img src={t.img} className="w-12 h-12 rounded-full border-2 border-primary-gold/20 parallax-reveal" alt={t.name} referrerPolicy="no-referrer" />
-                  <div>
-                    <p className={cn("font-bold", t.featured ? "text-white" : "text-surface")}>{t.name}</p>
-                    <p className="micro-copy">{t.role}</p>
+                Rejoignez la communauté
+              </a>
+              <div className="mt-6 flex flex-col items-center gap-2">
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
+                <div className="flex items-center gap-4 text-[10px] text-primary-gold/60 uppercase tracking-[0.2em] font-bold">
+                  <span>Premier cours offert</span>
+                  <span className="w-1 h-1 rounded-full bg-primary-gold/30"></span>
+                  <span>Équipement prêté</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works Section */}
+      <section className="py-32 bg-bg-main relative overflow-hidden border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-24">
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
+            <h2 className="text-surface text-4xl md:text-6xl font-black">Comment nous rejoindre ?</h2>
+            <p className="text-slate-600 mt-6 text-xl">Une démarche simple pour une transformation profonde.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {[
+              {
+                step: "01",
+                title: "Réservez votre séance",
+                desc: "Remplissez le formulaire en 30s. C'est gratuit, sans engagement et accessible à tous.",
+                icon: <Calendar className="text-primary-gold" size={40} />
+              },
+              {
+                step: "02",
+                title: "Participez au cours",
+                desc: "Nous vous accueillons avec bienveillance. L'équipement vous est prêté pour votre premier cours.",
+                icon: <User className="text-primary-gold" size={40} />
+              },
+              {
+                step: "03",
+                title: "Progressez pas à pas",
+                desc: "Pratiquez, ressentez l'énergie du groupe et découvrez votre potentiel inexploité.",
+                icon: <TrendingUp className="text-primary-gold" size={40} />
+              }
+            ].map((step, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
+                className="relative group"
+              >
+                <div className="p-12 rounded-[48px] bg-white border border-slate-100 hover:border-primary-gold/30 transition-all duration-500 h-full flex flex-col items-center text-center group-hover:scale-[1.02] shadow-xl hover:shadow-2xl ki-aura-light">
+                  <div className="text-9xl font-black text-slate-50 absolute -top-10 -left-4 select-none group-hover:text-primary-gold/5 transition-colors duration-500">{step.step}</div>
+                  <div className="mb-8 p-6 rounded-3xl bg-slate-50 border border-slate-100 group-hover:scale-110 transition-transform duration-500 shadow-xl relative z-10">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-surface text-2xl font-bold mb-4 relative z-10">{step.title}</h3>
+                  <p className="text-slate-500 leading-relaxed text-lg relative z-10 mb-6">{step.desc}</p>
+                  <div className="mt-auto pt-6 border-t border-slate-50 w-full">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary-gold/60">Accessible débutants – sans engagement</span>
                   </div>
                 </div>
-                <p className={cn("italic leading-relaxed", t.featured ? "text-slate-300" : "text-slate-600")}>"{t.text}"</p>
-              </ScrollReveal>
+                {i < 2 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-6 w-12 h-[1px] bg-gradient-to-r from-primary-gold/30 to-transparent z-10"></div>
+                )}
+              </motion.div>
             ))}
+          </div>
+          
+          <div className="mt-20 text-center">
+            <ScrollReveal>
+              <div className="flex flex-col items-center gap-6">
+                <a 
+                  href="#contact"
+                  className="cta-button inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
+                >
+                  Rejoignez le dojo
+                </a>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Accessible débutants – sans engagement</p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -285,11 +580,22 @@ export default function Home() {
       <InstructorsSection />
 
       {/* FAQ Section */}
-      <section className="py-32 bg-ivory-silk">
+      <section className="py-32 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-surface mb-4">Questions Fréquentes</h2>
-            <p className="text-slate-600">Tout ce qu'il faut savoir avant de franchir les portes du dojo.</p>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">FAQ</span>
+            <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Questions Fréquentes</h2>
+            <p className="text-slate-600 text-xl">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
+            <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
+              <div className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+                <CheckCircle size={18} className="text-primary-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Débutants bienvenus – sécurité assurée</span>
+              </div>
+              <div className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+                <CheckCircle size={18} className="text-primary-gold" />
+                <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">100% Bienveillance & Respect</span>
+              </div>
+            </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <ScrollReveal className="bg-surface glass-card p-10 rounded-[24px] flex flex-col items-center text-center justify-center border border-white/10 shadow-sm ki-aura-dark">
@@ -305,7 +611,7 @@ export default function Home() {
               </p>
               <button 
                 onClick={() => setIsHubOpen(true)}
-                className="w-full gold-gradient text-on-primary font-bold py-5 rounded-2xl flex items-center justify-center gap-3 uppercase tracking-widest text-[12px] hover:brightness-110 transition-all shadow-xl shadow-primary-gold/20"
+                className="cta-button w-full flex items-center justify-center gap-3"
               >
                 Accéder au Hub <ArrowRight size={20} />
               </button>
@@ -317,28 +623,44 @@ export default function Home() {
             </ScrollReveal>
             <div className="space-y-4">
               {[
-                { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 6 ans. Nous proposons des cours adaptés pour les enfants (6-12 ans), les adolescents (13-17 ans) et les adultes. Il n'y a pas d'âge maximum pour débuter. Nous accueillons régulièrement des débutants de 40, 50 ans et plus !" },
-                { q: "Faut-il être déjà sportif pour commencer ?", a: "Absolument pas ! Le Shorinji Kempo s'adapte à tous les niveaux de condition physique. La progression est graduelle et respectueuse du rythme de chacun. Nos débutants viennent souvent sans aucune expérience sportive préalable. Les cours sont conçus pour développer progressivement votre condition physique, votre souplesse et votre coordination." },
-                { q: "Est-ce dangereux ? Y a-t-il des risques de blessures ?", a: "Le Shorinji Kempo met l'accent sur le contrôle et le respect du partenaire. Les exercices se pratiquent de manière progressive et sécurisée. Nous utilisons des protections lors des exercices de combat. Le taux de blessures est très faible comparé à d'autres sports. La philosophie du Shorinji Kempo privilégie la maîtrise de soi et la bienveillance." },
-                { q: "Peut-on essayer gratuitement avant de s'inscrire ?", a: "Oui ! Nous offrons 2 cours d'essai gratuits pour découvrir le Shorinji Kempo en toute tranquillité. Aucune obligation d'inscription. Venez simplement avec une tenue de sport confortable. Contactez-nous via WhatsApp ou par téléphone pour réserver votre créneau d'essai." },
-                { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont compétitifs et incluent l'adhésion à la fédération française. Cotisation annuelle : 290€ pour les adultes, 240€ pour les enfants. Possibilité de paiement en plusieurs fois. Une réduction famille est disponible pour les fratries." },
-                { q: "Que faut-il apporter pour le premier cours ?", a: "Pour votre premier cours, venez avec une tenue de sport confortable (jogging, t-shirt). Vous pratiquerez pieds nus. Le gi (tenue traditionnelle) peut être acheté plus tard si vous décidez de continuer. Pensez à apporter une bouteille d'eau." }
+                { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 6 ans. Nous proposons des cours adaptés pour les enfants, les adolescents et les adultes. Il n'y a pas d'âge maximum pour débuter. La sécurité et l'accueil des débutants sont nos priorités absolues." },
+                { q: "Faut-il être déjà sportif pour commencer ?", a: "Absolument pas ! Le Shorinji Kempo s'adapte à tous les niveaux. La progression est graduelle et respectueuse de votre rythme. Nos débutants viennent souvent sans aucune expérience sportive préalable." },
+                { q: "Est-ce dangereux ? Y a-t-il des risques de blessures ?", a: "La sécurité est notre priorité. Les techniques sont enseignées avec contrôle et bienveillance. Nous utilisons des protections et le taux de blessures est extrêmement faible. On apprend à se protéger, pas à se blesser." },
+                { q: "Peut-on essayer gratuitement avant de s'inscrire ?", a: "Oui ! Nous offrons une séance d'essai gratuite pour découvrir le Shorinji Kempo en toute tranquillité. Aucune obligation d'inscription. Venez simplement avec une tenue de sport confortable." },
+                { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont transparents et incluent l'adhésion. Cotisation annuelle : 290€ pour les adultes, 240€ pour les enfants. Possibilité de paiement en plusieurs fois pour faciliter l'accès à tous." },
+                { q: "Que faut-il apporter pour le premier cours ?", a: "Pour votre premier cours, un simple jogging et un t-shirt suffisent. Vous pratiquerez pieds nus sur des tatamis. Pensez simplement à apporter une bouteille d'eau et votre sourire !" }
               ].map((item, i) => (
-                <ScrollReveal key={i} delay={i * 0.1} className="glass-card-light rounded-[24px] overflow-hidden border border-slate-200 shadow-sm ki-aura-light">
+                <ScrollReveal key={i} delay={i * 0.1} className="glass-card-light rounded-[32px] overflow-hidden border border-slate-200 shadow-sm ki-aura-light hover:border-primary-gold/30 transition-all duration-500">
                   <button 
                     onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                    className="w-full flex justify-between items-center p-6 text-left text-surface hover:text-primary-gold transition-colors"
+                    className="w-full flex justify-between items-center p-8 text-left text-surface hover:text-primary-gold transition-colors group"
                   >
-                    <span className="font-medium">{i + 1}. {item.q}</span>
-                    <ChevronDown className={cn("transition-transform duration-300", activeFaq === i && "rotate-180")} size={20} />
+                    <span className="font-bold text-lg pr-8 group-hover:translate-x-2 transition-transform duration-300">{item.q}</span>
+                    <div className={cn(
+                      "w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-500",
+                      activeFaq === i ? "bg-primary-gold border-primary-gold text-on-primary rotate-180" : "group-hover:border-primary-gold group-hover:text-primary-gold"
+                    )}>
+                      <ChevronDown size={20} />
+                    </div>
                   </button>
-                  <motion.div 
-                    initial={false}
-                    animate={{ height: activeFaq === i ? "auto" : 0 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="p-6 pt-0 text-slate-600 italic leading-relaxed">{item.a}</p>
-                  </motion.div>
+                  <AnimatePresence initial={false}>
+                    {activeFaq === i && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "circOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-8 pt-0 text-slate-600 leading-relaxed text-lg border-t border-slate-100 mt-2">
+                          {item.a}
+                          <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
+                            <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </ScrollReveal>
               ))}
             </div>
@@ -346,7 +668,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - Conversion Focus */}
       <section id="contact" className="relative py-32 bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
@@ -358,151 +680,176 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-white mb-4">Prêt à commencer ?</h2>
-            <p className="text-slate-300">Réservez vos 2 cours d'essai gratuits dès maintenant</p>
+          <div className="text-center mb-20">
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Dernière Étape</span>
+            <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Prêt à transformer votre quotidien ?</h2>
+            <p className="text-ivory-silk/60 text-xl max-w-2xl mx-auto">Rejoignez les pratiquants qui ont déjà franchi le pas. Votre première séance est offerte, sans aucun engagement.</p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="space-y-8">
-              <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px]">
-                <h3 className="text-white mb-10">Informations de Contact</h3>
-                <div className="space-y-8">
-                  <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20">
-                      <MapPin className="text-primary-gold" size={20} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div className="space-y-10">
+              <div className="bg-white/5 border border-white/10 p-10 rounded-[40px] space-y-8">
+                <h3 className="text-white text-2xl font-bold mb-6">Pourquoi réserver maintenant ?</h3>
+                {[
+                  { title: "Sans engagement", desc: "Venez essayer, ressentez l'énergie, et décidez ensuite." },
+                  { title: "Accessible débutant", desc: "Aucune expérience préalable n'est nécessaire." },
+                  { title: "Places limitées", desc: "Nous limitons le nombre de nouveaux par cours pour un meilleur suivi." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0">
+                      <CheckCircle className="text-primary-gold" size={24} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1">Adresse</h4>
-                      <p className="text-slate-400 text-[14px]">Dojo Principal, Avenue du Prado, 13008 Marseille</p>
+                      <h4 className="text-white font-bold mb-1">{item.title}</h4>
+                      <p className="text-ivory-silk/60">{item.desc}</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20">
-                      <Phone className="text-primary-gold" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold mb-1">Téléphone</h4>
-                      <p className="text-slate-400 text-[14px]">06 12 34 56 78</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20">
-                      <Mail className="text-primary-gold" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold mb-1">Email</h4>
-                      <p className="text-slate-400 text-[14px]">contact@shorinjikempo-marseille.fr</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20">
-                      <Clock className="text-primary-gold" size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold mb-1">Horaires d'accueil</h4>
-                      <p className="text-slate-400 text-[14px]">Lundi - Vendredi: 17h00 - 21h00<br />Samedi: 10h00 - 12h00</p>
-                    </div>
-                  </div>
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold">
+                  <img src="https://picsum.photos/seed/instructor/100/100" alt="Instructeur" referrerPolicy="no-referrer" />
                 </div>
-              </ScrollReveal>
-              <ScrollReveal className="bg-surface glass-card border border-primary-gold/20 rounded-[24px] p-10 ki-aura-dark">
-                <div className="flex items-center gap-4 mb-6">
-                  <CheckCircle className="text-primary-gold" size={24} />
-                  <h4 className="text-white font-bold uppercase tracking-widest">Offre Découverte</h4>
+                <div>
+                  <p className="text-white font-bold">Une question ?</p>
+                  <p className="text-ivory-silk/60">Je vous réponds personnellement sous 24h.</p>
                 </div>
-                <ul className="space-y-4 text-slate-300">
-                  <li className="flex items-center gap-2">✓ 2 cours d'essai gratuits</li>
-                  <li className="flex items-center gap-2">✓ Aucune obligation d'inscription</li>
-                  <li className="flex items-center gap-2">✓ Prêt du matériel pour l'essai</li>
-                  <li className="flex items-center gap-2">✓ Accompagnement personnalisé</li>
-                </ul>
-              </ScrollReveal>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                  <Phone className="text-primary-gold mb-3" size={20} />
+                  <p className="text-white font-bold text-sm uppercase tracking-widest">Appelez-nous</p>
+                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors">{contactInfo.phone}</a>
+                </div>
+                <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                  <Mail className="text-primary-gold mb-3" size={20} />
+                  <p className="text-white font-bold text-sm uppercase tracking-widest">Email</p>
+                  <a href={`mailto:${contactInfo.email}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors break-all text-xs md:text-base">{contactInfo.email}</a>
+                </div>
+              </div>
             </div>
 
-            <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px] border-primary-gold/20">
-              <h3 className="text-white mb-2">Nous contacter directement</h3>
-              <p className="text-on-surface-variant mb-8">
-                Remplissez le formulaire ci-dessous ou contactez-nous via WhatsApp
-              </p>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Prénom *</label>
-                    <input type="text" placeholder="Jean" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
+            <ScrollReveal className="bg-white p-10 md:p-12 rounded-[48px] shadow-2xl">
+              <form className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <label htmlFor="name" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Nom Complet *</label>
+                    <input type="text" id="name" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="Jean Dupont" required />
                   </div>
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Nom *</label>
-                    <input type="text" placeholder="Dupont" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
+                  <div className="space-y-3">
+                    <label htmlFor="email" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Email *</label>
+                    <input type="email" id="email" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="jean@exemple.com" required />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Email *</label>
-                    <input type="email" placeholder="jean@example.com" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Téléphone</label>
-                    <input type="tel" placeholder="06 12 34 56 78" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                  </div>
+                <div className="space-y-3">
+                  <label htmlFor="phone" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Téléphone *</label>
+                  <input type="tel" id="phone" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="06 12 34 56 78" required />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="micro-copy text-white">Sujet *</label>
-                  <input type="text" placeholder="Ex: Inscription essai pour enfants" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
+                <div className="space-y-3">
+                  <label htmlFor="section" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Section souhaitée *</label>
+                  <select id="section" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface appearance-none" required>
+                    <option value="">Choisir une section</option>
+                    <option value="adultes">Adultes Débutants</option>
+                    <option value="enfants">Enfants & Ados</option>
+                    <option value="confirmes">Pratiquants Confirmés</option>
+                  </select>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="micro-copy text-white">Message *</label>
-                  <textarea placeholder="Dites-nous comment nous pouvons vous aider..." rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all resize-none"></textarea>
+                <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                  <input type="checkbox" id="exp" className="mt-1.5 w-5 h-5 rounded border-slate-300 text-primary-gold focus:ring-primary-gold" />
+                  <label htmlFor="exp" className="text-slate-500 text-sm leading-relaxed">J'ai déjà une expérience en arts martiaux (facultatif)</label>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Catégorie d'âge</label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
-                      <option className="bg-surface">Sélectionner</option>
-                      <option className="bg-surface">Enfant (6-12 ans)</option>
-                      <option className="bg-surface">Adolescent (13-17 ans)</option>
-                      <option className="bg-surface">Adulte</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Préféré de contact *</label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
-                      <option className="bg-surface">Email</option>
-                      <option className="bg-surface">Téléphone</option>
-                      <option className="bg-surface">WhatsApp</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <input type="checkbox" id="exp" className="w-4 h-4 rounded border-white/10 bg-white/5 text-primary-gold focus:ring-primary-gold/50" />
-                  <label htmlFor="exp" className="micro-copy text-on-surface-variant">J'ai une expérience préalable en arts martiaux</label>
-                </div>
-
-                <button type="submit" className="w-full gold-gradient text-on-primary font-bold py-4 rounded-xl shadow-xl shadow-primary-gold/20 hover:brightness-110 transition-all uppercase tracking-widest text-[14px]">
-                  Envoyer mon message
+                <button type="submit" className="cta-button w-full py-6 text-lg">
+                  Réservez ma séance gratuite (places limitées)
                 </button>
                 
-                <p className="text-center micro-copy text-on-surface-variant">* Champs obligatoires</p>
-
-                <div className="pt-6 border-t border-white/10 space-y-4">
-                  <p className="text-center micro-copy text-on-surface-variant">Ou contactez-nous directement :</p>
-                  <button type="button" className="w-full bg-[#25D366] text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-[14px] uppercase tracking-widest">
-                    WhatsApp
-                  </button>
-                  <button type="button" className="w-full bg-white text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-[14px] uppercase tracking-widest">
-                    06 12 34 56 78
-                  </button>
-                </div>
+                <p className="text-center text-slate-400 text-xs uppercase tracking-widest font-bold">Réponse garantie sous 24h</p>
               </form>
             </ScrollReveal>
           </div>
         </div>
       </section>
+      {/* Maps Modal */}
+      <AnimatePresence>
+        {isMapOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMapOpen(false)}
+              className="absolute inset-0 bg-surface/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark p-2"
+            >
+              {/* Close Button - Top Right */}
+              <div className="absolute top-6 right-6 z-10">
+                <button 
+                  onClick={() => setIsMapOpen(false)}
+                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Zoom & Fullscreen Controls - Bottom Right */}
+              <div className="absolute bottom-24 right-6 z-10 flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <button 
+                    onClick={() => setMapZoom(prev => Math.min(prev + 1, 21))}
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                    title="Zoom avant"
+                  >
+                    <Plus size={20} />
+                  </button>
+                  <button 
+                    onClick={() => setMapZoom(prev => Math.max(prev - 1, 1))}
+                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                    title="Zoom arrière"
+                  >
+                    <Minus size={20} />
+                  </button>
+                </div>
+
+                <button 
+                  onClick={() => {
+                    const iframe = document.querySelector('iframe[title="Google Maps Dojo Saint-Giniez"]');
+                    if (iframe) {
+                      if (iframe.requestFullscreen) {
+                        iframe.requestFullscreen();
+                      }
+                    }
+                  }}
+                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                  title="Plein écran"
+                >
+                  <Maximize2 size={20} />
+                </button>
+              </div>
+              <iframe
+                src={`https://maps.google.com/maps?q=43.2719266,5.3916423&z=${mapZoom}&output=embed`}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-[2rem]"
+                title="Google Maps Dojo Saint-Giniez"
+              ></iframe>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Engagement Hub Popup */}
       <AnimatePresence>
         {isHubOpen && (
