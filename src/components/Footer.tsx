@@ -15,14 +15,14 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-gradient-to-b from-[#1A1A1A] to-[#262626] text-[#CCCCCC] border-t border-[#333333]/30">
+    <footer className="bg-white/5 backdrop-blur-md text-[#CCCCCC] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-[60px]">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Logo Section */}
           <div className="lg:w-1/5 flex-shrink-0">
             <Link to="/" className="block">
               <img 
-                src="https://i.ibb.co/NdY9fVdD/logo-fond-sombre-compress.png" 
+                src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" 
                 alt="Marseille Shorinji Kempo" 
                 className="h-[120px] w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
@@ -60,8 +60,8 @@ export default function Footer() {
                   <li><Link to="/encyclopedia" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Encyclopédie</Link></li>
                   <li><Link to="/blog" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Blog</Link></li>
                   <li><Link to="/contact" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Contact</Link></li>
-                  <li><a href="#" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Mentions Légales</a></li>
-                  <li><a href="#" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Confidentialité</a></li>
+                  <li><Link to="/mentions-legales" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Mentions Légales</Link></li>
+                  <li><Link to="/politique-confidentialite" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Confidentialité</Link></li>
                 </ul>
               </nav>
             </div>
@@ -75,13 +75,13 @@ export default function Footer() {
                     href={contactInfo.facebook} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-[#2C2C2C] flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:scale-110 transition-all duration-200 shadow-inner"
+                    className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:scale-110 transition-all duration-200 shadow-xl backdrop-blur-sm"
                     aria-label="Facebook"
                   >
                     <Facebook size={24} />
                   </a>
                   <button 
-                    className="w-12 h-12 rounded-full bg-[#2C2C2C] flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:scale-110 transition-all duration-200 shadow-inner"
+                    className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:scale-110 transition-all duration-200 shadow-xl backdrop-blur-sm"
                     aria-label="Instagram"
                   >
                     <Instagram size={24} />
@@ -108,12 +108,12 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 pt-8 border-t border-[#333333]/30 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[12px] text-[#999999] font-light text-center md:text-left">
-            © 2024 Shorinji Kempo Marseille. Membre de la WSKO (World Shorinji Kempo Organization).
+            © 2026 Shorinji Kempo Marseille.
           </p>
           <p className="text-[12px] text-[#999999] font-light">
-            Développé avec passion pour les arts martiaux.
+            Développé avec passion par <span className="text-primary-gold font-bold">KAIRYOS Web Agency</span> pour les arts martiaux.
           </p>
         </div>
       </div>

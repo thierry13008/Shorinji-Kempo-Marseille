@@ -3,13 +3,13 @@ import ScrollReveal from '@/src/components/ScrollReveal';
 
 const instructors = [
   {
-    name: "Sensei Jean-Pierre",
-    role: "Instructeur Principal - 5ème Dan",
+    name: "Sensei Olivier Beyer",
+    role: "5ème Dan",
     image: "https://i.ibb.co/sD3TzRW/INSTRUCTEUR-1.png",
   },
   {
     name: "Sensei Marc-Antoine",
-    role: "Instructeur Adjoint - 3ème Dan",
+    role: "1ERE DAN",
     image: "https://i.ibb.co/HT3kn8JK/INSTRUCTEUR-3.png",
   }
 ];
@@ -70,7 +70,7 @@ export default function InstructorsSection() {
                 </div>
 
                 {/* Kinetic Typography */}
-                <div className="space-y-3 mt-auto">
+                <div className="space-y-3 mt-auto text-center flex flex-col items-center">
                   <h3 className="text-white">
                     <span>{instructor.name}</span>
                   </h3>
@@ -79,7 +79,7 @@ export default function InstructorsSection() {
                     whileInView={{ width: "40px" }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.8 + (index * 0.2), duration: 0.8 }}
-                    className="h-[1px] bg-primary-gold/50"
+                    className="h-[1px] bg-primary-gold/50 mx-auto"
                   />
                   <p className="micro-copy">
                     {instructor.role}

@@ -6,10 +6,10 @@
   --font-label: "Plus Jakarta Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --color-surface: #0b1326;
-  --color-surface-low: #131b2e;
-  --color-surface-high: #222a3d;
-  --color-surface-highest: #2d3449;
+  --color-surface: #121b2e;
+  --color-surface-low: #1a243a;
+  --color-surface-high: #252f48;
+  --color-surface-highest: #313b56;
   --color-ivory-silk: #FAF9F6;
   --color-primary: #FFD700;
   --color-primary-foreground: #111111;
@@ -91,7 +91,7 @@
   }
   
   .glass-nav {
-    @apply bg-surface/70 backdrop-blur-xl border-b border-white/5;
+    @apply bg-surface/60 backdrop-blur-2xl border-b border-white/10;
   }
 
   @keyframes float {

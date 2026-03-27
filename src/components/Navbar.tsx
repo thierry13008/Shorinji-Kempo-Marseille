@@ -28,14 +28,14 @@ export default function Navbar() {
       // Hauteur navbar augmentée (70-90px) et effet sticky moderne
       isScrolled ? "glass-nav h-20 shadow-2xl" : "bg-transparent h-24"
     )}>
-      <div className="max-w-7xl mx-auto h-full px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto h-full px-4 md:px-8 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-4 group shrink-0">
           <img 
-            src="https://i.ibb.co/NdY9fVdD/logo-fond-sombre-compress.png" 
+            src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" 
             alt="Marseille Shorinji Kempo" 
             className={cn(
               "transition-all duration-500 object-contain group-hover:scale-110",
-              isScrolled ? "h-16" : "h-20"
+              isScrolled ? "h-10 lg:h-16" : "h-12 lg:h-20"
             )}
             referrerPolicy="no-referrer"
           />
@@ -80,7 +80,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Actions - CTA visible directement même sur mobile */}
-        <div className="flex items-center gap-4 lg:hidden">
+        <div className="flex items-center gap-6 lg:hidden">
           <a 
             href="#contact"
             className="cta-secondary px-4 py-2 text-[12px]"

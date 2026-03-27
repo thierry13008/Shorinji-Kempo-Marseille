@@ -85,16 +85,21 @@ export default function Home() {
             referrerPolicy="no-referrer"
           />
           {/* Overlay plus profond pour une immersion immédiate et une lisibilité parfaite */}
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/90 via-surface/40 to-surface"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/30 to-surface"></div>
         </div>
         
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20">
+        <div 
+          className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20"
+          onMouseEnter={handleVideoInteraction}
+          onTouchStart={handleVideoInteraction}
+          onClick={handleVideoInteraction}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="text-center lg:text-left relative z-20"
+              className="text-center lg:text-left relative z-50 pointer-events-none lg:pointer-events-auto"
             >
               <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
@@ -105,7 +110,7 @@ export default function Home() {
               <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
                 Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
               </p>
-              <div className="flex flex-col items-center lg:items-start gap-6">
+              <div className="flex flex-col items-center lg:items-start gap-6 pointer-events-auto">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -143,9 +148,6 @@ export default function Home() {
 
               <div 
                 className="h-full w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative"
-                onMouseEnter={handleVideoInteraction}
-                onTouchStart={handleVideoInteraction}
-                onClick={handleVideoInteraction}
               >
                 {/* Vidéo 1: Normal */}
                 <video 
