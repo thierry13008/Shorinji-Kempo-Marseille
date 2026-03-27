@@ -22,6 +22,10 @@
 }
 
 @layer base {
+  :root {
+    --vh: 1vh;
+  }
+
   body {
     @apply bg-surface text-on-surface font-body antialiased;
   }
@@ -92,6 +96,14 @@
   
   .glass-nav {
     @apply bg-surface/60 backdrop-blur-2xl border-b border-white/10;
+  }
+
+  .header-container {
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh, 1vh) * 100);
+    min-height: -webkit-fill-available;
+    overflow: hidden;
+    position: relative;
   }
 
   @keyframes float {

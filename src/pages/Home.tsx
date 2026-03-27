@@ -48,6 +48,17 @@ export default function Home() {
     // Dynamic fetching removed as per user request
   }, []);
 
+  useEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
+
   const handleVideoInteraction = () => {
     if (isTransitioning) return;
     
@@ -75,7 +86,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="header-container flex items-center">
         {/* Desktop Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           <img 
@@ -89,12 +100,12 @@ export default function Home() {
         </div>
         
         <div 
-          className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20"
+          className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-32 lg:pt-20"
           onMouseEnter={handleVideoInteraction}
           onTouchStart={handleVideoInteraction}
           onClick={handleVideoInteraction}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -104,10 +115,10 @@ export default function Home() {
               <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
-              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
+              <h1 className="text-white leading-[1.1] mb-6 text-[2.5rem] md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
                 Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
               </h1>
-              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
+              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-8 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
                 Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
               </p>
               <div className="flex flex-col items-center lg:items-start gap-6 pointer-events-auto">
@@ -141,13 +152,13 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
+              className="relative w-full aspect-video lg:aspect-[4/5] lg:w-[450px] z-10 overflow-hidden lg:overflow-visible flex justify-center"
             >
               {/* Mobile Overlay pour la lisibilité */}
               <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
 
               <div 
-                className="h-full w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative"
+                className="h-full w-full lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative"
               >
                 {/* Vidéo 1: Normal */}
                 <video 
