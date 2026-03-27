@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ShareButton from './components/ShareButton';
 import Home from './pages/Home';
 import Encyclopedia from './pages/Encyclopedia';
 import Blog from './pages/Blog';
@@ -46,6 +47,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <ShareButton />
       </div>
     </Router>
   );
