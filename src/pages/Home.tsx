@@ -1,16 +1,21 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import EngagementHub from '@/src/components/EngagementHub';
 import InstructorsSection from '@/src/components/InstructorsSection';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 export default function Home() {
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
+  const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isHubOpen, setIsHubOpen] = useState(false);
+  const [hoveredSession, setHoveredSession] = useState<string | null>(null);
   const testimonials = [
     { name: "Julie, 28 ans", role: "Débutante", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://picsum.photos/seed/julie/200/200" },
     { name: "Marc, 42 ans", role: "Pratiquant (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://picsum.photos/seed/marc/200/200", featured: true },
@@ -43,11 +48,36 @@ export default function Home() {
     // Dynamic fetching removed as per user request
   }, []);
 
+  const handleVideoInteraction = () => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    setActiveVideo(2);
+    
+    if (video2Ref.current) {
+      video2Ref.current.currentTime = 0;
+      video2Ref.current.play();
+    }
+  };
+
+  const handleVideo2Ended = () => {
+    setActiveVideo(1);
+    if (video1Ref.current) {
+      video1Ref.current.currentTime = 0;
+      video1Ref.current.play();
+    }
+  };
+
+  const handleVideo1Ended = () => {
+    setIsTransitioning(false);
+  };
+
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center">
-        <div className="absolute inset-0 z-0 overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Desktop Background Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           <img 
             className="w-full h-full object-cover opacity-40 grayscale-[0.5] animate-zoom-slow" 
             src="https://i.ibb.co/84x3GJHv/fond-header.png" 
@@ -58,23 +88,24 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-surface/90 via-surface/40 to-surface"></div>
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
+              className="text-center lg:text-left relative z-20"
             >
-              <span className="micro-copy mb-6 inline-flex items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold">
+              <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
-              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight">
+              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
                 Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
               </h1>
-              <p className="text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed">
+              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
                 Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
               </p>
-              <div className="flex flex-col items-start gap-6">
+              <div className="flex flex-col items-center lg:items-start gap-6">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -94,7 +125,7 @@ export default function Home() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 1.2 }}
-                  className="text-ivory-silk/60 text-sm font-bold uppercase tracking-[0.15em] ml-2"
+                  className="text-ivory-silk/80 lg:text-ivory-silk/60 text-sm font-bold uppercase tracking-[0.15em] lg:ml-2 lg:[text-shadow:none] [text-shadow:0_2px_8px_rgba(0,0,0,1)]"
                 >
                   Séance d’essai gratuite – Sans engagement, accessible débutants
                 </motion.p>
@@ -105,22 +136,57 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative mt-12 lg:mt-0"
+              className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
             >
-              <div className="relative rounded-[24px] overflow-hidden shadow-2xl border border-white/10 transform rotate-2 glass-card ki-aura-dark p-2">
-                <img 
-                  className="w-full aspect-[4/5] object-cover rounded-xl" 
-                  src="https://i.ibb.co/39sdZqv0/gassho-rei.jpg" 
-                  alt="Le Salut - Gassho Rei"
-                  referrerPolicy="no-referrer"
+              {/* Mobile Overlay pour la lisibilité */}
+              <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
+
+              <div 
+                className="h-full w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative"
+                onMouseEnter={handleVideoInteraction}
+                onTouchStart={handleVideoInteraction}
+                onClick={handleVideoInteraction}
+              >
+                {/* Vidéo 1: Normal */}
+                <video 
+                  ref={video1Ref}
+                  className={cn(
+                    "absolute inset-0 w-full h-full object-cover lg:rounded-xl transition-opacity duration-0",
+                    activeVideo === 1 ? "opacity-100 z-20" : "opacity-0 z-10"
+                  )}
+                  src="https://res.cloudinary.com/dpfewspme/video/upload/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={handleVideo1Ended}
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-surface/80 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6 p-6 bg-surface-low/60 backdrop-blur-md rounded-xl border border-white/10">
-                  <p className="italic text-lg text-primary-gold font-headline">"Le Salut - Gassho Rei"</p>
-                  <p className="micro-copy mt-1">L'entrée dans la voie</p>
+                
+                {/* Vidéo 2: Inversée */}
+                <video 
+                  ref={video2Ref}
+                  className={cn(
+                    "absolute inset-0 w-full h-full object-cover lg:rounded-xl transition-opacity duration-0",
+                    activeVideo === 2 ? "opacity-100 z-20" : "opacity-0 z-10"
+                  )}
+                  src="https://res.cloudinary.com/dpfewspme/video/upload/e_reverse/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={handleVideo2Ended}
+                />
+
+                {/* Desktop Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-surface/80 via-transparent to-transparent pointer-events-none hidden lg:block z-20"></div>
+                
+                {/* Info Box */}
+                <div className="hidden lg:block absolute bottom-6 left-6 right-6 p-6 bg-surface-low/60 backdrop-blur-md rounded-xl border border-white/10 pointer-events-none z-40">
+                  <p className="italic text-lg text-white font-headline">"Le Salut - Gassho Rei"</p>
+                  <p className="micro-copy mt-1 text-primary-gold">L'entrée dans la voie</p>
                 </div>
               </div>
-              <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary-gold/10 rounded-full blur-3xl"></div>
+              {/* Desktop Glow */}
+              <div className="hidden lg:block absolute -top-12 -right-12 w-48 h-48 bg-primary-gold/10 rounded-full blur-3xl"></div>
             </motion.div>
           </div>
         </div>
@@ -130,7 +196,7 @@ export default function Home() {
       <section className="py-48 bg-bg-main relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <ScrollReveal className="relative">
+            <ScrollReveal className="relative hidden lg:block">
               <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
                 <img 
                   src="https://i.ibb.co/tpbN1KW4/image-debutant.png" 
@@ -246,7 +312,7 @@ export default function Home() {
             ))}
           </div>
           
-            <ScrollReveal className="pt-8">
+            <ScrollReveal className="pt-24">
               <div className="flex flex-col items-center gap-6">
                 <a 
                   href="#contact"
@@ -367,44 +433,53 @@ export default function Home() {
             <div className="lg:w-2/3 w-full space-y-6">
               {[
                 { day: "Lundi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "01" },
-                { day: "Mercredi", time: "19h30 — 21h00", cat: "Adultes", level: "Tous Niveaux", id: "02", featured: true },
+                { day: "Mercredi", time: "19h30 — 21h00", cat: "Adultes", level: "Tous Niveaux", id: "02" },
                 { day: "Vendredi", time: "20h15 — 21h45", cat: "Mixte", level: "Adultes & Enf", id: "03" }
-              ].map((session, i) => (
-                <ScrollReveal 
-                  key={i}
-                  delay={i * 0.1}
-                  className={cn(
-                    "rounded-[24px] p-8 transition-all duration-500 group border flex flex-col md:flex-row md:items-center justify-between gap-6 glass-card ki-aura-dark",
-                    session.featured ? "bg-primary-gold/10 border-primary-gold/30 shadow-2xl" : "border-white/10 hover:bg-white/10"
-                  )}
-                >
-                  <div className="flex items-center gap-8">
-                    <div className={cn(
-                      "w-12 h-12 rounded-full flex items-center justify-center italic text-lg shrink-0",
-                      session.featured ? "bg-primary-gold text-on-primary font-bold" : "border border-white/20 text-white/40 group-hover:text-primary-gold"
-                    )}>{session.id}</div>
-                    <div>
-                      <p className="micro-copy mb-1">Session {session.id}</p>
-                      <h3 className="text-white">
-                        <span>{session.day}</span>
-                      </h3>
-                    </div>
+              ].map((session, i) => {
+                const isActive = hoveredSession ? hoveredSession === session.id : session.id === "02";
+                
+                return (
+                  <div 
+                    key={i}
+                    onMouseEnter={() => setHoveredSession(session.id)}
+                    onMouseLeave={() => setHoveredSession(null)}
+                  >
+                    <ScrollReveal 
+                      delay={i * 0.1}
+                      className={cn(
+                        "rounded-[24px] p-8 transition-all duration-500 group border flex flex-col md:flex-row md:items-center justify-between gap-6 glass-card ki-aura-dark",
+                        isActive ? "bg-white/10 border-white/30 shadow-2xl" : "border-white/10"
+                      )}
+                    >
+                      <div className="flex items-center gap-8">
+                        <div className={cn(
+                          "w-12 h-12 rounded-full flex items-center justify-center italic text-lg shrink-0 border border-white/20 transition-colors duration-500",
+                          isActive ? "bg-white/20 text-white font-bold border-white/30" : "text-white/40 group-hover:text-primary-gold"
+                        )}>{session.id}</div>
+                        <div>
+                          <p className="micro-copy mb-1">Session {session.id}</p>
+                          <h3 className="text-white">
+                            <span>{session.day}</span>
+                          </h3>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-wrap items-center gap-8 md:gap-12">
+                        <div className="flex items-center gap-3">
+                          <Clock className="text-primary-gold" size={18} />
+                          <span className="text-white font-bold">{session.time}</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <p className="text-white font-medium">{session.cat}</p>
+                          <span className="micro-copy bg-white/10 px-4 py-1.5 rounded-full border border-primary-gold/20">
+                            {session.level}
+                          </span>
+                        </div>
+                      </div>
+                    </ScrollReveal>
                   </div>
-                  
-                  <div className="flex flex-wrap items-center gap-8 md:gap-12">
-                    <div className="flex items-center gap-3">
-                      <Clock className="text-primary-gold" size={18} />
-                      <span className="text-white font-bold">{session.time}</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <p className="text-white font-medium">{session.cat}</p>
-                      <span className="micro-copy bg-white/10 px-4 py-1.5 rounded-full border border-primary-gold/20">
-                        {session.level}
-                      </span>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                );
+              })}
             </div>
           </div>
           <div className="mt-20 flex justify-center">
@@ -540,21 +615,21 @@ export default function Home() {
                 step: "01",
                 title: "Réservez votre séance",
                 desc: "Remplissez le formulaire en 30s. C'est gratuit, sans engagement et accessible à tous.",
-                icon: <Calendar className="text-primary-gold" size={32} />,
+                icon: <Calendar className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
                 delay: 0.1
               },
               {
                 step: "02",
                 title: "Participez au cours",
                 desc: "Nous vous accueillons avec bienveillance. L'équipement vous est prêté pour votre premier cours.",
-                icon: <User className="text-primary-gold" size={32} />,
+                icon: <User className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
                 delay: 0.3
               },
               {
                 step: "03",
                 title: "Progressez pas à pas",
                 desc: "Pratiquez, ressentez l'énergie du groupe et découvrez votre potentiel inexploité.",
-                icon: <TrendingUp className="text-primary-gold" size={32} />,
+                icon: <TrendingUp className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
                 delay: 0.5
               }
             ].map((item, i) => (
@@ -568,7 +643,7 @@ export default function Home() {
               >
                 <div className="relative z-10 p-12 rounded-[48px] bg-white/5 backdrop-blur-xl border border-white/10 hover:border-primary-gold/40 transition-all duration-500 h-full flex flex-col items-center text-center shadow-2xl hover:shadow-primary-gold/10 group-hover:-translate-y-2 ki-aura-dark">
                   {/* Step Number Overlay */}
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/5 group-hover:text-primary-gold/10 transition-colors duration-500 select-none z-0 italic">
+                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/10 group-hover:text-primary-gold/20 transition-colors duration-500 select-none z-0 italic">
                     {item.step}
                   </div>
 
@@ -583,7 +658,7 @@ export default function Home() {
                   <p className="text-slate-400 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
                   
                   <div className="mt-auto w-full pt-8 border-t border-white/10">
-                    <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60">
+                    <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60 group-hover:text-primary-gold transition-colors duration-500">
                       <CheckCircle size={12} />
                       <span>Accessible débutants</span>
                     </div>
