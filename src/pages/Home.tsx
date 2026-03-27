@@ -822,8 +822,8 @@ export default function Home() {
               </div>
               
               <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold">
-                  <img src="https://picsum.photos/seed/instructor/100/100" alt="Instructeur" referrerPolicy="no-referrer" />
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2">
+                  <img src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" alt="Marseille Shorinji Kempo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
