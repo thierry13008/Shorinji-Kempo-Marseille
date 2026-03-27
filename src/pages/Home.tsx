@@ -409,12 +409,12 @@ export default function Home() {
       <section id="planning" className="relative py-48 min-h-[80vh] flex items-center bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover opacity-10 grayscale" 
+            className="w-full h-full object-cover opacity-20 grayscale" 
             src="https://i.ibb.co/SwqgBGQK/fond-planing.png" 
             alt="Dojo"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/70 via-surface/20 to-surface"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -593,9 +593,9 @@ export default function Home() {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-48 bg-surface relative overflow-hidden">
+      <section className="py-48 bg-surface-low relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-[0.05] pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.08] pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:40px_40px]"></div>
         </div>
 
@@ -787,12 +787,12 @@ export default function Home() {
       <section id="contact" className="relative py-48 bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover opacity-10 grayscale" 
+            className="w-full h-full object-cover opacity-20 grayscale" 
             src="https://i.ibb.co/7N8gh9TJ/fond-contact.png" 
             alt="Contact background"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/70 via-surface/20 to-surface"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">

@@ -16,16 +16,16 @@ const instructors = [
 
 export default function InstructorsSection() {
   return (
-    <section className="relative py-32 overflow-hidden bg-surface-low">
+    <section className="relative py-32 overflow-hidden bg-surface-high">
       {/* Background with parallax-like feel */}
       <div className="absolute inset-0 z-0">
         <img 
-          className="w-full h-full object-cover opacity-10 grayscale" 
+          className="w-full h-full object-cover opacity-15 grayscale" 
           src="https://i.ibb.co/84x3GJHv/fond-header.png" 
           alt="Background"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-low via-transparent to-surface-low"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-surface-high via-transparent to-surface-high"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
