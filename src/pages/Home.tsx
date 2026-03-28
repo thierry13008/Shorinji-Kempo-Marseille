@@ -704,10 +704,10 @@ export default function Home() {
                 Analyse d'intention, réponse instantanée et connexion directe avec nos experts.
               </p>
               <button 
-                onClick={() => setIsHubOpen(true)}
-                className="cta-button w-full flex items-center justify-center gap-3"
+                disabled
+                className="cta-button w-full flex items-center justify-center gap-3 opacity-50 cursor-not-allowed"
               >
-                Accéder au Hub <ArrowRight size={20} />
+                Bientôt disponible <ArrowRight size={20} />
               </button>
               <div className="mt-8 flex items-center gap-4 micro-copy text-slate-500">
                 <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> IA Native</span>
