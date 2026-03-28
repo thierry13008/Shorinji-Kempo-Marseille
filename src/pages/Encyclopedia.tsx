@@ -1,7 +1,155 @@
-import { motion } from 'motion/react';
-import { Book, Shield, Heart, Users, Globe, Award } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Book, Shield, Heart, Users, Globe, Award, X, Info } from 'lucide-react';
 
 export default function Encyclopedia() {
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const sections = [
+    {
+      id: 'histoire',
+      title: 'Histoire',
+      icon: Book,
+      content: (
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase">Les Origines (1947)</h3>
+              <p className="text-slate-300 leading-relaxed font-light">
+                Fondé par <strong>Doshin So</strong> en 1947 au Japon, le Shorinji Kempo est né dans le chaos de l'après-guerre. Inspiré par les techniques anciennes du monastère de Shaolin, il fut créé comme un système éducatif pour reconstruire la nation.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase">Philosophie Fondatrice</h3>
+              <p className="text-slate-300 leading-relaxed font-light italic">"La moitié pour la maîtrise de soi, la moitié pour le bien d'autrui"</p>
+              <p className="text-slate-400 text-sm leading-relaxed">(Jiko kakuritsu - Jita kyōraku). Ce principe souligne que le développement personnel est inséparable de la contribution à la société.</p>
+            </div>
+          </div>
+          <div className="p-6 bg-white/5 rounded-xl border border-white/10">
+            <p className="text-slate-300 text-sm leading-relaxed">
+              Doshin So a voyagé en Chine avant la guerre, où il a étudié diverses formes de Kenpo. De retour au Japon, il a synthétisé ces connaissances pour créer une discipline qui n'est pas seulement un art de combat, mais une méthode de formation du caractère.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'techniques',
+      title: 'Les Techniques',
+      icon: Shield,
+      content: (
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Goho (剛法)", icon: Shield, desc: "Les techniques dures incluent les coups de poing, les coups de pied, les blocages et les esquives. Elles privilégient l'efficacité et la rapidité." },
+              { title: "Juho (柔法)", icon: Users, desc: "Les techniques souples comprennent les clés articulaires, les projections et les immobilisations. Elles exploitent la force de l'adversaire." },
+              { title: "Seiho (整法)", icon: Heart, desc: "Le Seiho regroupe les techniques de massage thérapeutique et de réanimation. Ces connaissances permettent de restaurer l'énergie vitale." }
+            ].map((tech, i) => (
+              <div key={i} className="bg-surface-high p-8 rounded-xl border border-white/5">
+                <tech.icon className="text-primary-gold mb-6" size={32} />
+                <h3 className="font-headline text-2xl mb-4 text-primary-gold">{tech.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{tech.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-primary-gold/10 p-8 rounded-2xl border border-primary-gold/20">
+            <h4 className="text-primary-gold font-bold mb-4 uppercase tracking-widest text-xs">Le principe de l'unité</h4>
+            <p className="text-slate-300 text-sm leading-relaxed">
+              Le Shorinji Kempo enseigne que Goho et Juho sont comme les deux faces d'une même pièce. Un pratiquant complet doit maîtriser les deux aspects pour répondre de manière appropriée à toute situation.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'philosophie',
+      title: 'Philosophie',
+      icon: Heart,
+      content: (
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { title: "Ken Zen Ichinyo", sub: "拳禅一如", text: "L'unité du poing et du zen. Le Shorinji Kempo unit la pratique physique à la méditation zen." },
+              { title: "Riki Ai Funi", sub: "力愛不二", text: "La force et l'amour sont indivisibles. La force doit être guidée par la compassion." },
+              { title: "Shushu Koju", sub: "守主攻従", text: "La défense est primordiale. On ne frappe jamais en premier, mais on se défend avec détermination." }
+            ].map((val, i) => (
+              <div key={i} className="text-center space-y-4">
+                <h3 className="font-headline text-xl text-primary-gold">{val.title}</h3>
+                <p className="text-[10px] tracking-widest text-slate-500 uppercase">{val.sub}</p>
+                <p className="text-slate-300 text-sm font-light leading-relaxed">{val.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="border-t border-white/10 pt-8">
+            <p className="text-slate-400 text-center italic">
+              "Vivre à moitié pour soi-même et à moitié pour les autres" est le précepte central qui guide chaque action du pratiquant.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'grades',
+      title: 'Grades',
+      icon: Award,
+      content: (
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="flex gap-6 items-start">
+              <div className="bg-white/10 w-16 h-16 rounded-lg flex items-center justify-center shrink-0 border border-white/10">
+                <Award className="text-white" size={24} />
+              </div>
+              <div>
+                <h3 className="font-headline text-2xl mb-2">Les Kyu (級)</h3>
+                <p className="text-slate-400 font-light leading-relaxed">Le système de grades débute avec la ceinture blanche (6e kyu) et progresse vers la ceinture marron (1er kyu).</p>
+              </div>
+            </div>
+            <div className="flex gap-6 items-start">
+              <div className="bg-primary-gold/20 w-16 h-16 rounded-lg flex items-center justify-center shrink-0 border border-primary-gold/20">
+                <Award className="text-primary-gold" size={24} />
+              </div>
+              <div>
+                <h3 className="font-headline text-2xl mb-2 text-primary-gold">Les Dan (段)</h3>
+                <p className="text-slate-400 font-light leading-relaxed">Les ceintures noires vont du 1er au 9e Dan. Les trois premiers Dan représentent la maîtrise technique.</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-surface-high p-6 rounded-xl border border-white/5">
+            <h4 className="text-white font-bold mb-2">Hokkai (Grades de Prêtrise)</h4>
+            <p className="text-slate-400 text-sm">
+              En plus des grades techniques, le Shorinji Kempo possède un système de grades philosophiques (Doin) reflétant la compréhension spirituelle du pratiquant.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'organisation',
+      title: 'Organisation',
+      icon: Globe,
+      content: (
+        <div className="space-y-8">
+          <div className="flex items-center gap-6 p-8 bg-white/5 rounded-3xl border border-white/10">
+            <Globe className="text-primary-gold shrink-0" size={48} />
+            <div>
+              <h3 className="text-2xl font-headline mb-2">WSKO</h3>
+              <p className="text-slate-400">World Shorinji Kempo Organization. Présente dans plus de 30 pays, elle assure la cohérence de l'enseignement mondial.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 border border-white/5 rounded-2xl">
+              <h4 className="text-primary-gold font-bold mb-2">France Shorinji Kempo</h4>
+              <p className="text-slate-400 text-sm">La fédération nationale qui regroupe tous les clubs officiels en France et organise les stages nationaux.</p>
+            </div>
+            <div className="p-6 border border-white/5 rounded-2xl">
+              <h4 className="text-primary-gold font-bold mb-2">Le Dojo de Marseille</h4>
+              <p className="text-slate-400 text-sm">Affilié officiellement à la WSKO, garantissant un enseignement conforme aux standards internationaux.</p>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
   return (
     <div className="pt-32 pb-20">
       <header className="relative h-[500px] flex items-end px-6 md:px-24 pb-16 overflow-hidden">
@@ -28,103 +176,91 @@ export default function Encyclopedia() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-20">
         <aside className="lg:col-span-3 space-y-8">
           <div className="sticky top-32">
-            <h3 className="text-primary-gold font-label text-[10px] tracking-[0.4em] uppercase mb-6 opacity-80">Sections</h3>
-            <ul className="space-y-4">
-              {['Histoire', 'Les Techniques', 'Philosophie', 'Grades', 'Organisation'].map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} className="text-slate-400 hover:text-primary-gold transition-colors text-sm font-medium flex items-center gap-3 group">
-                    <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-primary-gold transition-colors"></span>
-                    {item}
-                  </a>
+            <h3 className="text-primary-gold font-label text-xs tracking-[0.4em] uppercase mb-8 opacity-80">Sections</h3>
+            <ul className="space-y-6">
+              {sections.map((section) => (
+                <li key={section.id}>
+                  <button 
+                    onClick={() => setActiveModal(section.id)}
+                    className="text-slate-400 hover:text-primary-gold transition-colors text-lg font-medium flex items-center gap-4 group w-full text-left"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary-gold transition-colors"></span>
+                    {section.title}
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
         </aside>
 
-        <main className="lg:col-span-9 space-y-32">
-          {/* History */}
-          <section id="histoire">
-            <h2 className="font-headline text-4xl mb-8">Histoire du <span className="text-primary-gold italic">Shorinji Kempo</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="space-y-4">
-                <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase">Les Origines (1947)</h3>
-                <p className="text-slate-300 leading-relaxed font-light">
-                  Fondé par <strong>Doshin So</strong> en 1947 au Japon, le Shorinji Kempo est né dans le chaos de l'après-guerre. Inspiré par les techniques anciennes du monastère de Shaolin, il fut créé comme un système éducatif pour reconstruire la nation.
-                </p>
+        <main className="lg:col-span-9 space-y-32 border border-white/10 rounded-[48px] p-10 md:p-20 bg-surface-low/20 shadow-2xl backdrop-blur-sm">
+          {sections.map((section) => (
+            <section key={section.id} id={section.id}>
+              <div className="flex items-center gap-4 mb-8">
+                <section.icon className="text-primary-gold/40" size={24} />
+                <h2 className="font-headline text-4xl">{section.title}</h2>
               </div>
-              <div className="space-y-4">
-                <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase">Philosophie Fondatrice</h3>
-                <p className="text-slate-300 leading-relaxed font-light italic">"La moitié pour la maîtrise de soi, la moitié pour le bien d'autrui"</p>
-                <p className="text-slate-400 text-sm leading-relaxed">(Jiko kakuritsu - Jita kyōraku). Ce principe souligne que le développement personnel est inséparable de la contribution à la société.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Techniques */}
-          <section id="techniques">
-            <h2 className="font-headline text-4xl mb-12 border-b border-primary-gold/20 pb-4">Les Techniques</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { title: "Goho (剛法)", icon: Shield, desc: "Les techniques dures incluent les coups de poing, les coups de pied, les blocages et les esquives. Elles privilégient l'efficacité et la rapidité." },
-                { title: "Juho (柔法)", icon: Users, desc: "Les techniques souples comprennent les clés articulaires, les projections et les immobilisations. Elles exploitent la force de l'adversaire." },
-                { title: "Seiho (整法)", icon: Heart, desc: "Le Seiho regroupe les techniques de massage thérapeutique et de réanimation. Ces connaissances permettent de restaurer l'énergie vitale." }
-              ].map((tech, i) => (
-                <div key={i} className="bg-surface-high p-8 rounded-xl border border-white/5">
-                  <tech.icon className="text-primary-gold mb-6" size={32} />
-                  <h3 className="font-headline text-2xl mb-4 text-primary-gold">{tech.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{tech.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Philosophy */}
-          <section id="philosophie">
-            <div className="bg-primary-gold/5 border border-primary-gold/20 rounded-2xl p-12">
-              <h2 className="font-headline text-4xl mb-12 text-center">Philosophie et Valeurs</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                {[
-                  { title: "Ken Zen Ichinyo", sub: "拳禅一如", text: "L'unité du poing et du zen. Le Shorinji Kempo unit la pratique physique à la méditation zen." },
-                  { title: "Riki Ai Funi", sub: "力愛不二", text: "La force et l'amour sont indivisibles. La force doit être guidée par la compassion." },
-                  { title: "Shushu Koju", sub: "守主攻従", text: "La défense est primordiale. On ne frappe jamais en premier, mais on se défend avec détermination." }
-                ].map((val, i) => (
-                  <div key={i} className="text-center space-y-4">
-                    <h3 className="font-headline text-xl text-primary-gold">{val.title}</h3>
-                    <p className="text-[10px] tracking-widest text-slate-500 uppercase">{val.sub}</p>
-                    <p className="text-slate-300 text-sm font-light leading-relaxed">{val.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Grades */}
-          <section id="grades">
-            <h2 className="font-headline text-4xl mb-12">Structure et <span className="text-primary-gold italic">Grades</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="flex gap-6 items-start">
-                <div className="bg-white/10 w-16 h-16 rounded-lg flex items-center justify-center shrink-0 border border-white/10">
-                  <Award className="text-white" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-headline text-2xl mb-2">Les Kyu (級)</h3>
-                  <p className="text-slate-400 font-light leading-relaxed">Le système de grades débute avec la ceinture blanche (6e kyu) et progresse vers la ceinture marron (1er kyu).</p>
-                </div>
-              </div>
-              <div className="flex gap-6 items-start">
-                <div className="bg-primary-gold/20 w-16 h-16 rounded-lg flex items-center justify-center shrink-0 border border-primary-gold/20">
-                  <Award className="text-primary-gold" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-headline text-2xl mb-2 text-primary-gold">Les Dan (段)</h3>
-                  <p className="text-slate-400 font-light leading-relaxed">Les ceintures noires vont du 1er au 9e Dan. Les trois premiers Dan représentent la maîtrise technique.</p>
-                </div>
-              </div>
-            </div>
-          </section>
+              {section.content}
+            </section>
+          ))}
         </main>
       </div>
+
+      {/* Modal Popup */}
+      <AnimatePresence>
+        {activeModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-6 py-12">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveModal(null)}
+              className="absolute inset-0 bg-surface/90 backdrop-blur-xl"
+            />
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl max-h-full overflow-y-auto bg-surface-low border border-white/10 rounded-[40px] shadow-2xl p-8 md:p-16 scrollbar-hide"
+            >
+              <button 
+                onClick={() => setActiveModal(null)}
+                className="absolute top-8 right-8 p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all group"
+              >
+                <X size={24} className="group-hover:rotate-90 transition-transform" />
+              </button>
+
+              <div className="mb-12">
+                <div className="flex items-center gap-4 text-primary-gold mb-4">
+                  {(() => {
+                    const section = sections.find(s => s.id === activeModal);
+                    const Icon = section?.icon || Info;
+                    return <Icon size={32} />;
+                  })()}
+                  <span className="font-label tracking-[0.3em] uppercase text-xs">Détails de la Section</span>
+                </div>
+                <h2 className="font-headline text-4xl md:text-6xl text-white">
+                  {sections.find(s => s.id === activeModal)?.title}
+                </h2>
+              </div>
+
+              <div className="relative">
+                {sections.find(s => s.id === activeModal)?.content}
+              </div>
+
+              <div className="mt-16 pt-8 border-t border-white/5 flex justify-center">
+                <button 
+                  onClick={() => setActiveModal(null)}
+                  className="px-10 py-4 bg-primary-gold text-black font-bold rounded-2xl hover:bg-white hover:text-primary-gold transition-all uppercase tracking-widest text-xs"
+                >
+                  Fermer l'archive
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

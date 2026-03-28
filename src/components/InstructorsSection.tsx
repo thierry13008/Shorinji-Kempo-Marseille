@@ -8,6 +8,11 @@ const instructors = [
     image: "https://i.ibb.co/sD3TzRW/INSTRUCTEUR-1.png",
   },
   {
+    name: "Senseil Yoko Beyer",
+    role: "3ème DAN",
+    image: "https://i.ibb.co/Dfn6xn4Q/Instructeur2cp.png",
+  },
+  {
     name: "Sensei Marc-Antoine",
     role: "1ERE DAN",
     image: "https://i.ibb.co/HT3kn8JK/INSTRUCTEUR-3.png",
@@ -47,7 +52,7 @@ export default function InstructorsSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 max-w-7xl mx-auto">
           {instructors.map((instructor, index) => (
             <ScrollReveal
               key={index}

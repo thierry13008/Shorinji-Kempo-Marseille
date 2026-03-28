@@ -13,7 +13,6 @@ export default function Home() {
   const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isHubOpen, setIsHubOpen] = useState(false);
   const [hoveredSession, setHoveredSession] = useState<string | null>(null);
   const testimonials = [
@@ -22,12 +21,6 @@ export default function Home() {
     { name: "Thierry, 35 ans", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://picsum.photos/seed/thierry/200/200" }
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 8000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [mapZoom, setMapZoom] = useState(17);
   const [contactInfo, setContactInfo] = useState({
@@ -362,7 +355,7 @@ export default function Home() {
                 tag: "Pratiquant Confirmé",
                 title: "Exigence Technique & Lignage Officiel.",
                 desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement (WSKO).",
-                img: "https://i.ibb.co/yc6vzy0T/image-pratiquant-confirm.png",
+                img: "https://i.ibb.co/wNBSpY0t/pratiquant-confirm-cp.png",
                 cta: "Rejoindre le dojo",
                 icon: <CheckCircle className="text-primary-gold" size={24} />,
                 bg: "bg-bg-secondary"
@@ -379,7 +372,7 @@ export default function Home() {
               >
                 <div className="mb-8 overflow-hidden rounded-[32px] aspect-video relative">
                   <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
-                  <div className="absolute top-4 right-4 p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10">
+                  <div className="absolute top-4 right-4 drop-shadow-lg">
                     {card.icon}
                   </div>
                 </div>
@@ -497,85 +490,71 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-48 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
+          <div className="text-center mb-32">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
             <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
             <p className="text-slate-600 text-xl">Rejoignez une communauté bienveillante et motivée.</p>
           </div>
           
-          <div className="relative group/slider">
-            <div className="flex flex-col items-center">
-              <AnimatePresence mode="wait">
-                {testimonials.map((t, i) => i === activeTestimonial && (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.6, ease: "circOut" }}
-                    className={cn(
-                      "p-12 md:p-16 rounded-[48px] relative border transition-all duration-700 max-w-4xl w-full mx-auto",
-                      t.featured ? "bg-surface text-white border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.15)]" : "bg-white border-slate-100 shadow-2xl shadow-surface/5"
-                    )}
-                  >
-                    <div className="flex flex-col md:flex-row items-center gap-8 mb-10">
-                      <div className="relative shrink-0">
-                        <img src={t.img} className="w-24 h-24 rounded-3xl object-cover border-4 border-primary-gold/30" alt={t.name} referrerPolicy="no-referrer" />
-                        <div className="absolute -bottom-3 -right-3 bg-primary-gold text-on-primary rounded-xl p-2 shadow-lg">
-                          <Sparkles size={20} fill="currentColor" />
-                        </div>
-                      </div>
-                      <div className="text-center md:text-left">
-                        <p className={cn("font-black text-2xl mb-1", t.featured ? "text-white" : "text-surface")}>{t.name}</p>
-                        <p className="text-primary-gold text-sm uppercase tracking-widest font-bold">{t.role}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+            {testimonials.map((t, i) => (
+              <ScrollReveal key={i} delay={i * 0.2}>
+                <div className={cn(
+                  "relative pt-16 pb-12 px-8 rounded-[32px] border transition-all duration-500 h-full flex flex-col items-center text-center",
+                  t.featured 
+                    ? "bg-surface text-white border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.15)]" 
+                    : "bg-white border-slate-100 shadow-xl shadow-surface/5"
+                )}>
+                  {/* Overlapping Photo */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className="relative">
+                      <img 
+                        src={t.img} 
+                        className={cn(
+                          "w-24 h-24 rounded-full object-cover border-4 shadow-lg",
+                          t.featured ? "border-primary-gold" : "border-white"
+                        )} 
+                        alt={t.name} 
+                        referrerPolicy="no-referrer" 
+                      />
+                      <div className="absolute -bottom-1 -right-1 bg-primary-gold text-on-primary rounded-full p-1.5 shadow-md">
+                        <Sparkles size={14} fill="currentColor" />
                       </div>
                     </div>
-                    <p className={cn("italic leading-relaxed text-2xl md:text-3xl font-medium", t.featured ? "text-ivory-silk/90" : "text-slate-600")}>
-                      "{t.text}"
-                    </p>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+                  </div>
 
-              {/* Navigation Arrows - Desktop Only */}
-              <div className="hidden lg:block">
-                <button 
-                  onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center text-surface hover:bg-primary-gold hover:text-white transition-all duration-300 opacity-0 group-hover/slider:opacity-100 group-hover/slider:-translate-x-16"
-                  aria-label="Témoignage précédent"
-                >
-                  <ArrowRight className="rotate-180" size={24} />
-                </button>
-                <button 
-                  onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center text-surface hover:bg-primary-gold hover:text-white transition-all duration-300 opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-16"
-                  aria-label="Témoignage suivant"
-                >
-                  <ArrowRight size={24} />
-                </button>
-              </div>
+                  <div className="mb-6">
+                    <p className={cn("font-black text-xl mb-1", t.featured ? "text-white" : "text-surface")}>{t.name}</p>
+                    <p className="text-primary-gold text-xs uppercase tracking-widest font-bold">{t.role}</p>
+                  </div>
 
-              <div className="flex items-center gap-4 mt-12">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveTestimonial(i)}
-                    className={cn(
-                      "w-3 h-3 rounded-full transition-all duration-300",
-                      activeTestimonial === i ? "bg-primary-gold w-10" : "bg-slate-300 hover:bg-primary-gold/50"
-                    )}
-                    aria-label={`Témoignage ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+                  <p className={cn(
+                    "italic leading-relaxed text-lg font-medium flex-grow", 
+                    t.featured ? "text-ivory-silk/80" : "text-slate-600"
+                  )}>
+                    "{t.text}"
+                  </p>
+
+                  <div className="mt-8 flex justify-center gap-1">
+                    {[...Array(5)].map((_, starIndex) => (
+                      <Sparkles 
+                        key={starIndex} 
+                        size={12} 
+                        className={t.featured ? "text-primary-gold" : "text-primary-gold/40"} 
+                        fill="currentColor" 
+                      />
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
           
-          <div className="mt-20 text-center">
+          <div className="mt-24 text-center">
             <ScrollReveal>
               <a 
                 href="#contact"
-                className="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
+                className="bg-primary-gold text-black hover:bg-white hover:text-primary-gold inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-bold rounded-2xl transition-all duration-300 uppercase tracking-widest shadow-xl shadow-primary-gold/20 hover:scale-105 active:scale-95"
               >
                 Rejoignez la communauté
               </a>
