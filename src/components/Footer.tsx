@@ -17,9 +17,9 @@ export default function Footer() {
   return (
     <footer className="bg-white/5 backdrop-blur-md text-[#CCCCCC] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-[60px]">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-start">
           {/* Logo Section */}
-          <div className="lg:w-1/5 flex-shrink-0">
+          <div className="lg:w-[15%] flex-shrink-0 lg:-mt-8">
             <a href="http://www.shorinjikempomarseille.fr/" target="_blank" rel="noopener noreferrer" className="block">
               <img 
                 src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" 
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           {/* Columns Grid */}
-          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[0.8fr_0.8fr_1fr_1.4fr] gap-8 items-start">
             {/* Colonne 1: Plan du site */}
             <div className="space-y-6">
               <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] uppercase tracking-wider border-b border-primary-gold/30 pb-2 inline-block">Navigation</h4>
@@ -103,7 +103,7 @@ export default function Footer() {
             </div>
 
             {/* Colonne 4: Réseaux sociaux & CTA */}
-            <div className="space-y-8 flex flex-col">
+            <div className="space-y-8 flex flex-col bg-white/[0.03] p-6 rounded-3xl border border-white/5 backdrop-blur-sm">
               <div className="space-y-4">
                 <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] uppercase tracking-wider border-b border-primary-gold/30 pb-2 inline-block">Suivez-nous</h4>
                 <div className="flex gap-4">
@@ -111,23 +111,26 @@ export default function Footer() {
                     href={contactInfo.facebook} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:border-[#FFC107]/50 transition-all duration-300 shadow-lg backdrop-blur-sm"
+                    className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:border-[#FFC107]/50 transition-all duration-500 shadow-xl backdrop-blur-md group"
                     aria-label="Facebook"
                   >
-                    <Facebook size={20} />
+                    <Facebook size={22} className="group-hover:scale-110 transition-transform" />
                   </a>
                 </div>
               </div>
 
-              <div className="space-y-4 pt-4">
-                <p className="text-[11px] text-[#FFC107]/80 font-bold uppercase tracking-[0.2em]">
-                  Séance gratuite offerte
-                </p>
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-gold animate-pulse"></span>
+                  <p className="text-[11px] text-[#FFC107] font-black uppercase tracking-[0.2em]">
+                    Séance gratuite offerte
+                  </p>
+                </div>
                 <a 
                   href="#contact"
-                  className="bg-primary-gold hover:bg-white text-black font-bold py-3 px-6 rounded-xl transition-all duration-300 text-center text-sm uppercase tracking-widest shadow-xl hover:shadow-primary-gold/20"
+                  className="bg-primary-gold hover:bg-white text-black font-black py-4 px-8 rounded-2xl transition-all duration-500 text-center text-sm uppercase tracking-widest shadow-[0_20px_40px_rgba(255,215,0,0.2)] hover:shadow-primary-gold/40 hover:-translate-y-1 active:scale-95 block"
                 >
-                  Réserver
+                  Réserver mon essai
                 </a>
               </div>
             </div>

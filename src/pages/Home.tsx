@@ -16,9 +16,9 @@ export default function Home() {
   const [isHubOpen, setIsHubOpen] = useState(false);
   const [hoveredSession, setHoveredSession] = useState<string | null>(null);
   const testimonials = [
-    { name: "Julie, 28 ans", role: "Débutante", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://picsum.photos/seed/julie/200/200" },
-    { name: "Marc, 42 ans", role: "Pratiquant (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://picsum.photos/seed/marc/200/200", featured: true },
-    { name: "Thierry, 35 ans", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://picsum.photos/seed/thierry/200/200" }
+    { name: "Samuel F", role: "Débutant", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://picsum.photos/seed/samuel/200/200" },
+    { name: "Laura P", role: "Pratiquante (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://picsum.photos/seed/laura/200/200", featured: true },
+    { name: "Thierry G", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://picsum.photos/seed/thierry/200/200" }
   ];
 
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -499,53 +499,88 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {testimonials.map((t, i) => (
               <ScrollReveal key={i} delay={i * 0.2}>
-                <div className={cn(
-                  "relative pt-16 pb-12 px-8 rounded-[32px] border transition-all duration-500 h-full flex flex-col items-center text-center",
-                  t.featured 
-                    ? "bg-surface text-white border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.15)]" 
-                    : "bg-white border-slate-100 shadow-xl shadow-surface/5"
-                )}>
-                  {/* Overlapping Photo */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div className="relative">
+                <motion.div
+                  whileHover={{ y: -12, scale: 1.02 }}
+                  className={cn(
+                    "relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible",
+                    t.featured 
+                      ? "bg-surface/90 backdrop-blur-xl text-white border-white/10 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.3)] ki-aura-dark" 
+                      : "bg-white/80 backdrop-blur-xl border-slate-100 border-l-primary-gold/40 shadow-2xl shadow-surface/5 ki-aura-light"
+                  )}
+                >
+                  {/* Decorative Quote Icon */}
+                  <div className={cn(
+                    "absolute top-8 right-8 opacity-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110",
+                    t.featured ? "text-primary-gold" : "text-surface"
+                  )}>
+                    <Sparkles size={48} />
+                  </div>
+
+                  {/* Overlapping Photo with Floating Effect */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+                    <motion.div 
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="relative"
+                    >
                       <img 
                         src={t.img} 
                         className={cn(
-                          "w-24 h-24 rounded-full object-cover border-4 shadow-lg",
+                          "w-28 h-28 rounded-full object-cover border-4 shadow-2xl transition-transform duration-700 group-hover:scale-105",
                           t.featured ? "border-primary-gold" : "border-white"
                         )} 
                         alt={t.name} 
                         referrerPolicy="no-referrer" 
                       />
-                      <div className="absolute -bottom-1 -right-1 bg-primary-gold text-on-primary rounded-full p-1.5 shadow-md">
-                        <Sparkles size={14} fill="currentColor" />
+                      <div className="absolute -bottom-2 -right-2 bg-primary-gold text-on-primary rounded-full p-2 shadow-xl border-2 border-surface">
+                        <Sparkles size={16} fill="currentColor" />
                       </div>
+                    </motion.div>
+                  </div>
+
+                  <div className="mb-8 relative z-10">
+                    <p className={cn("font-headline font-bold text-2xl mb-2 tracking-tight", t.featured ? "text-white" : "text-surface")}>
+                      {t.name}
+                    </p>
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="h-px w-4 bg-primary-gold/50"></span>
+                      <p className="text-primary-gold text-xs uppercase tracking-[0.2em] font-black">{t.role}</p>
+                      <span className="h-px w-4 bg-primary-gold/50"></span>
                     </div>
                   </div>
 
-                  <div className="mb-6">
-                    <p className={cn("font-black text-xl mb-1", t.featured ? "text-white" : "text-surface")}>{t.name}</p>
-                    <p className="text-primary-gold text-xs uppercase tracking-widest font-bold">{t.role}</p>
-                  </div>
-
                   <p className={cn(
-                    "italic leading-relaxed text-lg font-medium flex-grow", 
-                    t.featured ? "text-ivory-silk/80" : "text-slate-600"
+                    "italic leading-relaxed text-xl font-medium flex-grow relative z-10 px-2", 
+                    t.featured ? "text-ivory-silk/90" : "text-slate-600"
                   )}>
-                    "{t.text}"
+                    <span className="text-primary-gold/40 text-4xl font-serif absolute -top-4 -left-2">"</span>
+                    {t.text}
+                    <span className="text-primary-gold/40 text-4xl font-serif absolute -bottom-8 -right-2">"</span>
                   </p>
 
-                  <div className="mt-8 flex justify-center gap-1">
+                  <div className="mt-10 flex justify-center gap-1.5 relative z-10">
                     {[...Array(5)].map((_, starIndex) => (
-                      <Sparkles 
-                        key={starIndex} 
-                        size={12} 
-                        className={t.featured ? "text-primary-gold" : "text-primary-gold/40"} 
-                        fill="currentColor" 
-                      />
+                      <motion.div
+                        key={starIndex}
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 + (starIndex * 0.1) }}
+                      >
+                        <Sparkles 
+                          size={14} 
+                          className={t.featured ? "text-primary-gold" : "text-primary-gold"} 
+                          fill="currentColor" 
+                        />
+                      </motion.div>
                     ))}
                   </div>
-                </div>
+
+                  {/* Subtle Background Glow on Hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[40px] overflow-hidden">
+                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary-gold/20 blur-[80px]"></div>
+                    <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary-gold/10 blur-[80px]"></div>
+                  </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>
