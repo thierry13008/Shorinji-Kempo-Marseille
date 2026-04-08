@@ -29,7 +29,7 @@ export default function Home() {
     email: "shorinjikempomarseille@gmail.com",
     hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45",
     discoveryOffer: [
-      "2 cours d'essai gratuits",
+      "1 cours d’essai gratuit",
       "Aucune obligation d'inscription",
       "Prêt du matériel pour l'essai",
       "Accompagnement personnalisé"
@@ -806,7 +806,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
-                  <p className="text-ivory-silk/60">Je vous réponds personnellement dans les meilleurs délais.</p>
+                  <p className="text-ivory-silk/60">Remplissez le formulaire ci dessous</p>
                 </div>
               </div>
 
@@ -840,11 +840,6 @@ export default function Home() {
                 <div className="space-y-3">
                   <label htmlFor="phone" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Téléphone *</label>
                   <input type="tel" id="phone" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="06 12 34 56 78" required />
-                </div>
-
-                <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                  <input type="checkbox" id="exp" className="mt-1.5 w-5 h-5 rounded border-slate-300 text-primary-gold focus:ring-primary-gold" />
-                  <label htmlFor="exp" className="text-slate-500 text-sm leading-relaxed">J'ai déjà une expérience en arts martiaux (facultatif)</label>
                 </div>
 
                 <button type="submit" className="cta-button w-full py-6 text-lg">

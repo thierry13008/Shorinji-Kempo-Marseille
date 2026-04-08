@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Facebook, Instagram, MapPin, Clock, ExternalLink } from 'lucide-react';
+import { Mail, Facebook, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Footer() {
@@ -116,12 +116,6 @@ export default function Footer() {
                   >
                     <Facebook size={20} />
                   </a>
-                  <button 
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:border-[#FFC107]/50 transition-all duration-300 shadow-lg backdrop-blur-sm"
-                    aria-label="Instagram"
-                  >
-                    <Instagram size={20} />
-                  </button>
                 </div>
               </div>
 

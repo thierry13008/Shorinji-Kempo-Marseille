@@ -12,7 +12,7 @@ export default function Contact() {
     email: "shorinjikempomarseille@gmail.com",
     hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45",
     discoveryOffer: [
-      "2 cours d'essai gratuits",
+      "1 cours d’essai gratuit",
       "Aucune obligation d'inscription",
       "Prêt du matériel pour l'essai",
       "Accompagnement personnalisé"
@@ -36,7 +36,7 @@ export default function Contact() {
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-white mb-4">Prêt à commencer ?</h2>
-            <p className="text-slate-300">Réservez vos 2 cours d'essai gratuits dès maintenant</p>
+            <p className="text-slate-300">Réservez votre cours d’essai gratuit dès maintenant</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="space-y-8">
@@ -111,9 +111,7 @@ export default function Contact() {
 
             <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px] border-primary-gold/20">
               <h3 className="text-white mb-2">Nous contacter directement</h3>
-              <p className="text-on-surface-variant mb-8">
-                Remplissez le formulaire ci-dessous ou contactez-nous via WhatsApp
-              </p>
+              <p className="text-on-surface-variant mb-8">Remplissez le formulaire ci dessous</p>
               
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -148,26 +146,6 @@ export default function Contact() {
                   <textarea placeholder="Dites-nous comment nous pouvons vous aider..." rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all resize-none"></textarea>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Catégorie d'âge</label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
-                      <option className="bg-surface">Sélectionner</option>
-                      <option className="bg-surface">Enfant (9-12 ans)</option>
-                      <option className="bg-surface">Adolescent (13-17 ans)</option>
-                      <option className="bg-surface">Adulte</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Préféré de contact *</label>
-                    <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
-                      <option className="bg-surface">Email</option>
-                      <option className="bg-surface">Téléphone</option>
-                      <option className="bg-surface">WhatsApp</option>
-                    </select>
-                  </div>
-                </div>
-
                 <div className="flex items-center gap-3">
                   <input type="checkbox" id="exp" className="w-4 h-4 rounded border-white/10 bg-white/5 text-primary-gold focus:ring-primary-gold/50" />
                   <label htmlFor="exp" className="micro-copy text-on-surface-variant">J'ai une expérience préalable en arts martiaux</label>
@@ -181,9 +159,6 @@ export default function Contact() {
 
                 <div className="pt-6 border-t border-white/10 space-y-4">
                   <p className="text-center micro-copy text-on-surface-variant">Ou contactez-nous directement :</p>
-                  <button type="button" className="w-full bg-[#25D366] text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all text-[14px] uppercase tracking-widest">
-                    WhatsApp
-                  </button>
                   <button type="button" className="w-full bg-white text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-[14px] uppercase tracking-widest">
                     {contactInfo.phone}
                   </button>

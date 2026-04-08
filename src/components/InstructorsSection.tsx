@@ -8,12 +8,12 @@ const instructors = [
     image: "https://i.ibb.co/sD3TzRW/INSTRUCTEUR-1.png",
   },
   {
-    name: "Senseil Yoko Beyer",
+    name: "Sensei Yuko Erie Beyer",
     role: "3ème DAN",
     image: "https://i.ibb.co/Dfn6xn4Q/Instructeur2cp.png",
   },
   {
-    name: "Sensei Marc-Antoine",
+    name: "Sensei Benoit Allix",
     role: "1ERE DAN",
     image: "https://i.ibb.co/HT3kn8JK/INSTRUCTEUR-3.png",
   }
