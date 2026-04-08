@@ -22,11 +22,13 @@ export default function Navbar() {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const isLightPage = location.pathname === '/mentions-legales' || location.pathname === '/politique-confidentialite';
+
   return (
     <nav className={cn(
       "fixed top-0 z-50 w-full transition-all duration-500",
       // Hauteur navbar augmentée (70-90px) et effet sticky moderne
-      isScrolled ? "glass-nav h-20 shadow-2xl" : "bg-transparent h-24"
+      isScrolled || isLightPage ? "glass-nav h-20 shadow-2xl" : "bg-transparent h-24"
     )}>
       <div className="max-w-7xl mx-auto h-full px-4 md:px-8 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-4 group shrink-0">

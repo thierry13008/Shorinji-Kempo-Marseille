@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Book, Shield, Heart, Users, Globe, Award, X, Info } from 'lucide-react';
+import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap } from 'lucide-react';
 
 export default function Encyclopedia() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -13,21 +13,21 @@ export default function Encyclopedia() {
       content: (
         <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="space-y-4">
+            <div className="space-y-4 p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold">
               <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase">Les Origines (1947)</h3>
               <p className="text-slate-300 leading-relaxed font-light">
                 Fondé par <strong>Doshin So</strong> en 1947 au Japon, le Shorinji Kempo est né dans le chaos de l'après-guerre. Inspiré par les techniques anciennes du monastère de Shaolin, il fut créé comme un système éducatif pour reconstruire la nation.
               </p>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold">
               <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase">Philosophie Fondatrice</h3>
               <p className="text-slate-300 leading-relaxed font-light italic">"La moitié pour la maîtrise de soi, la moitié pour le bien d'autrui"</p>
               <p className="text-slate-400 text-sm leading-relaxed">(Jiko kakuritsu - Jita kyōraku). Ce principe souligne que le développement personnel est inséparable de la contribution à la société.</p>
             </div>
           </div>
-          <div className="p-6 bg-white/5 rounded-xl border border-white/10">
+          <div className="p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold/30">
             <p className="text-slate-300 text-sm leading-relaxed">
-              Doshin So a voyagé en Chine avant la guerre, où il a étudié diverses formes de Kenpo. De retour au Japon, il a synthétisé ces connaissances pour créer une discipline qui n'est pas seulement un art de combat, mais une méthode de formation du caractère.
+              Doshin So a voyagé en Chine avant la guerre, où il a étudié diverses formes de Kenpo. De retour au Japon, he a synthétisé ces connaissances pour créer une discipline qui n'est pas seulement un art de combat, mais une méthode de formation du caractère.
             </p>
           </div>
         </div>
@@ -45,14 +45,14 @@ export default function Encyclopedia() {
               { title: "Juho (柔法)", icon: Users, desc: "Les techniques souples comprennent les clés articulaires, les projections et les immobilisations. Elles exploitent la force de l'adversaire." },
               { title: "Seiho (整法)", icon: Heart, desc: "Le Seiho regroupe les techniques de massage thérapeutique et de réanimation. Ces connaissances permettent de restaurer l'énergie vitale." }
             ].map((tech, i) => (
-              <div key={i} className="bg-surface-high p-8 rounded-xl border border-white/5">
+              <div key={i} className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all duration-300">
                 <tech.icon className="text-primary-gold mb-6" size={32} />
                 <h3 className="font-headline text-2xl mb-4 text-primary-gold">{tech.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{tech.desc}</p>
               </div>
             ))}
           </div>
-          <div className="bg-primary-gold/10 p-8 rounded-2xl border border-primary-gold/20">
+          <div className="bg-primary-gold/5 p-8 rounded-2xl border-l-4 border-l-primary-gold">
             <h4 className="text-primary-gold font-bold mb-4 uppercase tracking-widest text-xs">Le principe de l'unité</h4>
             <p className="text-slate-300 text-sm leading-relaxed">
               Le Shorinji Kempo enseigne que Goho et Juho sont comme les deux faces d'une même pièce. Un pratiquant complet doit maîtriser les deux aspects pour répondre de manière appropriée à toute situation.
@@ -67,15 +67,15 @@ export default function Encyclopedia() {
       icon: Heart,
       content: (
         <div className="space-y-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { title: "Ken Zen Ichinyo", sub: "拳禅一如", text: "L'unité du poing et du zen. Le Shorinji Kempo unit la pratique physique à la méditation zen." },
               { title: "Riki Ai Funi", sub: "力愛不二", text: "La force et l'amour sont indivisibles. La force doit être guidée par la compassion." },
               { title: "Shushu Koju", sub: "守主攻従", text: "La défense est primordiale. On ne frappe jamais en premier, mais on se défend avec détermination." }
             ].map((val, i) => (
-              <div key={i} className="text-center space-y-4">
-                <h3 className="font-headline text-xl text-primary-gold">{val.title}</h3>
-                <p className="text-[10px] tracking-widest text-slate-500 uppercase">{val.sub}</p>
+              <div key={i} className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all duration-300">
+                <h3 className="font-headline text-xl text-primary-gold mb-2">{val.title}</h3>
+                <p className="text-[10px] tracking-widest text-slate-500 uppercase mb-4">{val.sub}</p>
                 <p className="text-slate-300 text-sm font-light leading-relaxed">{val.text}</p>
               </div>
             ))}
@@ -95,7 +95,7 @@ export default function Encyclopedia() {
       content: (
         <div className="space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="flex gap-6 items-start">
+            <div className="flex gap-6 items-start glass-card ki-aura-dark p-8 border-l-4 border-l-white/30">
               <div className="bg-white/10 w-16 h-16 rounded-lg flex items-center justify-center shrink-0 border border-white/10">
                 <Award className="text-white" size={24} />
               </div>
@@ -104,7 +104,7 @@ export default function Encyclopedia() {
                 <p className="text-slate-400 font-light leading-relaxed">Le système de grades débute avec la ceinture blanche (6e kyu) et progresse vers la ceinture marron (1er kyu).</p>
               </div>
             </div>
-            <div className="flex gap-6 items-start">
+            <div className="flex gap-6 items-start glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold">
               <div className="bg-primary-gold/20 w-16 h-16 rounded-lg flex items-center justify-center shrink-0 border border-primary-gold/20">
                 <Award className="text-primary-gold" size={24} />
               </div>
@@ -114,11 +114,61 @@ export default function Encyclopedia() {
               </div>
             </div>
           </div>
-          <div className="bg-surface-high p-6 rounded-xl border border-white/5">
+          <div className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold/30">
             <h4 className="text-white font-bold mb-2">Hokkai (Grades de Prêtrise)</h4>
             <p className="text-slate-400 text-sm">
               En plus des grades techniques, le Shorinji Kempo possède un système de grades philosophiques (Doin) reflétant la compréhension spirituelle du pratiquant.
             </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'deroulement',
+      title: 'Déroulement de cours',
+      icon: Clock,
+      content: (
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 gap-6">
+            {[
+              { title: "Taisô", sub: "Échauffement", icon: Zap, desc: "Un échauffement complet pour préparer le corps, activer les articulations et démarrer la séance dans de bonnes conditions." },
+              { title: "Chinkon", sub: "Méditation", icon: Heart, desc: "Un moment de méditation avec respiration Chôsoku pour se recentrer, apaiser l'esprit et améliorer la concentration." },
+              { title: "Kihon", sub: "Fondamentaux", icon: Shield, desc: "Le travail des fondamentaux en Goho, avec les techniques de pieds et de poings qui construisent la base du progrès." },
+              { title: "Zenshin", sub: "Déplacements", icon: Globe, desc: "Les déplacements essentiels pour développer fluidité, stabilité et précision dans l'action." },
+              { title: "Ukemi", sub: "Chutes", icon: Award, desc: "L'apprentissage des chutes pour pratiquer avec confiance et évoluer en toute sécurité." },
+              { title: "Kata", sub: "Enchaînements", icon: Book, desc: "Des enchaînements codifiés de techniques de combat pour renforcer la coordination, le rythme et la maîtrise." },
+              { title: "Randori", sub: "Dynamique", icon: Users, desc: "Des exercices dynamiques à deux ou trois pour travailler les attaques, les défenses, les esquives et les contre-attaques." }
+            ].map((step, i) => (
+              <div key={i} className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold group hover:bg-primary-gold/5 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20 group-hover:scale-110 transition-transform">
+                    <step.icon size={24} className="text-primary-gold" />
+                  </div>
+                  <div>
+                    <div className="flex items-baseline gap-3 mb-2">
+                      <h3 className="text-xl font-headline text-white">{step.title}</h3>
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-primary-gold/60 font-bold">{step.sub}</span>
+                    </div>
+                    <p className="text-slate-400 text-sm leading-relaxed font-light">{step.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
+            <div className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all duration-300">
+              <h3 className="text-xl font-headline text-white mb-4">Hokei</h3>
+              <p className="text-slate-400 text-sm leading-relaxed font-light">
+                Un travail à deux sur les techniques dures en Goho et les techniques souples en Jûhô, avec saisies, projections, dégagements et immobilisations.
+              </p>
+            </div>
+            <div className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all duration-300">
+              <h3 className="text-xl font-headline text-white mb-4">Embu</h3>
+              <p className="text-slate-400 text-sm leading-relaxed font-light">
+                Des chorégraphies de combat réservées aux pratiquants expérimentés, pour allier technique, précision et intensité.
+              </p>
+            </div>
           </div>
         </div>
       )
@@ -129,21 +179,45 @@ export default function Encyclopedia() {
       icon: Globe,
       content: (
         <div className="space-y-8">
-          <div className="flex items-center gap-6 p-8 bg-white/5 rounded-3xl border border-white/10">
-            <Globe className="text-primary-gold shrink-0" size={48} />
+          <a 
+            href="https://www.shorinjikempo.or.jp/wsko/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-6 p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all group cursor-pointer block"
+          >
+            <Globe className="text-primary-gold shrink-0 group-hover:scale-110 transition-transform" size={48} />
             <div>
-              <h3 className="text-2xl font-headline mb-2">WSKO</h3>
+              <h3 className="text-2xl font-headline mb-2 flex items-center gap-2">
+                WSKO
+                <ExternalLink size={18} className="text-primary-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+              </h3>
               <p className="text-slate-400">World Shorinji Kempo Organization. Présente dans plus de 30 pays, elle assure la cohérence de l'enseignement mondial.</p>
             </div>
-          </div>
+          </a>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-6 border border-white/5 rounded-2xl">
-              <h4 className="text-primary-gold font-bold mb-2">France Shorinji Kempo</h4>
-              <p className="text-slate-400 text-sm">La fédération nationale qui regroupe tous les clubs officiels en France et organise les stages nationaux.</p>
-            </div>
-            <div className="p-6 border border-white/5 rounded-2xl">
-              <h4 className="text-primary-gold font-bold mb-2">Le Dojo de Marseille</h4>
-              <p className="text-slate-400 text-sm">Affilié officiellement à la WSKO, garantissant un enseignement conforme aux standards internationaux.</p>
+            <a 
+              href="https://shorinjikempo.fr/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 p-6 glass-card ki-aura-dark border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all group cursor-pointer block"
+            >
+              <Shield className="text-primary-gold shrink-0 group-hover:scale-110 transition-transform mt-1" size={24} />
+              <div>
+                <h4 className="text-primary-gold font-bold mb-2 flex items-center gap-2">
+                  France Shorinji Kempo
+                  <ExternalLink size={14} className="text-primary-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h4>
+                <p className="text-slate-400 text-sm">La fédération nationale qui regroupe tous les clubs officiels en France et organise les stages nationaux.</p>
+              </div>
+            </a>
+            <div 
+              className="flex items-start gap-4 p-6 glass-card ki-aura-dark border-l-4 border-l-primary-gold/30 hover:bg-primary-gold/5 transition-all group cursor-default"
+            >
+              <MapPin className="text-primary-gold shrink-0 group-hover:scale-110 transition-transform mt-1" size={24} />
+              <div>
+                <h4 className="text-primary-gold font-bold mb-2">Le Dojo de Marseille</h4>
+                <p className="text-slate-400 text-sm">Affilié officiellement à la WSKO, garantissant un enseignement conforme aux standards internationaux.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -182,9 +256,9 @@ export default function Encyclopedia() {
                 <li key={section.id}>
                   <button 
                     onClick={() => setActiveModal(section.id)}
-                    className="text-slate-400 hover:text-primary-gold transition-colors text-lg font-medium flex items-center gap-4 group w-full text-left"
+                    className="text-slate-400 hover:text-primary-gold transition-all duration-300 text-lg font-medium flex items-center gap-4 group w-full text-left hover:pl-2"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary-gold transition-colors"></span>
+                    <span className="w-1 h-4 bg-white/10 group-hover:bg-primary-gold transition-colors rounded-full"></span>
                     {section.title}
                   </button>
                 </li>
@@ -195,10 +269,12 @@ export default function Encyclopedia() {
 
         <main className="lg:col-span-9 space-y-32 border border-white/10 rounded-[48px] p-10 md:p-20 bg-surface-low/20 shadow-2xl backdrop-blur-sm">
           {sections.map((section) => (
-            <section key={section.id} id={section.id}>
-              <div className="flex items-center gap-4 mb-8">
-                <section.icon className="text-primary-gold/40" size={24} />
-                <h2 className="font-headline text-4xl">{section.title}</h2>
+            <section key={section.id} id={section.id} className="scroll-mt-32">
+              <div className="flex items-center gap-6 mb-12 group">
+                <div className="w-12 h-12 rounded-2xl bg-primary-gold/5 border border-primary-gold/20 flex items-center justify-center group-hover:bg-primary-gold/10 transition-colors">
+                  <section.icon className="text-primary-gold" size={24} />
+                </div>
+                <h2 className="font-headline text-4xl md:text-5xl text-white">{section.title}</h2>
               </div>
               {section.content}
             </section>

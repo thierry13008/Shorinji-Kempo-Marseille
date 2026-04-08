@@ -249,7 +249,7 @@ export default function Home() {
               <ScrollReveal className="pt-8">
                 <a 
                   href="#contact"
-                  className="inline-flex items-center gap-4 text-surface font-black uppercase tracking-widest group"
+                  className="inline-flex items-center gap-4 text-surface font-black uppercase tracking-widest group border border-surface/10 px-8 py-4 rounded-full hover:border-primary-gold/50 transition-all"
                 >
                   <span className="h-[2px] w-12 bg-primary-gold group-hover:w-20 transition-all duration-500"></span>
                   Essayez maintenant (offert)

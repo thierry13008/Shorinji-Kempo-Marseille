@@ -98,6 +98,10 @@
     @apply bg-surface/60 backdrop-blur-2xl border-b border-white/10;
   }
 
+  .glass-nav-light {
+    @apply bg-white/60 backdrop-blur-2xl border-b border-slate-200;
+  }
+
   .header-container {
     height: 100vh; /* Fallback */
     height: calc(var(--vh, 1vh) * 100);
