@@ -26,8 +26,8 @@ export default function Home() {
   const [contactInfo, setContactInfo] = useState({
     address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
     phone: "06 89 09 05 44",
-    email: "thguey@gmail.com",
-    hours: "Lundi: 20h00 - 21h30\nMercredi: 19h30 - 21h00\nVendredi: 20h15 - 21h45",
+    email: "shorinjikempomarseille@gmail.com",
+    hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45",
     discoveryOffer: [
       "2 cours d'essai gratuits",
       "Aucune obligation d'inscription",
@@ -219,7 +219,7 @@ export default function Home() {
               <div className="space-y-8">
                 {[
                   {
-                    title: "Confiance Absolue",
+                    title: "Renforcer la confiance en soi",
                     desc: "Prenez confiance en vous, non seulement sur le tatami, mais dans chaque défi de votre vie quotidienne.",
                     icon: <Sparkles className="text-primary-gold" />
                   },
@@ -428,7 +428,7 @@ export default function Home() {
             <div className="lg:w-2/3 w-full space-y-6">
               {[
                 { day: "Lundi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "01" },
-                { day: "Mercredi", time: "19h30 — 21h00", cat: "Adultes", level: "Tous Niveaux", id: "02" },
+                { day: "Mercredi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "02" },
                 { day: "Vendredi", time: "20h15 — 21h45", cat: "Mixte", level: "Adultes & Enf", id: "03" }
               ].map((session, i) => {
                 const isActive = hoveredSession ? hoveredSession === session.id : session.id === "02";
@@ -717,11 +717,11 @@ export default function Home() {
             </ScrollReveal>
             <div className="space-y-4">
               {[
-                { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 6 ans. Nous proposons des cours adaptés pour les enfants, les adolescents et les adultes. Il n'y a pas d'âge maximum pour débuter. La sécurité et l'accueil des débutants sont nos priorités absolues." },
+                { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 9 ans. Nous proposons des cours adaptés pour les enfants, les adolescents et les adultes. Il n'y a pas d'âge maximum pour débuter. La sécurité et l'accueil des débutants sont nos priorités absolues." },
                 { q: "Faut-il être déjà sportif pour commencer ?", a: "Absolument pas ! Le Shorinji Kempo s'adapte à tous les niveaux. La progression est graduelle et respectueuse de votre rythme. Nos débutants viennent souvent sans aucune expérience sportive préalable." },
                 { q: "Est-ce dangereux ? Y a-t-il des risques de blessures ?", a: "La sécurité est notre priorité. Les techniques sont enseignées avec contrôle et bienveillance. Nous utilisons des protections et le taux de blessures est extrêmement faible. On apprend à se protéger, pas à se blesser." },
                 { q: "Peut-on essayer gratuitement avant de s'inscrire ?", a: "Oui ! Nous offrons une séance d'essai gratuite pour découvrir le Shorinji Kempo en toute tranquillité. Aucune obligation d'inscription. Venez simplement avec une tenue de sport confortable." },
-                { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont transparents et incluent l'adhésion. Cotisation annuelle : 290€ pour les adultes, 240€ pour les enfants. Possibilité de paiement en plusieurs fois pour faciliter l'accès à tous." },
+                { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont transparents. Cotisations adultes : à partir de 195€ hors licences, enfants 150€ hors licences. Possibilité de payer au trimestre, se renseigner auprès du professeur." },
                 { q: "Que faut-il apporter pour le premier cours ?", a: "Pour votre premier cours, un simple jogging et un t-shirt suffisent. Vous pratiquerez pieds nus sur des tatamis. Pensez simplement à apporter une bouteille d'eau et votre sourire !" }
               ].map((item, i) => (
                 <ScrollReveal key={i} delay={i * 0.1} className="glass-card-light rounded-[32px] overflow-hidden border border-slate-200 shadow-sm ki-aura-light hover:border-primary-gold/30 transition-all duration-500">
@@ -806,7 +806,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
-                  <p className="text-ivory-silk/60">Je vous réponds personnellement sous 24h.</p>
+                  <p className="text-ivory-silk/60">Je vous réponds personnellement dans les meilleurs délais.</p>
                 </div>
               </div>
 
@@ -842,16 +842,6 @@ export default function Home() {
                   <input type="tel" id="phone" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="06 12 34 56 78" required />
                 </div>
 
-                <div className="space-y-3">
-                  <label htmlFor="section" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Section souhaitée *</label>
-                  <select id="section" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface appearance-none" required>
-                    <option value="">Choisir une section</option>
-                    <option value="adultes">Adultes Débutants</option>
-                    <option value="enfants">Enfants & Ados</option>
-                    <option value="confirmes">Pratiquants Confirmés</option>
-                  </select>
-                </div>
-
                 <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
                   <input type="checkbox" id="exp" className="mt-1.5 w-5 h-5 rounded border-slate-300 text-primary-gold focus:ring-primary-gold" />
                   <label htmlFor="exp" className="text-slate-500 text-sm leading-relaxed">J'ai déjà une expérience en arts martiaux (facultatif)</label>
@@ -861,7 +851,7 @@ export default function Home() {
                   Réservez ma séance gratuite (places limitées)
                 </button>
                 
-                <p className="text-center text-slate-400 text-xs uppercase tracking-widest font-bold">Réponse garantie sous 24h</p>
+                <p className="text-center text-slate-400 text-xs uppercase tracking-widest font-bold">Réponse garantie dans les meilleurs délais</p>
               </form>
             </ScrollReveal>
           </div>

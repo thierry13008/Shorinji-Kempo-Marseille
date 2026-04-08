@@ -39,7 +39,7 @@ Fiche de Connaissances : Shorinji Kempo Marseille — Saint-Giniez
 47: 20. Y a-t-il une assurance ? Oui, la licence fédérale inclut une assurance spécifique pour la pratique.
 48: 💰 Tarifs, Horaires et Logistique
 49: 21. Quels sont les jours de cours à Saint-Giniez ? Lundi, Mercredi et Vendredi.
-50: 22. Quels sont les horaires ? Lundi 20h00-21h30, Mercredi 19h30-21h00, Vendredi 20h15-21h45.
+50: 22. Quels sont les horaires ? Lundi 20h00-21h30, Mercredi 20h00-21h30, Vendredi 20h15-21h45.
 51: 23. Combien coûte l'adhésion annuelle ? Contactez-nous pour les tarifs détaillés 2026.
 52: 24. Peut-on payer en plusieurs fois ? Oui, nous acceptons les paiements échelonnés (3 fois généralement).
 53: 25. Prenez-vous les chèques vacances ou coupons sport ? Oui.

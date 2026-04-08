@@ -9,8 +9,8 @@ export default function Contact() {
   const [contactInfo] = useState({
     address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
     phone: "06 89 09 05 44",
-    email: "thguey@gmail.com",
-    hours: "Lundi: 20h00 - 21h30\nMercredi: 19h30 - 21h00\nVendredi: 20h15 - 21h45",
+    email: "shorinjikempomarseille@gmail.com",
+    hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45",
     discoveryOffer: [
       "2 cours d'essai gratuits",
       "Aucune obligation d'inscription",
@@ -153,7 +153,7 @@ export default function Contact() {
                     <label className="micro-copy text-white">Catégorie d'âge</label>
                     <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all appearance-none">
                       <option className="bg-surface">Sélectionner</option>
-                      <option className="bg-surface">Enfant (6-12 ans)</option>
+                      <option className="bg-surface">Enfant (9-12 ans)</option>
                       <option className="bg-surface">Adolescent (13-17 ans)</option>
                       <option className="bg-surface">Adulte</option>
                     </select>

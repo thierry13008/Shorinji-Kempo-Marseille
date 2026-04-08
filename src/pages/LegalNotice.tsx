@@ -47,7 +47,7 @@ export default function LegalNotice() {
             <section>
               <h2 className="text-2xl font-bold text-surface mb-4">5. Contact</h2>
               <p>
-                Pour toute question, vous pouvez nous contacter par email à : <strong>thguey@gmail.com</strong>
+                Pour toute question, vous pouvez nous contacter par email à : <strong>shorinjikempomarseille@gmail.com</strong>
               </p>
             </section>
           </div>

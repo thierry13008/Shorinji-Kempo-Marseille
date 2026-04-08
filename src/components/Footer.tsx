@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Mail, Facebook, Instagram, MapPin, Clock } from 'lucide-react';
+import { Mail, Facebook, Instagram, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Footer() {
   const [contactInfo, setContactInfo] = useState({
     address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
-    email: "thguey@gmail.com",
+    email: "shorinjikempomarseille@gmail.com",
     facebook: "https://www.facebook.com/shorinjikempo.marseille",
-    hours: "Lundi: 20h00 - 21h30\nMercredi: 19h30 - 21h00\nVendredi: 20h15 - 21h45"
+    hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45"
   });
 
   useEffect(() => {
@@ -20,88 +20,121 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
           {/* Logo Section */}
           <div className="lg:w-1/5 flex-shrink-0">
-            <Link to="/" className="block">
+            <a href="http://www.shorinjikempomarseille.fr/" target="_blank" rel="noopener noreferrer" className="block">
               <img 
                 src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" 
                 alt="Marseille Shorinji Kempo" 
                 className="h-[120px] w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
               />
-            </Link>
+            </a>
           </div>
 
           {/* Columns Grid */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Colonne 1: Contact */}
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Colonne 1: Plan du site */}
             <div className="space-y-6">
-              <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] md:text-[20px] uppercase tracking-wide">Contact</h4>
-              <div className="space-y-4 text-[14px] md:text-[16px]">
-                <div className="flex items-start gap-3">
-                  <MapPin size={20} className="text-[#FFC107] shrink-0 mt-1" />
-                  <span className="leading-relaxed font-normal">{contactInfo.address}</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Clock size={20} className="text-[#FFC107] shrink-0 mt-1" />
-                  <span className="whitespace-pre-line leading-relaxed font-normal">{contactInfo.hours}</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail size={20} className="text-[#FFC107] shrink-0 mt-1" />
-                  <a href={`mailto:${contactInfo.email}`} className="hover:text-[#FFC107] transition-colors min-h-[44px] flex items-center font-normal">{contactInfo.email}</a>
-                </div>
-              </div>
-            </div>
-
-            {/* Colonne 2: Plan du site */}
-            <div className="space-y-6">
-              <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] md:text-[20px] uppercase tracking-wide">Plan du site</h4>
+              <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] uppercase tracking-wider border-b border-primary-gold/30 pb-2 inline-block">Navigation</h4>
               <nav>
-                <ul className="text-[14px] md:text-[16px] space-y-1">
-                  <li><Link to="/" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Accueil</Link></li>
-                  <li><Link to="/encyclopedia" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Encyclopédie</Link></li>
-                  <li><Link to="/blog" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Blog</Link></li>
-                  <li><Link to="/contact" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Contact</Link></li>
-                  <li><Link to="/mentions-legales" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Mentions Légales</Link></li>
-                  <li><Link to="/politique-confidentialite" className="hover:text-[#FFC107] transition-colors font-normal py-2 block min-h-[44px] flex items-center">Confidentialité</Link></li>
+                <ul className="text-[14px] md:text-[15px] space-y-2">
+                  <li><Link to="/" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Accueil</Link></li>
+                  <li><Link to="/encyclopedia" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Encyclopédie</Link></li>
+                  <li><Link to="/blog" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Blog</Link></li>
+                  <li><Link to="/contact" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Contact</Link></li>
+                  <li><Link to="/mentions-legales" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Mentions Légales</Link></li>
                 </ul>
               </nav>
             </div>
 
-            {/* Colonne 3: Réseaux sociaux & CTA */}
-            <div className="space-y-10 md:text-right flex flex-col md:items-end">
-              <div className="space-y-6 w-full">
-                <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] md:text-[20px] uppercase tracking-wide">Suivez-nous</h4>
-                <div className="flex gap-4 md:justify-end">
+            {/* Colonne 2: Liens Externes */}
+            <div className="space-y-6">
+              <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] uppercase tracking-wider border-b border-primary-gold/30 pb-2 inline-block">Liens</h4>
+              <ul className="text-[14px] md:text-[15px] space-y-3">
+                <li>
+                  <a href="https://shorinjikempo.fr/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#FFC107] transition-colors text-slate-300 group">
+                    <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+                    Fédération Française
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.shorinjikempo.or.jp/wsko/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#FFC107] transition-colors text-slate-300 group">
+                    <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+                    WSKO (World Organization)
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.shorinjikempomarseille.fr/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#FFC107] transition-colors text-slate-300 group">
+                    <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+                    Site Officiel Marseille
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/Shorinjikempomarseille" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#FFC107] transition-colors text-slate-300 group">
+                    <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+                    Facebook Club
+                  </a>
+                </li>
+                <li>
+                  <a href="https://shorinjikempomarseille.wordpress.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-[#FFC107] transition-colors text-slate-300 group">
+                    <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+                    Blog WordPress
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Colonne 3: Contacts */}
+            <div className="space-y-6">
+              <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] uppercase tracking-wider border-b border-primary-gold/30 pb-2 inline-block">Contacts</h4>
+              <div className="space-y-4 text-[14px] md:text-[15px]">
+                <div className="flex items-start gap-3 group">
+                  <MapPin size={18} className="text-[#FFC107] shrink-0 mt-1 group-hover:scale-110 transition-transform" />
+                  <span className="leading-relaxed font-normal text-slate-300">{contactInfo.address}</span>
+                </div>
+                <div className="flex items-start gap-3 group">
+                  <Clock size={18} className="text-[#FFC107] shrink-0 mt-1 group-hover:scale-110 transition-transform" />
+                  <span className="whitespace-pre-line leading-relaxed font-normal text-slate-300">{contactInfo.hours}</span>
+                </div>
+                <div className="flex items-start gap-3 group">
+                  <Mail size={18} className="text-[#FFC107] shrink-0 mt-1 group-hover:scale-110 transition-transform" />
+                  <a href={`mailto:${contactInfo.email}`} className="hover:text-[#FFC107] transition-colors flex items-center font-normal text-slate-300">{contactInfo.email}</a>
+                </div>
+              </div>
+            </div>
+
+            {/* Colonne 4: Réseaux sociaux & CTA */}
+            <div className="space-y-8 flex flex-col">
+              <div className="space-y-4">
+                <h4 className="text-[#FFFFFF] font-sans font-bold text-[18px] uppercase tracking-wider border-b border-primary-gold/30 pb-2 inline-block">Suivez-nous</h4>
+                <div className="flex gap-4">
                   <a 
                     href={contactInfo.facebook} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:scale-110 transition-all duration-200 shadow-xl backdrop-blur-sm"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:border-[#FFC107]/50 transition-all duration-300 shadow-lg backdrop-blur-sm"
                     aria-label="Facebook"
                   >
-                    <Facebook size={24} />
+                    <Facebook size={20} />
                   </a>
                   <button 
-                    className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:scale-110 transition-all duration-200 shadow-xl backdrop-blur-sm"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#CCCCCC] hover:text-[#FFC107] hover:border-[#FFC107]/50 transition-all duration-300 shadow-lg backdrop-blur-sm"
                     aria-label="Instagram"
                   >
-                    <Instagram size={24} />
+                    <Instagram size={20} />
                   </button>
                 </div>
               </div>
 
-              <div className="space-y-4 w-full">
-                <p className="text-[12px] text-[#FFC107]/80 font-bold uppercase tracking-widest md:text-right">
-                  Rejoignez notre communauté de pratiquants
+              <div className="space-y-4 pt-4">
+                <p className="text-[11px] text-[#FFC107]/80 font-bold uppercase tracking-[0.2em]">
+                  Séance gratuite offerte
                 </p>
                 <a 
                   href="#contact"
-                  className="cta-secondary w-full md:w-auto flex items-center justify-center"
+                  className="bg-primary-gold hover:bg-white text-black font-bold py-3 px-6 rounded-xl transition-all duration-300 text-center text-sm uppercase tracking-widest shadow-xl hover:shadow-primary-gold/20"
                 >
-                  Inscrivez-vous – séance gratuite
+                  Réserver
                 </a>
-                <p className="text-[12px] text-[#999999] font-light tracking-wide md:text-right">
-                  Places limitées ce mois-ci – Sans engagement
-                </p>
               </div>
             </div>
           </div>
