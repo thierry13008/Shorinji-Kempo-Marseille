@@ -9,7 +9,7 @@ import {
   Image as ImageIcon,
   X
 } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { cn } from '@/src/lib/utils';
 
 // --- Knowledge Base ---
@@ -104,16 +104,12 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Dynamic fetching removed as per user request
-  }, []);
-
-  useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = useCallback(async () => {
     if (!inputValue.trim()) return;
 
     const userMsg: Message = {
@@ -166,7 +162,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
     } finally {
       setIsAnalyzing(false);
     }
-  };
+  }, [inputValue, knowledgeBase]);
 
   return (
     <motion.div 
@@ -203,7 +199,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
               <div className="flex -space-x-2">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="w-8 h-8 rounded-full border-2 border-surface bg-white/10 flex items-center justify-center overflow-hidden">
-                    <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt="Expert" referrerPolicy="no-referrer" />
+                    <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt={`Expert Shorinji Kempo ${i}`} referrerPolicy="no-referrer" />
                   </div>
                 ))}
               </div>

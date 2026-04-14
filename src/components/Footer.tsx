@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="lg:w-[15%] flex-shrink-0 lg:-mt-8">
             <a href="http://www.shorinjikempomarseille.fr/" target="_blank" rel="noopener noreferrer" className="block">
               <img 
-                src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" 
+                src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
                 alt="Marseille Shorinji Kempo" 
                 className="h-[120px] w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
@@ -127,7 +127,7 @@ export default function Footer() {
                   </p>
                 </div>
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   className="bg-primary-gold hover:bg-white text-black font-black py-4 px-8 rounded-2xl transition-all duration-500 text-center text-sm uppercase tracking-widest shadow-[0_20px_40px_rgba(255,215,0,0.2)] hover:shadow-primary-gold/40 hover:-translate-y-1 active:scale-95 block"
                 >
                   Réserver mon essai

@@ -93,6 +93,10 @@ export default function Blog() {
   const [error, setError] = useState(false);
   const [selectedYear, setSelectedYear] = useState('Tout');
 
+  const decodeHtmlMemo = useMemo(() => decodeHtml, []);
+  const stripHtmlMemo = useMemo(() => stripHtml, []);
+  const getPostImageMemo = useMemo(() => getPostImage, []);
+
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
@@ -161,7 +165,7 @@ export default function Blog() {
   }, [posts, selectedYear]);
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <section className="pt-32 pb-20 bg-surface">
         <header className="px-6 md:px-24 mb-20 relative">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
@@ -231,12 +235,12 @@ export default function Blog() {
               <ScrollReveal delay={0.1}>
                 <Link 
                   to={`/blog/${filteredPosts[0].slug}`} 
-                  className="group flex flex-col lg:flex-row-reverse h-full bg-white border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/20 hover:border-primary-gold/50 transition-all duration-500"
+                  className="group flex flex-col lg:flex-row-reverse h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/20 hover:border-primary-gold/50 transition-all duration-500"
                 >
                   <div className="relative lg:w-3/5 aspect-[16/10] lg:aspect-auto overflow-hidden">
                     <img 
                       src={getPostImage(filteredPosts[0])} 
-                      alt={decodeHtml(filteredPosts[0].title.rendered)}
+                      alt={`Article : ${decodeHtml(filteredPosts[0].title.rendered)} - Blog Shorinji Kempo Marseille`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                       referrerPolicy="no-referrer"
                     />
@@ -258,11 +262,11 @@ export default function Blog() {
                     </div>
                     
                     <h3 className="font-headline text-3xl md:text-5xl text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic">
-                      {decodeHtml(filteredPosts[0].title.rendered)}
+                      {decodeHtmlMemo(filteredPosts[0].title.rendered)}
                     </h3>
                     
                     <p className="text-surface/70 text-base font-light leading-relaxed line-clamp-3 mb-8 flex-1">
-                      {stripHtml(filteredPosts[0].excerpt.rendered)}
+                      {stripHtmlMemo(filteredPosts[0].excerpt.rendered)}
                     </p>
                     
                     <div className="flex items-center justify-between pt-6 border-t border-surface/5">
@@ -313,43 +317,43 @@ export default function Blog() {
                       isSecond ? 'lg:col-span-2 md:col-span-2' : ''
                     }
                   >
-                      <Link 
-                        to={`/blog/${post.slug}`} 
-                        className={`group flex flex-col ${isSecond ? 'lg:flex-row-reverse' : ''} h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/5 hover:border-primary-gold/50 transition-all duration-500`}
-                      >
-                      <div className={`relative ${isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
-                        <img 
-                          src={getPostImage(post)} 
-                          alt={decodeHtml(post.title.rendered)}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
+                    <Link 
+                      to={`/blog/${post.slug}`} 
+                      className={`group flex flex-col ${isSecond ? 'lg:flex-row-reverse' : ''} h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/5 hover:border-primary-gold/50 transition-all duration-500`}
+                    >
+                    <div className={`relative ${isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
+                      <img 
+                        src={getPostImageMemo(post)} 
+                        alt={`Article : ${decodeHtmlMemo(post.title.rendered)}`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
+                    </div>
+                    
+                    <div className={`p-8 flex flex-col flex-1 ${isSecond ? 'lg:p-12 lg:justify-center' : ''}`}>
+                      <div className="flex items-center gap-3 mb-6">
+                        <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold bg-primary-gold/10 px-3 py-1 rounded-full">
+                          {new Date(post.date).getFullYear()}
+                        </span>
+                        <span className="text-[10px] font-label uppercase tracking-widest text-surface/60">
+                          {new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+                        </span>
+                        {isSecond && (
+                          <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse" />
+                            À la une
+                          </span>
+                        )}
                       </div>
                       
-                      <div className={`p-8 flex flex-col flex-1 ${isSecond ? 'lg:p-12 lg:justify-center' : ''}`}>
-                        <div className="flex items-center gap-3 mb-6">
-                          <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold bg-primary-gold/10 px-3 py-1 rounded-full">
-                            {new Date(post.date).getFullYear()}
-                          </span>
-                          <span className="text-[10px] font-label uppercase tracking-widest text-surface/60">
-                            {new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
-                          </span>
-                          {isSecond && (
-                            <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse" />
-                              À la une
-                            </span>
-                          )}
-                        </div>
-                        
-                        <h3 className={`font-headline ${isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
-                          {decodeHtml(post.title.rendered)}
-                        </h3>
-                        
-                        <p className={`text-surface/70 ${isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
-                          {stripHtml(post.excerpt.rendered)}
-                        </p>
+                      <h3 className={`font-headline ${isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
+                        {decodeHtmlMemo(post.title.rendered)}
+                      </h3>
+                      
+                      <p className={`text-surface/70 ${isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
+                        {stripHtmlMemo(post.excerpt.rendered)}
+                      </p>
                         
                         <div className="flex items-center justify-between pt-6 border-t border-surface/5">
                           <span className="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
@@ -389,6 +393,6 @@ export default function Blog() {
         )}
       </div>
       </section>
-    </div>
+    </main>
   );
 }

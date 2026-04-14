@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap } from 'lucide-react';
+import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap, ArrowRight } from 'lucide-react';
 
 export default function Encyclopedia() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -28,6 +28,15 @@ export default function Encyclopedia() {
           <div className="p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold/30">
             <p className="text-slate-300 text-sm leading-relaxed">
               Doshin So a voyagé en Chine avant la guerre, où il a étudié diverses formes de Kenpo. De retour au Japon, he a synthétisé ces connaissances pour créer une discipline qui n'est pas seulement un art de combat, mais une méthode de formation du caractère.
+            </p>
+          </div>
+          <div className="p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold">
+            <h3 className="text-primary-gold font-label text-xs tracking-widest uppercase mb-4">L'arrivée en France (1972)</h3>
+            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+              C'est en France que choisit de s'installer <strong>Aosaka Sensei</strong> en 1972, mandaté par le fondateur Doshin So pour développer le Shorinji Kempo en Europe.
+            </p>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Descendant direct d’une famille de samurai, il étudie le Budo très jeune en pratiquant notamment le Judo. Il devient professeur de Shorinji Kempo en région parisienne à l'âge de 24 ans et est maintenant <strong>9ᵉ Dan Dai-Hanshi</strong> et directeur technique de la Fédération Française de Shorinji Kempo (FFSK ou France Shorinji Kempo) et de l'Europe au sein de la World Shorinji Kempo Organization (WSKO).
             </p>
           </div>
         </div>
@@ -71,7 +80,10 @@ export default function Encyclopedia() {
             {[
               { title: "Ken Zen Ichinyo", sub: "拳禅一如", text: "L'unité du poing et du zen. Le Shorinji Kempo unit la pratique physique à la méditation zen." },
               { title: "Riki Ai Funi", sub: "力愛不二", text: "La force et l'amour sont indivisibles. La force doit être guidée par la compassion." },
-              { title: "Shushu Koju", sub: "守主攻従", text: "La défense est primordiale. On ne frappe jamais en premier, mais on se défend avec détermination." }
+              { title: "Shushu Koju", sub: "守主攻従", text: "La défense est primordiale. On ne frappe jamais en premier, mais on se défend avec détermination." },
+              { title: "Fusatsu Katsujin", sub: "不殺活人", text: "La technique sert à s’éveiller l’esprit, et non à tuer quelqu’un. On ne cherche pas à briser l’adversaire." },
+              { title: "Goju Ittai", sub: "剛柔一体", text: "Goho (techniques dures) et Juho (techniques souples) sont inséparables et se mêlent ensemble." },
+              { title: "Kumite Shutai", sub: "組手主体", text: "S’entraîner avec son partenaire et non contre lui pour s’élever ensemble." }
             ].map((val, i) => (
               <div key={i} className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold hover:bg-primary-gold/5 transition-all duration-300">
                 <h3 className="font-headline text-xl text-primary-gold mb-2">{val.title}</h3>
@@ -115,7 +127,7 @@ export default function Encyclopedia() {
             </div>
           </div>
           <div className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold/30">
-            <h4 className="text-white font-bold mb-2">Hokkai (Grades de Prêtrise)</h4>
+            <h4 className="text-white font-bold mb-2">Hokai (Grades de Prêtrise)</h4>
             <p className="text-slate-400 text-sm">
               En plus des grades techniques, le Shorinji Kempo possède un système de grades philosophiques (Doin) reflétant la compréhension spirituelle du pratiquant.
             </p>
@@ -131,8 +143,8 @@ export default function Encyclopedia() {
         <div className="space-y-12">
           <div className="grid grid-cols-1 gap-6">
             {[
-              { title: "Taisô", sub: "Échauffement", icon: Zap, desc: "Un échauffement complet pour préparer le corps, activer les articulations et démarrer la séance dans de bonnes conditions." },
               { title: "Chinkon", sub: "Méditation", icon: Heart, desc: "Un moment de méditation avec respiration Chôsoku pour se recentrer, apaiser l'esprit et améliorer la concentration." },
+              { title: "Taisô", sub: "Échauffement", icon: Zap, desc: "Un échauffement complet pour préparer le corps, activer les articulations et démarrer la séance dans de bonnes conditions." },
               { title: "Kihon", sub: "Fondamentaux", icon: Shield, desc: "Le travail des fondamentaux en Goho, avec les techniques de pieds et de poings qui construisent la base du progrès." },
               { title: "Zenshin", sub: "Déplacements", icon: Globe, desc: "Les déplacements essentiels pour développer fluidité, stabilité et précision dans l'action." },
               { title: "Ukemi", sub: "Chutes", icon: Award, desc: "L'apprentissage des chutes pour pratiquer avec confiance et évoluer en toute sécurité." },
@@ -216,38 +228,52 @@ export default function Encyclopedia() {
               <MapPin className="text-primary-gold shrink-0 group-hover:scale-110 transition-transform mt-1" size={24} />
               <div>
                 <h4 className="text-primary-gold font-bold mb-2">Le Dojo de Marseille</h4>
-                <p className="text-slate-400 text-sm">Affilié officiellement à la WSKO, garantissant un enseignement conforme aux standards internationaux.</p>
+                <p className="text-slate-400 text-sm">Affilié officiellement à la FFSK et à la WSKO, garantissant un enseignement conforme aux standards nationaux et internationaux.</p>
               </div>
             </div>
+          </div>
+          <div className="p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold/30 hover:bg-primary-gold/5 transition-all">
+            <p className="text-slate-400 text-sm leading-relaxed">
+              En France, le Shorinji Kempo est affilié à la Fédération Française de Karaté (FFK) en tant que fédération délégataire du Ministère des sports pour la reconnaissance des grades.
+            </p>
           </div>
         </div>
       )
     }
   ];
   return (
-    <div className="pt-32 pb-20">
-      <header className="relative h-[500px] flex items-end px-6 md:px-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            className="w-full h-full object-cover opacity-30" 
-            src="https://picsum.photos/seed/history/1920/1080" 
-            alt="History"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"></div>
-        </div>
+    <div className="pt-32 pb-20 relative">
+      {/* Background Hero Overflow */}
+      <div className="absolute top-0 left-0 w-full h-[1100px] z-0 overflow-hidden">
+        <img 
+          className="w-full h-full object-cover opacity-60 contrast-110" 
+          src="https://i.ibb.co/67dyVgQm/background-encyclopedie-compress.png" 
+          alt="Illustration historique du Shorinji Kempo - Encyclopédie"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+      </div>
+
+      <header className="relative h-[500px] flex items-end px-6 md:px-24 pb-16 z-10">
         <div className="relative z-10 max-w-4xl">
           <span className="text-primary-gold font-label tracking-[0.3em] uppercase text-xs mb-4 block">Archive du Savoir</span>
           <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight mb-6">
             Encyclopédie du <br/><span className="italic text-primary-gold">Shorinji Kempo</span>
           </h1>
-          <p className="text-slate-400 text-lg max-w-2xl leading-relaxed">
+          <p className="text-slate-400 text-lg max-w-2xl leading-relaxed mb-8">
             Un voyage à travers l'histoire, la technique et la philosophie d'un art martial unique conçu pour transformer l'individu et la société.
           </p>
+          <a 
+            href="/#contact"
+            className="cta-button inline-flex items-center justify-center gap-3"
+          >
+            Contactez-nous
+            <ArrowRight size={20} />
+          </a>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-20">
         <aside className="lg:col-span-3 space-y-8">
           <div className="sticky top-32">
             <h3 className="text-primary-gold font-label text-xs tracking-[0.4em] uppercase mb-8 opacity-80">Sections</h3>
@@ -328,7 +354,7 @@ export default function Encyclopedia() {
               <div className="mt-16 pt-8 border-t border-white/5 flex justify-center">
                 <button 
                   onClick={() => setActiveModal(null)}
-                  className="px-10 py-4 bg-primary-gold text-black font-bold rounded-2xl hover:bg-white hover:text-primary-gold transition-all uppercase tracking-widest text-xs"
+                  className="px-10 py-4 bg-primary-gold text-black font-bold rounded-2xl hover:bg-bg-main hover:text-primary-gold transition-all uppercase tracking-widest text-xs"
                 >
                   Fermer l'archive
                 </button>

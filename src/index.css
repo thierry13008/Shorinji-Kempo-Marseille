@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -17,8 +18,8 @@
   --color-primary-container: #FFEB3B;
   --color-on-surface: #dae2fd;
   --color-on-surface-variant: #d0c5af;
-  --color-bg-main: #FFFFFF;
-  --color-bg-secondary: #F9F9F9;
+  --color-bg-main: #FAF9F6;
+  --color-bg-secondary: #F5F3EF;
 }
 
 @layer base {
@@ -31,15 +32,18 @@
   }
 
   h1, h2 {
-    @apply text-[34px] md:text-[56px] font-medium tracking-[-0.02em] leading-tight;
+    @apply font-medium tracking-[-0.02em] leading-tight;
+    font-size: clamp(2rem, 5vw + 1rem, 4rem);
   }
 
   h3, .section-title, .card-title {
-    @apply text-[24px] md:text-[28px] font-medium;
+    @apply font-medium;
+    font-size: clamp(1.5rem, 3vw + 1rem, 2.5rem);
   }
 
   p {
-    @apply text-[18px] leading-[1.7] font-normal;
+    @apply leading-[1.7] font-normal;
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
   }
 
   .micro-copy {
@@ -61,13 +65,11 @@
   }
 
   .glass-card {
-    @apply bg-surface/50 backdrop-blur-2xl border border-white/10 rounded-[24px] transition-all duration-500 overflow-hidden;
-    filter: grayscale(0.05);
+    @apply bg-surface/50 backdrop-blur-2xl border border-white/10 rounded-[24px] transition-all duration-500 overflow-hidden grayscale-[0.05];
   }
 
   .glass-card-light {
-    @apply bg-white/70 backdrop-blur-xl border border-slate-200 rounded-[24px] transition-all duration-500 overflow-hidden;
-    filter: grayscale(0.1);
+    @apply bg-ivory-silk/70 backdrop-blur-xl border border-slate-200 rounded-[24px] transition-all duration-500 overflow-hidden grayscale-[0.1];
   }
 
   .ki-aura-dark {
@@ -99,15 +101,14 @@
   }
 
   .glass-nav-light {
-    @apply bg-white/60 backdrop-blur-2xl border-b border-slate-200;
+    @apply bg-ivory-silk/60 backdrop-blur-2xl border-b border-slate-200;
   }
 
   .header-container {
-    height: 100vh; /* Fallback */
+    height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     min-height: -webkit-fill-available;
-    overflow: hidden;
-    position: relative;
+    @apply overflow-hidden relative;
   }
 
   @keyframes float {
@@ -137,30 +138,48 @@
     animation: zoom-slow 20s ease-in-out infinite alternate;
   }
 
-  /* Kinetic Typography System */
+  #menu-toggle {
+    @apply hidden;
+  }
+
+  .mobile-menu {
+    @apply max-h-0 opacity-0 invisible transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)];
+  }
+
+  #menu-toggle:checked ~ .mobile-menu {
+    @apply max-h-screen opacity-100 visible;
+  }
+
+  #menu-toggle:checked ~ div label .menu-icon {
+    @apply hidden;
+  }
+
+  #menu-toggle:checked ~ div label .close-icon {
+    @apply !block;
+  }
+
+  .responsive-grid {
+    @apply grid gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+
   .kinetic-reveal {
     @apply overflow-hidden;
   }
 
   .kinetic-reveal-inner {
-    @apply block translate-y-[30px] opacity-0;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    @apply block translate-y-[30px] opacity-0 transition-all duration-800 ease-[cubic-bezier(0.16,1,0.3,1)];
   }
 
   .is-visible .kinetic-reveal-inner {
-    @apply translate-y-0 opacity-100;
-    transition-delay: 0.4s;
+    @apply translate-y-0 opacity-100 delay-[0.4s];
   }
 
-  /* Parallax Revelation */
   .parallax-reveal {
-    @apply opacity-0 scale-110 blur-sm;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    @apply opacity-0 scale-110 blur-sm transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)];
   }
 
   .is-visible .parallax-reveal {
     @apply opacity-100 scale-100 blur-none;
   }
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap');

@@ -21,14 +21,14 @@ export default function Contact() {
   });
 
   return (
-    <div className="min-h-screen bg-surface pt-20">
+    <main className="min-h-screen bg-surface pt-20">
       {/* Contact Section */}
       <section id="contact" className="relative py-32 bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover opacity-10 grayscale" 
             src="https://i.ibb.co/7N8gh9TJ/fond-contact.png" 
-            alt="Contact background"
+            alt="Fond décoratif section contact Shorinji Kempo"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
@@ -159,7 +159,7 @@ export default function Contact() {
 
                 <div className="pt-6 border-t border-white/10 space-y-4">
                   <p className="text-center micro-copy text-on-surface-variant">Ou contactez-nous directement :</p>
-                  <button type="button" className="w-full bg-white text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-[14px] uppercase tracking-widest">
+                  <button type="button" className="w-full bg-bg-main text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-[14px] uppercase tracking-widest">
                     {contactInfo.phone}
                   </button>
                 </div>
@@ -190,7 +190,7 @@ export default function Contact() {
               <div className="absolute top-6 right-6 z-10">
                 <button 
                   onClick={() => setIsMapOpen(false)}
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
+                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
                 >
                   <X size={24} />
                 </button>
@@ -201,14 +201,14 @@ export default function Contact() {
                 <div className="flex flex-col gap-2">
                   <button 
                     onClick={() => setMapZoom(prev => Math.min(prev + 1, 21))}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                    className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
                     title="Zoom avant"
                   >
                     <Plus size={20} />
                   </button>
                   <button 
                     onClick={() => setMapZoom(prev => Math.max(prev - 1, 1))}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                    className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
                     title="Zoom arrière"
                   >
                     <Minus size={20} />
@@ -224,7 +224,7 @@ export default function Contact() {
                       }
                     }
                   }}
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
                   title="Plein écran"
                 >
                   <Maximize2 size={20} />
@@ -245,6 +245,6 @@ export default function Contact() {
           </div>
         )}
       </AnimatePresence>
-    </div>
+    </main>
   );
 }

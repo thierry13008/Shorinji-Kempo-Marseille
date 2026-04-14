@@ -117,7 +117,7 @@ export default function ShareButton() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-sm bg-white rounded-[40px] p-10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center text-center touch-auto"
+              className="relative w-full max-w-sm bg-bg-main rounded-[40px] p-10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center text-center touch-auto"
             >
               <div className="mb-6 w-20 h-20 rounded-[24px] bg-primary-gold/10 flex items-center justify-center">
                 <QrCode className="text-primary-gold" size={40} />
@@ -127,7 +127,7 @@ export default function ShareButton() {
               <p className="text-slate-500 text-base mb-8">Faites scanner ce code pour transmettre le lien.</p>
 
               {/* QR Code Image Container */}
-              <div className="bg-white p-6 rounded-[32px] border-4 border-slate-50 mb-10 shadow-inner">
+              <div className="bg-bg-main p-6 rounded-[32px] border-4 border-slate-50 mb-10 shadow-inner">
                 <img 
                   src={qrCodeUrl} 
                   alt="QR Code du Dojo" 

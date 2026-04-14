@@ -1,11 +1,37 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import EngagementHub from '@/src/components/EngagementHub';
 import InstructorsSection from '@/src/components/InstructorsSection';
 import ScrollReveal from '@/src/components/ScrollReveal';
+
+const TESTIMONIALS = [
+  { name: "Samuel F", role: "Débutant", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop" },
+  { name: "Laura P", role: "Pratiquante (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop", featured: true },
+  { name: "Thierry G", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://i.ibb.co/MxkgHT8H/titi.jpg" }
+];
+
+const CONTACT_INFO = {
+  address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
+  phone: "06 89 09 05 44",
+  email: "shorinjikempomarseille@gmail.com",
+  hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45",
+  discoveryOffer: [
+    "1 cours d’essai gratuit",
+    "Aucune obligation d'inscription",
+    "Prêt du matériel pour l'essai",
+    "Accompagnement personnalisé"
+  ],
+  mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.023473145455!2d5.3916423!3d43.2719266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9b96434863459%3A0x6a0f8b8b8b8b8b8b!2sCentre%20Social%20Saint-Giniez!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr"
+};
+
+const SESSIONS = [
+  { day: "Lundi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "01" },
+  { day: "Mercredi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "02" },
+  { day: "Vendredi", time: "20h15 — 21h45", cat: "Mixte", level: "Adultes & Enf", id: "03" }
+];
 
 export default function Home() {
   const video1Ref = useRef<HTMLVideoElement>(null);
@@ -15,33 +41,20 @@ export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [isHubOpen, setIsHubOpen] = useState(false);
   const [hoveredSession, setHoveredSession] = useState<string | null>(null);
-  const testimonials = [
-    { name: "Samuel F", role: "Débutant", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://picsum.photos/seed/samuel/200/200" },
-    { name: "Laura P", role: "Pratiquante (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://picsum.photos/seed/laura/200/200", featured: true },
-    { name: "Thierry G", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://picsum.photos/seed/thierry/200/200" }
-  ];
-
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [mapZoom, setMapZoom] = useState(17);
-  const [contactInfo, setContactInfo] = useState({
-    address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
-    phone: "06 89 09 05 44",
-    email: "shorinjikempomarseille@gmail.com",
-    hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45",
-    discoveryOffer: [
-      "1 cours d’essai gratuit",
-      "Aucune obligation d'inscription",
-      "Prêt du matériel pour l'essai",
-      "Accompagnement personnalisé"
-    ],
-    mapsUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.023473145455!2d5.3916423!3d43.2719266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9b96434863459%3A0x6a0f8b8b8b8b8b8b!2sCentre%20Social%20Saint-Giniez!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr"
-  });
 
-  useEffect(() => {
-    // Dynamic fetching removed as per user request
+  const incrementZoom = useCallback(() => setMapZoom(prev => Math.min(prev + 1, 21)), []);
+  const decrementZoom = useCallback(() => setMapZoom(prev => Math.max(prev - 1, 1)), []);
+  
+  const toggleFullscreen = useCallback(() => {
+    const iframe = document.querySelector('iframe[title="Google Maps Dojo Saint-Giniez"]');
+    if (iframe && (iframe as any).requestFullscreen) {
+      (iframe as any).requestFullscreen();
+    }
   }, []);
 
-  const handleVideoInteraction = () => {
+  const handleVideoInteraction = useCallback(() => {
     if (isTransitioning) return;
     
     setIsTransitioning(true);
@@ -49,24 +62,24 @@ export default function Home() {
     
     if (video2Ref.current) {
       video2Ref.current.currentTime = 0;
-      video2Ref.current.play();
+      video2Ref.current.play().catch(console.error);
     }
-  };
+  }, [isTransitioning]);
 
-  const handleVideo2Ended = () => {
+  const handleVideo2Ended = useCallback(() => {
     setActiveVideo(1);
     if (video1Ref.current) {
       video1Ref.current.currentTime = 0;
-      video1Ref.current.play();
+      video1Ref.current.play().catch(console.error);
     }
-  };
+  }, []);
 
-  const handleVideo1Ended = () => {
+  const handleVideo1Ended = useCallback(() => {
     setIsTransitioning(false);
-  };
+  }, []);
 
   return (
-    <div className="overflow-hidden">
+    <main className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Desktop Background Image */}
@@ -74,7 +87,7 @@ export default function Home() {
           <img 
             className="w-full h-full object-cover opacity-40 grayscale-[0.5] animate-zoom-slow" 
             src="https://i.ibb.co/84x3GJHv/fond-header.png" 
-            alt="Dojo Shorinji Kempo Marseille"
+            alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
           />
           {/* Overlay plus profond pour une immersion immédiate et une lisibilité parfaite */}
@@ -111,7 +124,7 @@ export default function Home() {
                   className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
                 >
                   <a 
-                    href="#contact"
+                    href="/#contact"
                     className="cta-button flex items-center justify-center gap-3 text-[16px] animate-float animate-pulse-gold group"
                   >
                     Réservez votre séance gratuite (places limitées)
@@ -225,7 +238,7 @@ export default function Home() {
                   },
                   {
                     title: "Discipline de Fer",
-                    desc: "Développez un mental solide, structuré et capable de rester calme sous la pression.",
+                    desc: "Développez un mental solide, structuré et capable de rester calme sous la pression et dans l'action.",
                     icon: <Clock className="text-primary-gold" />
                   },
                   {
@@ -235,7 +248,7 @@ export default function Home() {
                   }
                 ].map((item, i) => (
                   <ScrollReveal key={i} delay={i * 0.1} className="flex gap-6 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center shrink-0 group-hover:bg-primary-gold group-hover:text-white transition-all duration-300">
+                    <div className="w-14 h-14 rounded-2xl bg-bg-main shadow-lg flex items-center justify-center shrink-0 group-hover:bg-primary-gold group-hover:text-white transition-all duration-300">
                       {item.icon}
                     </div>
                     <div>
@@ -248,7 +261,7 @@ export default function Home() {
 
               <ScrollReveal className="pt-8">
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   className="inline-flex items-center gap-4 text-surface font-black uppercase tracking-widest group border border-surface/10 px-8 py-4 rounded-full hover:border-primary-gold/50 transition-all"
                 >
                   <span className="h-[2px] w-12 bg-primary-gold group-hover:w-20 transition-all duration-500"></span>
@@ -310,7 +323,7 @@ export default function Home() {
             <ScrollReveal className="pt-24">
               <div className="flex flex-col items-center gap-6">
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   className="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
                 >
                   Essayez maintenant
@@ -336,16 +349,16 @@ export default function Home() {
                 tag: "Enfants & Ados (9-13 ans)",
                 title: "L’école de la confiance pour votre enfant.",
                 desc: "Offrez-lui un cadre structurant pour grandir sereinement et s'affirmer face aux défis de la vie.",
-                img: "https://i.ibb.co/8L2sN6qz/enfants.png",
+                img: "https://i.ibb.co/4wmhhxHr/Photo-enfants-compress.png",
                 cta: "Réserver son essai gratuit",
                 icon: <Sparkles className="text-primary-gold" size={24} />,
-                bg: "bg-white"
+                bg: "bg-bg-main"
               },
               {
                 tag: "Adultes Débutants",
                 title: "Retrouvez l’équilibre et évacuez le stress.",
                 desc: "Votre bulle de décompression à Marseille. Apprenez à vous défendre dans une ambiance 100% bienveillante.",
-                img: "https://i.ibb.co/tpbN1KW4/image-debutant.png",
+                img: "https://i.ibb.co/F4ywDRrR/Photo-adulte-d-butant-compress.png",
                 featured: true,
                 cta: "Je commence maintenant",
                 icon: <TrendingUp className="text-primary-gold" size={24} />,
@@ -355,7 +368,7 @@ export default function Home() {
                 tag: "Pratiquant Confirmé",
                 title: "Exigence Technique & Lignage Officiel.",
                 desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement (WSKO).",
-                img: "https://i.ibb.co/wNBSpY0t/pratiquant-confirm-cp.png",
+                img: "https://i.ibb.co/gMbytfS3/Photo-adultes-confirm-s-compress.png",
                 cta: "Rejoindre le dojo",
                 icon: <CheckCircle className="text-primary-gold" size={24} />,
                 bg: "bg-bg-secondary"
@@ -384,7 +397,7 @@ export default function Home() {
                   <p className={cn("mb-10 text-lg leading-relaxed", card.featured ? "text-ivory-silk/60" : "text-slate-500")}>{card.desc}</p>
                 </div>
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   className={cn(
                     "w-full font-bold py-5 rounded-2xl transition-all uppercase tracking-widest text-sm mt-auto flex items-center justify-center hover:scale-[1.05] active:scale-95",
                     card.featured ? "cta-button" : "cta-secondary"
@@ -426,11 +439,7 @@ export default function Home() {
             </div>
 
             <div className="lg:w-2/3 w-full space-y-6">
-              {[
-                { day: "Lundi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "01" },
-                { day: "Mercredi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "02" },
-                { day: "Vendredi", time: "20h15 — 21h45", cat: "Mixte", level: "Adultes & Enf", id: "03" }
-              ].map((session, i) => {
+              {SESSIONS.map((session, i) => {
                 const isActive = hoveredSession ? hoveredSession === session.id : session.id === "02";
                 
                 return (
@@ -497,7 +506,7 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {testimonials.map((t, i) => (
+            {TESTIMONIALS.map((t, i) => (
               <ScrollReveal key={i} delay={i * 0.2}>
                 <motion.div
                   whileHover={{ y: -12, scale: 1.02 }}
@@ -505,7 +514,7 @@ export default function Home() {
                     "relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible",
                     t.featured 
                       ? "bg-surface/90 backdrop-blur-xl text-white border-white/10 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.3)] ki-aura-dark" 
-                      : "bg-white/80 backdrop-blur-xl border-slate-100 border-l-primary-gold/40 shadow-2xl shadow-surface/5 ki-aura-light"
+                      : "bg-ivory-silk/80 backdrop-blur-xl border-slate-100 border-l-primary-gold/40 shadow-2xl shadow-surface/5 ki-aura-light"
                   )}
                 >
                   {/* Decorative Quote Icon */}
@@ -588,8 +597,8 @@ export default function Home() {
           <div className="mt-24 text-center">
             <ScrollReveal>
               <a 
-                href="#contact"
-                className="bg-primary-gold text-black hover:bg-white hover:text-primary-gold inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-bold rounded-2xl transition-all duration-300 uppercase tracking-widest shadow-xl shadow-primary-gold/20 hover:scale-105 active:scale-95"
+                href="/#contact"
+                className="bg-primary-gold text-black hover:bg-bg-main hover:text-primary-gold inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-bold rounded-2xl transition-all duration-300 uppercase tracking-widest shadow-xl shadow-primary-gold/20 hover:scale-105 active:scale-95"
               >
                 Rejoignez la communauté
               </a>
@@ -688,7 +697,7 @@ export default function Home() {
             <ScrollReveal>
               <div className="flex flex-col items-center gap-8">
                 <a 
-                  href="#contact"
+                  href="/#contact"
                   className="cta-button inline-flex items-center justify-center gap-4 text-lg px-16 py-7"
                 >
                   Rejoignez le dojo
@@ -716,11 +725,11 @@ export default function Home() {
             <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Questions Fréquentes</h2>
             <p className="text-slate-600 text-xl">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
             <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
-              <div className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
                 <CheckCircle size={18} className="text-primary-gold" />
                 <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Débutants bienvenus – sécurité assurée</span>
               </div>
-              <div className="flex items-center gap-2 px-6 py-3 bg-white border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
                 <CheckCircle size={18} className="text-primary-gold" />
                 <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">100% Bienveillance & Respect</span>
               </div>
@@ -837,7 +846,7 @@ export default function Home() {
               
               <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2">
-                  <img src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" alt="Marseille Shorinji Kempo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                  <img src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" alt="Marseille Shorinji Kempo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
@@ -849,17 +858,17 @@ export default function Home() {
                 <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
                   <Phone className="text-primary-gold mb-3" size={20} />
                   <p className="text-white font-bold text-sm uppercase tracking-widest">Appelez-nous</p>
-                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors">{contactInfo.phone}</a>
+                  <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors">{CONTACT_INFO.phone}</a>
                 </div>
                 <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
                   <Mail className="text-primary-gold mb-3" size={20} />
                   <p className="text-white font-bold text-sm uppercase tracking-widest">Email</p>
-                  <a href={`mailto:${contactInfo.email}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors break-all text-xs md:text-base">{contactInfo.email}</a>
+                  <a href={`mailto:${CONTACT_INFO.email}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors break-all text-xs md:text-base">{CONTACT_INFO.email}</a>
                 </div>
               </div>
             </div>
 
-            <ScrollReveal className="bg-white p-10 md:p-12 rounded-[48px] shadow-2xl">
+            <ScrollReveal className="bg-bg-main p-10 md:p-12 rounded-[48px] shadow-2xl">
               <form className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
@@ -908,7 +917,7 @@ export default function Home() {
               <div className="absolute top-6 right-6 z-10">
                 <button 
                   onClick={() => setIsMapOpen(false)}
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
+                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
                 >
                   <X size={24} />
                 </button>
@@ -918,15 +927,15 @@ export default function Home() {
               <div className="absolute bottom-24 right-6 z-10 flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
                   <button 
-                    onClick={() => setMapZoom(prev => Math.min(prev + 1, 21))}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                    onClick={incrementZoom}
+                    className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
                     title="Zoom avant"
                   >
                     <Plus size={20} />
                   </button>
                   <button 
-                    onClick={() => setMapZoom(prev => Math.max(prev - 1, 1))}
-                    className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                    onClick={decrementZoom}
+                    className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
                     title="Zoom arrière"
                   >
                     <Minus size={20} />
@@ -934,15 +943,8 @@ export default function Home() {
                 </div>
 
                 <button 
-                  onClick={() => {
-                    const iframe = document.querySelector('iframe[title="Google Maps Dojo Saint-Giniez"]');
-                    if (iframe) {
-                      if (iframe.requestFullscreen) {
-                        iframe.requestFullscreen();
-                      }
-                    }
-                  }}
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                  onClick={toggleFullscreen}
+                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
                   title="Plein écran"
                 >
                   <Maximize2 size={20} />
@@ -992,6 +994,6 @@ export default function Home() {
           </div>
         )}
       </AnimatePresence>
-    </div>
+    </main>
   );
 }

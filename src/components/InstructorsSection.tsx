@@ -5,17 +5,23 @@ const instructors = [
   {
     name: "Sensei Olivier Beyer",
     role: "5ème Dan",
-    image: "https://i.ibb.co/sD3TzRW/INSTRUCTEUR-1.png",
+    image: "https://i.ibb.co/6pjTwv8/instructeur-1-BIS.png",
   },
   {
-    name: "Sensei Yuko Erie Beyer",
+    name: "Sensei Yuko Irie Beyer",
     role: "3ème DAN",
-    image: "https://i.ibb.co/Dfn6xn4Q/Instructeur2cp.png",
+    image: "https://i.ibb.co/jPp0hBCg/instructeur-2-BIS.png",
+  },
+  {
+    name: "Sensei Marie Valentin",
+    role: "3ème DAN",
+    image: "https://i.ibb.co/cSs5RBFG/instructeur-4-BIS.png",
   },
   {
     name: "Sensei Benoit Allix",
     role: "1ERE DAN",
-    image: "https://i.ibb.co/HT3kn8JK/INSTRUCTEUR-3.png",
+    image: "https://i.ibb.co/4RfgQzXV/instructeur-3-BIS.png",
+    position: "center 20%"
   }
 ];
 
@@ -27,7 +33,7 @@ export default function InstructorsSection() {
         <img 
           className="w-full h-full object-cover opacity-15 grayscale" 
           src="https://i.ibb.co/84x3GJHv/fond-header.png" 
-          alt="Background"
+          alt="Fond décoratif Shorinji Kempo"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-surface-high via-transparent to-surface-high"></div>
@@ -41,7 +47,7 @@ export default function InstructorsSection() {
             viewport={{ once: true }}
             className="text-text-primary mb-4"
           >
-            Nos Instructeurs
+            Nos Instructeurs de Shorinji Kempo
           </motion.h2>
           <motion.div 
             initial={{ scaleX: 0 }}
@@ -52,7 +58,7 @@ export default function InstructorsSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 max-w-7xl mx-auto">
           {instructors.map((instructor, index) => (
             <ScrollReveal
               key={index}
@@ -67,8 +73,9 @@ export default function InstructorsSection() {
                 <div className="relative aspect-[4/5] w-4/5 mx-auto rounded-2xl overflow-hidden mb-8 bg-black/40">
                   <img 
                     src={instructor.image} 
-                    alt={instructor.name}
+                    alt={`Portrait de ${instructor.name} - Instructeur Shorinji Kempo`}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 parallax-reveal"
+                    style={{ objectPosition: (instructor as any).position || 'center' }}
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-60"></div>

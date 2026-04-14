@@ -153,7 +153,7 @@ export default function BlogPost() {
             <footer className="mt-24 pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="flex items-center gap-6">
                  <div className="w-16 h-16 rounded-2xl bg-surface-high border border-white/10 flex items-center justify-center p-2 shadow-xl rotate-3">
-                   <img src="https://i.ibb.co/C3WkBY39/LOGO-SANS-SERIF-FOND-SOMBRE-CP.png" alt="Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                   <img src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" alt="Logo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
                  </div>
                  <div>
                    <p className="text-white font-headline text-xl italic mb-1">Shorinji Kempo Marseille</p>
