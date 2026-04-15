@@ -1,11 +1,32 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Clock, Phone, Mail, CheckCircle, X, Plus, Minus, Maximize2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 export default function Contact() {
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [mapZoom, setMapZoom] = useState(17);
+
+  // Apply Encyclopedia-style glass effect to footer on Contact page
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      // Enhanced glass effect: surface-low tint with higher blur
+      footer.style.backgroundColor = 'rgba(26, 36, 58, 0.1)';
+      footer.style.backdropFilter = 'blur(16px)';
+      (footer.style as any).webkitBackdropFilter = 'blur(16px)';
+      footer.style.transition = 'all 0.5s ease';
+    }
+    return () => {
+      if (footer) {
+        footer.style.backgroundColor = '';
+        footer.style.backdropFilter = '';
+        (footer.style as any).webkitBackdropFilter = '';
+        footer.style.transition = '';
+      }
+    };
+  }, []);
+
   const [contactInfo] = useState({
     address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
     phone: "06 89 09 05 44",
@@ -21,18 +42,20 @@ export default function Contact() {
   });
 
   return (
-    <main className="min-h-screen bg-surface pt-20">
+    <main className="min-h-screen bg-transparent pt-20 relative overflow-hidden">
+      {/* Fixed Background for Contact Page */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <img 
+          className="w-full h-full object-cover opacity-80" 
+          src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
+          alt="Fond fixe contact"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
+      </div>
+
       {/* Contact Section */}
-      <section id="contact" className="relative py-32 bg-surface overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            className="w-full h-full object-cover opacity-80" 
-            src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
-            alt="Fond décoratif section contact Shorinji Kempo"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
-        </div>
+      <section id="contact" className="relative py-32 bg-transparent overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-white mb-4">Prêt à commencer ?</h2>

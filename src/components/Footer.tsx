@@ -143,7 +143,7 @@ export default function Footer() {
             © 2026 Shorinji Kempo Marseille.
           </p>
           <p className="text-[12px] text-[#999999] font-light">
-            Développé avec passion par <span className="text-primary-gold font-bold">KAIRYOS Web Agency</span> pour les arts martiaux.
+            Développé avec passion par <span className="text-primary-gold font-bold">KAIRYOS Digital</span> pour les arts martiaux.
           </p>
         </div>
       </div>
