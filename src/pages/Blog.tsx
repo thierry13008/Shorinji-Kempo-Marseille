@@ -166,8 +166,17 @@ export default function Blog() {
 
   return (
     <main className="min-h-screen">
-      <section className="pt-32 pb-20 bg-surface">
-        <header className="px-6 md:px-24 mb-20 relative">
+      <section className="pt-32 pb-20 bg-surface relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[600px] z-0 pointer-events-none">
+          <img 
+            src="https://i.ibb.co/9k58mcRH/hero-pour-blog-compress.png" 
+            alt="Background Hero Blog" 
+            className="w-full h-full object-cover opacity-70"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-transparent to-surface" />
+        </div>
+        <header className="px-6 md:px-24 mb-20 relative z-10">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
           
           <div className="max-w-4xl">

@@ -26,12 +26,12 @@ export default function Contact() {
       <section id="contact" className="relative py-32 bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover opacity-10 grayscale" 
-            src="https://i.ibb.co/7N8gh9TJ/fond-contact.png" 
+            className="w-full h-full object-cover opacity-80" 
+            src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
             alt="Fond décoratif section contact Shorinji Kempo"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">

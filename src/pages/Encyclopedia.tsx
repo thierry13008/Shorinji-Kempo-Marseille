@@ -27,7 +27,7 @@ export default function Encyclopedia() {
           </div>
           <div className="p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold/30">
             <p className="text-slate-300 text-sm leading-relaxed">
-              Doshin So a voyagé en Chine avant la guerre, où il a étudié diverses formes de Kenpo. De retour au Japon, he a synthétisé ces connaissances pour créer une discipline qui n'est pas seulement un art de combat, mais une méthode de formation du caractère.
+              Doshin So a voyagé en Chine avant la guerre, où il a étudié diverses formes de Kempo. De retour au Japon, il a synthétisé ses connaissances pour créer une discipline qui n'est pas seulement un art de combat, mais une méthode de formation du caractère.
             </p>
           </div>
           <div className="p-8 glass-card ki-aura-dark border-l-4 border-l-primary-gold">
@@ -243,8 +243,8 @@ export default function Encyclopedia() {
   ];
   return (
     <div className="pt-32 pb-20 relative">
-      {/* Background Hero Overflow */}
-      <div className="absolute top-0 left-0 w-full h-[1100px] z-0 overflow-hidden">
+      {/* Background Hero Fixed */}
+      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none">
         <img 
           className="w-full h-full object-cover opacity-60 contrast-110" 
           src="https://i.ibb.co/67dyVgQm/background-encyclopedie-compress.png" 
@@ -276,15 +276,15 @@ export default function Encyclopedia() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-20">
         <aside className="lg:col-span-3 space-y-8">
           <div className="sticky top-32">
-            <h3 className="text-primary-gold font-label text-xs tracking-[0.4em] uppercase mb-8 opacity-80">Sections</h3>
+            <h3 className="text-primary-gold font-label text-xs tracking-[0.4em] uppercase mb-8">Sections</h3>
             <ul className="space-y-6">
               {sections.map((section) => (
                 <li key={section.id}>
                   <button 
                     onClick={() => setActiveModal(section.id)}
-                    className="text-slate-400 hover:text-primary-gold transition-all duration-300 text-lg font-medium flex items-center gap-4 group w-full text-left hover:pl-2"
+                    className="text-white/90 hover:text-primary-gold transition-all duration-300 text-lg font-medium flex items-center gap-4 group w-full text-left hover:pl-2"
                   >
-                    <span className="w-1 h-4 bg-white/10 group-hover:bg-primary-gold transition-colors rounded-full"></span>
+                    <span className="w-1 h-4 bg-white/20 group-hover:bg-primary-gold transition-colors rounded-full"></span>
                     {section.title}
                   </button>
                 </li>

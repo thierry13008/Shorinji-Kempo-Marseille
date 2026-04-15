@@ -85,13 +85,13 @@ export default function Home() {
         {/* Desktop Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           <img 
-            className="w-full h-full object-cover opacity-40 grayscale-[0.5] animate-zoom-slow" 
+            className="w-full h-full object-cover opacity-80 animate-zoom-slow" 
             src="https://i.ibb.co/84x3GJHv/fond-header.png" 
             alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
           />
-          {/* Overlay plus profond pour une immersion immédiate et une lisibilité parfaite */}
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/80 via-surface/30 to-surface"></div>
+          {/* Overlay encore plus léger pour une visibilité maximale du fond */}
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
         
         <div 
@@ -149,8 +149,8 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
             >
-              {/* Mobile Overlay pour la lisibilité */}
-              <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
+              {/* Mobile Overlay ajusté pour une visibilité maximale */}
+              <div className="absolute inset-0 bg-black/10 z-30 lg:hidden pointer-events-none"></div>
 
               <div 
                 className="h-full w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative"
@@ -275,7 +275,18 @@ export default function Home() {
 
       {/* Benefits Section - 3 Pillars */}
       <section className="py-48 bg-surface relative overflow-hidden border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
+        {/* Background Image Integration */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img 
+            src="https://i.ibb.co/G37BZzYf/banadeau-accueil-trois-pilier-copress.png" 
+            alt="Background Nos 3 Piliers" 
+            className="w-full h-full object-cover opacity-80"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Transformation</span>
             <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Nos 3 Piliers Fondamentaux</h2>
@@ -287,19 +298,19 @@ export default function Home() {
                 icon: <Sparkles className="text-primary-gold" size={40} />,
                 title: "Confiance",
                 desc: "Développez votre confiance dès la première séance",
-                variant: "bg-white/5 shadow-primary-gold/5"
+                variant: "bg-primary-gold/5 shadow-primary-gold/5"
               },
               {
                 icon: <ArrowRight className="text-primary-gold rotate-[-45deg]" size={40} />,
                 title: "Discipline",
                 desc: "Renforcez votre mental et votre concentration",
-                variant: "bg-white/[0.07] shadow-primary-gold/10"
+                variant: "bg-primary-gold/[0.07] shadow-primary-gold/10"
               },
               {
                 icon: <CheckCircle className="text-primary-gold" size={40} />,
                 title: "Défense",
                 desc: "Apprenez à vous protéger efficacement",
-                variant: "bg-white/[0.09] shadow-primary-gold/15"
+                variant: "bg-primary-gold/[0.09] shadow-primary-gold/15"
               }
             ].map((benefit, i) => (
               <motion.div
@@ -412,15 +423,15 @@ export default function Home() {
       </section>
 
       {/* Planning Section */}
-      <section id="planning" className="relative py-48 min-h-[80vh] flex items-center bg-surface overflow-hidden">
+      <section id="planning" className="relative pt-48 pb-64 min-h-[80vh] flex items-center bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover opacity-20 grayscale" 
-            src="https://i.ibb.co/SwqgBGQK/fond-planing.png" 
-            alt="Dojo"
+            className="w-full h-full object-cover opacity-80" 
+            src="https://i.ibb.co/84dxgxnD/planing-du-dojo-compress.png" 
+            alt="Planning Dojo Background"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/70 via-surface/20 to-surface"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -452,13 +463,13 @@ export default function Home() {
                       delay={i * 0.1}
                       className={cn(
                         "rounded-[24px] p-8 transition-all duration-500 group border flex flex-col md:flex-row md:items-center justify-between gap-6 glass-card ki-aura-dark",
-                        isActive ? "bg-white/10 border-white/30 shadow-2xl" : "border-white/10"
+                        isActive ? "bg-primary-gold/10 border-white/30 shadow-2xl" : "border-white/10"
                       )}
                     >
                       <div className="flex items-center gap-8">
                         <div className={cn(
                           "w-12 h-12 rounded-full flex items-center justify-center italic text-lg shrink-0 border border-white/20 transition-colors duration-500",
-                          isActive ? "bg-white/20 text-white font-bold border-white/30" : "text-white/40 group-hover:text-primary-gold"
+                          isActive ? "bg-primary-gold/20 text-white font-bold border-white/30" : "text-white/40 group-hover:text-primary-gold"
                         )}>{session.id}</div>
                         <div>
                           <p className="micro-copy mb-1">Session {session.id}</p>
@@ -475,7 +486,7 @@ export default function Home() {
                         </div>
                         <div className="flex items-center gap-4">
                           <p className="text-white font-medium">{session.cat}</p>
-                          <span className="micro-copy bg-white/10 px-4 py-1.5 rounded-full border border-primary-gold/20">
+                          <span className="micro-copy bg-primary-gold/10 px-4 py-1.5 rounded-full border border-primary-gold/20">
                             {session.level}
                           </span>
                         </div>
@@ -486,7 +497,7 @@ export default function Home() {
               })}
             </div>
           </div>
-          <div className="mt-20 flex justify-center">
+          <div className="mt-64 flex justify-center">
             <button className="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group">
               <span className="h-[1px] w-12 bg-primary-gold/30 group-hover:w-20 transition-all"></span>
               <span className="text-xs font-bold uppercase tracking-widest">Télécharger le calendrier complet</span>
@@ -496,13 +507,139 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How it Works Section */}
+      <section className="py-48 bg-bg-main relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.08] pointer-events-none z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:40px_40px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-32">
+            <ScrollReveal>
+              <span className="micro-copy text-surface mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
+              <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Comment nous rejoindre ?</h2>
+              <motion.div 
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="h-1 w-24 bg-surface mx-auto rounded-full"
+              />
+              <p className="text-slate-700 mt-8 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-surface/10 to-transparent -translate-y-1/2 z-0"></div>
+
+            {[
+              {
+                step: "01",
+                title: "Réservez votre séance",
+                desc: "Remplissez le formulaire en 30s. C'est gratuit, sans engagement et accessible à tous.",
+                icon: <Calendar className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
+                delay: 0.1,
+                variant: "bg-surface shadow-primary-gold/5"
+              },
+              {
+                step: "02",
+                title: "Participez au cours",
+                desc: "Nous vous accueillons avec bienveillance. L'équipement vous est prêté pour votre premier cours.",
+                icon: <User className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
+                delay: 0.3,
+                variant: "bg-surface shadow-primary-gold/10"
+              },
+              {
+                step: "03",
+                title: "Progressez pas à pas",
+                desc: "Pratiquez, ressentez l'énergie du groupe et découvrez votre potentiel inexploité.",
+                icon: <TrendingUp className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
+                delay: 0.5,
+                variant: "bg-surface shadow-primary-gold/15"
+              }
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group h-full"
+              >
+                <div className={cn(
+                  "relative z-10 p-10 rounded-[40px] glass-card border border-white/10 hover:scale-105 transition-all duration-500 h-full flex flex-col items-center text-center shadow-2xl ki-aura-dark",
+                  item.variant
+                )}>
+                  {/* Step Number Overlay */}
+                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/5 group-hover:text-primary-gold/10 transition-colors duration-500 select-none z-0 italic">
+                    {item.step}
+                  </div>
+
+                  {/* Icon Container - Adapted from Instructor Image style */}
+                  <div className="mb-10 w-24 h-24 rounded-3xl bg-white/5 flex items-center justify-center group-hover:bg-primary-gold group-hover:text-surface transition-all duration-500 shadow-lg group-hover:shadow-primary-gold/30 relative z-10 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="group-hover:scale-110 transition-transform duration-500 relative z-10">
+                      {item.icon}
+                    </div>
+                  </div>
+
+                  <h3 className="text-white text-2xl font-medium mb-4 relative z-10">{item.title}</h3>
+                  
+                  {/* Animated Line - Same as Instructors */}
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "40px" }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8 + (i * 0.2), duration: 0.8 }}
+                    className="h-[1px] bg-primary-gold/50 mx-auto mb-6 relative z-10"
+                  />
+
+                  <p className="text-slate-400 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
+                  
+                  <div className="mt-auto w-full pt-8 border-t border-white/10">
+                    <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60 group-hover:text-primary-gold transition-colors duration-500">
+                      <CheckCircle size={12} />
+                      <span>Accessible débutants</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-32 text-center">
+            <ScrollReveal>
+              <div className="flex flex-col items-center gap-8">
+                <a 
+                  href="/#contact"
+                  className="cta-button inline-flex items-center justify-center gap-4 text-lg px-16 py-7"
+                >
+                  Rejoignez le dojo
+                  <ArrowRight size={20} />
+                </a>
+                <div className="flex items-center gap-6 text-slate-700 text-sm font-bold uppercase tracking-widest">
+                  <span>Sans engagement</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-surface/30"></span>
+                  <span>Premier cours offert</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Instructors Section */}
+      <InstructorsSection />
+
       {/* Testimonials */}
-      <section className="py-48 bg-bg-secondary relative overflow-hidden">
+      <section className="py-48 bg-surface relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-32">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
-            <h2 className="text-surface text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
-            <p className="text-slate-600 text-xl">Rejoignez une communauté bienveillante et motivée.</p>
+            <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
+            <p className="text-slate-400 text-xl">Rejoignez une communauté bienveillante et motivée.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
@@ -511,17 +648,14 @@ export default function Home() {
                 <motion.div
                   whileHover={{ y: -12, scale: 1.02 }}
                   className={cn(
-                    "relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible",
+                    "relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible glass-card ki-aura-dark",
                     t.featured 
-                      ? "bg-surface/90 backdrop-blur-xl text-white border-white/10 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.3)] ki-aura-dark" 
-                      : "bg-ivory-silk/80 backdrop-blur-xl border-slate-100 border-l-primary-gold/40 shadow-2xl shadow-surface/5 ki-aura-light"
+                      ? "bg-surface-high/40 border-white/20 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.4)]" 
+                      : "bg-surface-low/30 border-white/10 border-l-primary-gold/40 shadow-xl"
                   )}
                 >
                   {/* Decorative Quote Icon */}
-                  <div className={cn(
-                    "absolute top-8 right-8 opacity-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110",
-                    t.featured ? "text-primary-gold" : "text-surface"
-                  )}>
+                  <div className="absolute top-8 right-8 opacity-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110 text-primary-gold">
                     <Sparkles size={48} />
                   </div>
 
@@ -536,7 +670,7 @@ export default function Home() {
                         src={t.img} 
                         className={cn(
                           "w-28 h-28 rounded-full object-cover border-4 shadow-2xl transition-transform duration-700 group-hover:scale-105",
-                          t.featured ? "border-primary-gold" : "border-white"
+                          t.featured ? "border-primary-gold" : "border-white/20"
                         )} 
                         alt={t.name} 
                         referrerPolicy="no-referrer" 
@@ -548,7 +682,7 @@ export default function Home() {
                   </div>
 
                   <div className="mb-8 relative z-10">
-                    <p className={cn("font-headline font-bold text-2xl mb-2 tracking-tight", t.featured ? "text-white" : "text-surface")}>
+                    <p className="font-headline font-bold text-2xl mb-2 tracking-tight text-white">
                       {t.name}
                     </p>
                     <div className="flex items-center justify-center gap-2">
@@ -558,10 +692,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <p className={cn(
-                    "italic leading-relaxed text-xl font-medium flex-grow relative z-10 px-2", 
-                    t.featured ? "text-ivory-silk/90" : "text-slate-600"
-                  )}>
+                  <p className="italic leading-relaxed text-xl font-medium flex-grow relative z-10 px-2 text-slate-300">
                     <span className="text-primary-gold/40 text-4xl font-serif absolute -top-4 -left-2">"</span>
                     {t.text}
                     <span className="text-primary-gold/40 text-4xl font-serif absolute -bottom-8 -right-2">"</span>
@@ -615,108 +746,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it Works Section */}
-      <section className="py-48 bg-surface-low relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-[0.08] pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:40px_40px]"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-32">
-            <ScrollReveal>
-              <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
-              <h2 className="text-white text-4xl md:text-6xl font-medium">Comment nous rejoindre ?</h2>
-              <p className="text-slate-400 mt-6 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
-            </ScrollReveal>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 relative">
-            {/* Connecting Line (Desktop) */}
-            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary-gold/20 to-transparent -translate-y-1/2 z-0"></div>
-
-            {[
-              {
-                step: "01",
-                title: "Réservez votre séance",
-                desc: "Remplissez le formulaire en 30s. C'est gratuit, sans engagement et accessible à tous.",
-                icon: <Calendar className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
-                delay: 0.1
-              },
-              {
-                step: "02",
-                title: "Participez au cours",
-                desc: "Nous vous accueillons avec bienveillance. L'équipement vous est prêté pour votre premier cours.",
-                icon: <User className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
-                delay: 0.3
-              },
-              {
-                step: "03",
-                title: "Progressez pas à pas",
-                desc: "Pratiquez, ressentez l'énergie du groupe et découvrez votre potentiel inexploité.",
-                icon: <TrendingUp className="text-primary-gold group-hover:text-surface transition-colors duration-500" size={32} />,
-                delay: 0.5
-              }
-            ].map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
-                className="relative group h-full"
-              >
-                <div className="relative z-10 p-12 rounded-[48px] bg-white/5 backdrop-blur-xl border border-white/10 hover:border-primary-gold/40 transition-all duration-500 h-full flex flex-col items-center text-center shadow-2xl hover:shadow-primary-gold/10 group-hover:-translate-y-2 ki-aura-dark">
-                  {/* Step Number Overlay */}
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/10 group-hover:text-primary-gold/20 transition-colors duration-500 select-none z-0 italic">
-                    {item.step}
-                  </div>
-
-                  {/* Icon Container */}
-                  <div className="mb-10 w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center group-hover:bg-primary-gold group-hover:text-surface transition-all duration-500 shadow-lg group-hover:shadow-primary-gold/30 relative z-10">
-                    <div className="group-hover:scale-110 transition-transform duration-500">
-                      {item.icon}
-                    </div>
-                  </div>
-
-                  <h3 className="text-white text-2xl font-medium mb-6 relative z-10">{item.title}</h3>
-                  <p className="text-slate-400 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
-                  
-                  <div className="mt-auto w-full pt-8 border-t border-white/10">
-                    <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60 group-hover:text-primary-gold transition-colors duration-500">
-                      <CheckCircle size={12} />
-                      <span>Accessible débutants</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="mt-32 text-center">
-            <ScrollReveal>
-              <div className="flex flex-col items-center gap-8">
-                <a 
-                  href="/#contact"
-                  className="cta-button inline-flex items-center justify-center gap-4 text-lg px-16 py-7"
-                >
-                  Rejoignez le dojo
-                  <ArrowRight size={20} />
-                </a>
-                <div className="flex items-center gap-6 text-slate-400 text-sm font-bold uppercase tracking-widest">
-                  <span>Sans engagement</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary-gold/30"></span>
-                  <span>Premier cours offert</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Instructors Section */}
-      <InstructorsSection />
-
       {/* FAQ Section */}
       <section className="py-48 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -735,29 +764,20 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <ScrollReveal className="bg-surface glass-card p-10 rounded-[24px] flex flex-col items-center text-center justify-center border border-white/10 shadow-sm ki-aura-dark">
-              <div className="w-20 h-20 rounded-full bg-primary-gold/10 flex items-center justify-center mb-8 border border-primary-gold/30">
-                <Sparkles className="text-primary-gold w-10 h-10 animate-pulse" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal className="relative group">
+              <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
+                <img 
+                  src="https://i.ibb.co/Hfwx9C2b/photo-FAQ-COMPRESS.jpg" 
+                  alt="Pratique du Shorinji Kempo - FAQ" 
+                  className="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"></div>
               </div>
-              <h3 className="text-white mb-6 italic">
-                <span>Hub d'assistance Intelligent</span>
-              </h3>
-              <p className="text-slate-300 mb-10 max-w-md">
-                Découvrez notre nouvelle interface de contact assistée par IA. 
-                Analyse d'intention, réponse instantanée et connexion directe avec nos experts.
-              </p>
-              <button 
-                disabled
-                className="cta-button w-full flex items-center justify-center gap-3 opacity-50 cursor-not-allowed"
-              >
-                Bientôt disponible <ArrowRight size={20} />
-              </button>
-              <div className="mt-8 flex items-center gap-4 micro-copy text-slate-500">
-                <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> IA Native</span>
-                <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> Temps Réel</span>
-                <span className="flex items-center gap-1.5"><CheckCircle className="text-primary-gold w-3 h-3" /> Sécurisé</span>
-              </div>
+              {/* Decorative Glow */}
+              <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-gold/20 rounded-full blur-3xl -z-10"></div>
             </ScrollReveal>
             <div className="space-y-4">
               {[
@@ -810,12 +830,12 @@ export default function Home() {
       <section id="contact" className="relative py-48 bg-surface overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            className="w-full h-full object-cover opacity-20 grayscale" 
-            src="https://i.ibb.co/7N8gh9TJ/fond-contact.png" 
+            className="w-full h-full object-cover opacity-80" 
+            src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
             alt="Contact background"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/70 via-surface/20 to-surface"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
