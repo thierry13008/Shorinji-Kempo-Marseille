@@ -199,7 +199,7 @@ export default function Home() {
                     className="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]"
                   >
                     <span className="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
-                    <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+                    <span className="text-xs font-bold uppercase tracking-widest">CALENDRIER DES EVENEMENTS</span>
                     <Download size={14} />
                   </a>
                 </motion.div>
@@ -422,7 +422,7 @@ export default function Home() {
                   className="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]"
                 >
                   <span className="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
-                  <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+                  <span className="text-xs font-bold uppercase tracking-widest">CALENDRIER DES EVENEMENTS</span>
                   <Download size={14} />
                 </a>
               </div>
@@ -590,7 +590,7 @@ export default function Home() {
               className="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group"
             >
               <span className="h-[1px] w-12 bg-primary-gold/30 group-hover:w-20 transition-all"></span>
-              <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+              <span className="text-xs font-bold uppercase tracking-widest">CALENDRIER DES EVENEMENTS</span>
               <Download size={14} />
             </a>
           </div>
@@ -922,7 +922,7 @@ export default function Home() {
                   className="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]"
                 >
                   <span className="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
-                  <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+                  <span className="text-xs font-bold uppercase tracking-widest">CALENDRIER DES EVENEMENTS</span>
                   <Download size={14} />
                 </a>
               </div>
