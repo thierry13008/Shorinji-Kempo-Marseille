@@ -9,6 +9,29 @@ export default function Contact() {
 
   // Apply Encyclopedia-style glass effect to footer on Contact page
   useEffect(() => {
+    // Tally embed script loader
+    const d = document;
+    const w = "https://tally.so/widgets/embed.js";
+    const v = () => {
+      if (typeof (window as any).Tally !== "undefined") {
+        (window as any).Tally.loadEmbeds();
+      } else {
+        d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e: any) => {
+          e.src = e.dataset.tallySrc;
+        });
+      }
+    };
+
+    if (typeof (window as any).Tally !== "undefined") {
+      v();
+    } else if (d.querySelector(`script[src="${w}"]`) === null) {
+      const s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    }
+
     const footer = document.querySelector('footer');
     if (footer) {
       // Enhanced glass effect: surface-low tint with higher blur
@@ -132,62 +155,42 @@ export default function Contact() {
               </ScrollReveal>
             </div>
 
-            <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px] border-primary-gold/20">
-              <h3 className="text-white mb-2">Nous contacter directement</h3>
-              <p className="text-on-surface-variant mb-8">Remplissez le formulaire ci dessous</p>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Prénom *</label>
-                    <input type="text" placeholder="Jean" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Nom *</label>
-                    <input type="text" placeholder="Dupont" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Email *</label>
-                    <input type="email" placeholder="jean@example.com" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="micro-copy text-white">Téléphone</label>
-                    <input type="tel" placeholder="06 12 34 56 78" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="micro-copy text-white">Sujet *</label>
-                  <input type="text" placeholder="Ex: Inscription essai pour enfants" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all" />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="micro-copy text-white">Message *</label>
-                  <textarea placeholder="Dites-nous comment nous pouvons vous aider..." rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary-gold/50 outline-none transition-all resize-none"></textarea>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <input type="checkbox" id="exp" className="w-4 h-4 rounded border-white/10 bg-white/5 text-primary-gold focus:ring-primary-gold/50" />
-                  <label htmlFor="exp" className="micro-copy text-on-surface-variant">J'ai une expérience préalable en arts martiaux</label>
-                </div>
-
-                <button type="submit" className="cta-button w-full py-4 text-[14px]">
-                  Envoyer mon message
-                </button>
+            <div className="space-y-8">
+              <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px] border border-primary-gold/20">
+                <h3 className="text-white mb-2">Envoyez-nous un message</h3>
+                <p className="text-on-surface-variant mb-8">Remplissez le formulaire ci-dessous</p>
                 
-                <p className="text-center micro-copy text-on-surface-variant">* Champs obligatoires</p>
-
-                <div className="pt-6 border-t border-white/10 space-y-4">
-                  <p className="text-center micro-copy text-on-surface-variant">Ou contactez-nous directement :</p>
-                  <button type="button" className="w-full bg-bg-main text-surface font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-100 transition-all text-[14px] uppercase tracking-widest">
-                    {contactInfo.phone}
-                  </button>
+                <div className="w-full overflow-hidden rounded-xl">
+                  <iframe 
+                    data-tally-src="https://tally.so/embed/vG0JyA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    loading="lazy" 
+                    width="100%" 
+                    height="423" 
+                    frameBorder="0" 
+                    marginHeight={0} 
+                    marginWidth={0} 
+                    title="Nous contacter directement"
+                  ></iframe>
                 </div>
-              </form>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.1} className="glass-card ki-aura-dark p-10 rounded-[24px] border border-primary-gold/20 text-center">
+                <p className="text-on-surface-variant flex items-center justify-center gap-4 mb-6">
+                  <span className="h-px bg-white/10 flex-1"></span>
+                  <span className="micro-copy uppercase tracking-widest text-white">ou contactez nous Directement</span>
+                  <span className="h-px bg-white/10 flex-1"></span>
+                </p>
+                <a 
+                  href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
+                  className="w-full bg-white text-surface font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all text-[16px] uppercase tracking-widest shadow-xl group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Phone className="text-black" size={20} />
+                  </div>
+                  {contactInfo.phone}
+                </a>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import ScrollReveal from '@/src/components/ScrollReveal';
 import { cn } from '@/src/lib/utils';
+import { Download } from 'lucide-react';
 
 const instructors = [
   {
@@ -114,6 +115,19 @@ export default function InstructorsSection() {
               </ScrollReveal>
             );
           })}
+        </div>
+
+        <div className="mt-24 flex justify-center">
+          <a 
+            href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group"
+          >
+            <span className="h-[1px] w-12 bg-primary-gold/30 group-hover:w-20 transition-all"></span>
+            <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+            <Download size={14} />
+          </a>
         </div>
       </div>
     </section>

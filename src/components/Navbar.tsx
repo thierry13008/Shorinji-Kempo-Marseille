@@ -77,8 +77,7 @@ export default function Navbar() {
               <button className="text-primary-gold hover:scale-125 transition-transform duration-300 p-2" aria-label="Discuter avec nous">
                 <MessageSquare size={24} />
               </button>
-              <div className="flex flex-col items-end gap-1">
-                <span className="text-[10px] text-primary-gold/60 uppercase tracking-widest font-bold">Contactez-nous pour plus d’infos</span>
+              <div className="flex flex-col items-end">
                 <a 
                   href="/#contact"
                   className="cta-secondary"
@@ -128,8 +127,7 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="h-[1px] bg-white/10 w-full my-2" />
-            <div className="flex flex-col gap-2">
-              <span className="text-[10px] text-primary-gold/60 uppercase tracking-widest font-bold text-center">Contactez-nous pour plus d’infos</span>
+            <div className="flex flex-col">
               <a 
                 href="/#contact"
                 onClick={() => {

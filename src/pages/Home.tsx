@@ -46,6 +46,29 @@ export default function Home() {
 
   // Apply Encyclopedia-style glass effect to footer on Home page
   useEffect(() => {
+    // Tally embed script loader
+    const d = document;
+    const w = "https://tally.so/widgets/embed.js";
+    const v = () => {
+      if (typeof (window as any).Tally !== "undefined") {
+        (window as any).Tally.loadEmbeds();
+      } else {
+        d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e: any) => {
+          e.src = e.dataset.tallySrc;
+        });
+      }
+    };
+
+    if (typeof (window as any).Tally !== "undefined") {
+      v();
+    } else if (d.querySelector(`script[src="${w}"]`) === null) {
+      const s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    }
+
     const footer = document.querySelector('footer');
     if (footer) {
       // Enhanced glass effect: surface-low tint with higher blur
@@ -160,6 +183,24 @@ export default function Home() {
                   >
                     Réservez votre séance gratuite (places limitées)
                     <ArrowRight className="group-hover:translate-x-2 transition-transform" size={22} />
+                  </a>
+                </motion.div>
+                
+                {/* Hero Calendrier Link */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  <a 
+                    href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]"
+                  >
+                    <span className="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
+                    <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+                    <Download size={14} />
                   </a>
                 </motion.div>
                 {/* Micro-copy de réassurance pour renforcer la confiance */}
@@ -363,14 +404,27 @@ export default function Home() {
           </div>
           
             <ScrollReveal className="pt-24">
-              <div className="flex flex-col items-center gap-6">
+              <div className="flex flex-col items-center gap-8">
+                <div className="flex flex-col items-center gap-6">
+                  <a 
+                    href="/#contact"
+                    className="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
+                  >
+                    Essayez maintenant
+                  </a>
+                  <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
+                </div>
+                
                 <a 
-                  href="/#contact"
-                  className="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6"
+                  href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]"
                 >
-                  Essayez maintenant
+                  <span className="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
+                  <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+                  <Download size={14} />
                 </a>
-                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
               </div>
             </ScrollReveal>
         </div>
@@ -529,11 +583,16 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-64 flex justify-center">
-            <button className="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group">
+            <a 
+              href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group"
+            >
               <span className="h-[1px] w-12 bg-primary-gold/30 group-hover:w-20 transition-all"></span>
-              <span className="text-xs font-bold uppercase tracking-widest">Télécharger le calendrier complet</span>
+              <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
               <Download size={14} />
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -838,19 +897,34 @@ export default function Home() {
           
           <div className="mt-24 text-center">
             <ScrollReveal>
-              <a 
-                href="/#contact"
-                className="bg-primary-gold text-black hover:bg-bg-main hover:text-primary-gold inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-bold rounded-2xl transition-all duration-300 uppercase tracking-widest shadow-xl shadow-primary-gold/20 hover:scale-105 active:scale-95"
-              >
-                Rejoignez la communauté
-              </a>
-              <div className="mt-6 flex flex-col items-center gap-2">
-                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
-                <div className="flex items-center gap-4 text-[10px] text-primary-gold/60 uppercase tracking-[0.2em] font-bold">
-                  <span>Premier cours offert</span>
-                  <span className="w-1 h-1 rounded-full bg-primary-gold/30"></span>
-                  <span>Équipement prêté</span>
+              <div className="flex flex-col items-center gap-10">
+                <div className="flex flex-col items-center">
+                  <a 
+                    href="/#contact"
+                    className="bg-primary-gold text-black hover:bg-bg-main hover:text-primary-gold inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-bold rounded-2xl transition-all duration-300 uppercase tracking-widest shadow-xl shadow-primary-gold/20 hover:scale-105 active:scale-95"
+                  >
+                    Rejoignez la communauté
+                  </a>
+                  <div className="mt-6 flex flex-col items-center gap-2">
+                    <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
+                    <div className="flex items-center gap-4 text-[10px] text-primary-gold/60 uppercase tracking-[0.2em] font-bold">
+                      <span>Premier cours offert</span>
+                      <span className="w-1 h-1 rounded-full bg-primary-gold/30"></span>
+                      <span>Équipement prêté</span>
+                    </div>
+                  </div>
                 </div>
+
+                <a 
+                  href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]"
+                >
+                  <span className="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
+                  <span className="text-xs font-bold uppercase tracking-widest">Calendrier Prévisonnel 2026 - 2027</span>
+                  <Download size={14} />
+                </a>
               </div>
             </ScrollReveal>
           </div>
@@ -892,49 +966,47 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
-                  <p className="text-ivory-silk/60">Remplissez le formulaire ci dessous</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                  <Phone className="text-primary-gold mb-3" size={20} />
-                  <p className="text-white font-bold text-sm uppercase tracking-widest">Appelez-nous</p>
-                  <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors">{CONTACT_INFO.phone}</a>
-                </div>
-                <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                  <Mail className="text-primary-gold mb-3" size={20} />
-                  <p className="text-white font-bold text-sm uppercase tracking-widest">Email</p>
-                  <a href={`mailto:${CONTACT_INFO.email}`} className="text-ivory-silk/60 hover:text-primary-gold transition-colors break-all text-xs md:text-base">{CONTACT_INFO.email}</a>
+                  <p className="text-ivory-silk/60">Contactez-nous ci-dessous</p>
                 </div>
               </div>
             </div>
 
-            <ScrollReveal className="bg-bg-main p-10 md:p-12 rounded-[48px] shadow-2xl">
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label htmlFor="name" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Nom Complet *</label>
-                    <input type="text" id="name" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="Jean Dupont" required />
-                  </div>
-                  <div className="space-y-3">
-                    <label htmlFor="email" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Email *</label>
-                    <input type="email" id="email" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="jean@exemple.com" required />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label htmlFor="phone" className="text-surface font-bold text-sm uppercase tracking-widest ml-1">Téléphone *</label>
-                  <input type="tel" id="phone" className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 transition-all text-surface" placeholder="06 12 34 56 78" required />
-                </div>
-
-                <button type="submit" className="cta-button w-full py-6 text-lg">
-                  Réservez ma séance gratuite (places limitées)
-                </button>
+            <div className="space-y-8">
+              <ScrollReveal className="glass-card ki-aura-dark p-10 md:p-12 rounded-[48px] border border-primary-gold/20">
+                <h3 className="text-white text-2xl font-bold mb-2">Envoyez-nous un message</h3>
+                <p className="text-ivory-silk/60 mb-8 font-bold uppercase tracking-widest text-xs">Remplissez le formulaire ci dessous</p>
                 
-                <p className="text-center text-slate-400 text-xs uppercase tracking-widest font-bold">Réponse garantie dans les meilleurs délais</p>
-              </form>
-            </ScrollReveal>
+                <div className="w-full overflow-hidden rounded-xl">
+                  <iframe 
+                    data-tally-src="https://tally.so/embed/vG0JyA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    loading="lazy" 
+                    width="100%" 
+                    height="423" 
+                    frameBorder="0" 
+                    marginHeight={0} 
+                    marginWidth={0} 
+                    title="Nous contacter directement"
+                  ></iframe>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.1} className="glass-card ki-aura-dark p-10 rounded-[24px] border border-primary-gold/20 text-center">
+                <p className="text-on-surface-variant flex items-center justify-center gap-4 mb-6">
+                  <span className="h-px bg-white/10 flex-1"></span>
+                  <span className="micro-copy uppercase tracking-widest text-white">ou contactez nous Directement</span>
+                  <span className="h-px bg-white/10 flex-1"></span>
+                </p>
+                <a 
+                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
+                  className="w-full bg-white text-surface font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all text-[16px] uppercase tracking-widest shadow-xl group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Phone className="text-black" size={20} />
+                  </div>
+                  {CONTACT_INFO.phone}
+                </a>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
