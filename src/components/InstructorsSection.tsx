@@ -117,7 +117,7 @@ export default function InstructorsSection() {
             href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 text-white hover:text-primary-gold-contrast transition-colors group"
+            className="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group"
           >
             <span className="h-[1px] w-12 bg-primary-gold/30 group-hover:w-20 transition-all"></span>
             <span className="text-xs font-bold uppercase tracking-widest">CALENDRIER DES EVENEMENTS</span>

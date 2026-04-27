@@ -173,11 +173,11 @@ export default function Home() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="text-center lg:text-left relative z-50 pointer-events-none lg:pointer-events-auto"
             >
-              <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold-contrast font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
+              <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
               <h1 className="lcp-h1 text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
-                Révélez votre <span className="text-primary-gold-contrast italic">force intérieure</span> avec le Shorinji Kempo
+                Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
               </h1>
               <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
                 Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
@@ -278,7 +278,7 @@ export default function Home() {
                 {/* Info Box */}
                 <div className="hidden lg:block absolute bottom-6 left-6 right-6 p-6 bg-surface-low/60 backdrop-blur-md rounded-xl border border-white/10 pointer-events-none z-40">
                   <p className="italic text-lg text-white font-headline">"Le Salut - Gassho Rei"</p>
-                  <p className="micro-copy mt-1 text-primary-gold-contrast">L'entrée dans la voie</p>
+                  <p className="micro-copy mt-1 text-primary-gold">L'entrée dans la voie</p>
                 </div>
               </div>
               {/* Desktop Glow */}
@@ -310,7 +310,7 @@ export default function Home() {
 
             <div className="space-y-12">
               <ScrollReveal>
-                <span className="micro-copy text-primary-gold-contrast mb-4 block uppercase tracking-widest font-bold">L'Expérience Shorinji Kempo</span>
+                <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">L'Expérience Shorinji Kempo</span>
                 <h2 className="text-surface text-4xl md:text-6xl font-black leading-tight mb-8">
                   Pourquoi franchir les portes de notre dojo ?
                 </h2>
@@ -382,7 +382,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
-            <span className="micro-copy text-primary-gold-contrast mb-4 block uppercase tracking-widest font-bold">Votre Transformation</span>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Transformation</span>
             <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Nos 3 Piliers Fondamentaux</h2>
             <p className="text-slate-300 text-xl max-w-2xl mx-auto">Développez votre confiance et votre force dès les premières séances grâce à une méthode éprouvée.</p>
           </div>
@@ -450,7 +450,7 @@ export default function Home() {
       <section className="py-48 bg-bg-main relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24">
-            <span className="micro-copy text-primary-gold-contrast mb-4 block uppercase tracking-widest font-bold">Pour qui ?</span>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Pour qui ?</span>
             <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Le Shorinji Kempo est fait pour vous.</h2>
             <p className="max-w-2xl mx-auto text-slate-600 text-xl">Que vous cherchiez la sérénité, la force ou la discipline, trouvez votre voie parmi nos sections dédiées.</p>
           </div>
@@ -510,7 +510,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-grow text-center">
-                  <div className={cn("micro-copy mb-4 font-bold uppercase tracking-widest", "text-primary-gold-contrast")}>{card.tag}</div>
+                  <div className={cn("micro-copy mb-4 font-bold uppercase tracking-widest", card.featured ? "text-primary-gold" : "text-primary-gold")}>{card.tag}</div>
                   <h3 className={cn("mb-6 text-2xl md:text-3xl font-medium leading-tight", card.featured ? "text-white" : "text-surface")}>
                     {card.title}
                   </h3>
@@ -756,7 +756,7 @@ export default function Home() {
       <section className="py-48 bg-bg-secondary relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="micro-copy text-primary-gold-contrast mb-4 block uppercase tracking-widest font-bold">FAQ</span>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">FAQ</span>
             <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Questions Fréquentes</h2>
             <p className="text-slate-600 text-xl">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
             <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
@@ -842,7 +842,7 @@ export default function Home() {
       <section className="py-48 bg-surface relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-32">
-            <span className="micro-copy text-primary-gold-contrast mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
             <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
             <p className="text-slate-300 text-xl font-medium">Rejoignez une communauté bienveillante et motivée.</p>
           </div>
@@ -968,7 +968,7 @@ export default function Home() {
       <section id="contact" className="relative py-48 bg-transparent overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
-            <span className="micro-copy text-primary-gold-contrast mb-4 block uppercase tracking-widest font-bold">Dernière Étape</span>
+            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Dernière Étape</span>
             <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Prêt à transformer votre quotidien ?</h2>
             <p className="text-ivory-silk/60 text-xl max-w-2xl mx-auto">Rejoignez les pratiquants qui ont déjà franchi le pas. Votre première séance est offerte, sans aucun engagement.</p>
           </div>

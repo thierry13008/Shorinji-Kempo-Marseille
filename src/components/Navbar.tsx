@@ -124,7 +124,7 @@ export default function Navbar() {
                 }}
                 className={cn(
                   "font-label tracking-widest text-xl font-bold transition-all",
-                  location.pathname === link.path ? "text-primary-gold-contrast" : "text-ivory-silk"
+                  location.pathname === link.path ? "text-primary-gold" : "text-ivory-silk"
                 )}
               >
                 {link.name}
