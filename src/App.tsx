@@ -1,16 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ShareButton from './components/ShareButton';
-import Home from './pages/Home';
-import Encyclopedia from './pages/Encyclopedia';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import Contact from './pages/Contact';
-import LegalNotice from './pages/LegalNotice';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'));
+const Encyclopedia = lazy(() => import('./pages/Encyclopedia'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Contact = lazy(() => import('./pages/Contact'));
+const LegalNotice = lazy(() => import('./pages/LegalNotice'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+
+// Loading component for Suspense fallback
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-bg-main">
+      <div className="w-12 h-12 border-4 border-primary-gold/20 border-t-primary-gold rounded-full animate-spin"></div>
+    </div>
+  );
+}
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -36,15 +47,17 @@ export default function App() {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/encyclopedia" element={<Encyclopedia />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/mentions-legales" element={<LegalNotice />} />
-            <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/encyclopedia" element={<Encyclopedia />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/mentions-legales" element={<LegalNotice />} />
+              <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         <ShareButton />

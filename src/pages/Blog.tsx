@@ -336,6 +336,7 @@ export default function Blog() {
                         alt={`Article : ${decodeHtmlMemo(post.title.rendered)}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                     </div>

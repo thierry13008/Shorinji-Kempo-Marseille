@@ -283,6 +283,7 @@ export default function Home() {
                   alt="Pratique du Shorinji Kempo" 
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
               </div>
@@ -354,6 +355,7 @@ export default function Home() {
             alt="Background Nos 3 Piliers" 
             className="w-full h-full object-cover opacity-80"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60" />
         </div>
@@ -445,7 +447,7 @@ export default function Home() {
                 tag: "Enfants & Ados (9-13 ans)",
                 title: "L’école de la confiance pour votre enfant.",
                 desc: "Offrez-lui un cadre structurant pour grandir sereinement et s'affirmer face aux défis de la vie.",
-                img: "https://i.ibb.co/4wmhhxHr/Photo-enfants-compress.png",
+                img: "https://i.ibb.co/SXV9VmSK/Photo-enfants-webp.webp",
                 cta: "Réserver son essai gratuit",
                 icon: <Sparkles className="text-primary-gold" size={24} />,
                 bg: "bg-bg-main"
@@ -454,7 +456,7 @@ export default function Home() {
                 tag: "Adultes Débutants",
                 title: "Retrouvez l’équilibre et évacuez le stress.",
                 desc: "Votre bulle de décompression à Marseille. Apprenez à vous défendre dans une ambiance 100% bienveillante.",
-                img: "https://i.ibb.co/F4ywDRrR/Photo-adulte-d-butant-compress.png",
+                img: "https://i.ibb.co/mCFNLxmk/Photo-adulte-d-butant-WEBP.webp",
                 featured: true,
                 cta: "Je commence maintenant",
                 icon: <TrendingUp className="text-primary-gold" size={24} />,
@@ -464,7 +466,7 @@ export default function Home() {
                 tag: "Pratiquant Confirmé",
                 title: "Exigence Technique & Lignage Officiel.",
                 desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement (WSKO).",
-                img: "https://i.ibb.co/gMbytfS3/Photo-adultes-confirm-s-compress.png",
+                img: "https://i.ibb.co/DHjfM33S/Photo-adultes-confirm-s-webp.webp",
                 cta: "Rejoindre le dojo",
                 icon: <CheckCircle className="text-primary-gold" size={24} />,
                 bg: "bg-bg-secondary"
@@ -480,7 +482,7 @@ export default function Home() {
                 )}
               >
                 <div className="mb-8 overflow-hidden rounded-[32px] aspect-video relative">
-                  <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" />
                   <div className="absolute top-4 right-4 drop-shadow-lg">
                     {card.icon}
                   </div>
@@ -515,6 +517,7 @@ export default function Home() {
             src="https://i.ibb.co/84dxgxnD/planing-du-dojo-compress.png" 
             alt="Planning Dojo Background"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
@@ -749,6 +752,7 @@ export default function Home() {
                   alt="Pratique du Shorinji Kempo - FAQ" 
                   className="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"></div>
