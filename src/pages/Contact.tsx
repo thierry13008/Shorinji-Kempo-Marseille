@@ -73,9 +73,6 @@ export default function Contact() {
           src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
           alt="Fond fixe contact"
           referrerPolicy="no-referrer"
-          loading="lazy"
-          width="1920"
-          height="1080"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
       </div>

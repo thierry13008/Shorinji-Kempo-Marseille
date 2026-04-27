@@ -26,8 +26,6 @@ export default function Footer() {
                 alt="Marseille Shorinji Kempo" 
                 className="h-[120px] w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
-                width="120"
-                height="120"
               />
             </a>
           </div>

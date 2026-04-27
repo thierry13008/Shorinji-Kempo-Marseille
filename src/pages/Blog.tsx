@@ -173,9 +173,6 @@ export default function Blog() {
             alt="Background Hero Blog" 
             className="w-full h-full object-cover opacity-70"
             referrerPolicy="no-referrer"
-            fetchPriority="high"
-            width="1920"
-            height="600"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-transparent to-surface" />
         </div>
@@ -255,9 +252,6 @@ export default function Blog() {
                       alt={`Article : ${decodeHtml(filteredPosts[0].title.rendered)} - Blog Shorinji Kempo Marseille`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                       referrerPolicy="no-referrer"
-                      loading="lazy"
-                      width="800"
-                      height="500"
                     />
                     <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
@@ -342,9 +336,6 @@ export default function Blog() {
                         alt={`Article : ${decodeHtmlMemo(post.title.rendered)}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                         referrerPolicy="no-referrer"
-                        loading="lazy"
-                        width="600"
-                        height="400"
                       />
                       <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                     </div>

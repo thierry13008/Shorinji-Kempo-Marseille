@@ -199,7 +199,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
               <div className="flex -space-x-2">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="w-8 h-8 rounded-full border-2 border-surface bg-white/10 flex items-center justify-center overflow-hidden">
-                    <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt={`Expert Shorinji Kempo ${i}`} referrerPolicy="no-referrer" loading="lazy" width="32" height="32" />
+                    <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt={`Expert Shorinji Kempo ${i}`} referrerPolicy="no-referrer" />
                   </div>
                 ))}
               </div>

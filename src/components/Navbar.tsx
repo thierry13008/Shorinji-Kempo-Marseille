@@ -49,8 +49,6 @@ export default function Navbar() {
                 isScrolled ? "h-10 lg:h-16" : "h-12 lg:h-20"
               )}
               referrerPolicy="no-referrer"
-              width="80"
-              height="80"
             />
           </Link>
 
