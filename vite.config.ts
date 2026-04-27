@@ -18,12 +18,25 @@ export default defineConfig(({mode}) => {
     build: {
       target: 'esnext',
       minify: 'esbuild',
+      cssCodeSplit: true,
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-            'vendor-framer': ['framer-motion', 'motion'],
-            'vendor-icons': ['lucide-react'],
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+                return 'vendor-react';
+              }
+              if (id.includes('motion') || id.includes('framer-motion')) {
+                return 'vendor-motion';
+              }
+              if (id.includes('lucide-react')) {
+                return 'vendor-icons';
+              }
+              if (id.includes('@google/genai')) {
+                return 'vendor-ai';
+              }
+              return 'vendor';
+            }
           },
         },
       },
