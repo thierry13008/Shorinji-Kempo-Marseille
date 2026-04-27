@@ -34,8 +34,8 @@ export default function Navbar() {
   return (
     <header>
       <nav className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-500",
-        isScrolled || isLightPage ? "glass-nav h-20 shadow-2xl" : "bg-transparent h-24"
+        "fixed top-0 z-50 w-full transition-all duration-500 h-20",
+        isScrolled || isLightPage ? "glass-nav shadow-2xl" : "bg-transparent py-2"
       )}>
         <input type="checkbox" id="menu-toggle" className="hidden" />
         
@@ -45,8 +45,8 @@ export default function Navbar() {
               src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
               alt="Logo Shorinji Kempo Marseille - Saint-Giniez" 
               className={cn(
-                "transition-all duration-500 object-contain group-hover:scale-110",
-                isScrolled ? "h-10 lg:h-16" : "h-12 lg:h-20"
+                "transition-all duration-500 object-contain group-hover:scale-110 h-10 lg:h-16",
+                !isScrolled && !isLightPage && "lg:h-20 lg:scale-110"
               )}
               referrerPolicy="no-referrer"
             />

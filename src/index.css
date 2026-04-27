@@ -28,7 +28,17 @@
   }
 
   body {
-    @apply bg-surface text-on-surface font-body antialiased;
+    @apply bg-surface text-on-surface font-body antialiased selection:bg-primary-gold/30 selection:text-white overflow-x-hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .home-footer-glass {
+    background-color: rgba(26, 36, 58, 0.1) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    transition: all 0.5s ease;
   }
 
   h1, h2 {
@@ -98,10 +108,12 @@
   
   .glass-nav {
     @apply bg-surface/60 backdrop-blur-2xl border-b border-white/10;
+    will-change: backdrop-filter, background-color;
   }
 
   .glass-nav-light {
     @apply bg-ivory-silk/60 backdrop-blur-2xl border-b border-slate-200;
+    will-change: backdrop-filter, background-color;
   }
 
   .header-container {

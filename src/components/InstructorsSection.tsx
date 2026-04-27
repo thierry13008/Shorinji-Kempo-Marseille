@@ -34,7 +34,7 @@ export default function InstructorsSection() {
       <div className="absolute inset-0 z-0">
         <img 
           className="w-full h-full object-cover opacity-80" 
-          src="https://i.ibb.co/84x3GJHv/fond-header.png" 
+          src="https://i.ibb.co/hxxzMwG9/fond-header-webp.webp" 
           alt="Fond décoratif Shorinji Kempo"
           referrerPolicy="no-referrer"
           loading="lazy"

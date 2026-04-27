@@ -71,18 +71,11 @@ export default function Home() {
 
     const footer = document.querySelector('footer');
     if (footer) {
-      // Enhanced glass effect: surface-low tint with higher blur
-      footer.style.backgroundColor = 'rgba(26, 36, 58, 0.1)';
-      footer.style.backdropFilter = 'blur(16px)';
-      (footer.style as any).webkitBackdropFilter = 'blur(16px)';
-      footer.style.transition = 'all 0.5s ease';
+      footer.classList.add('home-footer-glass');
     }
     return () => {
       if (footer) {
-        footer.style.backgroundColor = '';
-        footer.style.backdropFilter = '';
-        (footer.style as any).webkitBackdropFilter = '';
-        footer.style.transition = '';
+        footer.classList.remove('home-footer-glass');
       }
     };
   }, []);
@@ -140,7 +133,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           <img 
             className="w-full h-full object-cover opacity-80 animate-zoom-slow" 
-            src="https://i.ibb.co/84x3GJHv/fond-header.png" 
+            src="https://i.ibb.co/hxxzMwG9/fond-header-webp.webp" 
             alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
           />
@@ -279,7 +272,7 @@ export default function Home() {
             <ScrollReveal className="relative hidden lg:block">
               <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
                 <img 
-                  src="https://i.ibb.co/tpbN1KW4/image-debutant.png" 
+                  src="https://i.ibb.co/x8gdj3qp/image.webp" 
                   alt="Pratique du Shorinji Kempo" 
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"

@@ -105,7 +105,10 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      const scrollElement = scrollRef.current;
+      window.requestAnimationFrame(() => {
+        scrollElement.scrollTop = scrollElement.scrollHeight;
+      });
     }
   }, [messages]);
 
