@@ -65,14 +65,6 @@ export default function InstructorsSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 max-w-7xl mx-auto">
           {instructors.map((instructor, index) => {
-            const variants = [
-              "bg-primary-gold/5 shadow-primary-gold/5",
-              "bg-primary-gold/[0.07] shadow-primary-gold/10",
-              "bg-primary-gold/[0.09] shadow-primary-gold/15",
-              "bg-primary-gold/[0.11] shadow-primary-gold/20"
-            ];
-            const variant = variants[index % variants.length];
-
             return (
               <ScrollReveal
                 key={index}
@@ -81,10 +73,7 @@ export default function InstructorsSection() {
               >
                 {/* Glassmorphism Card with Ki Aura */}
                 <div 
-                  className={cn(
-                    "glass-card ki-aura-dark p-8 h-full flex flex-col rounded-[40px]",
-                    variant
-                  )}
+                  className="bg-[#1A243A]/10 backdrop-blur-[16px] ki-aura-dark p-8 h-full flex flex-col rounded-[40px] border border-white/5"
                 >
                   {/* Image with Parallax Revelation (emerging from shadow) */}
                   <div className="relative aspect-[4/5] w-4/5 mx-auto rounded-2xl overflow-hidden mb-8 bg-black/40">
