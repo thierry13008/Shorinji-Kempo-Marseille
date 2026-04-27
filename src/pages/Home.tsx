@@ -387,20 +387,17 @@ export default function Home() {
               {
                 icon: <Sparkles className="text-primary-gold" size={40} />,
                 title: "Confiance",
-                desc: "Développez votre confiance dès la première séance",
-                variant: "bg-primary-gold/5 shadow-primary-gold/5"
+                desc: "Développez votre confiance dès la première séance"
               },
               {
                 icon: <ArrowRight className="text-primary-gold rotate-[-45deg]" size={40} />,
                 title: "Discipline",
-                desc: "Renforcez votre mental et votre concentration",
-                variant: "bg-primary-gold/[0.07] shadow-primary-gold/10"
+                desc: "Renforcez votre mental et votre concentration"
               },
               {
                 icon: <CheckCircle className="text-primary-gold" size={40} />,
                 title: "Défense",
-                desc: "Apprenez à vous protéger efficacement",
-                variant: "bg-primary-gold/[0.09] shadow-primary-gold/15"
+                desc: "Apprenez à vous protéger efficacement"
               }
             ].map((benefit, i) => (
               <motion.div
@@ -409,10 +406,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
-                className={cn(
-                  "text-center p-10 rounded-[40px] glass-card border border-white/5 hover:scale-105 transition-all duration-500 group shadow-2xl ki-aura-dark",
-                  benefit.variant
-                )}
+                className="text-center p-10 rounded-[40px] bg-surface-low/10 backdrop-blur-[16px] border border-white/10 hover:scale-105 transition-all duration-500 group shadow-2xl ki-aura-dark"
               >
                 <div className="mb-8 flex justify-center group-hover:scale-110 transition-transform duration-500">{benefit.icon}</div>
                 <h3 className="text-white mb-4 text-3xl font-bold">{benefit.title}</h3>
