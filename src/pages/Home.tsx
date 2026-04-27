@@ -120,7 +120,7 @@ export default function Home() {
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img 
           className="w-full h-full object-cover opacity-80" 
-          src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
+          src="https://i.ibb.co/PGhjbKQV/fond-contact-webp.webp" 
           alt="Background fixe"
           referrerPolicy="no-referrer"
           width={1920}
