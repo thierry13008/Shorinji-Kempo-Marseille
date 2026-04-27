@@ -65,7 +65,7 @@ export default function Navbar() {
                   to={link.path}
                   className={cn(
                     "relative font-label tracking-wide text-[19px] font-bold transition-all duration-300 group/link hover:scale-105",
-                    location.pathname === link.path ? "text-primary-gold" : "text-ivory-silk hover:text-primary-gold"
+                    location.pathname === link.path ? "text-primary-gold-contrast" : "text-ivory-silk hover:text-primary-gold-contrast"
                   )}
                 >
                   {link.name}
@@ -78,7 +78,7 @@ export default function Navbar() {
             </div>
             
             <div className="flex items-center gap-6 ml-4">
-              <button className="text-primary-gold hover:scale-125 transition-transform duration-300 p-2" aria-label="Discuter avec nous">
+              <button className="text-primary-gold-contrast hover:scale-125 transition-transform duration-300 p-2" aria-label="Discuter avec nous">
                 <MessageSquare size={24} />
               </button>
               <div className="flex flex-col items-end">
@@ -124,7 +124,7 @@ export default function Navbar() {
                 }}
                 className={cn(
                   "font-label tracking-widest text-xl font-bold transition-all",
-                  location.pathname === link.path ? "text-primary-gold" : "text-ivory-silk"
+                  location.pathname === link.path ? "text-primary-gold-contrast" : "text-ivory-silk"
                 )}
               >
                 {link.name}

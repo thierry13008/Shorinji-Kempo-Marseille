@@ -14,6 +14,7 @@
   --color-primary: #FFD700;
   --color-primary-foreground: #111111;
   --color-primary-gold: #FFD700;
+  --color-primary-gold-contrast: #C5A028;
   --color-primary-container: #FFEB3B;
   --color-on-surface: #dae2fd;
   --color-on-surface-variant: #d0c5af;
@@ -57,7 +58,7 @@
   }
 
   .micro-copy {
-    @apply text-[14px] font-medium tracking-[0.1em] text-primary-gold uppercase;
+    @apply text-[14px] font-medium tracking-[0.1em] text-primary-gold-contrast uppercase;
   }
 }
 
@@ -67,11 +68,11 @@
   }
 
   .cta-button {
-    @apply bg-gradient-to-br from-[#FFEB3B] to-[#FFD700] text-[#111111] font-bold px-10 py-5 rounded-2xl shadow-2xl shadow-primary-gold/30 hover:scale-105 hover:shadow-primary-gold/50 active:scale-95 transition-all uppercase tracking-widest text-xs;
+    @apply bg-gradient-to-br from-[#FFEB3B] to-[#FFD700] text-slate-950 font-bold px-10 py-5 rounded-2xl shadow-2xl shadow-primary-gold/30 hover:scale-105 hover:shadow-primary-gold/50 active:scale-95 transition-all uppercase tracking-widest text-xs;
   }
 
   .cta-secondary {
-    @apply bg-transparent border-2 border-primary-gold text-primary-gold font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-primary-gold hover:text-[#111111] hover:scale-105 active:scale-95 uppercase tracking-widest text-[13px];
+    @apply bg-transparent border-2 border-primary-gold text-primary-gold-contrast font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-primary-gold hover:text-slate-950 hover:scale-105 active:scale-95 uppercase tracking-widest text-[13px];
   }
 
   .glass-card {
