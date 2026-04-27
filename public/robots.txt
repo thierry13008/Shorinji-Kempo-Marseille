@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /private
 
-Sitemap: https://shorinjikempo-marseille.fr/sitemap.xml
+Sitemap: https://shorinji-kempo-marseille.vercel.app/sitemap.xml
