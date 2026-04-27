@@ -1,0 +1,21 @@
+{
+  "name": "Shorinji Kempo Marseille — Saint-Giniez",
+  "short_name": "SK Marseille",
+  "description": "Club d'art martial japonais traditionnel à Marseille.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0b",
+  "theme_color": "#d4af37",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

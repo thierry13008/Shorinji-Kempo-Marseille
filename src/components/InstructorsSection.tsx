@@ -37,6 +37,9 @@ export default function InstructorsSection() {
           src="https://i.ibb.co/84x3GJHv/fond-header.png" 
           alt="Fond décoratif Shorinji Kempo"
           referrerPolicy="no-referrer"
+          loading="lazy"
+          width="1920"
+          height="1080"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
       </div>
@@ -91,6 +94,9 @@ export default function InstructorsSection() {
                       className="w-full h-full object-cover transition-all duration-700 parallax-reveal"
                       style={{ objectPosition: (instructor as any).position || 'center' }}
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      width="350"
+                      height="438"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-60"></div>
                   </div>

@@ -130,6 +130,9 @@ export default function Home() {
           src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
           alt="Background fixe"
           referrerPolicy="no-referrer"
+          loading="lazy"
+          width="1920"
+          height="1080"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
       </div>
@@ -143,6 +146,9 @@ export default function Home() {
             src="https://i.ibb.co/84x3GJHv/fond-header.png" 
             alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
+            fetchPriority="high"
+            width="1920"
+            height="1080"
           />
           {/* Overlay encore plus léger pour une visibilité maximale du fond */}
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
@@ -283,6 +289,9 @@ export default function Home() {
                   alt="Pratique du Shorinji Kempo" 
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  width="600"
+                  height="600"
                 />
                 <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
               </div>
@@ -354,6 +363,9 @@ export default function Home() {
             alt="Background Nos 3 Piliers" 
             className="w-full h-full object-cover opacity-80"
             referrerPolicy="no-referrer"
+            loading="lazy"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60" />
         </div>
@@ -480,7 +492,7 @@ export default function Home() {
                 )}
               >
                 <div className="mb-8 overflow-hidden rounded-[32px] aspect-video relative">
-                  <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" width="600" height="400" />
                   <div className="absolute top-4 right-4 drop-shadow-lg">
                     {card.icon}
                   </div>
@@ -515,6 +527,9 @@ export default function Home() {
             src="https://i.ibb.co/84dxgxnD/planing-du-dojo-compress.png" 
             alt="Planning Dojo Background"
             referrerPolicy="no-referrer"
+            loading="lazy"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
@@ -749,6 +764,9 @@ export default function Home() {
                   alt="Pratique du Shorinji Kempo - FAQ" 
                   className="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  width="800"
+                  height="1000"
                 />
                 <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"></div>
@@ -844,6 +862,9 @@ export default function Home() {
                         )} 
                         alt={t.name} 
                         referrerPolicy="no-referrer" 
+                        loading="lazy"
+                        width="112"
+                        height="112"
                       />
                       <div className="absolute -bottom-2 -right-2 bg-primary-gold text-on-primary rounded-full p-2 shadow-xl border-2 border-surface">
                         <Sparkles size={16} fill="currentColor" />
@@ -962,7 +983,7 @@ export default function Home() {
               
               <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2">
-                  <img src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" alt="Marseille Shorinji Kempo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                  <img src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" alt="Marseille Shorinji Kempo" className="w-full h-full object-contain" referrerPolicy="no-referrer" loading="lazy" width="64" height="64" />
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
