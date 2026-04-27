@@ -1,11 +1,21 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { lazy, Suspense, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import EngagementHub from '@/src/components/EngagementHub';
-import InstructorsSection from '@/src/components/InstructorsSection';
+
+const EngagementHub = lazy(() => import('@/src/components/EngagementHub'));
+const InstructorsSection = lazy(() => import('@/src/components/InstructorsSection'));
+const FAQSection = lazy(() => import('@/src/components/FAQSection'));
+const ContactSection = lazy(() => import('@/src/components/ContactSection'));
 import ScrollReveal from '@/src/components/ScrollReveal';
+
+// Loading fallback for lazy sections
+const SectionLoader = () => (
+  <div className="py-20 flex justify-center">
+    <div className="w-8 h-8 border-2 border-primary-gold/20 border-t-primary-gold rounded-full animate-spin"></div>
+  </div>
+);
 
 const TESTIMONIALS = [
   { name: "Samuel F", role: "Débutant", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop" },
@@ -38,7 +48,6 @@ export default function Home() {
   const video2Ref = useRef<HTMLVideoElement>(null);
   const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [isHubOpen, setIsHubOpen] = useState(false);
   const [hoveredSession, setHoveredSession] = useState<string | null>(null);
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -741,93 +750,14 @@ export default function Home() {
       </section>
 
       {/* Instructors Section */}
-      <InstructorsSection />
+      <Suspense fallback={<SectionLoader />}>
+        <InstructorsSection />
+      </Suspense>
 
       {/* FAQ Section */}
-      <section className="py-48 bg-bg-secondary relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">FAQ</span>
-            <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Questions Fréquentes</h2>
-            <p className="text-slate-600 text-xl">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
-            <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
-              <div className="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
-                <CheckCircle size={18} className="text-primary-gold" />
-                <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Débutants bienvenus – sécurité assurée</span>
-              </div>
-              <div className="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
-                <CheckCircle size={18} className="text-primary-gold" />
-                <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">100% Bienveillance & Respect</span>
-              </div>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal className="relative group">
-              <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
-                <img 
-                  src="https://i.ibb.co/Hfwx9C2b/photo-FAQ-COMPRESS.jpg" 
-                  alt="Pratique du Shorinji Kempo - FAQ" 
-                  className="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  width={800}
-                  height={800}
-                />
-                <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"></div>
-              </div>
-              {/* Decorative Glow */}
-              <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-gold/20 rounded-full blur-3xl -z-10"></div>
-            </ScrollReveal>
-            <div className="space-y-4">
-              {[
-                { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 9 ans. Nous proposons des cours adaptés pour les enfants, les adolescents et les adultes. Il n'y a pas d'âge maximum pour débuter. La sécurité et l'accueil des débutants sont nos priorités absolues." },
-                { q: "Faut-il être déjà sportif pour commencer ?", a: "Absolument pas ! Le Shorinji Kempo s'adapte à tous les niveaux. La progression est graduelle et respectueuse de votre rythme. Nos débutants viennent souvent sans aucune expérience sportive préalable." },
-                { q: "Est-ce dangereux ? Y a-t-il des risques de blessures ?", a: "La sécurité est notre priorité. Les techniques sont enseignées avec contrôle et bienveillance. Nous utilisons des protections et le taux de blessures est extrêmement faible. On apprend à se protéger, pas à se blesser." },
-                { q: "Peut-on essayer gratuitement avant de s'inscrire ?", a: "Oui ! Nous offrons une séance d'essai gratuite pour découvrir le Shorinji Kempo en toute tranquillité. Aucune obligation d'inscription. Venez simplement avec une tenue de sport confortable." },
-                { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont transparents. Cotisations adultes : à partir de 195€ hors licences, enfants 150€ hors licences. Possibilité de payer au trimestre, se renseigner auprès du professeur." },
-                { q: "Que faut-il apporter pour le premier cours ?", a: "Pour votre premier cours, un simple jogging et un t-shirt suffisent. Vous pratiquerez pieds nus sur des tatamis. Pensez simplement à apporter une bouteille d'eau et votre sourire !" }
-              ].map((item, i) => (
-                <ScrollReveal key={i} delay={i * 0.1} className="glass-card-light rounded-[32px] overflow-hidden border border-slate-200 shadow-sm ki-aura-light hover:border-primary-gold/30 transition-all duration-500">
-                  <button 
-                    onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                    className="w-full flex justify-between items-center p-8 text-left text-surface hover:text-primary-gold transition-colors group"
-                    aria-expanded={activeFaq === i}
-                    aria-controls={`faq-answer-${i}`}
-                  >
-                    <h3 className="font-bold text-lg pr-8 group-hover:translate-x-2 transition-transform duration-300">{item.q}</h3>
-                    <div className={cn(
-                      "w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-500",
-                      activeFaq === i ? "bg-primary-gold border-primary-gold text-on-primary rotate-180" : "group-hover:border-primary-gold group-hover:text-primary-gold"
-                    )}>
-                      <ChevronDown size={20} />
-                    </div>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {activeFaq === i && (
-                      <motion.div 
-                        id={`faq-answer-${i}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "circOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="p-8 pt-0 text-slate-700 leading-[1.6] text-lg border-t border-slate-100 mt-2">
-                          {item.a}
-                          <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
-                            <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <FAQSection />
+      </Suspense>
 
       {/* Testimonials */}
       <section className="py-48 bg-surface relative overflow-hidden">
@@ -960,91 +890,9 @@ export default function Home() {
       </section>
 
       {/* Contact Section - Conversion Focus */}
-      <section id="contact" className="relative py-48 bg-transparent overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Dernière Étape</span>
-            <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Prêt à transformer votre quotidien ?</h2>
-            <p className="text-ivory-silk/60 text-xl max-w-2xl mx-auto">Rejoignez les pratiquants qui ont déjà franchi le pas. Votre première séance est offerte, sans aucun engagement.</p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <div className="space-y-10">
-              <div className="bg-white/5 border border-white/10 p-10 rounded-[40px] space-y-8">
-                <h3 className="text-white text-2xl font-bold mb-6">Pourquoi réserver maintenant ?</h3>
-                {[
-                  { title: "Sans engagement", desc: "Venez essayer, ressentez l'énergie, et décidez ensuite." },
-                  { title: "Accessible débutant", desc: "Aucune expérience préalable n'est nécessaire." },
-                  { title: "Places limitées", desc: "Nous limitons le nombre de nouveaux par cours pour un meilleur suivi." }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0">
-                      <CheckCircle className="text-primary-gold" size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold mb-1">{item.title}</h4>
-                      <p className="text-ivory-silk/60">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2">
-                  <img 
-                    src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
-                    alt="Marseille Shorinji Kempo" 
-                    className="w-full h-full object-contain" 
-                    referrerPolicy="no-referrer" 
-                    width={64}
-                    height={64}
-                  />
-                </div>
-                <div>
-                  <p className="text-white font-bold">Une question ?</p>
-                  <p className="text-ivory-silk/60">Contactez-nous ci-dessous</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              <ScrollReveal className="glass-card ki-aura-dark p-10 md:p-12 rounded-[48px] border border-primary-gold/20">
-                <h3 className="text-white text-2xl font-bold mb-2">Envoyez-nous un message</h3>
-                <p className="text-ivory-silk/60 mb-8 font-bold uppercase tracking-widest text-xs">Remplissez le formulaire ci dessous</p>
-                
-                <div className="w-full overflow-hidden rounded-xl">
-                  <iframe 
-                    data-tally-src="https://tally.so/embed/vG0JyA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-                    loading="lazy" 
-                    width="100%" 
-                    height="423" 
-                    frameBorder="0" 
-                    marginHeight={0} 
-                    marginWidth={0} 
-                    title="Nous contacter directement"
-                  ></iframe>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.1} className="glass-card ki-aura-dark p-10 rounded-[24px] border border-primary-gold/20 text-center">
-                <p className="text-on-surface-variant flex items-center justify-center gap-4 mb-6">
-                  <span className="h-px bg-white/10 flex-1"></span>
-                  <span className="micro-copy uppercase tracking-widest text-white">ou contactez nous Directement</span>
-                  <span className="h-px bg-white/10 flex-1"></span>
-                </p>
-                <a 
-                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
-                  className="w-full bg-white text-surface font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all text-[16px] uppercase tracking-widest shadow-xl group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Phone className="text-black" size={20} />
-                  </div>
-                  {CONTACT_INFO.phone}
-                </a>
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Suspense fallback={<SectionLoader />}>
+        <ContactSection />
+      </Suspense>
       {/* Maps Modal */}
       <AnimatePresence>
         {isMapOpen && (
@@ -1139,7 +987,9 @@ export default function Home() {
               }}
               className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
             >
-              <EngagementHub onClose={() => setIsHubOpen(false)} />
+              <Suspense fallback={<SectionLoader />}>
+                <EngagementHub onClose={() => setIsHubOpen(false)} />
+              </Suspense>
             </motion.div>
           </div>
         )}
