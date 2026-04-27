@@ -837,12 +837,7 @@ export default function Home() {
               <ScrollReveal key={i} delay={i * 0.2}>
                 <motion.div
                   whileHover={{ y: -12, scale: 1.02 }}
-                  className={cn(
-                    "relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible glass-card ki-aura-dark",
-                    t.featured 
-                      ? "bg-surface-high/40 border-white/20 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.4)]" 
-                      : "bg-surface-low/30 border-white/10 border-l-primary-gold/40 shadow-xl"
-                  )}
+                  className="relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible bg-[#1A243A]/10 backdrop-blur-[16px] border-white/10 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.4)] ki-aura-dark"
                 >
                   {/* Decorative Quote Icon */}
                   <div className="absolute top-8 right-8 opacity-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110 text-primary-gold">
@@ -866,6 +861,7 @@ export default function Home() {
                         referrerPolicy="no-referrer" 
                         width={112}
                         height={112}
+                        loading="lazy"
                       />
                       <div className="absolute -bottom-2 -right-2 bg-primary-gold text-on-primary rounded-full p-2 shadow-xl border-2 border-surface">
                         <Sparkles size={16} fill="currentColor" />
@@ -991,6 +987,7 @@ export default function Home() {
                     referrerPolicy="no-referrer" 
                     width={64}
                     height={64}
+                    loading="lazy"
                   />
                 </div>
                 <div>

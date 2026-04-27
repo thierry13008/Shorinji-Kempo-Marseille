@@ -49,6 +49,7 @@ export default function Navbar() {
                 !isScrolled && !isLightPage && "lg:h-20 lg:scale-110"
               )}
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
           </Link>
 
