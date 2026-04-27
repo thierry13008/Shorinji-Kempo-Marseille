@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-const Footer = lazy(() => import('./components/Footer'));
-const ShareButton = lazy(() => import('./components/ShareButton'));
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ShareButton from './components/ShareButton';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -59,10 +59,8 @@ export default function App() {
             </Routes>
           </Suspense>
         </main>
-        <Suspense fallback={null}>
-          <Footer />
-          <ShareButton />
-        </Suspense>
+        <Footer />
+        <ShareButton />
       </div>
     </Router>
   );
