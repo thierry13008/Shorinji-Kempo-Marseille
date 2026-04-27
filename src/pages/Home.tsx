@@ -272,7 +272,7 @@ export default function Home() {
             <ScrollReveal className="relative hidden lg:block">
               <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
                 <img 
-                  src="https://i.ibb.co/x8gdj3qp/image.webp" 
+                  src="https://i.ibb.co/HfwSFtQg/image-debutant-cp.png" 
                   alt="Pratique du Shorinji Kempo" 
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"
