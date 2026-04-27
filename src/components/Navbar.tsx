@@ -45,11 +45,14 @@ export default function Navbar() {
               src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
               alt="Logo Shorinji Kempo Marseille - Saint-Giniez" 
               className={cn(
-                "transition-all duration-500 object-contain group-hover:scale-110 h-10 lg:h-16",
-                !isScrolled && !isLightPage && "lg:h-20 lg:scale-110"
+                "transition-all duration-500 object-contain group-hover:scale-110 h-10 lg:h-12 w-auto",
+                !isScrolled && !isLightPage && "lg:h-16 lg:scale-110"
               )}
               referrerPolicy="no-referrer"
-              loading="lazy"
+              fetchPriority="high"
+              decoding="async"
+              width={512}
+              height={512}
             />
           </Link>
 
