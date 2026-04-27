@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shorinjikempo-marseille.fr/sitemap.xml
+Sitemap: https://shorinji-kempo-marseille.vercel.app/sitemap.xml
