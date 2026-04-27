@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import ShareButton from './components/ShareButton';
 
 // Lazy load pages for better performance
-const Home = lazy(() => import('./pages/Home'));
+import Home from './pages/Home';
 const Encyclopedia = lazy(() => import('./pages/Encyclopedia'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
