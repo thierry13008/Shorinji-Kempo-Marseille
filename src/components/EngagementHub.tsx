@@ -183,7 +183,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
             <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-surface" />
           </div>
           <div>
-            <h3 className="text-text-primary text-lg">Engagement Hub 2026</h3>
+            <h3 className="text-white text-lg">Engagement Hub 2026</h3>
             <p className="micro-copy text-primary-gold">IA Conversationnelle Multimodale</p>
           </div>
         </div>
@@ -192,7 +192,8 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
           {onClose && (
             <button 
               onClick={onClose}
-              className="p-2 text-text-secondary hover:text-primary-gold transition-colors rounded-full hover:bg-white/5"
+              className="p-2 text-white hover:text-primary-gold transition-colors rounded-full hover:bg-white/5"
+              aria-label="Fermer la fenêtre de chat"
             >
               <X size={20} />
             </button>
@@ -202,11 +203,11 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
               <div className="flex -space-x-2">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="w-8 h-8 rounded-full border-2 border-surface bg-white/10 flex items-center justify-center overflow-hidden">
-                    <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt={`Expert Shorinji Kempo ${i}`} referrerPolicy="no-referrer" />
+                    <img src={`https://picsum.photos/seed/expert${i}/40/40`} alt={`Expert Shorinji Kempo ${i}`} referrerPolicy="no-referrer" width={32} height={32} />
                   </div>
                 ))}
               </div>
-              <span className="text-[10px] font-label text-text-secondary uppercase tracking-tighter">Experts Disponibles</span>
+              <span className="text-[10px] font-label text-slate-300 uppercase tracking-tighter">Experts Disponibles</span>
             </div>
           )}
         </div>
@@ -232,12 +233,12 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
                 "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1",
                 msg.type === 'user' ? "ml-3 bg-primary-gold" : "mr-3 bg-white/10"
               )}>
-                {msg.type === 'user' ? <User size={14} className="text-text-primary" /> : <Sparkles size={14} className="text-primary-gold" />}
+                {msg.type === 'user' ? <User size={14} className="text-surface" /> : <Sparkles size={14} className="text-primary-gold" />}
               </div>
 
               <div className={cn(
                 "p-4 rounded-2xl text-sm leading-relaxed",
-                msg.type === 'user' ? "bg-primary-gold text-text-primary rounded-tr-none" : "bg-white/5 text-text-secondary border border-white/5 rounded-tl-none"
+                msg.type === 'user' ? "bg-primary-gold text-surface font-bold rounded-tr-none" : "bg-white/5 text-slate-200 border border-white/5 rounded-tl-none"
               )}>
                 {msg.content}
                 <div className={cn(
@@ -271,10 +272,16 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
       <div className="p-6 bg-white/[0.02] border-t border-white/5">
         <div className="flex items-center gap-4 bg-surface-secondary border border-white/10 rounded-2xl p-2 focus-within:border-primary-gold/50 transition-all">
           <div className="flex items-center gap-1 px-2">
-            <button className="p-2 text-text-secondary hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
+            <button 
+              className="p-2 text-slate-300 hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5"
+              aria-label="Utiliser le microphone"
+            >
               <Mic size={20} />
             </button>
-            <button className="p-2 text-text-secondary hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5">
+            <button 
+              className="p-2 text-slate-300 hover:text-primary-gold transition-colors rounded-lg hover:bg-white/5"
+              aria-label="Joindre une image"
+            >
               <ImageIcon size={20} />
             </button>
           </div>
@@ -285,23 +292,25 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             placeholder="Posez votre question..."
-            className="flex-1 bg-transparent border-none outline-none text-text-primary text-sm py-3"
+            className="flex-1 bg-transparent border-none outline-none text-white text-sm py-3"
+            aria-label="Votre message"
           />
 
           <button 
             onClick={handleSendMessage}
             disabled={!inputValue.trim()}
-            className="gold-gradient p-3 rounded-xl text-text-primary disabled:opacity-50 disabled:grayscale transition-all hover:scale-105 active:scale-95"
+            className="gold-gradient p-3 rounded-xl text-surface disabled:opacity-50 disabled:grayscale transition-all hover:scale-105 active:scale-95"
+            aria-label="Envoyer le message"
           >
             <Send size={20} />
           </button>
         </div>
         
         <div className="flex items-center justify-center gap-6 mt-4">
-          <div className="flex items-center gap-2 text-[9px] text-text-secondary uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-[9px] text-slate-400 uppercase tracking-widest">
             <CheckCircle2 size={12} className="text-green-500" /> Chiffrement Quantique
           </div>
-          <div className="flex items-center gap-2 text-[9px] text-text-secondary uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-[9px] text-slate-400 uppercase tracking-widest">
             <CheckCircle2 size={12} className="text-green-500" /> RGPD 2026 Compliant
           </div>
         </div>
@@ -318,7 +327,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
           <button
             key={i}
             onClick={() => setInputValue(suggestion)}
-            className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] text-text-secondary hover:border-primary-gold/50 hover:text-primary-gold transition-all"
+            className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] text-slate-300 hover:border-primary-gold/50 hover:text-primary-gold transition-all"
           >
             {suggestion}
           </button>

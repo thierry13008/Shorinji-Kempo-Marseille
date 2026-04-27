@@ -123,6 +123,9 @@ export default function Home() {
           src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
           alt="Background fixe"
           referrerPolicy="no-referrer"
+          width={1920}
+          height={1080}
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
       </div>
@@ -136,6 +139,9 @@ export default function Home() {
             src="https://i.ibb.co/hxxzMwG9/fond-header-webp.webp" 
             alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
+            fetchPriority="high"
+            width={1920}
+            height={1080}
           />
           {/* Overlay encore plus léger pour une visibilité maximale du fond */}
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
@@ -233,7 +239,9 @@ export default function Home() {
                   playsInline
                   preload="auto"
                   onEnded={handleVideo1Ended}
-                />
+                >
+                  <track kind="captions" />
+                </video>
                 
                 {/* Vidéo 2: Inversée */}
                 <video 
@@ -247,7 +255,9 @@ export default function Home() {
                   playsInline
                   preload="auto"
                   onEnded={handleVideo2Ended}
-                />
+                >
+                  <track kind="captions" />
+                </video>
 
                 {/* Desktop Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-surface/80 via-transparent to-transparent pointer-events-none hidden lg:block z-20"></div>
@@ -277,6 +287,8 @@ export default function Home() {
                   className="w-full aspect-square object-cover"
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  width={800}
+                  height={800}
                 />
                 <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
               </div>
@@ -289,7 +301,7 @@ export default function Home() {
                 <h2 className="text-surface text-4xl md:text-6xl font-black leading-tight mb-8">
                   Pourquoi franchir les portes de notre dojo ?
                 </h2>
-                <p className="text-slate-600 text-xl leading-relaxed">
+                <p className="text-slate-700 text-xl leading-relaxed">
                   Plus qu'un simple entraînement, nous vous proposons un voyage vers la meilleure version de vous-même. 
                   Rejoignez une communauté qui valorise l'entraide autant que l'efficacité.
                 </p>
@@ -319,7 +331,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-surface text-xl font-bold mb-2">{item.title}</h4>
-                      <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+                      <p className="text-slate-700 leading-relaxed">{item.desc}</p>
                     </div>
                   </ScrollReveal>
                 ))}
@@ -344,11 +356,13 @@ export default function Home() {
         {/* Background Image Integration */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img 
-            src="https://i.ibb.co/G37BZzYf/banadeau-accueil-trois-pilier-copress.png" 
+            src="https://i.ibb.co/LD218fB8/banadeau-accueil-trois-pilier-WEBP.webp" 
             alt="Background Nos 3 Piliers" 
             className="w-full h-full object-cover opacity-80"
             referrerPolicy="no-referrer"
             loading="lazy"
+            width={1920}
+            height={600}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60" />
         </div>
@@ -357,7 +371,7 @@ export default function Home() {
           <div className="text-center mb-20">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Votre Transformation</span>
             <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Nos 3 Piliers Fondamentaux</h2>
-            <p className="text-slate-400 text-xl max-w-2xl mx-auto">Développez votre confiance et votre force dès les premières séances grâce à une méthode éprouvée.</p>
+            <p className="text-slate-300 text-xl max-w-2xl mx-auto">Développez votre confiance et votre force dès les premières séances grâce à une méthode éprouvée.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
@@ -393,7 +407,7 @@ export default function Home() {
               >
                 <div className="mb-8 flex justify-center group-hover:scale-110 transition-transform duration-500">{benefit.icon}</div>
                 <h3 className="text-white mb-4 text-3xl font-bold">{benefit.title}</h3>
-                <p className="text-slate-400 leading-relaxed text-lg font-medium">{benefit.desc}</p>
+                <p className="text-slate-300 leading-relaxed text-lg font-medium">{benefit.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -475,7 +489,15 @@ export default function Home() {
                 )}
               >
                 <div className="mb-8 overflow-hidden rounded-[32px] aspect-video relative">
-                  <img src={card.img} alt={card.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" />
+                  <img 
+                    src={card.img} 
+                    alt={card.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    referrerPolicy="no-referrer" 
+                    loading="lazy" 
+                    width={400}
+                    height={225}
+                  />
                   <div className="absolute top-4 right-4 drop-shadow-lg">
                     {card.icon}
                   </div>
@@ -485,7 +507,7 @@ export default function Home() {
                   <h3 className={cn("mb-6 text-2xl md:text-3xl font-medium leading-tight", card.featured ? "text-white" : "text-surface")}>
                     {card.title}
                   </h3>
-                  <p className={cn("mb-10 text-lg leading-relaxed", card.featured ? "text-ivory-silk/60" : "text-slate-500")}>{card.desc}</p>
+                  <p className={cn("mb-10 text-lg leading-relaxed", card.featured ? "text-ivory-silk/70" : "text-slate-700")}>{card.desc}</p>
                 </div>
                 <a 
                   href="/#contact"
@@ -511,6 +533,8 @@ export default function Home() {
             alt="Planning Dojo Background"
             referrerPolicy="no-referrer"
             loading="lazy"
+            width={1920}
+            height={800}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
         </div>
@@ -605,14 +629,14 @@ export default function Home() {
             <ScrollReveal>
               <span className="micro-copy text-surface mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
               <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Comment nous rejoindre ?</h2>
-              <motion.div 
+              <motion.div
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="h-1 w-24 bg-surface mx-auto rounded-full"
               />
-              <p className="text-slate-700 mt-8 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
+              <p className="text-slate-800 mt-8 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
             </ScrollReveal>
           </div>
 
@@ -682,7 +706,7 @@ export default function Home() {
                     className="h-[1px] bg-primary-gold/50 mx-auto mb-6 relative z-10"
                   />
 
-                  <p className="text-slate-400 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
+                  <p className="text-slate-300 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
                   
                   <div className="mt-auto w-full pt-8 border-t border-white/10">
                     <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60 group-hover:text-primary-gold transition-colors duration-500">
@@ -746,6 +770,8 @@ export default function Home() {
                   className="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  width={800}
+                  height={800}
                 />
                 <div className="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"></div>
@@ -766,8 +792,10 @@ export default function Home() {
                   <button 
                     onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                     className="w-full flex justify-between items-center p-8 text-left text-surface hover:text-primary-gold transition-colors group"
+                    aria-expanded={activeFaq === i}
+                    aria-controls={`faq-answer-${i}`}
                   >
-                    <span className="font-bold text-lg pr-8 group-hover:translate-x-2 transition-transform duration-300">{item.q}</span>
+                    <h3 className="font-bold text-lg pr-8 group-hover:translate-x-2 transition-transform duration-300">{item.q}</h3>
                     <div className={cn(
                       "w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-500",
                       activeFaq === i ? "bg-primary-gold border-primary-gold text-on-primary rotate-180" : "group-hover:border-primary-gold group-hover:text-primary-gold"
@@ -778,13 +806,14 @@ export default function Home() {
                   <AnimatePresence initial={false}>
                     {activeFaq === i && (
                       <motion.div 
+                        id={`faq-answer-${i}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: "circOut" }}
                         className="overflow-hidden"
                       >
-                        <div className="p-8 pt-0 text-slate-600 leading-[1.6] text-lg border-t border-slate-100 mt-2">
+                        <div className="p-8 pt-0 text-slate-700 leading-[1.6] text-lg border-t border-slate-100 mt-2">
                           {item.a}
                           <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
                             <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
@@ -806,7 +835,7 @@ export default function Home() {
           <div className="text-center mb-32">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
             <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
-            <p className="text-slate-400 text-xl">Rejoignez une communauté bienveillante et motivée.</p>
+            <p className="text-slate-300 text-xl font-medium">Rejoignez une communauté bienveillante et motivée.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
@@ -841,6 +870,8 @@ export default function Home() {
                         )} 
                         alt={t.name} 
                         referrerPolicy="no-referrer" 
+                        width={112}
+                        height={112}
                       />
                       <div className="absolute -bottom-2 -right-2 bg-primary-gold text-on-primary rounded-full p-2 shadow-xl border-2 border-surface">
                         <Sparkles size={16} fill="currentColor" />
@@ -903,8 +934,8 @@ export default function Home() {
                     Rejoignez la communauté
                   </a>
                   <div className="mt-6 flex flex-col items-center gap-2">
-                    <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
-                    <div className="flex items-center gap-4 text-[10px] text-primary-gold/60 uppercase tracking-[0.2em] font-bold">
+                    <p className="text-slate-300 text-sm font-bold uppercase tracking-widest">Sans engagement – accessible à tous</p>
+                    <div className="flex items-center gap-4 text-[10px] text-primary-gold/80 uppercase tracking-[0.2em] font-bold">
                       <span>Premier cours offert</span>
                       <span className="w-1 h-1 rounded-full bg-primary-gold/30"></span>
                       <span>Équipement prêté</span>
@@ -959,7 +990,14 @@ export default function Home() {
               
               <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2">
-                  <img src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" alt="Marseille Shorinji Kempo" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                  <img 
+                    src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
+                    alt="Marseille Shorinji Kempo" 
+                    className="w-full h-full object-contain" 
+                    referrerPolicy="no-referrer" 
+                    width={64}
+                    height={64}
+                  />
                 </div>
                 <div>
                   <p className="text-white font-bold">Une question ?</p>
@@ -1029,6 +1067,7 @@ export default function Home() {
                 <button 
                   onClick={() => setIsMapOpen(false)}
                   className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
+                  aria-label="Fermer la carte"
                 >
                   <X size={24} />
                 </button>
