@@ -1,12 +1,10 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { useState, useEffect, useRef, useCallback, useMemo, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-
-// Lazy load large sections
-const EngagementHub = lazy(() => import('@/src/components/EngagementHub'));
-const InstructorsSection = lazy(() => import('@/src/components/InstructorsSection'));
+import EngagementHub from '@/src/components/EngagementHub';
+import InstructorsSection from '@/src/components/InstructorsSection';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 const TESTIMONIALS = [
@@ -48,45 +46,34 @@ export default function Home() {
 
   // Apply Encyclopedia-style glass effect to footer on Home page
   useEffect(() => {
-    // Tally embed script loader - deferred
-    let tallyLoaded = false;
-    const loadTally = () => {
-      if (tallyLoaded) return;
-      tallyLoaded = true;
-      
-      const d = document;
-      const w = "https://tally.so/widgets/embed.js";
-      const v = () => {
-        if (typeof (window as any).Tally !== "undefined") {
-          (window as any).Tally.loadEmbeds();
-        } else {
-          d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e: any) => {
-            e.src = e.dataset.tallySrc;
-          });
-        }
-      };
-
+    // Tally embed script loader
+    const d = document;
+    const w = "https://tally.so/widgets/embed.js";
+    const v = () => {
       if (typeof (window as any).Tally !== "undefined") {
-        v();
-      } else if (d.querySelector(`script[src="${w}"]`) === null) {
-        const s = d.createElement("script");
-        s.src = w;
-        s.async = true;
-        s.onload = v;
-        s.onerror = v;
-        d.body.appendChild(s);
+        (window as any).Tally.loadEmbeds();
+      } else {
+        d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e: any) => {
+          e.src = e.dataset.tallySrc;
+        });
       }
     };
 
-    // Load Tally after a short delay or on interaction to not block initial render
-    const timeout = setTimeout(loadTally, 2000);
+    if (typeof (window as any).Tally !== "undefined") {
+      v();
+    } else if (d.querySelector(`script[src="${w}"]`) === null) {
+      const s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    }
 
     const footer = document.querySelector('footer');
     if (footer) {
       footer.classList.add('home-footer-glass');
     }
     return () => {
-      clearTimeout(timeout);
       if (footer) {
         footer.classList.remove('home-footer-glass');
       }
@@ -536,7 +523,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover opacity-80" 
-            src="https://i.ibb.co/B5F7V0Bh/backgrount-agenda-WEBP.webp" 
+            src="https://i.ibb.co/84dxgxnD/planing-du-dojo-compress.png" 
             alt="Planning Dojo Background"
             referrerPolicy="no-referrer"
             loading="lazy"
@@ -748,9 +735,7 @@ export default function Home() {
       </section>
 
       {/* Instructors Section */}
-      <Suspense fallback={<div className="h-96 bg-surface animate-pulse" />}>
-        <InstructorsSection />
-      </Suspense>
+      <InstructorsSection />
 
       {/* FAQ Section */}
       <section className="py-48 bg-bg-secondary relative overflow-hidden">
@@ -1145,9 +1130,7 @@ export default function Home() {
               }}
               className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
             >
-              <Suspense fallback={<div className="h-full w-full bg-surface/50 animate-pulse rounded-[2.5rem]" />}>
-                <EngagementHub onClose={() => setIsHubOpen(false)} />
-              </Suspense>
+              <EngagementHub onClose={() => setIsHubOpen(false)} />
             </motion.div>
           </div>
         )}

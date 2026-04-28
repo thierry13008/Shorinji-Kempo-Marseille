@@ -36,13 +36,11 @@
     
     <!-- Preload Critical Assets -->
     <link rel="preload" href="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" as="image" />
+    <link rel="preconnect" href="https://i.ibb.co">
 
     <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Main CSS (Priority) -->
-    <link rel="stylesheet" href="/src/index.css" media="all">
 
     <!-- Critical CSS Inlining -->
     <style>
@@ -79,6 +77,9 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
     </noscript>
+
+    <!-- Main CSS (Vite will handle the injection in production) -->
+    <link rel="stylesheet" href="/src/index.css">
 
     <!-- Fonts DNS-prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
