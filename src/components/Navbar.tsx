@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto h-full px-4 md:px-8 flex items-center justify-between relative z-20">
           <Link to="/" className="flex items-center gap-4 group shrink-0">
             <img 
-              src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
+              src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
               alt="Logo Shorinji Kempo Marseille - Saint-Giniez" 
               className={cn(
                 "transition-all duration-500 object-contain group-hover:scale-110 h-10 lg:h-12 w-auto",

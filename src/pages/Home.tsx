@@ -416,7 +416,7 @@ export default function Home() {
         {/* Background Image Integration */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img 
-            src="https://i.ibb.co/LD218fB8/banadeau-accueil-trois-pilier-WEBP.webp" 
+            src="https://i.ibb.co/MDm3thBh/banadeau-accueil-trois-pilier-WEBP2.webp" 
             alt="Background Nos 3 Piliers" 
             className="w-full h-full object-cover opacity-80"
             referrerPolicy="no-referrer"

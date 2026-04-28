@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="lg:w-[15%] flex-shrink-0 lg:-mt-8">
             <a href="http://www.shorinjikempomarseille.fr/" target="_blank" rel="noopener noreferrer" className="block">
               <img 
-                src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
+                src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
                 alt="Marseille Shorinji Kempo" 
                 className="h-[120px] w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
