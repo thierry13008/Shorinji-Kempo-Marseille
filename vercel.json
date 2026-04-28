@@ -1,7 +1,0 @@
-{
-  "redirects": [
-    { "source": "/encyclopedia", "destination": "/", "permanent": true },
-    { "source": "/blog", "destination": "/", "permanent": true },
-    { "source": "/contact", "destination": "/", "permanent": true }
-  ]
-}
