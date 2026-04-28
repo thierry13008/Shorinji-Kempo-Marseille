@@ -10,17 +10,17 @@ const instructors = [
     image: "https://i.ibb.co/6pjTwv8/instructeur-1-BIS.png",
   },
   {
-    name: "Assistante Yuko Irie Beyer",
+    name: "Assistant Yuko Irie Beyer",
     role: "3ème DAN",
     image: "https://i.ibb.co/N6C1DzjM/Yuko-IRIE-BEYER-webp.webp",
   },
   {
-    name: "Assistante Marie Valentin",
+    name: "Assistant Marie Valentin",
     role: "3ème DAN",
     image: "https://i.ibb.co/cSs5RBFG/instructeur-4-BIS.png",
   },
   {
-    name: "Assistant\nBenoit\nAllix",
+    name: "Assistante\nBenoit\nAllix",
     role: "1ERE DAN",
     image: "https://i.ibb.co/4RfgQzXV/instructeur-3-BIS.png",
     position: "center 20%"
