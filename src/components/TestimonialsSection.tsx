@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-32">
           <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">La Voix du Dojo</span>
-          <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas.</h2>
+          <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Ils ont franchi le pas</h2>
           <p className="text-slate-300 text-xl font-medium">Rejoignez une communauté bienveillante et motivée.</p>
         </div>
         

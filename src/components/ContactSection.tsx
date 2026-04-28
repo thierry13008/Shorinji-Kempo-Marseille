@@ -38,7 +38,7 @@ export default function ContactSection() {
                     <CheckCircle className="text-primary-gold" size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold mb-1">{item.title}</h4>
+                    <h3 className="text-white font-bold mb-1">{item.title}</h3>
                     <p className="text-ivory-silk/60">{item.desc}</p>
                   </div>
                 </div>

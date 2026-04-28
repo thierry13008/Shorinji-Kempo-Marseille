@@ -136,6 +136,8 @@ export default function Home() {
   return (
     <main className="overflow-hidden relative">
       <Helmet>
+        <title>Shorinji Kempo Marseille — Saint-Giniez | Art Martial & Self-Défense</title>
+        <meta name="description" content="Shorinji Kempo Marseille 13008 : self-défense et art martial au quartier Saint-Giniez. Cours tous niveaux, essai gratuit. Rejoignez notre dojo." />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/" />
       </Helmet>
       {/* Fixed Background for CTA & Footer (Encyclopedia style) */}
@@ -355,7 +357,7 @@ export default function Home() {
                       {item.icon}
                     </div>
                     <div>
-                      <h4 className="text-surface text-xl font-bold mb-2">{item.title}</h4>
+                      <h3 className="text-surface text-xl font-bold mb-2">{item.title}</h3>
                       <p className="text-slate-700 leading-relaxed">{item.desc}</p>
                     </div>
                   </ScrollReveal>
