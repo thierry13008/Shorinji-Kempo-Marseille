@@ -8,10 +8,10 @@ import EngagementHub from '@/src/components/EngagementHub';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 // Lazy loaded components
-const InstructorsSection = lazy(() => import('@/src/components/InstructorsSection'));
-const FaqSection = lazy(() => import('@/src/components/FaqSection'));
-const TestimonialsSection = lazy(() => import('@/src/components/TestimonialsSection'));
-const ContactSection = lazy(() => import('@/src/components/ContactSection'));
+import InstructorsSection from '@/src/components/InstructorsSection';
+import ContactSection from '@/src/components/ContactSection';
+import FaqSection from '@/src/components/FaqSection';
+import TestimonialsSection from '@/src/components/TestimonialsSection';
 
 const SectionSkeleton = () => (
   <div className="py-24 max-w-7xl mx-auto px-6">
@@ -764,24 +764,16 @@ export default function Home() {
       </section>
 
       {/* Instructors Section */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <InstructorsSection />
-      </Suspense>
+      <InstructorsSection />
 
       {/* FAQ Section */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <FaqSection />
-      </Suspense>
+      <FaqSection />
 
       {/* Testimonials */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <TestimonialsSection />
-      </Suspense>
+      <TestimonialsSection />
 
       {/* Contact Section - Conversion Focus */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ContactSection />
-      </Suspense>
+      <ContactSection />
       {/* Maps Modal */}
       <AnimatePresence>
         {isMapOpen && (

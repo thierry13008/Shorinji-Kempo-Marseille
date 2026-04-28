@@ -46,14 +46,9 @@ export default function InstructorsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-text-primary mb-4"
-          >
+          <h2 className="text-text-primary text-4xl md:text-6xl font-black mb-4">
             Nos Instructeurs de Shorinji Kempo
-          </motion.h2>
+          </h2>
           <motion.div 
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
