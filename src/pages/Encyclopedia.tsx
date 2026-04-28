@@ -137,7 +137,7 @@ export default function Encyclopedia() {
     },
     {
       id: 'deroulement',
-      title: 'Deroulement des cours',
+      title: 'Déroulement de cours',
       icon: Clock,
       content: (
         <div className="space-y-12">
