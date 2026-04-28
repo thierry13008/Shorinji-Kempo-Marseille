@@ -51,9 +51,13 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
     </noscript>
 
-    <!-- Main CSS Preload & Non-blocking load -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    <!-- Main CSS (Vite will handle the injection in production) -->
+    <link rel="stylesheet" href="/src/index.css">
+
+    <!-- Fonts DNS-prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://i.ibb.co">
 
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json">
