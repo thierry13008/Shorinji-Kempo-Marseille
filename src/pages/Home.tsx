@@ -34,7 +34,6 @@ export default function Home() {
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [activeVideo, setActiveVideo] = useState<1 | 2>(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHubOpen, setIsHubOpen] = useState(false);
@@ -108,27 +107,8 @@ export default function Home() {
     }
   }, []);
 
-  // Intersection Observer for video lazy loading
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setShouldLoadVideo(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (videoContainerRef.current) {
-      observer.observe(videoContainerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
+  // Video interaction implementation
   const handleVideoInteraction = useCallback(() => {
-    if (!shouldLoadVideo) setShouldLoadVideo(true);
     if (isTransitioning) return;
     
     setIsTransitioning(true);
@@ -263,28 +243,8 @@ export default function Home() {
 
               <div 
                 ref={videoContainerRef}
-                className="h-full w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card"
+                className="aspect-[4/5] w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
               >
-                {/* Image Poster Overlay (First Frame) */}
-                {!shouldLoadVideo && (
-                  <div className="absolute inset-0 z-40">
-                    <img 
-                      src="https://res.cloudinary.com/dpfewspme/video/upload/v1774606161/video_salut_sans_watermark_gb80ku.jpg" 
-                      alt="Aperçu vidéo Salut"
-                      className="w-full h-full object-cover lg:rounded-xl"
-                      referrerPolicy="no-referrer"
-                      width={450}
-                      height={562}
-                    />
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video-card:bg-black/30 transition-colors duration-500">
-                      <div className="w-16 h-16 rounded-full bg-primary-gold/20 backdrop-blur-md flex items-center justify-center border border-primary-gold/30 group-hover/video-card:scale-110 transition-all duration-500">
-                        <Play className="text-white fill-white ml-1" size={24} />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
                 {/* Vidéo 1: Normal */}
                 <video 
                   ref={video1Ref}
@@ -292,12 +252,13 @@ export default function Home() {
                     "absolute inset-0 w-full h-full object-cover lg:rounded-xl transition-opacity duration-0",
                     activeVideo === 1 ? "opacity-100 z-20" : "opacity-0 z-10"
                   )}
-                  src={shouldLoadVideo ? "https://res.cloudinary.com/dpfewspme/video/upload/q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4" : undefined}
-                  poster="https://res.cloudinary.com/dpfewspme/video/upload/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
+                  src="https://res.cloudinary.com/dpfewspme/video/upload/q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
+                  poster="https://res.cloudinary.com/dpfewspme/video/upload/q_auto,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
                   autoPlay
                   muted
                   playsInline
-                  preload="none"
+                  preload="metadata"
+                  fetchPriority="high"
                   onEnded={handleVideo1Ended}
                 >
                   <track kind="captions" />
@@ -310,10 +271,10 @@ export default function Home() {
                     "absolute inset-0 w-full h-full object-cover lg:rounded-xl transition-opacity duration-0",
                     activeVideo === 2 ? "opacity-100 z-20" : "opacity-0 z-10"
                   )}
-                  src={shouldLoadVideo ? "https://res.cloudinary.com/dpfewspme/video/upload/e_reverse,q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4" : undefined}
+                  src="https://res.cloudinary.com/dpfewspme/video/upload/e_reverse,q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
                   muted
                   playsInline
-                  preload="none"
+                  preload="metadata"
                   onEnded={handleVideo2Ended}
                 >
                   <track kind="captions" />
