@@ -44,27 +44,47 @@ export default function Home() {
 
   // Apply Encyclopedia-style glass effect to footer on Home page
   useEffect(() => {
-    // Tally embed script loader
-    const d = document;
-    const w = "https://tally.so/widgets/embed.js";
-    const v = () => {
+    // Tally embed script loader - Defer to avoid blocking the main thread during hydration/load
+    const initTally = () => {
+      const d = document;
+      const w = "https://tally.so/widgets/embed.js";
+      const v = () => {
+        if (typeof (window as any).Tally !== "undefined") {
+          (window as any).Tally.loadEmbeds();
+        } else {
+          d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e: any) => {
+            e.src = e.dataset.tallySrc;
+          });
+        }
+      };
+
       if (typeof (window as any).Tally !== "undefined") {
-        (window as any).Tally.loadEmbeds();
-      } else {
-        d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e: any) => {
-          e.src = e.dataset.tallySrc;
-        });
+        v();
+      } else if (d.querySelector(`script[src="${w}"]`) === null) {
+        const s = d.createElement("script");
+        s.src = w;
+        s.defer = true;
+        s.onload = v;
+        s.onerror = v;
+        d.body.appendChild(s);
       }
     };
 
-    if (typeof (window as any).Tally !== "undefined") {
-      v();
-    } else if (d.querySelector(`script[src="${w}"]`) === null) {
-      const s = d.createElement("script");
-      s.src = w;
-      s.onload = v;
-      s.onerror = v;
-      d.body.appendChild(s);
+    // Delay initialization until the browser is idle
+    if (document.readyState === 'complete') {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(initTally);
+      } else {
+        setTimeout(initTally, 200);
+      }
+    } else {
+      window.addEventListener('load', () => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(initTally);
+        } else {
+          setTimeout(initTally, 200);
+        }
+      });
     }
 
     const footer = document.querySelector('footer');

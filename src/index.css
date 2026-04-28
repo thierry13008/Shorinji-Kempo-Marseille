@@ -162,11 +162,11 @@
     @apply max-h-screen opacity-100 visible;
   }
 
-  #menu-toggle:checked ~ div label .menu-icon {
+  #menu-toggle:checked ~ div .menu-icon {
     @apply hidden;
   }
 
-  #menu-toggle:checked ~ div label .close-icon {
+  #menu-toggle:checked ~ div .close-icon {
     @apply !block;
   }
 
