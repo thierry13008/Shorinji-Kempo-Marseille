@@ -35,6 +35,21 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co/vxrBHYdx/favicon.png" />
     <link rel="manifest" href="/manifest.json" />
     
+    <meta name="format-detection" content="telephone=no, date=no, address=no" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="copyright" content="Shorinji Kempo Marseille" />
+    
+    <!-- OneSignal Notifications -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignal.Hyphen.js" async=""></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "YOUR_ONESIGNAL_APP_ID_HERE",
+        });
+      });
+    </script>
+    
     <!-- Preload Critical Assets -->
     <link rel="preload" href="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" as="image" />
     <link rel="preconnect" href="https://i.ibb.co">
@@ -75,6 +90,7 @@
       "@id": "https://shorinji-kempo-marseille.vercel.app/",
       "url": "https://shorinji-kempo-marseille.vercel.app/",
       "telephone": "+33689090544",
+      "priceRange": "€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Quartier Saint-Giniez",
