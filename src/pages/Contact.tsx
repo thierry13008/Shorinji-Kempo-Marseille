@@ -69,6 +69,7 @@ export default function Contact() {
     <main className="min-h-screen bg-transparent pt-20 relative overflow-hidden">
       <Helmet>
         <title>Contact Shorinji Kempo Marseille | Essai Gratuit Saint-Giniez</title>
+        <meta name="description" content="Contactez le dojo Shorinji Kempo Marseille Saint-Giniez. Téléphone, adresse, horaires. Réservez votre cours d'essai gratuit au 06 89 09 05 44." />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/contact" />
       </Helmet>
       {/* Fixed Background for Contact Page */}
@@ -102,7 +103,7 @@ export default function Contact() {
                       <MapPin className="text-primary-gold" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1">Adresse</h4>
+                      <h3 className="text-white font-bold mb-1">Adresse</h3>
                       <p className="text-slate-400 text-[14px]">{contactInfo.address}</p>
                       <button 
                         onClick={() => setIsMapOpen(true)}
@@ -117,7 +118,7 @@ export default function Contact() {
                       <Phone className="text-primary-gold" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1">Téléphone</h4>
+                      <h3 className="text-white font-bold mb-1">Téléphone</h3>
                       <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="text-slate-400 text-[14px] hover:text-primary-gold transition-colors">{contactInfo.phone}</a>
                     </div>
                   </div>
@@ -126,7 +127,7 @@ export default function Contact() {
                       <Mail className="text-primary-gold" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1">Email</h4>
+                      <h3 className="text-white font-bold mb-1">Email</h3>
                       <a href={`mailto:${contactInfo.email}`} className="text-slate-400 text-[14px] hover:text-primary-gold transition-colors">{contactInfo.email}</a>
                     </div>
                   </div>
@@ -135,7 +136,7 @@ export default function Contact() {
                       <Clock className="text-primary-gold" size={20} />
                     </div>
                     <div>
-                      <h4 className="text-white font-bold mb-1">Horaires d'accueil</h4>
+                      <h3 className="text-white font-bold mb-1">Horaires d'accueil</h3>
                       <p className="text-slate-400 text-[14px] whitespace-pre-line">{contactInfo.hours}</p>
                     </div>
                   </div>
@@ -144,7 +145,7 @@ export default function Contact() {
               <ScrollReveal className="bg-surface glass-card border border-primary-gold/20 rounded-[24px] p-10 ki-aura-dark">
                 <div className="flex items-center gap-4 mb-6">
                   <CheckCircle className="text-primary-gold" size={24} />
-                  <h4 className="text-white font-bold uppercase tracking-widest">Offre Découverte</h4>
+                  <h3 className="text-white font-bold uppercase tracking-widest">Offre Découverte</h3>
                 </div>
                 <ul className="space-y-4 text-slate-300">
                   {contactInfo.discoveryOffer.map((item, index) => (

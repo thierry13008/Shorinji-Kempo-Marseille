@@ -285,7 +285,7 @@ export default function Encyclopedia() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 mt-20">
         <aside className="lg:col-span-3 space-y-8">
           <div className="sticky top-32">
-            <h3 className="text-primary-gold font-label text-xs tracking-[0.4em] uppercase mb-8">Sections</h3>
+            <span className="text-primary-gold font-label text-xs tracking-[0.4em] uppercase mb-8 block">Sections</span>
             <ul className="space-y-6">
               {sections.map((section) => (
                 <li key={section.id}>
