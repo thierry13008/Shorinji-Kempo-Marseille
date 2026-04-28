@@ -63,7 +63,7 @@ export default function Encyclopedia() {
             ))}
           </div>
           <div className="bg-primary-gold/5 p-8 rounded-2xl border-l-4 border-l-primary-gold">
-            <h4 className="text-primary-gold font-bold mb-4 uppercase tracking-widest text-xs">Le principe de l'unité</h4>
+            <h3 className="text-primary-gold font-bold mb-4 uppercase tracking-widest text-xs">Le principe de l'unité</h3>
             <p className="text-slate-300 text-sm leading-relaxed">
               Le Shorinji Kempo enseigne que Goho et Juho sont comme les deux faces d'une même pièce. Un pratiquant complet doit maîtriser les deux aspects pour répondre de manière appropriée à toute situation.
             </p>
@@ -128,7 +128,7 @@ export default function Encyclopedia() {
             </div>
           </div>
           <div className="glass-card ki-aura-dark p-8 border-l-4 border-l-primary-gold/30">
-            <h4 className="text-white font-bold mb-2">Hokai (Grades de Prêtrise)</h4>
+            <h3 className="text-white font-bold mb-2">Hokai (Grades de Prêtrise)</h3>
             <p className="text-slate-400 text-sm">
               En plus des grades techniques, le Shorinji Kempo possède un système de grades philosophiques (Doin) reflétant la compréhension spirituelle du pratiquant.
             </p>
@@ -216,10 +216,10 @@ export default function Encyclopedia() {
             >
               <Shield className="text-primary-gold shrink-0 group-hover:scale-110 transition-transform mt-1" size={24} />
               <div>
-                <h4 className="text-primary-gold font-bold mb-2 flex items-center gap-2">
+                <h3 className="text-primary-gold font-bold mb-2 flex items-center gap-2">
                   France Shorinji Kempo
                   <ExternalLink size={14} className="text-primary-gold opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h4>
+                </h3>
                 <p className="text-slate-400 text-sm">La fédération nationale qui regroupe tous les clubs officiels en France et organise les stages nationaux.</p>
               </div>
             </a>
@@ -228,7 +228,7 @@ export default function Encyclopedia() {
             >
               <MapPin className="text-primary-gold shrink-0 group-hover:scale-110 transition-transform mt-1" size={24} />
               <div>
-                <h4 className="text-primary-gold font-bold mb-2">Le Dojo de Marseille</h4>
+                <h3 className="text-primary-gold font-bold mb-2">Le Dojo de Marseille</h3>
                 <p className="text-slate-400 text-sm">Affilié officiellement à la FFSK et à la WSKO, garantissant un enseignement conforme aux standards nationaux et internationaux.</p>
               </div>
             </div>
