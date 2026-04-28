@@ -10,17 +10,17 @@ const instructors = [
     image: "https://i.ibb.co/6pjTwv8/instructeur-1-BIS.png",
   },
   {
-    name: "Sensei Yuko Irie Beyer",
+    name: "Assistante Yuko Irie Beyer",
     role: "3ème DAN",
-    image: "https://i.ibb.co/jPp0hBCg/instructeur-2-BIS.png",
+    image: "https://i.ibb.co/N6C1DzjM/Yuko-IRIE-BEYER-webp.webp",
   },
   {
-    name: "Sensei Marie Valentin",
+    name: "Assistante Marie Valentin",
     role: "3ème DAN",
     image: "https://i.ibb.co/cSs5RBFG/instructeur-4-BIS.png",
   },
   {
-    name: "Sensei Benoit Allix",
+    name: "Assistant\nBenoit\nAllix",
     role: "1ERE DAN",
     image: "https://i.ibb.co/4RfgQzXV/instructeur-3-BIS.png",
     position: "center 20%"
@@ -93,7 +93,7 @@ export default function InstructorsSection() {
                   {/* Kinetic Typography */}
                   <div className="space-y-3 mt-auto text-center flex flex-col items-center">
                     <h3 className="text-white">
-                      <span>{instructor.name}</span>
+                      <span className="whitespace-pre-line text-balance">{instructor.name}</span>
                     </h3>
                     <motion.div
                       initial={{ width: 0 }}

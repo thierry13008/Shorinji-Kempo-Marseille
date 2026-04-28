@@ -523,7 +523,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img 
             className="w-full h-full object-cover opacity-80" 
-            src="https://i.ibb.co/84dxgxnD/planing-du-dojo-compress.png" 
+            src="https://i.ibb.co/B5F7V0Bh/backgrount-agenda-WEBP.webp" 
             alt="Planning Dojo Background"
             referrerPolicy="no-referrer"
             loading="lazy"

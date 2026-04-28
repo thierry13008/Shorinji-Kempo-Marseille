@@ -70,7 +70,7 @@ export default function Contact() {
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img 
           className="w-full h-full object-cover opacity-80" 
-          src="https://i.ibb.co/nqnzvy9w/background-contact-compress.png" 
+          src="https://i.ibb.co/B5F7V0Bh/backgrount-agenda-WEBP.webp" 
           alt="Fond fixe contact"
           referrerPolicy="no-referrer"
         />
