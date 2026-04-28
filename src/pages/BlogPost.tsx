@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Loader2, AlertCircle, Clock, Share2, Bookmark, MessageSquare } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
@@ -80,6 +81,9 @@ export default function BlogPost() {
 
   return (
     <div className="pt-32 pb-20 min-h-screen bg-surface selection:bg-primary-gold selection:text-surface">
+      <Helmet>
+        <link rel="canonical" href={`https://shorinji-kempo-marseille.vercel.app/blog/${slug}`} />
+      </Helmet>
       {/* Scrollytelling Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-primary-gold z-50 origin-left"

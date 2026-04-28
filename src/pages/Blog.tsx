@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '@/src/components/ScrollReveal';
@@ -166,6 +167,9 @@ export default function Blog() {
 
   return (
     <main className="min-h-screen">
+      <Helmet>
+        <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/blog" />
+      </Helmet>
       <section className="pt-32 pb-20 bg-surface relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[600px] z-0 pointer-events-none">
           <img 

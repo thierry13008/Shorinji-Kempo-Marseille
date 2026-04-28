@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Clock, Phone, Mail, CheckCircle, X, Plus, Minus, Maximize2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 export default function Contact() {
@@ -66,6 +67,9 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen bg-transparent pt-20 relative overflow-hidden">
+      <Helmet>
+        <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/contact" />
+      </Helmet>
       {/* Fixed Background for Contact Page */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img 

@@ -1,8 +1,12 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 
 export default function LegalNotice() {
   return (
     <div className="pt-32 pb-20 bg-bg-main min-h-screen">
+      <Helmet>
+        <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/mentions-legales" />
+      </Helmet>
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

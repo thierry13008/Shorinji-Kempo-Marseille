@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap, ArrowRight } from 'lucide-react';
 
 export default function Encyclopedia() {
@@ -243,6 +244,9 @@ export default function Encyclopedia() {
   ];
   return (
     <div className="pt-32 pb-20 relative">
+      <Helmet>
+        <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
+      </Helmet>
       {/* Background Hero Fixed */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none">
         <img 

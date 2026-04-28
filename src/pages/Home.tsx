@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle, MapPin, Clock, Download, Sparkles, X, Plus, Mi
 import { cn } from '@/src/lib/utils';
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import EngagementHub from '@/src/components/EngagementHub';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
@@ -134,6 +135,9 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden relative">
+      <Helmet>
+        <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/" />
+      </Helmet>
       {/* Fixed Background for CTA & Footer (Encyclopedia style) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img 
