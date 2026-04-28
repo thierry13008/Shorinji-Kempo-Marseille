@@ -168,6 +168,7 @@ export default function Blog() {
   return (
     <main className="min-h-screen">
       <Helmet>
+        <title>Blog Shorinji Kempo Marseille | Actualités & Articles Saint-Giniez</title>
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/blog" />
       </Helmet>
       <section className="pt-32 pb-20 bg-surface relative overflow-hidden">
@@ -202,18 +203,18 @@ export default function Blog() {
               transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
               className="font-headline text-6xl md:text-8xl text-white mb-10 leading-[1.05] tracking-tight"
             >
-              Chroniques <br />
+              Le Flux Officiel <br />
               <span className="italic text-primary-gold">du Dojo</span>
             </motion.h1>
             
-            <motion.p 
+            <motion.h2 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 1 }}
               className="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed font-light"
             >
               Découvrez l'actualité du Shorinji Kempo Marseille : stages, événements, et réflexions sur la voie martiale.
-            </motion.p>
+            </motion.h2>
           </div>
         </header>
 

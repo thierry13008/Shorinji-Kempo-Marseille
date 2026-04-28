@@ -68,6 +68,7 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-transparent pt-20 relative overflow-hidden">
       <Helmet>
+        <title>Contact Shorinji Kempo Marseille | Essai Gratuit Saint-Giniez</title>
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/contact" />
       </Helmet>
       {/* Fixed Background for Contact Page */}
@@ -88,13 +89,13 @@ export default function Contact() {
       <section id="contact" className="relative py-32 bg-transparent overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-white mb-4">Prêt à commencer ?</h2>
+            <h1 className="text-white mb-4">Prêt à commencer ?</h1>
             <p className="text-slate-300">Réservez votre cours d’essai gratuit dès maintenant</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px]">
-                <h3 className="text-white mb-10">Informations de Contact</h3>
+                <h2 className="text-white mb-10">Informations de Contact</h2>
                 <div className="space-y-8">
                   <div className="flex items-start gap-6">
                     <div className="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20">
@@ -164,7 +165,7 @@ export default function Contact() {
 
             <div className="space-y-8">
               <ScrollReveal className="glass-card ki-aura-dark p-10 rounded-[24px] border border-primary-gold/20">
-                <h3 className="text-white mb-2">Envoyez-nous un message</h3>
+                <h2 className="text-white mb-2">Envoyez-nous un message</h2>
                 <p className="text-on-surface-variant mb-8">Remplissez le formulaire ci-dessous</p>
                 
                 <div className="w-full overflow-hidden rounded-xl">

@@ -465,7 +465,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Pour qui ?</span>
-            <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Le Shorinji Kempo est fait pour vous.</h2>
+            <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Le Shorinji Kempo est fait pour vous</h2>
             <p className="max-w-2xl mx-auto text-slate-600 text-xl">Que vous cherchiez la sérénité, la force ou la discipline, trouvez votre voie parmi nos sections dédiées.</p>
           </div>
 

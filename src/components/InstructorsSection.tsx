@@ -52,7 +52,7 @@ export default function InstructorsSection() {
             viewport={{ once: true }}
             className="text-text-primary mb-4"
           >
-            Nos Instructeurs
+            Nos Instructeurs de Shorinji Kempo
           </motion.h2>
           <motion.div 
             initial={{ scaleX: 0, opacity: 0 }}

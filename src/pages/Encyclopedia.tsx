@@ -245,6 +245,8 @@ export default function Encyclopedia() {
   return (
     <div className="pt-32 pb-20 relative">
       <Helmet>
+        <title>Encyclopédie du Shorinji Kempo — Histoire, Technique & Philosophie</title>
+        <meta name="description" content="Découvrez une archive complète sur le Shorinji Kempo : son histoire depuis 1947, ses techniques Goho et Juho, sa philosophie Zen et son organisation mondiale." />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
       </Helmet>
       {/* Background Hero Fixed */}
