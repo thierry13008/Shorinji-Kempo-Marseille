@@ -256,7 +256,7 @@ export default function Encyclopedia() {
           src="https://i.ibb.co/67dyVgQm/background-encyclopedie-compress.png" 
           alt="Illustration historique du Shorinji Kempo - Encyclopédie"
           referrerPolicy="no-referrer"
-          loading="lazy"
+          loading="eager"
           width={1920}
           height={1080}
         />
