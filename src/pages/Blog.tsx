@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, ArrowRight, Loader2, AlertCircle, Clock } from 'lucide-react';
+import { Calendar, ArrowRight, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '@/src/components/ScrollReveal';
 

@@ -20,14 +20,34 @@ export default defineConfig(({mode}) => {
       minify: 'esbuild',
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-            'vendor-framer': ['framer-motion', 'motion'],
-            'vendor-icons': ['lucide-react'],
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              // Group React core together
+              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom') || id.includes('scheduler')) {
+                return 'vendor-react';
+              }
+              // Group motion/animation libraries
+              if (id.includes('framer-motion') || id.includes('motion')) {
+                return 'vendor-motion';
+              }
+              // Icon library
+              if (id.includes('lucide-react')) {
+                return 'vendor-icons';
+              }
+              // AI and other utils
+              if (id.includes('@google/genai')) {
+                return 'vendor-ai';
+              }
+              // Everything else
+              return 'vendor-others';
+            }
           },
         },
       },
       chunkSizeWarningLimit: 1000,
+    },
+    esbuild: {
+      drop: ['console', 'debugger'],
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.

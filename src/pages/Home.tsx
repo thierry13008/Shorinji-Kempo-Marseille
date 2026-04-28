@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, CheckCircle, MapPin, Clock, Download, ChevronDown, Phone, Send, Sparkles, Mail, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin, Clock, Download, Sparkles, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp, Play } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
