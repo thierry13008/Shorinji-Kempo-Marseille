@@ -67,7 +67,7 @@ export default function ShareButton() {
   return (
     <>
       {/* Hidden Preload Image */}
-      <img src={qrCodeUrl} alt="" className="hidden" aria-hidden="true" loading="eager" />
+      <img src={qrCodeUrl} alt="" className="hidden" aria-hidden="true" loading="eager" width={200} height={200} />
 
       <AnimatePresence>
         {isVisible && (
@@ -141,6 +141,8 @@ export default function ShareButton() {
                   className="w-[200px] h-[200px] object-contain"
                   referrerPolicy="no-referrer"
                   loading="eager"
+                  width={200}
+                  height={200}
                 />
               </div>
 

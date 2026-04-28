@@ -251,6 +251,8 @@ export default function Encyclopedia() {
           alt="Illustration historique du Shorinji Kempo - Encyclopédie"
           referrerPolicy="no-referrer"
           loading="lazy"
+          width={1920}
+          height={1080}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
       </div>

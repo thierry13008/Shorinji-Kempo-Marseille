@@ -253,6 +253,8 @@ export default function Home() {
                       alt="Aperçu vidéo Salut"
                       className="w-full h-full object-cover lg:rounded-xl"
                       referrerPolicy="no-referrer"
+                      width={450}
+                      height={562}
                     />
                     {/* Play Button Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover/video-card:bg-black/30 transition-colors duration-500">

@@ -27,6 +27,8 @@ export default function Footer() {
                 className="h-[120px] w-auto object-contain brightness-110"
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                width={120}
+                height={120}
               />
             </a>
           </div>

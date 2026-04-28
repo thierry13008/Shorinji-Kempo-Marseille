@@ -73,6 +73,9 @@ export default function Contact() {
           src="https://i.ibb.co/B5F7V0Bh/backgrount-agenda-WEBP.webp" 
           alt="Fond fixe contact"
           referrerPolicy="no-referrer"
+          width={1920}
+          height={1080}
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
       </div>

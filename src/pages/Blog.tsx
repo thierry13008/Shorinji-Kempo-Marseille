@@ -174,6 +174,8 @@ export default function Blog() {
             className="w-full h-full object-cover opacity-70"
             referrerPolicy="no-referrer"
             loading="lazy"
+            width={1920}
+            height={600}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-transparent to-surface" />
         </div>
@@ -254,6 +256,8 @@ export default function Blog() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      width={800}
+                      height={450}
                     />
                     <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
@@ -339,6 +343,8 @@ export default function Blog() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                         referrerPolicy="no-referrer"
                         loading="lazy"
+                        width={400}
+                        height={225}
                       />
                       <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                     </div>
