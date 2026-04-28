@@ -155,15 +155,15 @@ export default function Home() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={false}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 1, ease: "easeOut" }}
               className="text-center lg:text-left relative z-50 pointer-events-none lg:pointer-events-auto"
             >
               <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
-              <h1 className="lcp-h1 text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
+              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
                 Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
               </h1>
               <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
