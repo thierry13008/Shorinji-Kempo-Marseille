@@ -130,6 +130,7 @@
 
   .animate-float {
     animation: float 4s ease-in-out infinite;
+    will-change: transform;
   }
 
   @keyframes pulse-gold {
@@ -148,6 +149,7 @@
 
   .animate-zoom-slow {
     animation: zoom-slow 20s ease-in-out infinite alternate;
+    will-change: transform;
   }
 
   #menu-toggle {
@@ -181,6 +183,7 @@
 
   .kinetic-reveal-inner {
     @apply block translate-y-[30px] opacity-0 transition-all duration-800 ease-[cubic-bezier(0.16,1,0.3,1)];
+    will-change: transform, opacity;
   }
 
   .is-visible .kinetic-reveal-inner {
@@ -189,6 +192,7 @@
 
   .parallax-reveal {
     @apply opacity-0 scale-110 blur-sm transition-all duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)];
+    will-change: transform, opacity, filter;
   }
 
   .is-visible .parallax-reveal {

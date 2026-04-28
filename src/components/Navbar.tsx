@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { MessageSquare, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cn } from '@/src/lib/utils';
 
@@ -78,9 +78,6 @@ export default function Navbar() {
             </div>
             
             <div className="flex items-center gap-6 ml-4">
-              <button className="text-primary-gold hover:scale-125 transition-transform duration-300 p-2" aria-label="Discuter avec nous">
-                <MessageSquare size={24} />
-              </button>
               <div className="flex flex-col items-end">
                 <a 
                   href="/#contact"

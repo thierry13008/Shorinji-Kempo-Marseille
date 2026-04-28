@@ -684,10 +684,11 @@ export default function Home() {
               <span className="micro-copy text-surface mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
               <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Comment nous rejoindre ?</h2>
               <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
+                style={{ transformOrigin: "center", willChange: "transform, opacity" }}
                 className="h-1 w-24 bg-surface mx-auto rounded-full"
               />
               <p className="text-slate-800 mt-8 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
@@ -753,11 +754,12 @@ export default function Home() {
                   
                   {/* Animated Line - Same as Instructors */}
                   <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "40px" }}
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.8 + (i * 0.2), duration: 0.8 }}
-                    className="h-[1px] bg-primary-gold/50 mx-auto mb-6 relative z-10"
+                    style={{ transformOrigin: "center", willChange: "transform, opacity" }}
+                    className="h-[1px] w-[40px] bg-primary-gold/50 mx-auto mb-6 relative z-10"
                   />
 
                   <p className="text-slate-300 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>

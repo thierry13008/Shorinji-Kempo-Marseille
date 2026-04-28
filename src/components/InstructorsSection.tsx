@@ -55,10 +55,11 @@ export default function InstructorsSection() {
             Nos Instructeurs de Shorinji Kempo
           </motion.h2>
           <motion.div 
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ transformOrigin: "center", willChange: "transform, opacity" }}
             className="h-1 w-24 bg-primary-gold mx-auto rounded-full"
           />
         </div>
@@ -96,11 +97,12 @@ export default function InstructorsSection() {
                       <span className="whitespace-pre-line text-balance">{instructor.name}</span>
                     </h3>
                     <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "40px" }}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      whileInView={{ scaleX: 1, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.8 + (index * 0.2), duration: 0.8 }}
-                      className="h-[1px] bg-primary-gold/50 mx-auto"
+                      style={{ transformOrigin: "center", willChange: "transform, opacity" }}
+                      className="h-[1px] w-[40px] bg-primary-gold/50 mx-auto"
                     />
                     <p className="micro-copy">
                       {instructor.role}
