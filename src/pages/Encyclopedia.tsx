@@ -253,7 +253,7 @@ export default function Encyclopedia() {
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none">
         <img 
           className="w-full h-full object-cover opacity-60 contrast-110" 
-          src="https://i.ibb.co/67dyVgQm/background-encyclopedie-compress.png" 
+          src="https://i.ibb.co/Z6dFCphF/fond-contact-webp.webp" 
           alt="Illustration historique du Shorinji Kempo - Encyclopédie"
           referrerPolicy="no-referrer"
           loading="eager"
