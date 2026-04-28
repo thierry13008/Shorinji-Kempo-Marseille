@@ -77,10 +77,7 @@ export default function Navbar() {
               ))}
             </div>
             
-            <div className="flex items-center gap-6 ml-4">
-              <button className="text-primary-gold-contrast hover:scale-125 transition-transform duration-300 p-2" aria-label="Discuter avec nous">
-                <MessageSquare size={24} />
-              </button>
+            <div className="flex items-center ml-4">
               <div className="flex flex-col items-end">
                 <a 
                   href="/#contact"
