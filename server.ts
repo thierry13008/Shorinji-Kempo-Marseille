@@ -11,6 +11,12 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Headers for SEO
+  app.use((req, res, next) => {
+    res.setHeader("X-Robots-Tag", "index, follow");
+    next();
+  });
+
   // Sitemap route
   app.get("/sitemap.xml", async (req, res) => {
     const staticPages = [
