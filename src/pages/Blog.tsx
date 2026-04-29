@@ -169,6 +169,8 @@ export default function Blog() {
     <main className="min-h-screen">
       <Helmet>
         <title>Blog Shorinji Kempo Marseille | Actualités & Articles Saint-Giniez</title>
+        <meta name="description" content="Toutes les actualités du club Shorinji Kempo Marseille : stages, événements, passages de grades et articles sur la pratique." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/blog" />
       </Helmet>
       <section className="pt-32 pb-20 bg-surface relative overflow-hidden">

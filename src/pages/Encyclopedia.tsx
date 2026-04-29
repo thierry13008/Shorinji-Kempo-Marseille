@@ -247,6 +247,7 @@ export default function Encyclopedia() {
       <Helmet>
         <title>Encyclopédie du Shorinji Kempo — Histoire, Technique & Philosophie</title>
         <meta name="description" content="Découvrez une archive complète sur le Shorinji Kempo : son histoire depuis 1947, ses techniques Goho et Juho, sa philosophie Zen et son organisation mondiale." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
       </Helmet>
       {/* Background Hero Fixed */}

@@ -82,6 +82,9 @@ export default function BlogPost() {
   return (
     <div className="pt-32 pb-20 min-h-screen bg-surface selection:bg-primary-gold selection:text-surface">
       <Helmet>
+        <title>{`${post.title.rendered.replace(/&#8211;/g, '–').replace(/&#8217;/g, "'")} | Blog Shorinji Kempo Marseille`}</title>
+        <meta name="description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://shorinji-kempo-marseille.vercel.app/blog/${slug}`} />
       </Helmet>
       {/* Scrollytelling Progress Bar */}

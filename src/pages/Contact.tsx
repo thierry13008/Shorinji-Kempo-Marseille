@@ -70,6 +70,7 @@ export default function Contact() {
       <Helmet>
         <title>Contact Shorinji Kempo Marseille | Essai Gratuit Saint-Giniez</title>
         <meta name="description" content="Contactez le dojo Shorinji Kempo Marseille Saint-Giniez. Téléphone, adresse, horaires. Réservez votre cours d'essai gratuit au 06 89 09 05 44." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/contact" />
       </Helmet>
       {/* Fixed Background for Contact Page */}

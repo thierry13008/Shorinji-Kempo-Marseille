@@ -138,6 +138,7 @@ export default function Home() {
       <Helmet>
         <title>Shorinji Kempo Marseille — Saint-Giniez | Art Martial & Self-Défense</title>
         <meta name="description" content="Shorinji Kempo Marseille 13008 : self-défense et art martial au quartier Saint-Giniez. Cours tous niveaux, essai gratuit. Rejoignez notre dojo." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/" />
       </Helmet>
       {/* Fixed Background for CTA & Footer (Encyclopedia style) */}

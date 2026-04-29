@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-
+Disallow: /assets/
 Sitemap: https://shorinji-kempo-marseille.vercel.app/sitemap.xml
