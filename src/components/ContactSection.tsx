@@ -48,7 +48,7 @@ export default function ContactSection() {
             <div className="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2">
                 <img 
-                  src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
+                  src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
                   alt="Marseille Shorinji Kempo" 
                   className="w-full h-full object-contain" 
                   referrerPolicy="no-referrer" 

@@ -4,14 +4,13 @@ import { cn } from '@/src/lib/utils';
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import EngagementHub from '@/src/components/EngagementHub';
-import ScrollReveal from '@/src/components/ScrollReveal';
-
 // Lazy loaded components
-import InstructorsSection from '@/src/components/InstructorsSection';
-import ContactSection from '@/src/components/ContactSection';
-import FaqSection from '@/src/components/FaqSection';
-import TestimonialsSection from '@/src/components/TestimonialsSection';
+const EngagementHub = lazy(() => import('@/src/components/EngagementHub'));
+const InstructorsSection = lazy(() => import('@/src/components/InstructorsSection'));
+const FaqSection = lazy(() => import('@/src/components/FaqSection'));
+const TestimonialsSection = lazy(() => import('@/src/components/TestimonialsSection'));
+const ContactSection = lazy(() => import('@/src/components/ContactSection'));
+const ScrollReveal = lazy(() => import('@/src/components/ScrollReveal'));
 
 const SectionSkeleton = () => (
   <div className="py-24 max-w-7xl mx-auto px-6">
@@ -180,11 +179,11 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden hero-section">
         {/* Desktop Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           <img 
-            className="w-full h-full object-cover opacity-80 animate-zoom-slow" 
+            className="w-full h-full object-cover opacity-80 animate-zoom-slow bg-animate" 
             src="https://i.ibb.co/hxxzMwG9/fond-header-webp.webp" 
             alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
@@ -197,7 +196,7 @@ export default function Home() {
         </div>
         
         <div 
-          className="static lg:relative lg:z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20"
+          className="relative z-40 lg:relative lg:z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20 hero-container"
           onMouseEnter={handleVideoInteraction}
           onTouchStart={handleVideoInteraction}
           onClick={handleVideoInteraction}
@@ -207,15 +206,15 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="text-center lg:text-left relative z-50 pointer-events-none lg:pointer-events-auto"
+              className="text-center lg:text-left relative z-30 pointer-events-none lg:pointer-events-auto"
             >
               <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
-              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
-                Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
+              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)] hero-title">
+                Révélez votre <span className="text-primary-gold italic text-gold">force intérieure</span> avec le Shorinji Kempo
               </h1>
-              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
+              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)] hero-description">
                 Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
               </p>
               <div className="flex flex-col items-center lg:items-start gap-6 pointer-events-auto">
@@ -274,7 +273,7 @@ export default function Home() {
 
               <div 
                 ref={videoContainerRef}
-                className="h-full w-full lg:h-auto lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
+                className="h-full w-full lg:h-auto lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5 video-wrapper"
               >
                 {/* Vidéo 1: Normal */}
                 <video 
@@ -789,16 +788,24 @@ export default function Home() {
       </section>
 
       {/* Instructors Section */}
-      <InstructorsSection />
+      <Suspense fallback={<SectionSkeleton />}>
+        <InstructorsSection />
+      </Suspense>
 
       {/* FAQ Section */}
-      <FaqSection />
+      <Suspense fallback={<SectionSkeleton />}>
+        <FaqSection />
+      </Suspense>
 
       {/* Testimonials */}
-      <TestimonialsSection />
+      <Suspense fallback={<SectionSkeleton />}>
+        <TestimonialsSection />
+      </Suspense>
 
       {/* Contact Section - Conversion Focus */}
-      <ContactSection />
+      <Suspense fallback={<SectionSkeleton />}>
+        <ContactSection />
+      </Suspense>
       {/* Maps Modal */}
       <AnimatePresence>
         {isMapOpen && (
@@ -893,7 +900,13 @@ export default function Home() {
               }}
               className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
             >
-              <EngagementHub onClose={() => setIsHubOpen(false)} />
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-primary-gold/20 border-t-primary-gold rounded-full animate-spin"></div>
+                </div>
+              }>
+                <EngagementHub onClose={() => setIsHubOpen(false)} />
+              </Suspense>
             </motion.div>
           </div>
         )}

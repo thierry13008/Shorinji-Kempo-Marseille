@@ -190,7 +190,7 @@ export default function BlogPost() {
               <div className="flex items-center gap-6">
                  <div className="w-16 h-16 rounded-2xl bg-surface-high border border-white/10 flex items-center justify-center p-2 shadow-xl rotate-3">
                    <img 
-                     src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
+                     src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
                      alt="Logo" 
                      className="w-full h-full object-contain" 
                      referrerPolicy="no-referrer" 

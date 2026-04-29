@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ShareButton from './components/ShareButton';
+const ShareButton = lazy(() => import('./components/ShareButton'));
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -62,7 +62,9 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
-        <ShareButton />
+        <Suspense fallback={null}>
+          <ShareButton />
+        </Suspense>
       </div>
     </Router>
   );
