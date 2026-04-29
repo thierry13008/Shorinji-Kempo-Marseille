@@ -164,7 +164,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
     } finally {
       setIsAnalyzing(false);
     }
-  }, [inputValue, knowledgeBase]);
+  }, [inputValue]);
 
   return (
     <motion.div 

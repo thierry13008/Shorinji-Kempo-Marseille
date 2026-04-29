@@ -284,7 +284,7 @@ export default function Home() {
                     activeVideo === 1 ? "opacity-100 z-20" : "opacity-0 z-10"
                   )}
                   src="https://res.cloudinary.com/dpfewspme/video/upload/q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
-                  poster="https://res.cloudinary.com/dpfewspme/video/upload/q_auto,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
+                  poster="https://res.cloudinary.com/dpfewspme/video/upload/w_800,q_70,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
                   autoPlay
                   muted
                   playsInline
