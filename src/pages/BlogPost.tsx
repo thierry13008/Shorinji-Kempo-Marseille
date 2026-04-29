@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Loader2, AlertCircle, Clock, Share2, Bookmark, MessageSquare } from 'lucide-react';
-import { motion, useScroll, useSpring } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
@@ -19,13 +18,20 @@ export default function BlogPost() {
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        const currentProgress = (window.scrollY / totalScroll) * 100;
+        setScrollProgress(currentProgress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -113,10 +119,10 @@ export default function BlogPost() {
           })}
         </script>
       </Helmet>
-      {/* Scrollytelling Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary-gold z-50 origin-left"
-        style={{ scaleX }}
+      {/* Scroll Progress Bar */}
+      <div
+        className="fixed top-0 left-0 right-0 h-1 bg-primary-gold z-50 transition-all duration-100 ease-out origin-left shadow-[0_0_10px_rgba(212,175,55,0.5)]"
+        style={{ transform: `scaleX(${scrollProgress / 100})` }}
       />
 
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">

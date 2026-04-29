@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Home as HomeIcon } from 'lucide-react';
@@ -22,26 +21,22 @@ export default function NotFound() {
       </div>
 
       <div className="relative z-10 w-full max-w-2xl px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center bg-surface/40 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl"
+        <div
+          className="flex flex-col items-center bg-surface/40 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl animate-fade-in-up"
+          style={{ animationDuration: '0.6s' }}
         >
           {/* Logo with specific background image behind it */}
           <div className="relative mb-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 0.8, scale: 1 }}
-              transition={{ duration: 4, ease: "easeOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[900px] md:h-[900px] rounded-full overflow-hidden blur-[0px] border border-white/20 shadow-[0_0_100px_rgba(212,175,55,0.1)] pointer-events-none"
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[900px] md:h-[900px] rounded-full overflow-hidden blur-[0px] border border-white/20 shadow-[0_0_100px_rgba(212,175,55,0.1)] pointer-events-none animate-reveal"
+              style={{ animationDuration: '4s', opacity: 0.8 }}
             >
               <img 
                 src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
                 alt="" 
                 className="w-full h-full object-cover scale-150 animate-pulse-slow"
               />
-            </motion.div>
+            </div>
 
             <div className="relative z-10 p-6 bg-white/10 rounded-full backdrop-blur-xl border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
               <img 
@@ -68,7 +63,7 @@ export default function NotFound() {
             <HomeIcon size={22} className="relative z-10 group-hover:rotate-12 transition-transform" />
             <span className="relative z-10">Retour à l'accueil</span>
           </Link>
-        </motion.div>
+        </div>
       </div>
 
       {/* Decorative background elements */}

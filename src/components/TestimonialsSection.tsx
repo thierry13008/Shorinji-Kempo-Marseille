@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Sparkles, Download } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import ScrollReveal from '@/src/components/ScrollReveal';
@@ -22,9 +21,8 @@ export default function TestimonialsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {TESTIMONIALS.map((t, i) => (
             <ScrollReveal key={i} delay={i * 0.2}>
-              <motion.div
-                whileHover={{ y: -12, scale: 1.02 }}
-                className="relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible bg-[#1A243A]/10 backdrop-blur-[16px] border-white/10 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.4)] ki-aura-dark"
+              <div
+                className="relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible bg-[#1A243A]/10 backdrop-blur-[16px] border-white/10 border-l-primary-gold shadow-[0_40px_80px_rgba(0,0,0,0.4)] ki-aura-dark hover:-translate-y-3 hover:scale-[1.02]"
               >
                 {/* Decorative Quote Icon */}
                 <div className="absolute top-8 right-8 opacity-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110 text-primary-gold" icon-id="sparkle-icon">
@@ -33,11 +31,7 @@ export default function TestimonialsSection() {
 
                 {/* Overlapping Photo with Floating Effect */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-                  <motion.div 
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative"
-                  >
+                  <div className="relative animate-float">
                     <img 
                       src={t.img} 
                       className={cn(
@@ -53,7 +47,7 @@ export default function TestimonialsSection() {
                     <div className="absolute -bottom-2 -right-2 bg-primary-gold text-on-primary rounded-full p-2 shadow-xl border-2 border-surface">
                       <Sparkles size={16} fill="currentColor" />
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
 
                 <div className="mb-8 relative z-10">
@@ -75,18 +69,17 @@ export default function TestimonialsSection() {
 
                 <div className="mt-10 flex justify-center gap-1.5 relative z-10">
                   {[...Array(5)].map((_, starIndex) => (
-                    <motion.div
+                    <div
                       key={starIndex}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.5 + (starIndex * 0.1) }}
+                      className="reveal-scale"
+                      style={{ transitionDelay: `${0.5 + (starIndex * 0.1)}s` }}
                     >
                       <Sparkles 
                         size={14} 
                         className="text-primary-gold" 
                         fill="currentColor" 
                       />
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
@@ -95,7 +88,7 @@ export default function TestimonialsSection() {
                   <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary-gold/20 blur-[80px]"></div>
                   <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-primary-gold/10 blur-[80px]"></div>
                 </div>
-              </motion.div>
+              </div>
             </ScrollReveal>
           ))}
         </div>

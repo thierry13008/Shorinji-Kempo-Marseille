@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Clock, Phone, Mail, CheckCircle, X, Plus, Minus, Maximize2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -231,81 +230,73 @@ export default function Contact() {
       </section>
 
       {/* Maps Modal */}
-      <AnimatePresence>
-        {isMapOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMapOpen(false)}
-              className="absolute inset-0 bg-surface/80 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark p-2"
-            >
-              {/* Close Button - Top Right */}
-              <div className="absolute top-6 right-6 z-10">
-                <button 
-                  onClick={() => setIsMapOpen(false)}
-                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
-                >
-                  <X size={24} />
-                </button>
-              </div>
+      {isMapOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+          <div
+            onClick={() => setIsMapOpen(false)}
+            className="absolute inset-0 bg-surface/80 backdrop-blur-sm animate-fade-in"
+          />
+          <div
+            className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark p-2 animate-scale-in"
+          >
+            {/* Close Button - Top Right */}
+            <div className="absolute top-6 right-6 z-10">
+              <button 
+                onClick={() => setIsMapOpen(false)}
+                className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
+              >
+                <X size={24} />
+              </button>
+            </div>
 
-              {/* Zoom & Fullscreen Controls - Bottom Right */}
-              <div className="absolute bottom-24 right-6 z-10 flex flex-col gap-4">
-                <div className="flex flex-col gap-2">
-                  <button 
-                    onClick={() => setMapZoom(prev => Math.min(prev + 1, 21))}
-                    className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
-                    title="Zoom avant"
-                  >
-                    <Plus size={20} />
-                  </button>
-                  <button 
-                    onClick={() => setMapZoom(prev => Math.max(prev - 1, 1))}
-                    className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
-                    title="Zoom arrière"
-                  >
-                    <Minus size={20} />
-                  </button>
-                </div>
-
+            {/* Zoom & Fullscreen Controls - Bottom Right */}
+            <div className="absolute bottom-24 right-6 z-10 flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 <button 
-                  onClick={() => {
-                    const iframe = document.querySelector('iframe[title="Google Maps Dojo Saint-Giniez"]');
-                    if (iframe) {
-                      if (iframe.requestFullscreen) {
-                        iframe.requestFullscreen();
-                      }
-                    }
-                  }}
+                  onClick={() => setMapZoom(prev => Math.min(prev + 1, 21))}
                   className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
-                  title="Plein écran"
+                  title="Zoom avant"
                 >
-                  <Maximize2 size={20} />
+                  <Plus size={20} />
+                </button>
+                <button 
+                  onClick={() => setMapZoom(prev => Math.max(prev - 1, 1))}
+                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                  title="Zoom arrière"
+                >
+                  <Minus size={20} />
                 </button>
               </div>
-              <iframe
-                src={`https://maps.google.com/maps?q=43.2719266,5.3916423&z=${mapZoom}&output=embed`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-[2rem]"
-                title="Google Maps Dojo Saint-Giniez"
-              ></iframe>
-            </motion.div>
+
+              <button 
+                onClick={() => {
+                  const iframe = document.querySelector('iframe[title="Google Maps Dojo Saint-Giniez"]');
+                  if (iframe) {
+                    if ((iframe as any).requestFullscreen) {
+                      (iframe as any).requestFullscreen();
+                    }
+                  }
+                }}
+                className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl active:scale-95"
+                title="Plein écran"
+              >
+                <Maximize2 size={20} />
+              </button>
+            </div>
+            <iframe
+              src={`https://maps.google.com/maps?q=43.2719266,5.3916423&z=${mapZoom}&output=embed`}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="rounded-[2rem]"
+              title="Google Maps Dojo Saint-Giniez"
+            ></iframe>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </main>
   );
 }

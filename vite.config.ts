@@ -36,10 +36,6 @@ export default defineConfig(({mode}) => {
               if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom') || id.includes('scheduler') || id.includes('react-helmet-async')) {
                 return 'vendor-react';
               }
-              // Group motion/animation libraries
-              if (id.includes('motion')) {
-                return 'vendor-motion';
-              }
               // Icon library - isolated to ensure tree-shaking efficacy
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
