@@ -79,8 +79,29 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
+
+    // Valid routes list for 404 handling
+    const validRoutes = [
+      "/",
+      "/encyclopedia",
+      "/contact",
+      "/blog",
+      "/mentions-legales",
+      "/politique-confidentialite"
+    ];
+
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      const url = req.path;
+      
+      // Check if it's a static page or a blog post route
+      const isBlogRoute = url.startsWith("/blog/");
+      const isValidRoute = validRoutes.includes(url) || isBlogRoute;
+
+      if (!isValidRoute) {
+        res.status(404).sendFile(path.join(distPath, "index.html"));
+      } else {
+        res.sendFile(path.join(distPath, "index.html"));
+      }
     });
   }
 

@@ -82,10 +82,36 @@ export default function BlogPost() {
   return (
     <div className="pt-32 pb-20 min-h-screen bg-surface selection:bg-primary-gold selection:text-surface">
       <Helmet>
-        <title>{`${post.title.rendered.replace(/&#8211;/g, '–').replace(/&#8217;/g, "'")} | Blog Shorinji Kempo Marseille`}</title>
+        <title>{`${decodeHtml(post.title.rendered)} | Blog Shorinji Kempo Marseille`}</title>
         <meta name="description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://shorinji-kempo-marseille.vercel.app/blog/${slug}`} />
+        <meta name="robots" content="index, follow, noarchive" />
+        <link rel="canonical" href={post.link} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content={`${decodeHtml(post.title.rendered)} | Blog Shorinji Kempo Marseille`} />
+        <meta property="og:description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
+        <meta property="og:image" content={featuredImage || "https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp"} />
+        <meta property="og:url" content={post.link} />
+        <meta property="og:type" content="article" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${decodeHtml(post.title.rendered)} | Blog Shorinji Kempo Marseille`} />
+        <meta name="twitter:description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
+        <meta name="twitter:image" content={featuredImage || "https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp"} />
+        
+        {/* Structured Data: BreadcrumbList */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://shorinji-kempo-marseille.vercel.app/blog" },
+              { "@type": "ListItem", "position": 3, "name": decodeHtml(post.title.rendered), "item": `https://shorinji-kempo-marseille.vercel.app/blog/${post.slug}` }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* Scrollytelling Progress Bar */}
       <motion.div
