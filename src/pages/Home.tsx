@@ -197,7 +197,7 @@ export default function Home() {
         </div>
         
         <div 
-          className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20"
+          className="static lg:relative lg:z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20"
           onMouseEnter={handleVideoInteraction}
           onTouchStart={handleVideoInteraction}
           onClick={handleVideoInteraction}
@@ -269,12 +269,12 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
             >
-              {/* Mobile Overlay ajusté pour une visibilité maximale */}
-              <div className="absolute inset-0 bg-black/10 z-30 lg:hidden pointer-events-none"></div>
+              {/* Mobile Overlay ajusté pour une visibilité maximale et lisibilité */}
+              <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
 
               <div 
                 ref={videoContainerRef}
-                className="aspect-[4/5] w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
+                className="h-full w-full lg:h-auto lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
               >
                 {/* Vidéo 1: Normal */}
                 <video 
