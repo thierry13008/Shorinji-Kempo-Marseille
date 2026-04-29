@@ -32,38 +32,8 @@
     <meta property="twitter:image" content="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" />
 
     <link rel="icon" type="image/png" href="https://i.ibb.co/vxrBHYdx/favicon.png" />
-    <link rel="manifest" href="/manifest.json" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="copyright" content="Shorinji Kempo Marseille" />
-    
-    <!-- OneSignal Notifications -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignal.Hyphen.js" defer></script>
-    <script>
-      (function() {
-        const initOneSignal = () => {
-          window.OneSignalDeferred = window.OneSignalDeferred || [];
-          OneSignalDeferred.push(async function(OneSignal) {
-            await OneSignal.init({
-              appId: "YOUR_ONESIGNAL_APP_ID_HERE",
-            });
-          });
-        };
-        
-        if (document.readyState === 'complete') {
-          initOneSignal();
-        } else {
-          window.addEventListener('load', () => {
-            if ('requestIdleCallback' in window) {
-              requestIdleCallback(initOneSignal);
-            } else {
-              setTimeout(initOneSignal, 100);
-            }
-          });
-        }
-      })();
-    </script>
     
     <!-- Preload Critical Assets -->
     <link rel="preload" href="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" as="image" />

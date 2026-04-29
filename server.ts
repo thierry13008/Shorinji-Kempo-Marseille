@@ -68,8 +68,6 @@ async function startServer() {
     xml += `
 </urlset>`;
 
-    console.log("Generated Sitemap XML:", xml);
-
     res.header("Content-Type", "application/xml");
     res.status(200).send(xml);
   };
@@ -119,7 +117,6 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
   });
 }
 

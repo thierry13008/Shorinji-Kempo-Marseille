@@ -100,7 +100,6 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [knowledgeBase, setKnowledgeBase] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -136,7 +135,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
         model: "gemini-3-flash-preview",
         contents: inputValue,
         config: {
-          systemInstruction: DEFAULT_SYSTEM_INSTRUCTION(knowledgeBase || KNOWLEDGE_BASE),
+          systemInstruction: DEFAULT_SYSTEM_INSTRUCTION(KNOWLEDGE_BASE),
         },
       });
 

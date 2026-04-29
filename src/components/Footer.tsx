@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Facebook, MapPin, Clock, ExternalLink } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Footer() {
   const [contactInfo, setContactInfo] = useState({
@@ -9,10 +9,6 @@ export default function Footer() {
     facebook: "https://www.facebook.com/shorinjikempo.marseille",
     hours: "Lundi: 20h00 - 21h30\nMercredi: 20h00 - 21h30\nVendredi: 20h15 - 21h45"
   });
-
-  useEffect(() => {
-    // Dynamic fetching removed as per user request
-  }, []);
 
   return (
     <footer className="bg-white/5 backdrop-blur-md text-[#CCCCCC] border-t border-white/10">
@@ -45,6 +41,7 @@ export default function Footer() {
                   <li><Link to="/blog" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Blog</Link></li>
                   <li><Link to="/contact" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Contact</Link></li>
                   <li><Link to="/mentions-legales" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Mentions Légales</Link></li>
+                  <li><Link to="/politique-confidentialite" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Politique de Confidentialité</Link></li>
                 </ul>
               </nav>
             </div>
