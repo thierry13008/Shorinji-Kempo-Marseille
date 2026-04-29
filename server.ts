@@ -24,6 +24,8 @@ async function startServer() {
       { url: "/contact", priority: "0.8", freq: "yearly" },
       { url: "/encyclopedia", priority: "0.8", freq: "yearly" },
       { url: "/blog", priority: "0.8", freq: "monthly" },
+      { url: "/mentions-legales", priority: "0.5", freq: "yearly" },
+      { url: "/politique-confidentialite", priority: "0.5", freq: "yearly" },
     ];
 
     let wpPosts: any[] = [];
@@ -45,7 +47,7 @@ async function startServer() {
     staticPages.forEach(page => {
       xml += `
   <url>
-    <loc>${baseUrl}${page.url === "/" ? "" : page.url}</loc>
+    <loc>${baseUrl}${page.url}</loc>
     <lastmod>${lastModDate}</lastmod>
     <changefreq>${page.freq}</changefreq>
     <priority>${page.priority}</priority>
@@ -65,6 +67,8 @@ async function startServer() {
 
     xml += `
 </urlset>`;
+
+    console.log("Generated Sitemap XML:", xml);
 
     res.header("Content-Type", "application/xml");
     res.status(200).send(xml);
