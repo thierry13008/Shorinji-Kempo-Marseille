@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '@/src/components/ScrollReveal';
-import Breadcrumbs from '@/src/components/Breadcrumbs';
 import { cn } from '@/src/lib/utils';
 
 // API Configuration
@@ -216,7 +215,6 @@ export default function Blog() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
           
           <div className="max-w-4xl">
-            <Breadcrumbs items={[{ name: "Blog", path: "/blog" }]} />
             <div 
               className="inline-flex items-center gap-4 text-primary-gold mb-8 animate-fade-in-left"
             >
@@ -435,12 +433,6 @@ export default function Blog() {
             <p>Impossible de synchroniser les derniers articles en temps réel. Affichage du contenu en cache.</p>
           </div>
         )}
-
-        <ScrollReveal delay={0.2} className="mt-20 py-12 border-t border-slate-100 w-full text-center">
-          <p className="text-slate-500 text-[10px] tracking-widest uppercase font-bold">
-            Envie d'essayer ? <Link to="/shorinji-kempo-marseille" className="text-primary-gold hover:underline transition-all">Découvrez le Shorinji Kempo à Marseille</Link>
-          </p>
-        </ScrollReveal>
       </div>
       </section>
     </main>

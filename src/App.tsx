@@ -14,11 +14,6 @@ const Contact = lazy(() => import('./pages/Contact'));
 const LegalNotice = lazy(() => import('./pages/LegalNotice'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const ShorinjiKempoMarseille = lazy(() => import('./pages/ShorinjiKempoMarseille'));
-const ShorinjiKempoVsKarate = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsKarate'));
-const ShorinjiKempoVsJudo = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsJudo'));
-const ShorinjiKempoVsAikido = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsAikido'));
-const ShorinjiKempoVsKungFu = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsKungFu'));
-const SelfDefenseMarseille = lazy(() => import('./pages/SelfDefenseMarseille'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading component for Suspense fallback
@@ -64,11 +59,6 @@ export default function App() {
               <Route path="/mentions-legales" element={<LegalNotice />} />
               <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
               <Route path="/shorinji-kempo-marseille" element={<ShorinjiKempoMarseille />} />
-              <Route path="/encyclopedie/shorinji-kempo-vs-karate" element={<ShorinjiKempoVsKarate />} />
-              <Route path="/encyclopedie/shorinji-kempo-vs-judo" element={<ShorinjiKempoVsJudo />} />
-              <Route path="/encyclopedie/shorinji-kempo-vs-aikido" element={<ShorinjiKempoVsAikido />} />
-              <Route path="/encyclopedie/shorinji-kempo-vs-kung-fu" element={<ShorinjiKempoVsKungFu />} />
-              <Route path="/self-defense-marseille" element={<SelfDefenseMarseille />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

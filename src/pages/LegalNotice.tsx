@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import Breadcrumbs from '@/src/components/Breadcrumbs';
 
 export default function LegalNotice() {
   return (
@@ -8,7 +7,6 @@ export default function LegalNotice() {
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/mentions-legales" />
       </Helmet>
       <div className="max-w-4xl mx-auto px-6">
-        <Breadcrumbs items={[{ name: "Mentions Légales", path: "/mentions-legales" }]} />
         <div
           className="animate-fade-in-up"
           style={{ animationDuration: '0.8s' }}

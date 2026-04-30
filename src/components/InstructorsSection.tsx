@@ -45,7 +45,7 @@ export default function InstructorsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <h2 className="text-white text-4xl md:text-6xl font-black mb-4">
+          <h2 className="text-text-primary text-4xl md:text-6xl font-black mb-4">
             Nos Instructeurs de Shorinji Kempo
           </h2>
           <ScrollReveal delay={0.2} className="w-full flex justify-center">

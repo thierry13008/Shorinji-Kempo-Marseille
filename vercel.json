@@ -12,7 +12,7 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!api/|.*\\.).*)", "destination": "/index.html" }
   ],
   "cleanUrls": true
 }

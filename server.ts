@@ -82,25 +82,37 @@ async function startServer() {
       appType: "spa",
     });
     app.use(vite.middlewares);
-
-    // Explicit SPA fallback for dev mode to ensure routes like /encyclopedia work
-    app.use("*", async (req, res, next) => {
-      const url = req.originalUrl;
-      try {
-        const fs = await import("fs");
-        let template = fs.readFileSync(path.resolve(__dirname, "index.html"), "utf-8");
-        template = await vite.transformIndexHtml(url, template);
-        res.status(200).set({ "Content-Type": "text/html" }).end(template);
-      } catch (e) {
-        next(e);
-      }
-    });
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
 
+    // Valid routes list for 404 handling
+    const validRoutes = [
+      "/",
+      "/encyclopedia",
+      "/contact",
+      "/blog",
+      "/mentions-legales",
+      "/politique-confidentialite"
+    ];
+
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      let url = req.path;
+      // Remove trailing slash for normalization (except for root)
+      if (url.length > 1 && url.endsWith("/")) {
+        url = url.slice(0, -1);
+      }
+      
+      // Check if it's a static page or a blog post route
+      const isBlogRoute = url.startsWith("/blog/");
+      const isValidRoute = validRoutes.includes(url) || isBlogRoute;
+
+      if (!isValidRoute) {
+        // Send index.html with 404 status to allow React Router to handle UI
+        res.status(404).sendFile(path.join(distPath, "index.html"));
+      } else {
+        res.sendFile(path.join(distPath, "index.html"));
+      }
     });
   }
 
