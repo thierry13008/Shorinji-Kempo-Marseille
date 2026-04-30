@@ -11,14 +11,29 @@ export default function NotFound() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image Revealed via Expanding Circle (Spotlight effect) */}
+      <motion.div 
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+        initial={{ clipPath: 'circle(0% at 50% 50%)', opacity: 0 }}
+        animate={{ clipPath: 'circle(100% at 50% 50%)', opacity: 1 }}
+        transition={{ duration: 5, ease: "easeInOut", delay: 0.2 }}
+      >
         <img 
           src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
-          alt="Background" 
-          className="w-full h-full object-cover opacity-30"
+          alt="Background Reveal" 
+          className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-transparent to-transparent" />
+      </motion.div>
+
+      {/* Base Background (Dimmed) */}
+      <div className="absolute inset-0 z-[-1]">
+        <img 
+          src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
+          alt="Background Base" 
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-bg-main/60" />
       </div>
 
       {/* Background elements to match the site style */}

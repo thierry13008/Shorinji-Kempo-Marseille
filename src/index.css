@@ -111,18 +111,6 @@
     will-change: backdrop-filter, background-color;
   }
 
-  .glass-nav-light {
-    @apply bg-ivory-silk/60 backdrop-blur-2xl border-b border-slate-200;
-    will-change: backdrop-filter, background-color;
-  }
-
-  .header-container {
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-    min-height: -webkit-fill-available;
-    @apply overflow-hidden relative;
-  }
-
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -170,24 +158,6 @@
 
   #menu-toggle:checked ~ div .close-icon {
     @apply !block;
-  }
-
-  .responsive-grid {
-    @apply grid gap-8;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  }
-
-  .kinetic-reveal {
-    @apply overflow-hidden;
-  }
-
-  .kinetic-reveal-inner {
-    @apply block translate-y-[30px] opacity-0 transition-all duration-800 ease-[cubic-bezier(0.16,1,0.3,1)];
-    will-change: transform, opacity;
-  }
-
-  .is-visible .kinetic-reveal-inner {
-    @apply translate-y-0 opacity-100 delay-[0.4s];
   }
 
   .parallax-reveal {

@@ -4,15 +4,9 @@ import { ArrowLeft, Calendar, Loader2, AlertCircle, Clock, Share2, Bookmark, Mes
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '@/src/components/ScrollReveal';
+import { decodeHtml } from '@/src/lib/utils';
 
 const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
-
-// Utility: Decode HTML Entities
-const decodeHtml = (html: string) => {
-  const txt = document.createElement('textarea');
-  txt.innerHTML = html;
-  return txt.value;
-};
 
 export default function BlogPost() {
   const { slug } = useParams();

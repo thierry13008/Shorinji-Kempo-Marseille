@@ -45,6 +45,7 @@ export default function Footer() {
                   <li><Link to="/blog" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Blog</Link></li>
                   <li><Link to="/contact" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Contact</Link></li>
                   <li><Link to="/mentions-legales" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Mentions Légales</Link></li>
+                  <li><Link to="/politique-confidentialite" className="hover:text-[#FFC107] transition-colors font-normal py-1 block text-slate-300">Politique de Confidentialité</Link></li>
                 </ul>
               </nav>
             </div>

@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '@/src/components/ScrollReveal';
+import { decodeHtml } from '@/src/lib/utils';
 
 // API Configuration
 const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
@@ -63,11 +64,7 @@ const FALLBACK_POSTS: WPPost[] = [
 ];
 
 // Utility: Decode HTML Entities
-const decodeHtml = (html: string) => {
-  const txt = document.createElement('textarea');
-  txt.innerHTML = html;
-  return txt.value;
-};
+// Moved to utils.ts
 
 // Utility: Strip HTML tags
 const stripHtml = (html: string) => {
@@ -93,10 +90,6 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [selectedYear, setSelectedYear] = useState('Tout');
-
-  const decodeHtmlMemo = useMemo(() => decodeHtml, []);
-  const stripHtmlMemo = useMemo(() => stripHtml, []);
-  const getPostImageMemo = useMemo(() => getPostImage, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -306,11 +299,11 @@ export default function Blog() {
                     </div>
                     
                     <h3 className="font-headline text-3xl md:text-5xl text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic">
-                      {decodeHtmlMemo(filteredPosts[0].title.rendered)}
+                      {decodeHtml(filteredPosts[0].title.rendered)}
                     </h3>
                     
                     <p className="text-surface/70 text-base font-light leading-relaxed line-clamp-3 mb-8 flex-1">
-                      {stripHtmlMemo(filteredPosts[0].excerpt.rendered)}
+                      {stripHtml(filteredPosts[0].excerpt.rendered)}
                     </p>
                     
                     <div className="flex items-center justify-between pt-6 border-t border-surface/5">
@@ -367,8 +360,8 @@ export default function Blog() {
                     >
                     <div className={`relative ${isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
                       <img 
-                        src={getPostImageMemo(post)} 
-                        alt={`Article : ${decodeHtmlMemo(post.title.rendered)}`}
+                        src={getPostImage(post)} 
+                        alt={`Article : ${decodeHtml(post.title.rendered)}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
                         referrerPolicy="no-referrer"
                         loading="lazy"
@@ -395,11 +388,11 @@ export default function Blog() {
                       </div>
                       
                       <h3 className={`font-headline ${isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
-                        {decodeHtmlMemo(post.title.rendered)}
+                        {decodeHtml(post.title.rendered)}
                       </h3>
                       
                       <p className={`text-surface/70 ${isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
-                        {stripHtmlMemo(post.excerpt.rendered)}
+                        {stripHtml(post.excerpt.rendered)}
                       </p>
                         
                         <div className="flex items-center justify-between pt-6 border-t border-surface/5">

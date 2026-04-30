@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import ScrollReveal from '@/src/components/ScrollReveal';
-import { cn } from '@/src/lib/utils';
 import { Download } from 'lucide-react';
 
 const instructors = [
