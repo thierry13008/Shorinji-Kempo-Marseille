@@ -249,6 +249,28 @@ export default function Encyclopedia() {
         <meta name="description" content="Découvrez une archive complète sur le Shorinji Kempo : son histoire depuis 1947, ses techniques Goho et Juho, sa philosophie Zen et son organisation mondiale." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="Encyclopédie du Shorinji Kempo — Histoire, Technique & Philosophie" />
+        <meta property="og:description" content="Découvrez une archive complète sur le Shorinji Kempo : son histoire depuis 1947, ses techniques Goho et Juho, sa philosophie Zen et son organisation mondiale." />
+        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
+        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Structured Data: BreadcrumbList */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Encyclopédie", "item": "https://shorinji-kempo-marseille.vercel.app/encyclopedia" }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* Background Hero Fixed */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none">

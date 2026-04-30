@@ -140,6 +140,27 @@ export default function Home() {
         <meta name="description" content="Shorinji Kempo Marseille 13008 : self-défense et art martial au quartier Saint-Giniez. Cours tous niveaux, essai gratuit. Rejoignez notre dojo." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="Shorinji Kempo Marseille — Saint-Giniez | Art Martial & Self-Défense" />
+        <meta property="og:description" content="Découvrez le Shorinji Kempo à Marseille 13008. Self-défense, arts martiaux et bien-être. Cours tous niveaux, essai gratuit." />
+        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
+        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Structured Data: BreadcrumbList */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* Fixed Background for CTA & Footer (Encyclopedia style) */}
       <div className="fixed inset-0 z-0 pointer-events-none">

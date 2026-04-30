@@ -72,6 +72,28 @@ export default function Contact() {
         <meta name="description" content="Contactez le dojo Shorinji Kempo Marseille Saint-Giniez. Téléphone, adresse, horaires. Réservez votre cours d'essai gratuit au 06 89 09 05 44." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/contact" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="Contact Shorinji Kempo Marseille | Essai Gratuit Saint-Giniez" />
+        <meta property="og:description" content="Contactez le dojo Shorinji Kempo Marseille Saint-Giniez. Téléphone, adresse, horaires. Réservez votre cours d'essai gratuit au 06 89 09 05 44." />
+        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
+        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/contact" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Structured Data: BreadcrumbList */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://shorinji-kempo-marseille.vercel.app/contact" }
+            ]
+          })}
+        </script>
       </Helmet>
       {/* Fixed Background for Contact Page */}
       <div className="fixed inset-0 z-0 pointer-events-none">

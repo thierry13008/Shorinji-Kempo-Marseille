@@ -172,6 +172,28 @@ export default function Blog() {
         <meta name="description" content="Toutes les actualités du club Shorinji Kempo Marseille : stages, événements, passages de grades et articles sur la pratique." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/blog" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="Blog Shorinji Kempo Marseille | Actualités & Articles Saint-Giniez" />
+        <meta property="og:description" content="Toutes les actualités du club Shorinji Kempo Marseille : stages, événements, passages de grades et articles sur la pratique." />
+        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
+        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/blog" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {/* Structured Data: BreadcrumbList */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://shorinji-kempo-marseille.vercel.app/blog" }
+            ]
+          })}
+        </script>
       </Helmet>
       <section className="pt-32 pb-20 bg-surface relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[600px] z-0 pointer-events-none">
