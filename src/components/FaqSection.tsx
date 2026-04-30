@@ -21,15 +21,15 @@ export default function FaqSection() {
         <div className="text-center mb-16">
           <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">FAQ</span>
           <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Questions Fréquentes</h2>
-          <p className="text-slate-600 text-xl">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
+          <p className="text-slate-800 text-xl font-medium">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
           <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
             <div className="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
               <CheckCircle size={18} className="text-primary-gold" />
-              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Débutants bienvenus – sécurité assurée</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-800">Débutants bienvenus – sécurité assurée</span>
             </div>
             <div className="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
               <CheckCircle size={18} className="text-primary-gold" />
-              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-600">100% Bienveillance & Respect</span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-slate-800">100% Bienveillance & Respect</span>
             </div>
           </div>
         </div>
@@ -76,9 +76,9 @@ export default function FaqSection() {
                   )}
                 >
                   <div className="min-h-0">
-                    <div className="p-8 pt-0 text-slate-700 leading-[1.6] text-lg border-t border-slate-100 mt-2">
+                    <div className="p-8 pt-0 text-slate-900 leading-[1.6] text-lg border-t border-slate-100 mt-2">
                       {item.a}
-                      <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
+                      <div className="mt-6 flex items-center gap-2 text-primary-gold/80 text-xs font-bold uppercase tracking-widest">
                         <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
                       </div>
                     </div>
