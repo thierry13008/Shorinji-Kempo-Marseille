@@ -4,6 +4,7 @@ import { cn } from '@/src/lib/utils';
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import EngagementHub from '@/src/components/EngagementHub';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 // Lazy loaded components
@@ -11,8 +12,6 @@ import InstructorsSection from '@/src/components/InstructorsSection';
 import ContactSection from '@/src/components/ContactSection';
 import FaqSection from '@/src/components/FaqSection';
 import TestimonialsSection from '@/src/components/TestimonialsSection';
-
-const EngagementHub = lazy(() => import('@/src/components/EngagementHub'));
 
 const SectionSkeleton = () => (
   <div className="py-24 max-w-7xl mx-auto px-6">
@@ -891,9 +890,7 @@ export default function Home() {
               }}
               className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
             >
-              <Suspense fallback={<SectionSkeleton />}>
-                <EngagementHub onClose={() => setIsHubOpen(false)} />
-              </Suspense>
+              <EngagementHub onClose={() => setIsHubOpen(false)} />
             </motion.div>
           </div>
         )}
