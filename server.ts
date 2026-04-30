@@ -86,39 +86,8 @@ async function startServer() {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
 
-    // Valid routes list for 404 handling
-    const validRoutes = [
-      "/",
-      "/encyclopedia",
-      "/contact",
-      "/blog",
-      "/mentions-legales",
-      "/politique-confidentialite",
-      "/shorinji-kempo-marseille",
-      "/self-defense-marseille",
-      "/encyclopedie/shorinji-kempo-vs-karate",
-      "/encyclopedie/shorinji-kempo-vs-judo",
-      "/encyclopedie/shorinji-kempo-vs-aikido",
-      "/encyclopedie/shorinji-kempo-vs-kung-fu"
-    ];
-
     app.get("*", (req, res) => {
-      let url = req.path;
-      // Remove trailing slash for normalization (except for root)
-      if (url.length > 1 && url.endsWith("/")) {
-        url = url.slice(0, -1);
-      }
-      
-      // Check if it's a static page or a blog post route
-      const isBlogRoute = url.startsWith("/blog/");
-      const isValidRoute = validRoutes.includes(url) || isBlogRoute;
-
-      if (!isValidRoute) {
-        // Send index.html with 404 status to allow React Router to handle UI
-        res.status(404).sendFile(path.join(distPath, "index.html"));
-      } else {
-        res.sendFile(path.join(distPath, "index.html"));
-      }
+      res.sendFile(path.join(distPath, "index.html"));
     });
   }
 

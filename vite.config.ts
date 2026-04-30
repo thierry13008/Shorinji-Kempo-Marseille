@@ -24,15 +24,6 @@ export default defineConfig(({mode}) => {
         polyfill: false
       },
       rollupOptions: {
-        input: {
-          main: path.resolve(__dirname, 'index.html'),
-          'shorinji-kempo-marseille': path.resolve(__dirname, 'index.html'),
-          'self-defense-marseille': path.resolve(__dirname, 'index.html'),
-          'shorinji-kempo-vs-karate': path.resolve(__dirname, 'index.html'),
-          'shorinji-kempo-vs-judo': path.resolve(__dirname, 'index.html'),
-          'shorinji-kempo-vs-aikido': path.resolve(__dirname, 'index.html'),
-          'shorinji-kempo-vs-kung-fu': path.resolve(__dirname, 'index.html'),
-        },
         treeshake: {
           moduleSideEffects: false,
           propertyReadSideEffects: false,
