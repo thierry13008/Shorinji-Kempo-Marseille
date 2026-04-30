@@ -11,8 +11,18 @@ export default function NotFound() {
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
+          alt="Background" 
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent" />
+      </div>
+
       {/* Background elements to match the site style */}
-      <div className="absolute top-0 left-0 w-full h-[600px] z-0 pointer-events-none opacity-20">
+      <div className="absolute top-0 left-0 w-full h-[600px] z-1 pointer-events-none opacity-20">
         <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-gold/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-[-5%] w-[300px] h-[300px] bg-primary-gold/5 rounded-full blur-[100px]" />
       </div>
