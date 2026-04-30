@@ -99,20 +99,8 @@ export default function ShorinjiKempoMarseille() {
         <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
       </div>
 
-      {/* Hero Section - Matching Home Style */}
+      {/* Hero Section - Matching Home Style - Fixed Background Feel */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <img 
-            className="w-full h-full object-cover opacity-80 animate-zoom-slow" 
-            src="https://i.ibb.co/tMwSy8WG/fond-page-marseillewebp.webp" 
-            alt="Fond Shorinji Kempo Marseille"
-            referrerPolicy="no-referrer"
-            width={1920}
-            height={1080}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
-        </div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-32">
           <ScrollReveal>
             <h1 className="text-white leading-[1.1] mb-12 text-5xl md:text-7xl font-extrabold tracking-tight text-center [text-shadow:0_4px_15px_rgba(0,0,0,0.5)]">
@@ -159,7 +147,7 @@ export default function ShorinjiKempoMarseille() {
             </ScrollReveal>
             <ScrollReveal className="relative group overflow-hidden rounded-[3rem] border-8 border-white shadow-2xl ki-aura-light">
               <img 
-                src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
+                src="https://i.ibb.co/5X3v6dSz/olivierwebp.webp" 
                 alt="Pratique du Shorinji Kempo Marseille"
                 className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -169,17 +157,8 @@ export default function ShorinjiKempoMarseille() {
         </div>
       </section>
 
-      {/* Section 2 - Dark Background (bg-surface) */}
-      <section className="py-32 bg-surface relative overflow-hidden border-y border-white/5">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <img 
-            src="https://i.ibb.co/MDm3thBh/banadeau-accueil-trois-pilier-WEBP2.webp" 
-            alt="Fond Background" 
-            className="w-full h-full object-cover opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60" />
-        </div>
-
+      {/* Section 2 - Dark Background (bg-surface) - Now Transparent */}
+      <section className="py-32 bg-transparent relative overflow-hidden border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <ScrollReveal className="order-2 lg:order-1">
             <div className="rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl h-[450px] glass-card ki-aura-dark p-2">
@@ -253,17 +232,8 @@ export default function ShorinjiKempoMarseille() {
         </div>
       </section>
 
-      {/* Section 4 - Benefits (Dark Background) */}
-      <section className="py-32 bg-surface relative overflow-hidden border-y border-white/5">
-         <div className="absolute inset-0 z-0">
-          <img 
-            className="w-full h-full object-cover opacity-80" 
-            src="https://i.ibb.co/B5F7V0Bh/backgrount-agenda-WEBP.webp" 
-            alt="Benefits Background"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
-        </div>
-
+      {/* Section 4 - Benefits (Dark Background) - Now Transparent */}
+      <section className="py-32 bg-transparent relative overflow-hidden border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <ScrollReveal className="text-center mb-20">
             <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-label">L'Expérience</span>
