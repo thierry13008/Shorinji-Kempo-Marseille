@@ -266,12 +266,12 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
             >
-              {/* Mobile Overlay ajusté pour une visibilité maximale */}
-              <div className="absolute inset-0 bg-black/10 z-30 lg:hidden pointer-events-none"></div>
+              {/* Mobile Overlay adjusted for better legibility on mobile background video */}
+              <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
 
               <div 
                 ref={videoContainerRef}
-                className="aspect-[4/5] w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
+                className="w-full h-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
               >
                 {/* Vidéo 1: Normal */}
                 <video 
@@ -281,7 +281,7 @@ export default function Home() {
                     activeVideo === 1 ? "opacity-100 z-20" : "opacity-0 z-10"
                   )}
                   src="https://res.cloudinary.com/dpfewspme/video/upload/q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
-                  poster="https://res.cloudinary.com/dpfewspme/video/upload/q_auto,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
+                  poster="https://res.cloudinary.com/dpfewspme/video/upload/w_800,q_70,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
                   autoPlay
                   muted
                   playsInline
