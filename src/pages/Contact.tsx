@@ -1,7 +1,9 @@
 import { MapPin, Clock, Phone, Mail, CheckCircle, X, Plus, Minus, Maximize2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import ScrollReveal from '@/src/components/ScrollReveal';
+import Breadcrumbs from '@/src/components/Breadcrumbs';
 
 export default function Contact() {
   const [isMapOpen, setIsMapOpen] = useState(false);
@@ -114,6 +116,7 @@ export default function Contact() {
       {/* Contact Section */}
       <section id="contact" className="relative py-32 bg-transparent overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} />
           <div className="text-center mb-16">
             <h1 className="text-white mb-4">Prêt à commencer ?</h1>
             <p className="text-slate-300">Réservez votre cours d’essai gratuit dès maintenant</p>
@@ -223,6 +226,11 @@ export default function Contact() {
                   </div>
                   {contactInfo.phone}
                 </a>
+              </ScrollReveal>
+              <ScrollReveal delay={0.2} className="mt-8 text-center bg-white/5 p-6 rounded-2xl border border-white/5">
+                <p className="text-slate-500 text-[10px] tracking-widest uppercase font-bold">
+                  En savoir plus : <Link to="/encyclopedia" className="hover:text-primary-gold transition-colors">Encyclopédie du Shorinji Kempo</Link> · <Link to="/shorinji-kempo-marseille" className="hover:text-primary-gold transition-colors">Notre dojo à Marseille</Link>
+                </p>
               </ScrollReveal>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import Breadcrumbs from '@/src/components/Breadcrumbs';
 
 export default function PrivacyPolicy() {
   return (
@@ -7,6 +8,7 @@ export default function PrivacyPolicy() {
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/politique-confidentialite" />
       </Helmet>
       <div className="max-w-4xl mx-auto px-6">
+        <Breadcrumbs items={[{ name: "Politique de Confidentialité", path: "/politique-confidentialite" }]} />
         <div
           className="animate-fade-in-up"
           style={{ animationDuration: '0.8s' }}

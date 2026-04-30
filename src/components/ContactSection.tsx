@@ -22,7 +22,7 @@ export default function ContactSection() {
         <div className="text-center mb-20">
           <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Dernière Étape</span>
           <h2 className="text-white text-4xl md:text-6xl font-black mb-6">Prêt à transformer votre quotidien ?</h2>
-          <p className="text-ivory-silk/60 text-xl max-w-2xl mx-auto">Rejoignez les pratiquants qui ont déjà franchi le pas. Votre première séance est offerte, sans aucun engagement.</p>
+          <p className="text-ivory-silk text-xl max-w-2xl mx-auto">Rejoignez les pratiquants qui ont déjà franchi le pas. Votre première séance est offerte, sans aucun engagement.</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div className="space-y-10">
@@ -39,7 +39,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-1">{item.title}</h3>
-                    <p className="text-ivory-silk/60">{item.desc}</p>
+                    <p className="text-ivory-silk/90">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -59,7 +59,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="text-white font-bold">Une question ?</p>
-                <p className="text-ivory-silk/60">Contactez-nous ci-dessous</p>
+                <p className="text-ivory-silk/90">Contactez-nous ci-dessous</p>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function ContactSection() {
           <div className="space-y-8">
             <ScrollReveal className="glass-card ki-aura-dark p-10 md:p-12 rounded-[48px] border border-primary-gold/20">
               <h3 className="text-white text-2xl font-bold mb-2">Envoyez-nous un message</h3>
-              <p className="text-ivory-silk/60 mb-8 font-bold uppercase tracking-widest text-xs">Remplissez le formulaire ci dessous</p>
+              <p className="text-ivory-silk/90 mb-8 font-bold uppercase tracking-widest text-xs">Remplissez le formulaire ci dessous</p>
               
               <div className="w-full overflow-hidden rounded-xl">
                 <iframe 

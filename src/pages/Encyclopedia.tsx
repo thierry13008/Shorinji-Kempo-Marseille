@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap, ArrowRight } from 'lucide-react';
+import ScrollReveal from '@/src/components/ScrollReveal';
+import Breadcrumbs from '@/src/components/Breadcrumbs';
 
 export default function Encyclopedia() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -290,6 +293,7 @@ export default function Encyclopedia() {
 
       <header className="relative h-[500px] flex items-end px-6 md:px-24 pb-16 z-10">
         <div className="relative z-10 max-w-4xl">
+          <Breadcrumbs items={[{ name: "Encyclopédie", path: "/encyclopedia" }]} />
           <span className="text-primary-gold font-label tracking-[0.3em] uppercase text-xs mb-4 block">Archive du Savoir</span>
           <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight mb-6">
             Encyclopédie du <br/><span className="italic text-primary-gold">Shorinji Kempo</span>
@@ -341,6 +345,15 @@ export default function Encyclopedia() {
           ))}
         </main>
       </div>
+
+      {/* Internal SEO Links */}
+      <section className="py-12 bg-transparent text-center relative z-10">
+        <ScrollReveal>
+          <p className="text-slate-500 text-xs md:text-sm tracking-wide">
+            Comparer : <Link to="/encyclopedie/shorinji-kempo-vs-karate" className="hover:text-primary-gold transition-colors">Shorinji Kempo vs Karaté</Link> · <Link to="/encyclopedie/shorinji-kempo-vs-judo" className="hover:text-primary-gold transition-colors">vs Judo</Link> · <Link to="/encyclopedie/shorinji-kempo-vs-aikido" className="hover:text-primary-gold transition-colors">vs Aïkido</Link> · <Link to="/encyclopedie/shorinji-kempo-vs-kung-fu" className="hover:text-primary-gold transition-colors">vs Kung Fu</Link>
+          </p>
+        </ScrollReveal>
+      </section>
 
       {/* Modal Popup */}
       {activeModal && (
