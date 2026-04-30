@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap, ArrowRight } from 'lucide-react';
 
@@ -248,31 +249,6 @@ export default function Encyclopedia() {
         <meta name="description" content="Découvrez une archive complète sur le Shorinji Kempo : son histoire depuis 1947, ses techniques Goho et Juho, sa philosophie Zen et son organisation mondiale." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:title" content="Encyclopédie du Shorinji Kempo — Histoire, Technique & Philosophie" />
-        <meta property="og:description" content="Archive complète sur le Shorinji Kempo : histoire depuis 1947, techniques Goho/Juho, philosophie Zen et organisation mondiale." />
-        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
-        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/encyclopedia" />
-        <meta property="og:type" content="website" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Encyclopédie du Shorinji Kempo — Histoire, Technique & Philosophie" />
-        <meta name="twitter:description" content="Découvrez l'histoire, la technique et la philosophie du Shorinji Kempo." />
-        <meta name="twitter:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
-        
-        {/* Structured Data: BreadcrumbList */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
-              { "@type": "ListItem", "position": 2, "name": "Encyclopédie", "item": "https://shorinji-kempo-marseille.vercel.app/encyclopedia" }
-            ]
-          })}
-        </script>
       </Helmet>
       {/* Background Hero Fixed */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none">
@@ -343,52 +319,60 @@ export default function Encyclopedia() {
       </div>
 
       {/* Modal Popup */}
-      {activeModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-6 py-12">
-          <div 
-            onClick={() => setActiveModal(null)}
-            className="absolute inset-0 bg-surface/90 backdrop-blur-xl animate-fade-in"
-          />
-          
-          <div 
-            className="relative w-full max-w-5xl max-h-full overflow-y-auto bg-surface-low border border-white/10 rounded-[40px] shadow-2xl p-8 md:p-16 scrollbar-hide animate-scale-in"
-          >
-            <button 
+      <AnimatePresence>
+        {activeModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-6 py-12">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setActiveModal(null)}
-              className="absolute top-8 right-8 p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all group"
+              className="absolute inset-0 bg-surface/90 backdrop-blur-xl"
+            />
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl max-h-full overflow-y-auto bg-surface-low border border-white/10 rounded-[40px] shadow-2xl p-8 md:p-16 scrollbar-hide"
             >
-              <X size={24} className="group-hover:rotate-90 transition-transform" />
-            </button>
-
-            <div className="mb-12">
-              <div className="flex items-center gap-4 text-primary-gold mb-4">
-                {(() => {
-                  const section = sections.find(s => s.id === activeModal);
-                  const Icon = section?.icon || Info;
-                  return <Icon size={32} />;
-                })()}
-                <span className="font-label tracking-[0.3em] uppercase text-xs">Détails de la Section</span>
-              </div>
-              <h2 className="font-headline text-4xl md:text-6xl text-white">
-                {sections.find(s => s.id === activeModal)?.title}
-              </h2>
-            </div>
-
-            <div className="relative">
-              {sections.find(s => s.id === activeModal)?.content}
-            </div>
-
-            <div className="mt-16 pt-8 border-t border-white/5 flex justify-center">
               <button 
                 onClick={() => setActiveModal(null)}
-                className="px-10 py-4 bg-primary-gold text-black font-bold rounded-2xl hover:bg-bg-main hover:text-primary-gold transition-all uppercase tracking-widest text-xs"
+                className="absolute top-8 right-8 p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all group"
               >
-                Fermer l'archive
+                <X size={24} className="group-hover:rotate-90 transition-transform" />
               </button>
-            </div>
+
+              <div className="mb-12">
+                <div className="flex items-center gap-4 text-primary-gold mb-4">
+                  {(() => {
+                    const section = sections.find(s => s.id === activeModal);
+                    const Icon = section?.icon || Info;
+                    return <Icon size={32} />;
+                  })()}
+                  <span className="font-label tracking-[0.3em] uppercase text-xs">Détails de la Section</span>
+                </div>
+                <h2 className="font-headline text-4xl md:text-6xl text-white">
+                  {sections.find(s => s.id === activeModal)?.title}
+                </h2>
+              </div>
+
+              <div className="relative">
+                {sections.find(s => s.id === activeModal)?.content}
+              </div>
+
+              <div className="mt-16 pt-8 border-t border-white/5 flex justify-center">
+                <button 
+                  onClick={() => setActiveModal(null)}
+                  className="px-10 py-4 bg-primary-gold text-black font-bold rounded-2xl hover:bg-bg-main hover:text-primary-gold transition-all uppercase tracking-widest text-xs"
+                >
+                  Fermer l'archive
+                </button>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 }

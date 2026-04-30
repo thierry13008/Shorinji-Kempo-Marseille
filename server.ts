@@ -17,15 +17,13 @@ async function startServer() {
     next();
   });
 
-  // Sitemap handler function
-  const handleSitemap = async (req: express.Request, res: express.Response) => {
+  // Sitemap route
+  app.get("/sitemap.xml", async (req, res) => {
     const staticPages = [
       { url: "/", priority: "1.0", freq: "monthly" },
       { url: "/contact", priority: "0.8", freq: "yearly" },
       { url: "/encyclopedia", priority: "0.8", freq: "yearly" },
       { url: "/blog", priority: "0.8", freq: "monthly" },
-      { url: "/mentions-legales", priority: "0.5", freq: "yearly" },
-      { url: "/politique-confidentialite", priority: "0.5", freq: "yearly" },
     ];
 
     let wpPosts: any[] = [];
@@ -39,7 +37,7 @@ async function startServer() {
     }
 
     const baseUrl = "https://shorinji-kempo-marseille.vercel.app";
-    const lastModDate = new Date().toISOString().split("T")[0];
+    const lastModDate = "2026-04-28";
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
@@ -47,7 +45,7 @@ async function startServer() {
     staticPages.forEach(page => {
       xml += `
   <url>
-    <loc>${baseUrl}${page.url}</loc>
+    <loc>${baseUrl}${page.url === "/" ? "" : page.url}</loc>
     <lastmod>${lastModDate}</lastmod>
     <changefreq>${page.freq}</changefreq>
     <priority>${page.priority}</priority>
@@ -69,12 +67,8 @@ async function startServer() {
 </urlset>`;
 
     res.header("Content-Type", "application/xml");
-    res.status(200).send(xml);
-  };
-
-  // Sitemap routes
-  app.get("/sitemap.xml", handleSitemap);
-  app.get("/sitemap", handleSitemap);
+    res.send(xml);
+  });
 
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
@@ -85,38 +79,13 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-
-    // Valid routes list for 404 handling
-    const validRoutes = [
-      "/",
-      "/encyclopedia",
-      "/contact",
-      "/blog",
-      "/mentions-legales",
-      "/politique-confidentialite"
-    ];
-
     app.get("*", (req, res) => {
-      let url = req.path;
-      // Remove trailing slash for normalization (except for root)
-      if (url.length > 1 && url.endsWith("/")) {
-        url = url.slice(0, -1);
-      }
-      
-      // Check if it's a static page or a blog post route
-      const isBlogRoute = url.startsWith("/blog/");
-      const isValidRoute = validRoutes.includes(url) || isBlogRoute;
-
-      if (!isValidRoute) {
-        // Send index.html with 404 status to allow React Router to handle UI
-        res.status(404).sendFile(path.join(distPath, "index.html"));
-      } else {
-        res.sendFile(path.join(distPath, "index.html"));
-      }
+      res.sendFile(path.join(distPath, "index.html"));
     });
   }
 
   app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on http://localhost:${PORT}`);
   });
 }
 

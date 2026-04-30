@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 
 export default function LegalNotice() {
@@ -7,9 +8,10 @@ export default function LegalNotice() {
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/mentions-legales" />
       </Helmet>
       <div className="max-w-4xl mx-auto px-6">
-        <div
-          className="animate-fade-in-up"
-          style={{ animationDuration: '0.8s' }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
           <h1 className="text-surface text-4xl md:text-6xl font-black mb-12">Mentions Légales</h1>
           
@@ -80,7 +82,7 @@ export default function LegalNotice() {
               </p>
             </section>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

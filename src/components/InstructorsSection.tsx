@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import ScrollReveal from '@/src/components/ScrollReveal';
 import { cn } from '@/src/lib/utils';
 import { Download } from 'lucide-react';
@@ -48,12 +49,14 @@ export default function InstructorsSection() {
           <h2 className="text-text-primary text-4xl md:text-6xl font-black mb-4">
             Nos Instructeurs de Shorinji Kempo
           </h2>
-          <ScrollReveal delay={0.2} className="w-full flex justify-center">
-            <div 
-              style={{ transformOrigin: "center" }}
-              className="h-1 w-24 bg-primary-gold rounded-full reveal-scale"
-            />
-          </ScrollReveal>
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ transformOrigin: "center", willChange: "transform, opacity" }}
+            className="h-1 w-24 bg-primary-gold mx-auto rounded-full"
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 max-w-7xl mx-auto">
@@ -88,9 +91,13 @@ export default function InstructorsSection() {
                     <h3 className="text-white">
                       <span className="whitespace-pre-line text-balance">{instructor.name}</span>
                     </h3>
-                    <div
-                      style={{ transformOrigin: "center", transitionDelay: `${0.8 + (index * 0.2)}s` }}
-                      className="h-[1px] w-[40px] bg-primary-gold/50 mx-auto reveal-scale"
+                    <motion.div
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      whileInView={{ scaleX: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.8 + (index * 0.2), duration: 0.8 }}
+                      style={{ transformOrigin: "center", willChange: "transform, opacity" }}
+                      className="h-[1px] w-[40px] bg-primary-gold/50 mx-auto"
                     />
                     <p className="micro-copy">
                       {instructor.role}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, CheckCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import ScrollReveal from '@/src/components/ScrollReveal';
@@ -68,22 +69,25 @@ export default function FaqSection() {
                     <ChevronDown size={20} />
                   </div>
                 </button>
-                <div 
-                  id={`faq-answer-${i}`}
-                  className={cn(
-                    "grid transition-all duration-400 ease-out overflow-hidden shadow-inner",
-                    activeFaq === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  )}
-                >
-                  <div className="min-h-0">
-                    <div className="p-8 pt-0 text-slate-700 leading-[1.6] text-lg border-t border-slate-100 mt-2">
-                      {item.a}
-                      <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
-                        <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
+                <AnimatePresence initial={false}>
+                  {activeFaq === i && (
+                    <motion.div 
+                      id={`faq-answer-${i}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "circOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-8 pt-0 text-slate-700 leading-[1.6] text-lg border-t border-slate-100 mt-2">
+                        {item.a}
+                        <div className="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest">
+                          <CheckCircle size={14} /> 100% Sécurisé & Bienveillant
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </ScrollReveal>
             ))}
           </div>

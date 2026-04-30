@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Share2, Check, X, QrCode } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/src/lib/utils';
 
 export default function ShareButton() {
@@ -68,48 +69,63 @@ export default function ShareButton() {
       {/* Hidden Preload Image */}
       <img src={qrCodeUrl} alt="" className="hidden" aria-hidden="true" loading="eager" width={200} height={200} />
 
-      <div
-        className={cn(
-          "fixed bottom-[20px] right-[20px] z-[9999] lg:hidden transition-all duration-300",
-          isVisible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-75 translate-y-10 pointer-events-none"
-        )}
-      >
-        <div className="relative">
-          <div
-            className={cn(
-              "absolute left-1/2 -translate-x-1/2 bg-surface-high text-white text-[12px] font-bold py-2 px-4 rounded-full whitespace-nowrap shadow-xl border border-white/10 transition-all duration-500",
-              copied ? "opacity-100 -translate-y-12" : "opacity-0 -translate-y-2"
-            )}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            className="fixed bottom-[20px] right-[20px] z-[9999] lg:hidden"
           >
-            Lien copié !
-          </div>
+            <div className="relative">
+              <AnimatePresence>
+                {copied && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: -50 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute left-1/2 -translate-x-1/2 bg-surface-high text-white text-[12px] font-bold py-2 px-4 rounded-full whitespace-nowrap shadow-xl border border-white/10"
+                  >
+                    Lien copié !
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-          <button
-            onClick={handleShare}
-            className={cn(
-              "w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.3)] active:scale-90",
-              "bg-primary-gold text-surface-high border-2 border-white/20"
-            )}
-            aria-label="Partager le site"
-          >
-            {copied ? <Check size={24} /> : <Share2 size={24} className="text-white" />}
-          </button>
-        </div>
-      </div>
+              <button
+                onClick={handleShare}
+                className={cn(
+                  "w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.3)] active:scale-90",
+                  "bg-primary-gold text-surface-high border-2 border-white/20"
+                )}
+                aria-label="Partager le site"
+              >
+                {copied ? <Check size={24} /> : <Share2 size={24} className="text-white" />}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* QR Code Modal - Fixed and independent of scroll */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-6 lg:hidden touch-none">
-          {/* Backdrop */}
-          <div
-            onClick={() => setIsModalOpen(false)}
-            className="absolute inset-0 bg-surface/90 backdrop-blur-lg animate-fade-in"
-          />
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center p-6 lg:hidden touch-none">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="absolute inset-0 bg-surface/90 backdrop-blur-lg"
+            />
 
-          {/* Modal Content */}
-          <div
-            className="relative w-full max-w-sm bg-bg-main rounded-[40px] p-10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center text-center touch-auto animate-scale-in"
-          >
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-sm bg-bg-main rounded-[40px] p-10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center text-center touch-auto"
+            >
               <div className="mb-6 w-20 h-20 rounded-[24px] bg-primary-gold/10 flex items-center justify-center">
                 <QrCode className="text-primary-gold" size={40} />
               </div>
@@ -137,9 +153,10 @@ export default function ShareButton() {
                 <X size={24} />
                 Fermer
               </button>
-            </div>
+            </motion.div>
           </div>
         )}
+      </AnimatePresence>
     </>
   );
 }

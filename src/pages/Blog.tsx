@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '@/src/components/ScrollReveal';
-import { cn } from '@/src/lib/utils';
 
 // API Configuration
 const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
@@ -172,31 +172,6 @@ export default function Blog() {
         <meta name="description" content="Toutes les actualités du club Shorinji Kempo Marseille : stages, événements, passages de grades et articles sur la pratique." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/blog" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:title" content="Blog Shorinji Kempo Marseille | Actualités & Articles Saint-Giniez" />
-        <meta property="og:description" content="Actualités du club : stages, événements, passages de grades et articles sur la pratique du Shorinji Kempo à Marseille." />
-        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
-        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/blog" />
-        <meta property="og:type" content="website" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blog Shorinji Kempo Marseille | Actualités & Articles Saint-Giniez" />
-        <meta name="twitter:description" content="Actualités et articles sur le Shorinji Kempo à Marseille." />
-        <meta name="twitter:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
-        
-        {/* Structured Data: BreadcrumbList */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://shorinji-kempo-marseille.vercel.app/blog" }
-            ]
-          })}
-        </script>
       </Helmet>
       <section className="pt-32 pb-20 bg-surface relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[600px] z-0 pointer-events-none">
@@ -215,27 +190,33 @@ export default function Blog() {
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
           
           <div className="max-w-4xl">
-            <div 
-              className="inline-flex items-center gap-4 text-primary-gold mb-8 animate-fade-in-left"
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-4 text-primary-gold mb-8"
             >
               <div className="h-[1px] w-12 bg-primary-gold" />
               <span className="font-label text-[11px] tracking-[0.5em] uppercase font-bold">Le Flux Officiel</span>
-            </div>
+            </motion.div>
             
-            <h1 
-              className="font-headline text-6xl md:text-8xl text-white mb-10 leading-[1.05] tracking-tight animate-fade-in-up"
-              style={{ animationDuration: '0.8s' }}
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+              className="font-headline text-6xl md:text-8xl text-white mb-10 leading-[1.05] tracking-tight"
             >
               Le Flux Officiel <br />
               <span className="italic text-primary-gold">du Dojo</span>
-            </h1>
+            </motion.h1>
             
-            <h2 
-              className="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed font-light animate-fade-in"
-              style={{ animationDelay: '0.4s', animationFillMode: 'both' }}
+            <motion.h2 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              className="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed font-light"
             >
               Découvrez l'actualité du Shorinji Kempo Marseille : stages, événements, et réflexions sur la voie martiale.
-            </h2>
+            </motion.h2>
           </div>
         </header>
 
@@ -347,70 +328,72 @@ export default function Blog() {
               </div>
             ))
           ) : filteredPosts.length > 1 ? (
-            filteredPosts.slice(1).map((post, index) => {
-              const isSecond = index === 0; // index 0 of slice(1) is the 2nd overall
-              return (
-                <ScrollReveal
-                  key={post.id}
-                  delay={index * 0.1}
-                  className={
-                    isSecond ? 'lg:col-span-2 md:col-span-2' : ''
-                  }
-                >
-                  <Link 
-                    to={`/blog/${post.slug}`} 
-                    className={`group flex flex-col ${isSecond ? 'lg:flex-row-reverse' : ''} h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/5 hover:border-primary-gold/50 transition-all duration-500`}
+            <AnimatePresence mode="popLayout">
+              {filteredPosts.slice(1).map((post, index) => {
+                const isSecond = index === 0; // index 0 of slice(1) is the 2nd overall
+                return (
+                  <ScrollReveal
+                    key={post.id}
+                    delay={index * 0.1}
+                    className={
+                      isSecond ? 'lg:col-span-2 md:col-span-2' : ''
+                    }
                   >
-                  <div className={`relative ${isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
-                    <img 
-                      src={getPostImageMemo(post)} 
-                      alt={`Article : ${decodeHtmlMemo(post.title.rendered)}`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      width={400}
-                      height={225}
-                    />
-                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
-                  </div>
-                  
-                  <div className={`p-8 flex flex-col flex-1 ${isSecond ? 'lg:p-12 lg:justify-center' : ''}`}>
-                    <div className="flex items-center gap-3 mb-6">
-                      <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold bg-primary-gold/10 px-3 py-1 rounded-full">
-                        {new Date(post.date).getFullYear()}
-                      </span>
-                      <span className="text-[10px] font-label uppercase tracking-widest text-surface/60">
-                        {new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
-                      </span>
-                      {isSecond && (
-                        <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse" />
-                          À la une
-                        </span>
-                      )}
+                    <Link 
+                      to={`/blog/${post.slug}`} 
+                      className={`group flex flex-col ${isSecond ? 'lg:flex-row-reverse' : ''} h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/5 hover:border-primary-gold/50 transition-all duration-500`}
+                    >
+                    <div className={`relative ${isSecond ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'} overflow-hidden`}>
+                      <img 
+                        src={getPostImageMemo(post)} 
+                        alt={`Article : ${decodeHtmlMemo(post.title.rendered)}`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 parallax-reveal"
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                        width={400}
+                        height={225}
+                      />
+                      <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
                     </div>
                     
-                    <h3 className={`font-headline ${isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
-                      {decodeHtmlMemo(post.title.rendered)}
-                    </h3>
-                    
-                    <p className={`text-surface/70 ${isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
-                      {stripHtmlMemo(post.excerpt.rendered)}
-                    </p>
-                      
-                      <div className="flex items-center justify-between pt-6 border-t border-surface/5">
-                        <span className="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
-                          <Clock className="w-3 h-3" /> 4 min
+                    <div className={`p-8 flex flex-col flex-1 ${isSecond ? 'lg:p-12 lg:justify-center' : ''}`}>
+                      <div className="flex items-center gap-3 mb-6">
+                        <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold bg-primary-gold/10 px-3 py-1 rounded-full">
+                          {new Date(post.date).getFullYear()}
                         </span>
-                        <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                          Lire <ArrowRight className="w-3 h-3" />
+                        <span className="text-[10px] font-label uppercase tracking-widest text-surface/60">
+                          {new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
                         </span>
+                        {isSecond && (
+                          <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse" />
+                            À la une
+                          </span>
+                        )}
                       </div>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              );
-            })
+                      
+                      <h3 className={`font-headline ${isSecond ? 'text-3xl md:text-5xl' : 'text-2xl'} text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic`}>
+                        {decodeHtmlMemo(post.title.rendered)}
+                      </h3>
+                      
+                      <p className={`text-surface/70 ${isSecond ? 'text-base' : 'text-sm'} font-light leading-relaxed line-clamp-3 mb-8 flex-1`}>
+                        {stripHtmlMemo(post.excerpt.rendered)}
+                      </p>
+                        
+                        <div className="flex items-center justify-between pt-6 border-t border-surface/5">
+                          <span className="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
+                            <Clock className="w-3 h-3" /> 4 min
+                          </span>
+                          <span className="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                            Lire <ArrowRight className="w-3 h-3" />
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </ScrollReveal>
+                );
+              })}
+            </AnimatePresence>
           ) : filteredPosts.length === 1 ? (
             <div className="col-span-full py-20 text-center bg-white border border-surface/10 rounded-[24px]">
               <AlertCircle className="w-12 h-12 text-primary-gold mx-auto mb-4 opacity-50" />

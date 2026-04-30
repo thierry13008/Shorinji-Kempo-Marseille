@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   Send, 
   User, 
@@ -99,6 +100,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [knowledgeBase, setKnowledgeBase] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -134,7 +136,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
         model: "gemini-3-flash-preview",
         contents: inputValue,
         config: {
-          systemInstruction: DEFAULT_SYSTEM_INSTRUCTION(KNOWLEDGE_BASE),
+          systemInstruction: DEFAULT_SYSTEM_INSTRUCTION(knowledgeBase || KNOWLEDGE_BASE),
         },
       });
 
@@ -163,11 +165,13 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
     } finally {
       setIsAnalyzing(false);
     }
-  }, [inputValue]);
+  }, [inputValue, knowledgeBase]);
 
   return (
-    <div 
-      className={cn("glass-card ki-aura-dark flex flex-col rounded-[2.5rem] overflow-hidden border-white/5 relative h-full animate-fade-in-up", className)}
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={cn("glass-card ki-aura-dark flex flex-col rounded-[2.5rem] overflow-hidden border-white/5 relative h-full", className)}
     >
       {/* Header */}
       <div className="p-6 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
@@ -214,39 +218,45 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-8 space-y-6 scrollbar-hide"
       >
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={cn(
-              "flex max-w-[80%] animate-fade-in-up",
-              msg.type === 'user' ? "ml-auto flex-row-reverse" : "mr-auto"
-            )}
-          >
-            <div className={cn(
-              "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1",
-              msg.type === 'user' ? "ml-3 bg-primary-gold" : "mr-3 bg-white/10"
-            )}>
-              {msg.type === 'user' ? <User size={14} className="text-surface" /> : <Sparkles size={14} className="text-primary-gold" />}
-            </div>
-
-            <div className={cn(
-              "p-4 rounded-2xl text-sm leading-relaxed",
-              msg.type === 'user' ? "bg-primary-gold text-surface font-bold rounded-tr-none" : "bg-white/5 text-slate-200 border border-white/5 rounded-tl-none"
-            )}>
-              {msg.content}
+        <AnimatePresence initial={false}>
+          {messages.map((msg) => (
+            <motion.div
+              key={msg.id}
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              className={cn(
+                "flex max-w-[80%]",
+                msg.type === 'user' ? "ml-auto flex-row-reverse" : "mr-auto"
+              )}
+            >
               <div className={cn(
-                "text-[9px] mt-2 opacity-50",
-                msg.type === 'user' ? "text-right" : "text-left"
+                "w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1",
+                msg.type === 'user' ? "ml-3 bg-primary-gold" : "mr-3 bg-white/10"
               )}>
-                {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {msg.type === 'user' ? <User size={14} className="text-surface" /> : <Sparkles size={14} className="text-primary-gold" />}
               </div>
-            </div>
-          </div>
-        ))}
+
+              <div className={cn(
+                "p-4 rounded-2xl text-sm leading-relaxed",
+                msg.type === 'user' ? "bg-primary-gold text-surface font-bold rounded-tr-none" : "bg-white/5 text-slate-200 border border-white/5 rounded-tl-none"
+              )}>
+                {msg.content}
+                <div className={cn(
+                  "text-[9px] mt-2 opacity-50",
+                  msg.type === 'user' ? "text-right" : "text-left"
+                )}>
+                  {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
         
         {isAnalyzing && (
-          <div 
-            className="flex items-center gap-2 text-primary-gold text-[10px] font-label uppercase tracking-widest animate-fade-in"
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center gap-2 text-primary-gold text-[10px] font-label uppercase tracking-widest"
           >
             <div className="flex gap-1">
               <span className="w-1 h-1 bg-primary-gold rounded-full animate-bounce" />
@@ -254,7 +264,7 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
               <span className="w-1 h-1 bg-primary-gold rounded-full animate-bounce [animation-delay:0.4s]" />
             </div>
             Analyse de l'intention par l'IA...
-          </div>
+          </motion.div>
         )}
       </div>
 
@@ -323,6 +333,6 @@ export default function EngagementHub({ onClose, className }: EngagementHubProps
           </button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

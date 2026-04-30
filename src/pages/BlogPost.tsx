@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Loader2, AlertCircle, Clock, Share2, Bookmark, MessageSquare } from 'lucide-react';
+import { motion, useScroll, useSpring } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
@@ -18,20 +19,13 @@ export default function BlogPost() {
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalScroll > 0) {
-        const currentProgress = (window.scrollY / totalScroll) * 100;
-        setScrollProgress(currentProgress);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -92,37 +86,11 @@ export default function BlogPost() {
         <meta name="description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
         <meta name="robots" content="index, follow, noarchive" />
         <link rel="canonical" href={post.link} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:title" content={`${decodeHtml(post.title.rendered)} | Blog Shorinji Kempo Marseille`} />
-        <meta property="og:description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
-        <meta property="og:image" content={featuredImage || "https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp"} />
-        <meta property="og:url" content={post.link} />
-        <meta property="og:type" content="article" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${decodeHtml(post.title.rendered)} | Blog Shorinji Kempo Marseille`} />
-        <meta name="twitter:description" content={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)} />
-        <meta name="twitter:image" content={featuredImage || "https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp"} />
-        
-        {/* Structured Data: BreadcrumbList */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://shorinji-kempo-marseille.vercel.app/blog" },
-              { "@type": "ListItem", "position": 3, "name": decodeHtml(post.title.rendered), "item": `https://shorinji-kempo-marseille.vercel.app/blog/${post.slug}` }
-            ]
-          })}
-        </script>
       </Helmet>
-      {/* Scroll Progress Bar */}
-      <div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary-gold z-50 transition-all duration-100 ease-out origin-left shadow-[0_0_10px_rgba(212,175,55,0.5)]"
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+      {/* Scrollytelling Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-primary-gold z-50 origin-left"
+        style={{ scaleX }}
       />
 
       <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -196,7 +164,7 @@ export default function BlogPost() {
               <div className="flex items-center gap-6">
                  <div className="w-16 h-16 rounded-2xl bg-surface-high border border-white/10 flex items-center justify-center p-2 shadow-xl rotate-3">
                    <img 
-                     src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
+                     src="https://i.ibb.co/PGfXsmRk/logo-shorinji-kempo-bg.png" 
                      alt="Logo" 
                      className="w-full h-full object-contain" 
                      referrerPolicy="no-referrer" 

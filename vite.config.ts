@@ -18,25 +18,19 @@ export default defineConfig(({mode}) => {
     build: {
       target: 'esnext',
       minify: 'esbuild',
-      cssMinify: true,
-      cssCodeSplit: true,
-      modulePreload: {
-        polyfill: false
-      },
       rollupOptions: {
-        treeshake: {
-          moduleSideEffects: false,
-          propertyReadSideEffects: false,
-          tryCatchDeoptimization: false
-        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               // Group React core together
-              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom') || id.includes('scheduler') || id.includes('react-helmet-async')) {
+              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom') || id.includes('scheduler')) {
                 return 'vendor-react';
               }
-              // Icon library - isolated to ensure tree-shaking efficacy
+              // Group motion/animation libraries
+              if (id.includes('framer-motion') || id.includes('motion')) {
+                return 'vendor-motion';
+              }
+              // Icon library
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
               }

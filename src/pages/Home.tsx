@@ -1,15 +1,17 @@
+import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, MapPin, Clock, Download, Sparkles, X, Plus, Minus, Maximize2, Calendar, User, TrendingUp, Play } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import EngagementHub from '@/src/components/EngagementHub';
+import ScrollReveal from '@/src/components/ScrollReveal';
+
 // Lazy loaded components
-const EngagementHub = lazy(() => import('@/src/components/EngagementHub'));
-const InstructorsSection = lazy(() => import('@/src/components/InstructorsSection'));
-const FaqSection = lazy(() => import('@/src/components/FaqSection'));
-const TestimonialsSection = lazy(() => import('@/src/components/TestimonialsSection'));
-const ContactSection = lazy(() => import('@/src/components/ContactSection'));
-const ScrollReveal = lazy(() => import('@/src/components/ScrollReveal'));
+import InstructorsSection from '@/src/components/InstructorsSection';
+import ContactSection from '@/src/components/ContactSection';
+import FaqSection from '@/src/components/FaqSection';
+import TestimonialsSection from '@/src/components/TestimonialsSection';
 
 const SectionSkeleton = () => (
   <div className="py-24 max-w-7xl mx-auto px-6">
@@ -138,30 +140,6 @@ export default function Home() {
         <meta name="description" content="Shorinji Kempo Marseille 13008 : self-défense et art martial au quartier Saint-Giniez. Cours tous niveaux, essai gratuit. Rejoignez notre dojo." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:title" content="Shorinji Kempo Marseille — Saint-Giniez | Art Martial & Self-Défense" />
-        <meta property="og:description" content="Découvrez le Shorinji Kempo à Marseille 13008. Self-défense, arts martiaux et bien-être. Cours tous niveaux, essai gratuit." />
-        <meta property="og:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
-        <meta property="og:url" content="https://shorinji-kempo-marseille.vercel.app/" />
-        <meta property="og:type" content="website" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Shorinji Kempo Marseille — Saint-Giniez | Art Martial & Self-Défense" />
-        <meta name="twitter:description" content="Découvrez le Shorinji Kempo à Marseille 13008. Self-défense, arts martiaux et bien-être. Cours tous niveaux, essai gratuit." />
-        <meta name="twitter:image" content="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" />
-        
-        {/* Structured Data: BreadcrumbList */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" }
-            ]
-          })}
-        </script>
       </Helmet>
       {/* Fixed Background for CTA & Footer (Encyclopedia style) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -178,11 +156,11 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden hero-section">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Desktop Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden hidden lg:block">
           <img 
-            className="w-full h-full object-cover opacity-80 animate-zoom-slow bg-animate" 
+            className="w-full h-full object-cover opacity-80 animate-zoom-slow" 
             src="https://i.ibb.co/hxxzMwG9/fond-header-webp.webp" 
             alt="Dojo Shorinji Kempo Marseille - Pratique des arts martiaux"
             referrerPolicy="no-referrer"
@@ -195,29 +173,33 @@ export default function Home() {
         </div>
         
         <div 
-          className="relative z-40 lg:relative lg:z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20 hero-container"
+          className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-40 lg:pt-20"
           onMouseEnter={handleVideoInteraction}
           onTouchStart={handleVideoInteraction}
           onClick={handleVideoInteraction}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div
-              className="text-center lg:text-left relative z-30 pointer-events-none lg:pointer-events-auto animate-fade-in-up"
-              style={{ animationDuration: '1s' }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="text-center lg:text-left relative z-50 pointer-events-none lg:pointer-events-auto"
             >
               <span className="hidden lg:inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                 <Sparkles size={14} /> Plus qu'un sport, une voie de vie
               </span>
-              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)] hero-title">
-                Révélez votre <span className="text-primary-gold italic text-gold inline-block leading-[1.1] min-w-[1ch] min-h-[1.1em]">force intérieure</span> avec le Shorinji Kempo
+              <h1 className="text-white leading-[1.1] mb-8 text-5xl md:text-7xl font-extrabold tracking-tight lg:[text-shadow:none] [text-shadow:0_4px_15px_rgba(0,0,0,1)]">
+                Révélez votre <span className="text-primary-gold italic">force intérieure</span> avec le Shorinji Kempo
               </h1>
-              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)] hero-description">
+              <p className="text-ivory-silk/90 lg:text-ivory-silk/80 max-w-xl mb-10 text-lg md:text-2xl font-medium leading-relaxed mx-auto lg:mx-0 lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)]">
                 Rejoignez un dojo où le corps et l'esprit s'unissent. Apprenez à <span className="text-white border-b-2 border-primary-gold/50">vous protéger</span>, gagnez en sérénité et forgez un mental d'acier.
               </p>
               <div className="flex flex-col items-center lg:items-start gap-6 pointer-events-auto">
-                <div 
-                  className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto animate-fade-in-up"
-                  style={{ animationDelay: '0.5s', animationFillMode: 'both' }}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
                 >
                   <a 
                     href="/#contact"
@@ -226,12 +208,13 @@ export default function Home() {
                     Réservez votre séance gratuite (places limitées)
                     <ArrowRight className="group-hover:translate-x-2 transition-transform" size={22} />
                   </a>
-                </div>
+                </motion.div>
                 
                 {/* Hero Calendrier Link */}
-                <div
-                  className="animate-fade-in-up"
-                  style={{ animationDelay: '0.8s', animationFillMode: 'both' }}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <a 
                     href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
@@ -243,27 +226,31 @@ export default function Home() {
                     <span className="text-xs font-bold uppercase tracking-widest">CALENDRIER DES EVENEMENTS</span>
                     <Download size={14} />
                   </a>
-                </div>
+                </motion.div>
                 {/* Micro-copy de réassurance pour renforcer la confiance */}
-                <p 
-                  className="text-ivory-silk/80 lg:text-ivory-silk/60 text-sm font-bold uppercase tracking-[0.15em] lg:ml-2 lg:[text-shadow:none] [text-shadow:0_2px_8px_rgba(0,0,0,1)] animate-fade-in"
-                  style={{ animationDelay: '1.2s', animationFillMode: 'both' }}
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 1.2 }}
+                  className="text-ivory-silk/80 lg:text-ivory-silk/60 text-sm font-bold uppercase tracking-[0.15em] lg:ml-2 lg:[text-shadow:none] [text-shadow:0_2px_8px_rgba(0,0,0,1)]"
                 >
                   Séance d’essai gratuite – Sans engagement, accessible débutants
-                </p>
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
 
-            <div
-              className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible animate-scale-in"
-              style={{ animationDelay: '0.2s', animationFillMode: 'both' }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
             >
-              {/* Mobile Overlay ajusté pour une visibilité maximale et lisibilité */}
-              <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
+              {/* Mobile Overlay ajusté pour une visibilité maximale */}
+              <div className="absolute inset-0 bg-black/10 z-30 lg:hidden pointer-events-none"></div>
 
               <div 
                 ref={videoContainerRef}
-                className="h-full w-full lg:h-auto lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5 video-wrapper"
+                className="aspect-[4/5] w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
               >
                 {/* Vidéo 1: Normal */}
                 <video 
@@ -273,7 +260,7 @@ export default function Home() {
                     activeVideo === 1 ? "opacity-100 z-20" : "opacity-0 z-10"
                   )}
                   src="https://res.cloudinary.com/dpfewspme/video/upload/q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
-                  poster="https://res.cloudinary.com/dpfewspme/video/upload/w_800,q_70,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
+                  poster="https://res.cloudinary.com/dpfewspme/video/upload/q_auto,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
                   autoPlay
                   muted
                   playsInline
@@ -311,7 +298,7 @@ export default function Home() {
               </div>
               {/* Desktop Glow */}
               <div className="hidden lg:block absolute -top-12 -right-12 w-48 h-48 bg-primary-gold/10 rounded-full blur-3xl"></div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -432,15 +419,18 @@ export default function Home() {
                 desc: "Apprenez à vous protéger efficacement"
               }
             ].map((benefit, i) => (
-              <ScrollReveal
+              <motion.div
                 key={i}
-                delay={i * 0.2}
-                className="reveal-up text-center p-10 rounded-[40px] bg-[#1A243A]/10 backdrop-blur-[16px] border border-white/5 hover:scale-105 transition-all duration-500 group shadow-2xl ki-aura-dark"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.2, ease: "easeOut" }}
+                className="text-center p-10 rounded-[40px] bg-[#1A243A]/10 backdrop-blur-[16px] border border-white/5 hover:scale-105 transition-all duration-500 group shadow-2xl ki-aura-dark"
               >
                 <div className="mb-8 flex justify-center group-hover:scale-110 transition-transform duration-500">{benefit.icon}</div>
                 <h3 className="text-white mb-4 text-3xl font-bold">{benefit.title}</h3>
                 <p className="text-slate-300 leading-relaxed text-lg font-medium">{benefit.desc}</p>
-              </ScrollReveal>
+              </motion.div>
             ))}
           </div>
           
@@ -661,9 +651,13 @@ export default function Home() {
             <ScrollReveal>
               <span className="micro-copy text-surface mb-4 block uppercase tracking-widest font-bold">Votre Premier Pas</span>
               <h2 className="text-surface text-4xl md:text-6xl font-medium mb-6">Comment nous rejoindre ?</h2>
-              <div
-                style={{ transformOrigin: "center" }}
-                className="h-1 w-24 bg-surface mx-auto rounded-full reveal-scale"
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                style={{ transformOrigin: "center", willChange: "transform, opacity" }}
+                className="h-1 w-24 bg-surface mx-auto rounded-full"
               />
               <p className="text-slate-800 mt-8 text-xl max-w-2xl mx-auto">Une démarche simple et bienveillante pour commencer votre transformation.</p>
             </ScrollReveal>
@@ -699,45 +693,53 @@ export default function Home() {
                 variant: "bg-surface shadow-primary-gold/15"
               }
             ].map((item, i) => (
-              <ScrollReveal 
+              <motion.div 
                 key={i}
-                delay={item.delay}
-                className={cn(
-                  "relative group h-full reveal-up",
-                  "relative z-10 p-10 rounded-[40px] glass-card border border-white/10 hover:scale-105 transition-all duration-500 flex flex-col items-center text-center shadow-2xl ki-aura-dark",
-                  item.variant
-                )}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group h-full"
               >
-                {/* Step Number Overlay */}
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/5 group-hover:text-primary-gold/10 transition-colors duration-500 select-none z-0 italic">
-                  {item.step}
-                </div>
+                <div className={cn(
+                  "relative z-10 p-10 rounded-[40px] glass-card border border-white/10 hover:scale-105 transition-all duration-500 h-full flex flex-col items-center text-center shadow-2xl ki-aura-dark",
+                  item.variant
+                )}>
+                  {/* Step Number Overlay */}
+                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[120px] font-headline font-black text-white/5 group-hover:text-primary-gold/10 transition-colors duration-500 select-none z-0 italic">
+                    {item.step}
+                  </div>
 
-                {/* Icon Container - Adapted from Instructor Image style */}
-                <div className="mb-10 w-24 h-24 rounded-3xl bg-white/5 flex items-center justify-center group-hover:bg-primary-gold group-hover:text-surface transition-all duration-500 shadow-lg group-hover:shadow-primary-gold/30 relative z-10 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="group-hover:scale-110 transition-transform duration-500 relative z-10">
-                    {item.icon}
+                  {/* Icon Container - Adapted from Instructor Image style */}
+                  <div className="mb-10 w-24 h-24 rounded-3xl bg-white/5 flex items-center justify-center group-hover:bg-primary-gold group-hover:text-surface transition-all duration-500 shadow-lg group-hover:shadow-primary-gold/30 relative z-10 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="group-hover:scale-110 transition-transform duration-500 relative z-10">
+                      {item.icon}
+                    </div>
+                  </div>
+
+                  <h3 className="text-white text-2xl font-medium mb-4 relative z-10">{item.title}</h3>
+                  
+                  {/* Animated Line - Same as Instructors */}
+                  <motion.div
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    whileInView={{ scaleX: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8 + (i * 0.2), duration: 0.8 }}
+                    style={{ transformOrigin: "center", willChange: "transform, opacity" }}
+                    className="h-[1px] w-[40px] bg-primary-gold/50 mx-auto mb-6 relative z-10"
+                  />
+
+                  <p className="text-slate-300 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
+                  
+                  <div className="mt-auto w-full pt-8 border-t border-white/10">
+                    <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60 group-hover:text-primary-gold transition-colors duration-500">
+                      <CheckCircle size={12} />
+                      <span>Accessible débutants</span>
+                    </div>
                   </div>
                 </div>
-
-                <h3 className="text-white text-2xl font-medium mb-4 relative z-10">{item.title}</h3>
-                
-                {/* Animated Line - Same as Instructors */}
-                <div
-                  className="h-[1px] w-[40px] bg-primary-gold/50 mx-auto mb-6 relative z-10 reveal-scale"
-                  style={{ transitionDelay: `${0.8 + (i * 0.2)}s` }}
-                />
-
-                <p className="text-slate-300 leading-relaxed text-lg relative z-10 mb-8">{item.desc}</p>
-                
-                <div className="mt-auto w-full pt-8 border-t border-white/10">
-                  <div className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary-gold/60 group-hover:text-primary-gold transition-colors duration-500">
-                    <CheckCircle size={12} />
-                    <span>Accessible débutants</span>
-                  </div>
-                </div>
-              </ScrollReveal>
+              </motion.div>
             ))}
           </div>
           
@@ -763,44 +765,43 @@ export default function Home() {
       </section>
 
       {/* Instructors Section */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <InstructorsSection />
-      </Suspense>
+      <InstructorsSection />
 
       {/* FAQ Section */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <FaqSection />
-      </Suspense>
+      <FaqSection />
 
       {/* Testimonials */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <TestimonialsSection />
-      </Suspense>
+      <TestimonialsSection />
 
       {/* Contact Section - Conversion Focus */}
-      <Suspense fallback={<SectionSkeleton />}>
-        <ContactSection />
-      </Suspense>
+      <ContactSection />
       {/* Maps Modal */}
-      {isMapOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
-          <div
-            onClick={() => setIsMapOpen(false)}
-            className="absolute inset-0 bg-surface/80 backdrop-blur-sm animate-fade-in"
-          />
-          <div
-            className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark p-2 animate-scale-in"
-          >
-            {/* Close Button - Top Right */}
-            <div className="absolute top-6 right-6 z-10">
-              <button 
-                onClick={() => setIsMapOpen(false)}
-                className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
-                aria-label="Fermer la carte"
-              >
-                <X size={24} />
-              </button>
-            </div>
+      <AnimatePresence>
+        {isMapOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMapOpen(false)}
+              className="absolute inset-0 bg-surface/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark p-2"
+            >
+              {/* Close Button - Top Right */}
+              <div className="absolute top-6 right-6 z-10">
+                <button 
+                  onClick={() => setIsMapOpen(false)}
+                  className="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl"
+                  aria-label="Fermer la carte"
+                >
+                  <X size={24} />
+                </button>
+              </div>
 
               {/* Zoom & Fullscreen Controls - Bottom Right */}
               <div className="absolute bottom-24 right-6 z-10 flex flex-col gap-4">
@@ -840,30 +841,39 @@ export default function Home() {
                 className="rounded-[2rem]"
                 title="Google Maps Dojo Saint-Giniez"
               ></iframe>
-            </div>
+            </motion.div>
           </div>
         )}
+      </AnimatePresence>
 
       {/* Engagement Hub Popup */}
-      {isHubOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
-          <div
-            onClick={() => setIsHubOpen(false)}
-            className="absolute inset-0 bg-surface/80 backdrop-blur-sm animate-fade-in"
-          />
-          <div
-            className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark animate-scale-in"
-          >
-            <Suspense fallback={
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="w-12 h-12 border-4 border-primary-gold/20 border-t-primary-gold rounded-full animate-spin"></div>
-              </div>
-            }>
+      <AnimatePresence>
+        {isHubOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsHubOpen(false)}
+              className="absolute inset-0 bg-surface/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              onViewportEnter={(entry) => {
+                if (entry?.target) {
+                  entry.target.classList.add('is-visible');
+                }
+              }}
+              className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
+            >
               <EngagementHub onClose={() => setIsHubOpen(false)} />
-            </Suspense>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </main>
   );
 }

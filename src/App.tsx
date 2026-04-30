@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-const ShareButton = lazy(() => import('./components/ShareButton'));
+import ShareButton from './components/ShareButton';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -13,7 +13,6 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
 const LegalNotice = lazy(() => import('./pages/LegalNotice'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading component for Suspense fallback
 function PageLoader() {
@@ -57,14 +56,11 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/mentions-legales" element={<LegalNotice />} />
               <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>
         <Footer />
-        <Suspense fallback={null}>
-          <ShareButton />
-        </Suspense>
+        <ShareButton />
       </div>
     </Router>
   );
