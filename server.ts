@@ -93,7 +93,13 @@ async function startServer() {
       "/contact",
       "/blog",
       "/mentions-legales",
-      "/politique-confidentialite"
+      "/politique-confidentialite",
+      "/shorinji-kempo-marseille",
+      "/self-defense-marseille",
+      "/encyclopedie/shorinji-kempo-vs-karate",
+      "/encyclopedie/shorinji-kempo-vs-judo",
+      "/encyclopedie/shorinji-kempo-vs-aikido",
+      "/encyclopedie/shorinji-kempo-vs-kung-fu"
     ];
 
     app.get("*", (req, res) => {
