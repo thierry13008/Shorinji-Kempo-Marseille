@@ -38,7 +38,7 @@ export default function FaqSection() {
           <ScrollReveal className="relative group">
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
               <img 
-                src="https://i.ibb.co/Hfwx9C2b/photo-FAQ-COMPRESS.jpg" 
+                src="https://i.ibb.co/5X3v6dSz/olivierwebp.webp" 
                 alt="Pratique du Shorinji Kempo - FAQ" 
                 className="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"

@@ -13,6 +13,7 @@ const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
 const LegalNotice = lazy(() => import('./pages/LegalNotice'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const ShorinjiKempoMarseille = lazy(() => import('./pages/ShorinjiKempoMarseille'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading component for Suspense fallback
@@ -57,6 +58,7 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/mentions-legales" element={<LegalNotice />} />
               <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
+              <Route path="/shorinji-kempo-marseille" element={<ShorinjiKempoMarseille />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

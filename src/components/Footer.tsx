@@ -144,7 +144,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[12px] text-[#999999] font-light text-center md:text-left">
-            © 2026 Shorinji Kempo Marseille.
+            © 2026 <Link to="/shorinji-kempo-marseille" className="hover:underline">Shorinji Kempo Marseille</Link>.
           </p>
           <p className="text-[12px] text-[#999999] font-light">
             Développé avec passion par <span className="text-primary-gold font-bold">KAIRYOS Digital</span> pour les arts martiaux.
