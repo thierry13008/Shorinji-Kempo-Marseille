@@ -19,27 +19,38 @@ export default defineConfig(({mode}) => {
       target: 'esnext',
       minify: 'esbuild',
       rollupOptions: {
+        treeshake: {
+          moduleSideEffects: false,
+          propertyReadSideEffects: false,
+          tryCatchDeoptimization: false,
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              // Group React core together
-              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom') || id.includes('scheduler')) {
+              // React core
+              if (
+                id.includes('react/') || 
+                id.includes('react-dom/') || 
+                id.includes('react-router-dom/') || 
+                id.includes('scheduler/') ||
+                id.includes('react-helmet-async/')
+              ) {
                 return 'vendor-react';
               }
-              // Group motion/animation libraries
+              // Framer Motion / Motion
               if (id.includes('framer-motion') || id.includes('motion')) {
                 return 'vendor-motion';
               }
-              // Icon library
+              // Icons - isolate them to support better tree shaking per chunk
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
               }
-              // AI and other utils
+              // AI logic
               if (id.includes('@google/genai')) {
                 return 'vendor-ai';
               }
-              // Everything else
-              return 'vendor-others';
+              // Other vendors
+              return 'vendor-utils';
             }
           },
         },

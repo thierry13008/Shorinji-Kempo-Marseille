@@ -4,7 +4,6 @@ import { cn } from '@/src/lib/utils';
 import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import EngagementHub from '@/src/components/EngagementHub';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
 // Lazy loaded components
@@ -12,6 +11,8 @@ import InstructorsSection from '@/src/components/InstructorsSection';
 import ContactSection from '@/src/components/ContactSection';
 import FaqSection from '@/src/components/FaqSection';
 import TestimonialsSection from '@/src/components/TestimonialsSection';
+
+const EngagementHub = lazy(() => import('@/src/components/EngagementHub'));
 
 const SectionSkeleton = () => (
   <div className="py-24 max-w-7xl mx-auto px-6">
@@ -267,11 +268,11 @@ export default function Home() {
               className="absolute inset-0 lg:relative lg:mt-0 z-0 lg:z-10 lg:opacity-100 overflow-hidden lg:overflow-visible"
             >
               {/* Mobile Overlay ajusté pour une visibilité maximale */}
-              <div className="absolute inset-0 bg-black/10 z-30 lg:hidden pointer-events-none"></div>
+              <div className="absolute inset-0 bg-black/40 z-30 lg:hidden pointer-events-none"></div>
 
               <div 
                 ref={videoContainerRef}
-                className="aspect-[4/5] w-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
+                className="w-full h-full lg:w-[450px] lg:aspect-[4/5] lg:rounded-[24px] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-white/10 lg:transform lg:rotate-2 lg:glass-card lg:ki-aura-dark lg:p-2 cursor-pointer relative group/video-card bg-surface/5"
               >
                 {/* Vidéo 1: Normal */}
                 <video 
@@ -281,7 +282,7 @@ export default function Home() {
                     activeVideo === 1 ? "opacity-100 z-20" : "opacity-0 z-10"
                   )}
                   src="https://res.cloudinary.com/dpfewspme/video/upload/q_60,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.mp4"
-                  poster="https://res.cloudinary.com/dpfewspme/video/upload/q_auto,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
+                  poster="https://res.cloudinary.com/dpfewspme/video/upload/w_800,q_70,f_auto/v1774606161/video_salut_sans_watermark_gb80ku.jpg"
                   autoPlay
                   muted
                   playsInline
@@ -890,7 +891,9 @@ export default function Home() {
               }}
               className="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark"
             >
-              <EngagementHub onClose={() => setIsHubOpen(false)} />
+              <Suspense fallback={<SectionSkeleton />}>
+                <EngagementHub onClose={() => setIsHubOpen(false)} />
+              </Suspense>
             </motion.div>
           </div>
         )}
