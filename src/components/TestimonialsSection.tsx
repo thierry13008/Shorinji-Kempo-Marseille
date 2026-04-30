@@ -61,7 +61,7 @@ export default function TestimonialsSection() {
                   </div>
                 </div>
 
-                <p className="italic leading-relaxed text-xl font-medium flex-grow relative z-10 px-2 text-slate-100">
+                <p className="italic leading-relaxed text-xl font-medium flex-grow relative z-10 px-2 text-slate-300">
                   <span className="text-primary-gold/40 text-4xl font-serif absolute -top-4 -left-2">"</span>
                   {t.text}
                   <span className="text-primary-gold/40 text-4xl font-serif absolute -bottom-8 -right-2">"</span>
