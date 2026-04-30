@@ -12,6 +12,10 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/shorinji-kempo-marseille", "destination": "/index.html" },
+    { "source": "/self-defense-marseille", "destination": "/index.html" },
+    { "source": "/encyclopedie/(.*)", "destination": "/index.html" },
+    { "source": "/blog/(.*)", "destination": "/index.html" },
     { "source": "/((?!api/|.*\\.).*)", "destination": "/index.html" }
   ],
   "cleanUrls": true
