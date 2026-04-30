@@ -338,6 +338,9 @@ export default function Encyclopedia() {
             </section>
           ))}
         </main>
+        <p className="text-xs text-slate-500 text-center mt-16 whitespace-nowrap">
+          Comparer : <a href="/encyclopedie/shorinji-kempo-vs-karate" className="hover:text-primary-gold transition-colors">Shorinji Kempo vs Karaté</a> · <a href="/encyclopedie/shorinji-kempo-vs-judo" className="hover:text-primary-gold transition-colors">vs Judo</a> · <a href="/encyclopedie/shorinji-kempo-vs-aikido" className="hover:text-primary-gold transition-colors">vs Aïkido</a> · <a href="/encyclopedie/shorinji-kempo-vs-kung-fu" className="hover:text-primary-gold transition-colors">vs Kung Fu</a>
+        </p>
       </div>
 
       {/* Modal Popup */}

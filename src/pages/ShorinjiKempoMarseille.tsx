@@ -100,11 +100,31 @@ const ShorinjiKempoMarseille = () => {
     ]
   };
 
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://shorinji-kempo-marseille.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shorinji Kempo Marseille",
+        "item": "https://shorinji-kempo-marseille.vercel.app/shorinji-kempo-marseille"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-bg-main font-sans selection:bg-primary-gold/30 selection:text-primary-gold relative">
       <Helmet>
         <title>Shorinji Kempo Marseille | Self-Défense & Art Martial Saint-Giniez 13008</title>
         <meta name="description" content="Shorinji Kempo Marseille Saint-Giniez 13008. Self-défense et art martial au cœur du Prado. Cours tous niveaux, essai gratuit. Venez essayer." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shorinji-kempo-marseille.vercel.app/shorinji-kempo-marseille" />
         
         <meta property="og:title" content="Shorinji Kempo Marseille | Self-Défense & Art Martial Saint-Giniez 13008" />
@@ -115,6 +135,7 @@ const ShorinjiKempoMarseille = () => {
 
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqData)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbData)}</script>
       </Helmet>
 
       {/* Fixed Background for CTA & Footer (Encyclopedia style) */}
@@ -211,7 +232,7 @@ const ShorinjiKempoMarseille = () => {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <span className="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Planning des cours</span>
-                <h2 className="text-white text-4xl md:text-5xl font-black mb-4">Horaires des entraînements</h2>
+                <h2 className="text-white text-4xl md:text-5xl font-black mb-4 italic">Horaires des entraînements à Marseille 13008</h2>
                 <p className="text-ivory-silk/60">3 créneaux hebdomadaires au Dojo Saint-Giniez</p>
               </div>
               <div className="overflow-hidden glass-card rounded-[40px] border border-white/10">
@@ -337,6 +358,9 @@ const ShorinjiKempoMarseille = () => {
             </div>
           </section>
         </ScrollReveal>
+        <p className="text-xs text-slate-500 text-center mt-16">
+          Comparer le Shorinji Kempo : <a href="/encyclopedie/shorinji-kempo-vs-karate" class="hover:text-primary-gold transition-colors">vs Karaté</a> · <a href="/encyclopedie/shorinji-kempo-vs-judo" class="hover:text-primary-gold transition-colors">vs Judo</a> · <a href="/encyclopedie/shorinji-kempo-vs-aikido" class="hover:text-primary-gold transition-colors">vs Aïkido</a> · <a href="/encyclopedie/shorinji-kempo-vs-kung-fu" class="hover:text-primary-gold transition-colors">vs Kung Fu</a>
+        </p>
       </main>
     </div>
   );
