@@ -564,6 +564,9 @@ export default function Home() {
               </ScrollReveal>
             ))}
           </div>
+          <p className="text-sm text-slate-400 text-center mt-16 px-4">
+            <Link to="/shorinji-kempo-marseille" className="hover:text-primary-gold transition-colors">Découvrez notre dojo au cœur de Marseille Saint-Giniez</Link>
+          </p>
         </div>
       </section>
 

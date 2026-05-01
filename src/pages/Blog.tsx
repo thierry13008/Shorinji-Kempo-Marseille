@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Calendar, ArrowRight, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Breadcrumb from '@/src/components/Breadcrumb';
 import ScrollReveal from '@/src/components/ScrollReveal';
 import { decodeHtml } from '@/src/lib/utils';
 
@@ -202,6 +203,9 @@ export default function Blog() {
           <div className="absolute inset-0 bg-gradient-to-b from-surface/20 via-transparent to-surface" />
         </div>
         <header className="px-6 md:px-24 mb-20 relative z-10">
+          <div className="mb-8">
+            <Breadcrumb />
+          </div>
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none" />
           
           <div className="max-w-4xl">
@@ -433,6 +437,9 @@ export default function Blog() {
         )}
       </div>
       </section>
+      <p className="text-xs text-slate-500 text-center mt-16 px-4">
+        Envie d'essayer ? <Link to="/shorinji-kempo-marseille" className="hover:text-primary-gold transition-colors">Découvrez le Shorinji Kempo à Marseille</Link>
+      </p>
     </main>
   );
 }

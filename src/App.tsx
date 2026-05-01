@@ -18,6 +18,7 @@ const ShorinjiKempoVsKarate = lazy(() => import('./pages/encyclopedie/ShorinjiKe
 const ShorinjiKempoVsJudo = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsJudo'));
 const ShorinjiKempoVsAikido = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsAikido'));
 const ShorinjiKempoVsKungFu = lazy(() => import('./pages/encyclopedie/ShorinjiKempoVsKungFu'));
+const SelfDefenseMarseille = lazy(() => import('./pages/SelfDefenseMarseille'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading component for Suspense fallback
@@ -67,6 +68,7 @@ export default function App() {
               <Route path="/encyclopedie/shorinji-kempo-vs-judo" element={<ShorinjiKempoVsJudo />} />
               <Route path="/encyclopedie/shorinji-kempo-vs-aikido" element={<ShorinjiKempoVsAikido />} />
               <Route path="/encyclopedie/shorinji-kempo-vs-kung-fu" element={<ShorinjiKempoVsKungFu />} />
+              <Route path="/self-defense-marseille" element={<SelfDefenseMarseille />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

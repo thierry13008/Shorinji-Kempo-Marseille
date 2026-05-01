@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Clock, Phone, Mail, CheckCircle, X, Plus, Minus, Maximize2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Breadcrumb from '@/src/components/Breadcrumb';
 import { Helmet } from 'react-helmet-async';
 import ScrollReveal from '@/src/components/ScrollReveal';
 
@@ -112,6 +114,9 @@ export default function Contact() {
       {/* Contact Section */}
       <section id="contact" className="relative py-32 bg-transparent overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="mb-12 flex justify-center">
+            <Breadcrumb />
+          </div>
           <div className="text-center mb-16">
             <h1 className="text-white mb-4">Prêt à commencer ?</h1>
             <p className="text-slate-300">Réservez votre cours d’essai gratuit dès maintenant</p>
@@ -303,6 +308,9 @@ export default function Contact() {
           </div>
         )}
       </AnimatePresence>
+      <p className="text-xs text-slate-500 text-center mt-16 px-4">
+        En savoir plus : <Link to="/encyclopedia" className="hover:text-primary-gold transition-colors">Encyclopédie du Shorinji Kempo</Link> · <Link to="/shorinji-kempo-marseille" className="hover:text-primary-gold transition-colors">Notre dojo à Marseille</Link>
+      </p>
     </main>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "motion/react";
 import { Calendar, MapPin, ChevronRight, CheckCircle2, Info, Sparkles } from "lucide-react";
+import Breadcrumb from "../components/Breadcrumb";
 import ScrollReveal from "../components/ScrollReveal";
 import { cn } from "../lib/utils";
 
@@ -155,6 +157,9 @@ const ShorinjiKempoMarseille = () => {
       <main className="relative z-10 pt-32 pb-20 overflow-hidden">
         {/* HERO SECTION */}
         <section className="container mx-auto px-6 mb-32">
+          <div className="flex justify-center mb-12">
+            <Breadcrumb />
+          </div>
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -359,7 +364,10 @@ const ShorinjiKempoMarseille = () => {
           </section>
         </ScrollReveal>
         <p className="text-xs text-slate-500 text-center mt-16">
-          Comparer le Shorinji Kempo : <a href="/encyclopedie/shorinji-kempo-vs-karate" class="hover:text-primary-gold transition-colors">vs Karaté</a> · <a href="/encyclopedie/shorinji-kempo-vs-judo" class="hover:text-primary-gold transition-colors">vs Judo</a> · <a href="/encyclopedie/shorinji-kempo-vs-aikido" class="hover:text-primary-gold transition-colors">vs Aïkido</a> · <a href="/encyclopedie/shorinji-kempo-vs-kung-fu" class="hover:text-primary-gold transition-colors">vs Kung Fu</a>
+          Comparer le Shorinji Kempo : <a href="/encyclopedie/shorinji-kempo-vs-karate" className="hover:text-primary-gold transition-colors">vs Karaté</a> · <a href="/encyclopedie/shorinji-kempo-vs-judo" className="hover:text-primary-gold transition-colors">vs Judo</a> · <a href="/encyclopedie/shorinji-kempo-vs-aikido" className="hover:text-primary-gold transition-colors">vs Aïkido</a> · <a href="/encyclopedie/shorinji-kempo-vs-kung-fu" className="hover:text-primary-gold transition-colors">vs Kung Fu</a>
+        </p>
+        <p className="text-xs text-slate-500 text-center mt-16">
+          <a href="/self-defense-marseille" className="hover:text-primary-gold transition-colors">En savoir plus sur la self-défense à Marseille</a>
         </p>
       </main>
     </div>

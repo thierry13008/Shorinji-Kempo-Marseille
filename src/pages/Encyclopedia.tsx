@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Book, Shield, Heart, Users, Globe, Award, X, Info, ExternalLink, MapPin, Clock, Zap, ArrowRight } from 'lucide-react';
+import Breadcrumb from '@/src/components/Breadcrumb';
 
 export default function Encyclopedia() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -287,6 +288,9 @@ export default function Encyclopedia() {
       </div>
 
       <header className="relative h-[500px] flex items-end px-6 md:px-24 pb-16 z-10">
+        <div className="absolute top-32 left-6 md:left-24 z-20">
+          <Breadcrumb />
+        </div>
         <div className="relative z-10 max-w-4xl">
           <span className="text-primary-gold font-label tracking-[0.3em] uppercase text-xs mb-4 block">Archive du Savoir</span>
           <h1 className="font-headline text-5xl md:text-7xl text-white leading-tight mb-6">
@@ -338,7 +342,7 @@ export default function Encyclopedia() {
             </section>
           ))}
         </main>
-        <p className="text-xs text-slate-500 text-center mt-16 whitespace-nowrap">
+        <p className="text-sm text-slate-500 text-center mt-16 whitespace-nowrap px-4">
           Comparer : <a href="/encyclopedie/shorinji-kempo-vs-karate" className="hover:text-primary-gold transition-colors">Shorinji Kempo vs Karaté</a> · <a href="/encyclopedie/shorinji-kempo-vs-judo" className="hover:text-primary-gold transition-colors">vs Judo</a> · <a href="/encyclopedie/shorinji-kempo-vs-aikido" className="hover:text-primary-gold transition-colors">vs Aïkido</a> · <a href="/encyclopedie/shorinji-kempo-vs-kung-fu" className="hover:text-primary-gold transition-colors">vs Kung Fu</a>
         </p>
       </div>

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Loader2, AlertCircle, Clock, Share2, Bookmark, MessageSquare } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '@/src/components/Breadcrumb';
 import ScrollReveal from '@/src/components/ScrollReveal';
 import { decodeHtml } from '@/src/lib/utils';
 
@@ -127,6 +128,12 @@ export default function BlogPost() {
         </aside>
 
         <div className="lg:col-span-10">
+          <div className="mb-4">
+            <Breadcrumb items={[
+              { name: 'Blog', path: '/blog' },
+              { name: decodeHtml(post.title.rendered), path: `/blog/${slug}` }
+            ]} />
+          </div>
           <Link 
             to="/blog" 
             className="inline-flex items-center gap-2 text-primary-gold text-[10px] font-label uppercase tracking-[0.3em] mb-12 hover:-translate-x-1 transition-transform group"

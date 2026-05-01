@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "motion/react";
 import { ChevronRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Breadcrumb from "../../components/Breadcrumb";
 import ScrollReveal from "../../components/ScrollReveal";
 
 const ShorinjiKempoVsKungFu = () => {
@@ -72,6 +73,9 @@ const ShorinjiKempoVsKungFu = () => {
       </div>
 
       <main className="relative z-10 pt-32 pb-20 overflow-hidden">
+        <div className="container mx-auto px-6 mb-8 flex justify-center">
+          <Breadcrumb />
+        </div>
         {/* HERO SECTION */}
         <section className="container mx-auto px-6 mb-20 text-center">
           <motion.div 
