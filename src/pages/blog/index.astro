@@ -1,0 +1,316 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// API Configuration
+const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
+
+// Types
+interface WPPost {
+  id: number;
+  date: string;
+  slug: string;
+  title: { rendered: string };
+  content: { rendered: string };
+  excerpt: { rendered: string };
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{
+      media_details?: {
+        sizes?: {
+          medium_large?: { source_url: string };
+          medium?: { source_url: string };
+        };
+      };
+      source_url: string;
+    }>;
+  };
+  isFallback?: boolean;
+}
+
+// Fallback Data
+const FALLBACK_POSTS: WPPost[] = [
+  {
+    id: 101,
+    date: new Date().toISOString(),
+    slug: 'fallback-1',
+    title: { rendered: "Actualités du Club - Mise à jour en cours" },
+    content: { rendered: "" },
+    excerpt: { rendered: "Nous mettons à jour nos derniers articles. Revenez dans quelques instants pour découvrir les nouveautés du dojo." },
+    isFallback: true
+  },
+  {
+    id: 102,
+    date: new Date().toISOString(),
+    slug: 'fallback-2',
+    title: { rendered: "Shorinji Kempo : Esprit et Technique" },
+    content: { rendered: "" },
+    excerpt: { rendered: "La pratique martiale au service du développement personnel et de la cohésion sociale." },
+    isFallback: true
+  },
+  {
+    id: 103,
+    date: new Date().toISOString(),
+    slug: 'fallback-3',
+    title: { rendered: "Événements à venir" },
+    content: { rendered: "" },
+    excerpt: { rendered: "Consultez régulièrement notre calendrier pour ne manquer aucun stage ou passage de grade." },
+    isFallback: true
+  }
+];
+
+let posts: WPPost[] = [];
+let error = false;
+
+try {
+  const response = await fetch(`${WP_API_URL}?per_page=20&_embed`, {
+    headers: { 'User-Agent': 'Astro Client' }
+  });
+  if (response.ok) {
+    posts = await response.json();
+  } else {
+    posts = FALLBACK_POSTS;
+    error = true;
+  }
+} catch (e) {
+  posts = FALLBACK_POSTS;
+  error = true;
+}
+
+const decodeHtml = (str: string) => {
+  return str
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+};
+
+const stripHtml = (html: string) => {
+  return html.replace(/<[^>]*>?/gm, '');
+};
+
+const getPostImage = (post: WPPost) => {
+  const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0];
+  if (featuredMedia) {
+    const sizes = featuredMedia.media_details?.sizes;
+    return sizes?.medium_large?.source_url || sizes?.medium?.source_url || featuredMedia.source_url;
+  }
+  const match = post.content?.rendered?.match(/<img[^>]+src="([^">]+)"/);
+  return match ? match[1] : `https://picsum.photos/seed/${post.id}/800/450`;
+};
+
+// Extract Years
+const yearsSet = new Set<string>();
+posts.forEach(post => {
+  const year = new Date(post.date).getFullYear().toString();
+  yearsSet.add(year);
+});
+const years = Array.from(yearsSet).sort((a, b) => b.localeCompare(a));
+---
+<BaseLayout 
+  title="Blog Shorinji Kempo Marseille | Actualités & Articles Saint-Giniez" 
+  description="Toutes les actualités du club Shorinji Kempo Marseille : stages, événements, passages de grades et articles sur la pratique."
+  canonical="https://shorinji-kempo-marseille.vercel.app/blog"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://shorinji-kempo-marseille.vercel.app/blog" }
+    ]
+  })} />
+
+  {/* Client Interactive Filter State with Alpine.js */}
+  <div 
+    x-data="{ selectedYear: 'Tout' }"
+    class="min-h-screen"
+  >
+    <section class="pt-32 pb-20 bg-surface relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-[600px] z-0 pointer-events-none">
+        <img 
+          src="https://i.ibb.co/9k58mcRH/hero-pour-blog-compress.png" 
+          alt="shorinji kempo marseille blog" 
+          class="w-full h-full object-cover opacity-80"
+          referrerpolicy="no-referrer"
+          loading="lazy"
+          width="1920"
+          height="600"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
+      </div>
+      
+      <header class="px-6 md:px-24 mb-20 relative z-10">
+        <div class="mb-8">
+          <div class="flex items-center gap-2 text-[14px] text-ivory-silk/60 font-medium">
+            <a href="/" class="hover:text-primary-gold transition-colors">Accueil</a>
+            <span>/</span>
+            <span class="text-primary-gold font-semibold">Blog</span>
+          </div>
+        </div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-gold/5 rounded-full blur-[120px] -mr-48 -mt-48 pointer-events-none"></div>
+        
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center gap-4 text-primary-gold mb-8">
+            <div class="h-[1px] w-12 bg-primary-gold"></div>
+            <span class="font-label text-[11px] tracking-[0.5em] uppercase font-bold">Le Flux Officiel</span>
+          </div>
+          
+          <h1 class="font-headline text-6xl md:text-8xl text-white mb-10 leading-[1.05] tracking-tight">
+            Le Flux Officiel <br />
+            <span class="italic text-primary-gold">du Dojo</span>
+          </h1>
+          
+          <h2 class="text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed font-light">
+            Découvrez l'actualité du Shorinji Kempo Marseille : stages, événements, et réflexions sur la voie martiale.
+          </h2>
+        </div>
+      </header>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Year Filters */}
+        <div class="flex flex-wrap gap-3 mb-12 overflow-x-auto pb-4 no-scrollbar">
+          <button
+            @click="selectedYear = 'Tout'"
+            :class="selectedYear === 'Tout' ? 'bg-primary-gold text-[#111111] font-bold' : 'glass-card text-white hover:text-primary-gold'"
+            class="px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all"
+          >
+            Tout
+          </button>
+          {years.map(year => (
+            <button
+              @click={`selectedYear = '${year}'`}
+              :class={`selectedYear === '${year}' ? 'bg-primary-gold text-[#111111] font-bold' : 'glass-card text-white hover:text-primary-gold'`}
+              class="px-6 py-2 rounded-full text-xs font-label uppercase tracking-widest transition-all"
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+
+        {/* Latest Featured Post */}
+        {posts.length > 0 && (
+          <div class="mb-12" x-show="selectedYear === 'Tout'" style="display: none;" x-transition>
+            <a 
+              href={`/blog/${posts[0].slug}`} 
+              class="group flex flex-col lg:flex-row-reverse h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/20 hover:border-primary-gold/50 transition-all duration-500"
+            >
+              <div class="relative lg:w-3/5 aspect-[16/10] lg:aspect-auto overflow-hidden">
+                <img 
+                  src={getPostImage(posts[0])} 
+                  alt={`Actualités post : ${decodeHtml(posts[0].title.rendered)}`}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerpolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+              
+              <div class="p-8 lg:p-12 flex flex-col flex-1 lg:justify-center">
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="text-[10px] font-label uppercase tracking-widest text-[#111111] bg-primary-gold font-bold px-3 py-1 rounded-full">
+                    {new Date(posts[0].date).getFullYear()}
+                  </span>
+                  <span class="text-[10px] font-label uppercase tracking-widest text-surface/60">
+                    {new Date(posts[0].date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+                  </span>
+                  <span class="text-[10px] font-label uppercase tracking-widest text-primary-gold/80 ml-auto flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 bg-primary-gold rounded-full animate-pulse"></span>
+                    Dernière minute
+                  </span>
+                </div>
+                
+                <h3 class="font-headline text-3xl md:text-5xl text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic">
+                  {decodeHtml(posts[0].title.rendered)}
+                </h3>
+                
+                <p class="text-surface/70 text-base font-light leading-relaxed line-clamp-3 mb-8 flex-1">
+                  {stripHtml(posts[0].excerpt.rendered)}
+                </p>
+                
+                <div class="flex items-center justify-between pt-6 border-t border-surface/5">
+                  <span class="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 4 min
+                  </span>
+                  <span class="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lire <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+
+    {/* Remaining Grid Posts */}
+    <section class="bg-bg-secondary py-24 relative z-10">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {posts.map((post, index) => {
+            const year = new Date(post.date).getFullYear().toString();
+            const monthDay = new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            return (
+              <div 
+                x-show={`(selectedYear === 'Tout' && ${index > 0}) || selectedYear === '${year}'`} 
+                style="display: none;"
+                class={(index === 1) ? 'lg:col-span-2 md:col-span-2' : ''}
+              >
+                <a 
+                  href={`/blog/${post.slug}`} 
+                  class={`group flex flex-col h-full bg-bg-main border border-surface/10 rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-surface/5 hover:border-primary-gold/50 transition-all duration-500 ${(index === 1) ? 'lg:flex-row-reverse' : ''}`}
+                >
+                  <div class={`overflow-hidden ${(index === 1) ? 'lg:w-3/5 aspect-[16/10] lg:aspect-auto' : 'aspect-[16/10]'}`}>
+                    <img 
+                      src={getPostImage(post)} 
+                      alt={decodeHtml(post.title.rendered)}
+                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      referrerpolicy="no-referrer"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <div class={`p-8 flex flex-col flex-1 ${(index === 1) ? 'lg:p-12 lg:justify-center' : ''}`}>
+                    <div class="flex items-center gap-3 mb-6">
+                      <span class="text-[10px] font-label uppercase tracking-widest text-[#111111] bg-primary-gold font-bold px-3 py-1 rounded-full">{year}</span>
+                      <span class="text-[10px] font-label uppercase tracking-widest text-surface/60">{monthDay}</span>
+                    </div>
+                    
+                    <h3 class="font-headline text-2xl text-surface mb-4 leading-tight group-hover:text-primary-gold transition-colors italic">
+                      {decodeHtml(post.title.rendered)}
+                    </h3>
+                    
+                    <p class="text-surface/70 text-sm font-light leading-relaxed line-clamp-3 mb-8 flex-1">
+                      {stripHtml(post.excerpt.rendered)}
+                    </p>
+                      
+                    <div class="flex items-center justify-between pt-6 border-t border-surface/5">
+                      <span class="text-[10px] font-label uppercase tracking-widest text-surface/60 flex items-center gap-2">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> 4 min
+                      </span>
+                      <span class="text-[10px] font-label uppercase tracking-widest text-primary-gold font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lire <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Error Notification */}
+        {error && (
+          <div class="mt-12 p-4 bg-primary-gold/10 border border-primary-gold/20 rounded-lg flex items-center gap-3 text-primary-gold text-sm mx-auto max-w-2xl">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <p>Impossible de synchroniser les derniers articles en direct de l'API. Affichage des chroniques archivées.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+
+  <p class="text-xs text-slate-500 text-center mt-16 px-4 mb-8">
+    Envie d'essayer ? <a href="/shorinji-kempo-marseille" class="hover:text-primary-gold transition-colors">Découvrez le Shorinji Kempo à Marseille</a>
+  </p>
+</BaseLayout>

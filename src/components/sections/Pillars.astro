@@ -1,0 +1,82 @@
+---
+// Pillars section
+---
+<section class="py-48 bg-surface relative overflow-hidden border-y border-white/5">
+  {/* Background Image Integration */}
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <img 
+      src="https://i.ibb.co/MDm3thBh/banadeau-accueil-trois-pilier-WEBP2.webp" 
+      alt="Background Nos 3 Piliers Shorinji Kempo Marseille" 
+      class="w-full h-full object-cover opacity-80"
+      referrerpolicy="no-referrer"
+      loading="lazy"
+      width={1920}
+      height={600}
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-20">
+      <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-mono text-sm">Votre Transformation</span>
+      <h2 class="text-white text-4xl md:text-6xl font-black mb-6">Nos 3 Piliers Fondamentaux</h2>
+      <p class="text-slate-300 text-xl max-w-2xl mx-auto">Développez votre confiance et votre force dès les premières séances grâce à une méthode éprouvée.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {[
+        {
+          title: "Confiance",
+          desc: "Développez votre confiance dès la première séance",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-primary-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>`
+        },
+        {
+          title: "Discipline",
+          desc: "Renforcez votre mental et votre concentration",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-primary-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`,
+          rotate: "rotate-[-45deg]"
+        },
+        {
+          title: "Défense",
+          desc: "Apprenez à vous protéger efficacement",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-primary-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>`
+        }
+      ].map((benefit) => {
+        return (
+          <div class="text-center p-10 rounded-[40px] bg-[#1A243A]/40 backdrop-blur-[16px] border border-white/5 hover:scale-105 transition-all duration-500 group shadow-2xl ki-aura-dark">
+            <div class={`mb-8 flex justify-center group-hover:scale-110 transition-transform duration-500 ${benefit.rotate || ''}`}>
+              <Fragment set:html={benefit.icon} />
+            </div>
+            <h3 class="text-white mb-4 text-3xl font-bold">{benefit.title}</h3>
+            <p class="text-slate-300 leading-relaxed text-lg font-medium">{benefit.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+    
+    <div class="pt-24">
+      <div class="flex flex-col items-center gap-8">
+        <div class="flex flex-col items-center gap-6">
+          <a 
+            href="/#contact"
+            class="cta-secondary inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-mono uppercase tracking-widest"
+          >
+            Essayez maintenant
+          </a>
+          <p class="text-slate-400 text-sm font-bold uppercase tracking-widest font-mono">Sans engagement – accessible à tous</p>
+        </div>
+        
+        <a 
+          href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)] font-mono text-xs"
+        >
+          <span class="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
+          <span class="uppercase tracking-widest">CALENDRIER DES ÉVÉNEMENTS</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

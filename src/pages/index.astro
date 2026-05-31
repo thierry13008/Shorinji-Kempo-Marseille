@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Storytelling from '../components/sections/Storytelling.astro';
+import Pillars from '../components/sections/Pillars.astro';
+import Sections from '../components/sections/Sections.astro';
+import Schedules from '../components/sections/Schedules.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import Instructors from '../components/sections/Instructors.astro';
+import Faq from '../components/sections/Faq.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Contact from '../components/sections/Contact.astro';
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" }
+  ]
+};
+---
+<BaseLayout 
+  title="Shorinji Kempo Marseille — Saint-Giniez | Art Martial & Self-Défense" 
+  description="Shorinji Kempo Marseille 13008 : self-défense et art martial au quartier Saint-Giniez. Cours tous niveaux, essai gratuit. Rejoignez notre dojo."
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbData)} />
+
+  {/* Fixed Background for CTA & Footer (Encyclopedia style) */}
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <img 
+      class="w-full h-full object-cover opacity-80" 
+      src="https://i.ibb.co/PGhjbKQV/fond-contact-webp.webp" 
+      alt="Dojo Shorinji Kempo de Marseille Saint-Giniez Prado 13008"
+      referrerpolicy="no-referrer"
+      width={1920}
+      height={1080}
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
+  </div>
+
+  <div class="relative z-10">
+    <Hero />
+    <Storytelling />
+    <Pillars />
+    <Sections />
+    <Schedules />
+    <HowItWorks />
+    <Instructors />
+    <Faq />
+    <Testimonials />
+    <Contact />
+  </div>
+</BaseLayout>

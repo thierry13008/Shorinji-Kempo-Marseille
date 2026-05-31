@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout 
+  title="Page Introuvable | Shorinji Kempo Marseille" 
+  description="Désolé, la page demandée n'existe pas ou a été déplacée. Shorinji Kempo Marseille 13008."
+  bodyClass="bg-bg-main relative overflow-hidden min-h-screen flex items-center justify-center p-6 sm:p-12"
+  showNavFooter={false}
+>
+  {/* Immersive Background with Layered Circle Expansion Reveal */}
+  <div class="absolute inset-0 z-0">
+    {/* Layer 1: Soft Reveal (Slow) - Base Atmosphere */}
+    <div class="absolute inset-0 z-0 transition-opacity duration-1000">
+      <img 
+        src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
+        alt="Zen Background Soft" 
+        class="w-full h-full object-cover opacity-30"
+      />
+      <div class="absolute inset-0 bg-bg-main/20" />
+    </div>
+
+    {/* Layer 2: Central Clear Spotlight (Zero Filter) */}
+    <div 
+      class="absolute inset-0 z-1 transition-all duration-1000"
+      style="clip-path: circle(400px at 50% 55%);"
+    >
+      <img 
+        src="https://i.ibb.co/wZfYzYPk/page-404webp.webp" 
+        alt="Zen Background Clear Spotlight" 
+        class="w-full h-full object-cover opacity-95"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-bg-main/5 to-bg-main/20" />
+    </div>
+
+    {/* Animated Spotlight Overlay */}
+    <div 
+      class="absolute inset-0 z-10 pointer-events-none opacity-50"
+      style="background: radial-gradient(circle at 50% 55%, transparent 10%, #080808 70%);"
+    ></div>
+    
+    {/* Decorative Gold Light */}
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-gold/10 rounded-full blur-[150px] animate-pulse"></div>
+  </div>
+
+  <div class="relative z-20 w-full max-w-4xl mx-auto flex flex-col items-center text-center mt-20">
+    {/* Top Branding - Centered */}
+    <div class="mb-12 relative">
+      {/* Subtle Glow Behind Logo */}
+      <div class="absolute inset-0 bg-primary-gold/20 rounded-full blur-2xl animate-pulse scale-150"></div>
+      
+      <a href="/" class="group relative block">
+        <div class="relative">
+          <img 
+            src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
+            alt="Logo Shorinji Kempo" 
+            class="w-48 md:w-64 h-auto mx-auto mb-6 drop-shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-700 group-hover:scale-105 group-hover:rotate-[360deg] filter brightness-110 object-contain"
+          />
+        </div>
+        <div class="space-y-1">
+          <span class="block text-white uppercase tracking-[0.4em] text-xs font-bold transition-colors group-hover:text-primary-gold">
+            Shorinji Kempo
+          </span>
+          <span class="block text-primary-gold/60 uppercase tracking-[0.2em] text-[10px] font-medium italic">
+            Marseille
+          </span>
+        </div>
+      </a>
+    </div>
+
+    {/* Main Content Sections - Centered Under Logo */}
+    <div class="space-y-8 flex flex-col items-center">
+      <div class="relative">
+        <h1 class="text-[clamp(4rem,15vw,10rem)] leading-none font-serif font-black text-white/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none whitespace-nowrap z-0">
+          404 LOST
+        </h1>
+        <h2 class="text-4xl md:text-6xl font-serif font-medium text-white mb-2 relative z-10 leading-tight">
+          Le chemin est <br />
+          <span class="text-primary-gold italic">interrompu</span>
+        </h2>
+        <div class="h-px w-24 bg-primary-gold mx-auto"></div>
+      </div>
+
+      <p class="text-[#fdfbf7] text-lg md:text-xl max-w-lg leading-relaxed z-10 drop-shadow-sm font-medium">
+        Même les pratiquants les plus aguerris s'égarent parfois. 
+        La page que vous recherchez semble s'être volatilisée.
+      </p>
+
+      <div class="pt-4 z-10">
+        <a
+          href="/"
+          class="flex items-center gap-3 px-12 py-4 bg-primary-gold text-[#111111] font-semibold uppercase tracking-widest text-xs hover:bg-white transition-all duration-300 active:scale-95 group shadow-xl"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-y-0.5 transition-transform"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Vertical Decorative Text */}
+  <div class="absolute right-8 top-1/2 -translate-y-1/2 vertical-text hidden xl:block mix-blend-overlay">
+    <span class="text-[120px] font-black text-transparent stroke-text tracking-tighter opacity-10">
+      SHORINJI
+    </span>
+  </div>
+
+  <style>
+    .vertical-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .stroke-text {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</BaseLayout>

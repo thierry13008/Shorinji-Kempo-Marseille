@@ -1,0 +1,79 @@
+---
+// Storytelling section
+---
+<section class="py-48 bg-bg-main relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div class="relative hidden lg:block">
+        <div class="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
+          <img 
+            src="https://i.ibb.co/HfwSFtQg/image-debutant-cp.png" 
+            alt="Pratique du Shorinji Kempo au dojo Saint-Giniez Marseille 13008" 
+            class="w-full aspect-square object-cover"
+            referrerpolicy="no-referrer"
+            loading="lazy"
+            width={800}
+            height={800}
+          />
+          <div class="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
+        </div>
+        <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-primary-gold/20 rounded-full blur-3xl -z-10"></div>
+      </div>
+
+      <div class="space-y-12">
+        <div>
+          <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-mono text-sm">L'Expérience Shorinji Kempo</span>
+          <h2 class="text-surface text-4xl md:text-6xl font-black leading-tight mb-8">
+            Pourquoi franchir les portes de notre dojo ?
+          </h2>
+          <p class="text-slate-700 text-xl leading-relaxed">
+            Plus qu'un simple entraînement, nous vous proposons un voyage vers la meilleure version de vous-même. 
+            Rejoignez une communauté qui valorise l'entraide autant que l'efficacité.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {[
+            {
+              title: "Renforcer la confiance en soi",
+              desc: "Prenez confiance en vous, non seulement sur le tatami, mais dans chaque défi de votre vie quotidienne.",
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-gold group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>`
+            },
+            {
+              title: "Discipline de Fer",
+              desc: "Développez un mental solide, structuré et capable de rester calme sous la pression et dans l'action.",
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-gold group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`
+            },
+            {
+              title: "Défense Efficace",
+              desc: "Apprenez à vous protéger et à protéger vos proches avec des techniques réalistes et intelligentes.",
+              icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-gold group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>`
+            }
+          ].map((item) => {
+            return (
+              <div class="flex gap-6 group">
+                <div class="w-14 h-14 rounded-2xl bg-bg-main shadow-lg flex items-center justify-center shrink-0 group-hover:bg-primary-gold transition-all duration-300 border border-slate-100">
+                  <Fragment set:html={item.icon} />
+                </div>
+                <div>
+                  <h3 class="text-surface text-xl font-bold mb-2">{item.title}</h3>
+                  <p class="text-slate-700 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div class="pt-8">
+          <a 
+            href="/#contact"
+            class="inline-flex items-center gap-4 text-surface font-black uppercase tracking-widest group border border-surface/10 px-8 py-4 rounded-full hover:border-primary-gold/50 transition-all font-mono text-sm"
+          >
+            <span class="h-[2px] w-12 bg-primary-gold group-hover:w-20 transition-all duration-500"></span>
+            Essayez maintenant (offert)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

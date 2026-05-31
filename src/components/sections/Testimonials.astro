@@ -1,0 +1,109 @@
+---
+// Testimonials list section
+const TESTIMONIALS = [
+  { name: "Samuel F", role: "Débutant", text: "Je n'avais jamais fait d'arts martiaux, et j'ai adoré dès la première séance. L'accueil est incroyable et l'ambiance est vraiment bienveillante.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop" },
+  { name: "Laura P", role: "Pratiquante (1 an)", text: "C'est devenu ma bulle d'oxygène. J'évacue tout le stress de la semaine et je repars avec un mental d'acier. Une expérience vraiment immersive.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop", featured: true },
+  { name: "Thierry G", role: "Parent d'élève", text: "Mon fils a gagné une confiance folle en quelques mois. Les instructeurs sont pédagogues et passionnés. Je recommande à 100%.", img: "https://i.ibb.co/MxkgHT8H/titi.jpg" }
+];
+---
+<section class="py-48 bg-surface relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-32">
+      <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-mono text-sm">La Voix du Dojo</span>
+      <h2 class="text-white text-4xl md:text-6xl font-black mb-6 font-display">Ils ont franchi le pas</h2>
+      <p class="text-slate-300 text-xl font-medium">Rejoignez une communauté bienveillante et motivée.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+      {TESTIMONIALS.map((t) => (
+        <div class="relative pt-20 pb-12 px-8 rounded-[40px] border-l-4 transition-all duration-700 h-full flex flex-col items-center text-center group overflow-visible bg-[#1A243A]/40 backdrop-blur-[16px] border-white/10 border-l-primary-gold/100 shadow-[0_40px_80px_rgba(0,0,0,0.4)] hover:-translate-y-2 ki-aura-dark">
+          {/* Decorative Quote Icon */}
+          <div class="absolute top-8 right-8 opacity-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110 text-primary-gold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+          </div>
+
+          {/* Overlapping Photo with Floating Effect */}
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
+            <div class="relative animate-float">
+              <img 
+                src={t.img} 
+                class={`w-28 h-28 rounded-full object-cover border-4 shadow-2xl transition-all duration-700 hover:scale-105 ${t.featured ? "border-primary-gold" : "border-white/20"}`} 
+                alt={t.name} 
+                referrerpolicy="no-referrer" 
+                width={112}
+                height={112}
+                loading="lazy"
+              />
+              <div class="absolute -bottom-2 -right-2 bg-primary-gold text-surface rounded-full p-2 shadow-xl border-2 border-surface">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-8 relative z-10">
+            <p class="font-headline font-bold text-2xl mb-2 tracking-tight text-white">
+              {t.name}
+            </p>
+            <div class="flex items-center justify-center gap-2">
+              <span class="h-px w-4 bg-primary-gold/50"></span>
+              <p class="text-primary-gold text-xs uppercase tracking-[0.2em] font-black font-mono">{t.role}</p>
+              <span class="h-px w-4 bg-primary-gold/50"></span>
+            </div>
+          </div>
+
+          <p class="italic leading-relaxed text-xl font-medium flex-grow relative z-10 px-2 text-slate-300">
+            <span class="text-primary-gold/40 text-4xl font-serif absolute -top-4 -left-2">"</span>
+            {t.text}
+            <span class="text-primary-gold/40 text-4xl font-serif absolute -bottom-8 -right-2">"</span>
+          </p>
+
+          <div class="mt-10 flex justify-center gap-1.5 relative z-10 text-primary-gold">
+            {[...Array(5)].map(() => (
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+              </div>
+            ))}
+          </div>
+
+          {/* Subtle Background Glow on Hover */}
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[40px] overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary-gold/20 blur-[80px]"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-primary-gold/10 blur-[80px]"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-24 text-center">
+      <div class="flex flex-col items-center gap-10">
+        <div class="flex flex-col items-center">
+          <a 
+            href="/#contact"
+            class="bg-primary-gold text-black hover:bg-bg-main hover:text-primary-gold inline-flex items-center justify-center gap-3 text-lg px-12 py-6 font-bold rounded-2xl transition-all duration-300 uppercase tracking-widest shadow-xl shadow-primary-gold/20 hover:scale-105 active:scale-95 font-mono"
+          >
+            Rejoignez la communauté
+          </a>
+          <div class="mt-6 flex flex-col items-center gap-2">
+            <p class="text-slate-300 text-sm font-bold uppercase tracking-widest font-mono">Sans engagement – accessible à tous</p>
+            <div class="flex items-center gap-4 text-[10px] text-primary-gold/80 uppercase tracking-[0.2em] font-bold font-mono">
+              <span>Premier cours offert</span>
+              <span class="w-1 h-1 rounded-full bg-primary-gold/30"></span>
+              <span>Équipement prêté</span>
+            </div>
+          </div>
+        </div>
+
+        <a 
+          href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-4 text-white/70 hover:text-primary-gold transition-colors group lg:[text-shadow:none] [text-shadow:0_2px_10px_rgba(0,0,0,1)] font-mono text-xs"
+        >
+          <span class="h-[1px] w-8 bg-primary-gold/30 group-hover:w-16 transition-all"></span>
+          <span class="uppercase tracking-widest font-bold">CALENDRIER DES ÉVÉNEMENTS</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

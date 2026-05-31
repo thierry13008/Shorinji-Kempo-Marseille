@@ -1,0 +1,152 @@
+---
+// Schedules / Planning Section
+const SESSIONS = [
+  { day: "Lundi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "01" },
+  { day: "Mercredi", time: "20h00 — 21h30", cat: "Adultes", level: "Tous Niveaux", id: "02" },
+  { day: "Vendredi", time: "20h15 — 21h45", cat: "Mixte", level: "Adultes & Enf", id: "03" }
+];
+---
+<section id="planning" class="relative pt-48 pb-64 min-h-[80vh] flex items-center bg-surface overflow-hidden" x-data="{ isMapOpen: false, mapZoom: 17, hoveredSession: null }">
+  <div class="absolute inset-0 z-0">
+    <img 
+      class="w-full h-full object-cover opacity-80" 
+      src="https://i.ibb.co/B5F7V0Bh/backgrount-agenda-WEBP.webp" 
+      alt="Planning Dojo Shorinji Kempo"
+      referrerpolicy="no-referrer"
+      loading="lazy"
+      width={1920}
+      height={800}
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/40 via-transparent to-surface/60"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class="flex flex-col lg:flex-row gap-20 items-start">
+      <div class="lg:w-1/3 lg:sticky lg:top-32">
+        <span class="micro-copy mb-4 block text-primary-gold uppercase tracking-widest font-bold font-mono text-xs">Calendrier des Sessions</span>
+        <h2 class="text-white mb-6 text-4xl md:text-5xl font-extrabold leading-tight">Planning du Dojo</h2>
+        <p class="text-slate-300 mb-8 max-w-sm">Rejoignez l'élite du Budo au cœur de Marseille (13008).</p>
+        <button 
+          @click="isMapOpen = true"
+          class="bg-primary-gold/10 border border-primary-gold/20 px-6 py-4 rounded-xl inline-flex items-center gap-3 hover:bg-primary-gold/20 transition-all group font-mono text-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-primary-gold group-hover:scale-110 transition-transform w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span class="font-bold tracking-wide uppercase text-white">Dojo Saint-Giniez</span>
+        </button>
+      </div>
+
+      <div class="lg:w-2/3 w-full space-y-6">
+        {SESSIONS.map((session) => (
+          <div 
+            @mouseenter={`hoveredSession = '${session.id}'`}
+            @mouseleave="hoveredSession = null"
+          >
+            <div 
+              class="rounded-[24px] p-8 transition-all duration-500 group border flex flex-col md:flex-row md:items-center justify-between gap-6 glass-card ki-aura-dark border-white/10"
+              :class={`hoveredSession === '${session.id}' || (!hoveredSession && '${session.id}' === '02') ? 'bg-primary-gold/10 border-white/30 shadow-2xl' : 'border-white/10'`}
+            >
+              <div class="flex items-center gap-8">
+                <div 
+                  class="w-12 h-12 rounded-full flex items-center justify-center italic text-lg shrink-0 border border-white/20 transition-colors duration-500 text-white/45"
+                  :class={`hoveredSession === '${session.id}' || (!hoveredSession && '${session.id}' === '02') ? 'bg-primary-gold/20 text-white font-bold border-white/30' : 'text-white/40 group-hover:text-primary-gold'`}
+                >
+                  {session.id}
+                </div>
+                <div>
+                  <p class="micro-copy mb-1 text-xs uppercase tracking-widest text-[#FFC107] font-mono font-bold">Session {session.id}</p>
+                  <h3 class="text-white text-2xl font-bold">
+                    <span>{session.day}</span>
+                  </h3>
+                </div>
+              </div>
+              
+              <div class="flex flex-wrap items-center gap-8 md:gap-12">
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-primary-gold w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span class="text-white font-bold text-lg">{session.time}</span>
+                </div>
+                <div class="flex items-center gap-4 font-mono">
+                  <p class="text-white font-medium text-lg">{session.cat}</p>
+                  <span class="micro-copy bg-primary-gold/10 px-4 py-1.5 rounded-full border border-primary-gold/20 text-xs font-bold text-[#FFD700]">
+                    {session.level}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mt-64 flex justify-center">
+      <a 
+        href="https://drive.google.com/file/d/1vnFGVh97khWmP9wlkZFw5kCni7uZTwxB/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-4 text-white hover:text-primary-gold transition-colors group font-mono text-xs"
+      >
+        <span class="h-[1px] w-12 bg-primary-gold/30 group-hover:w-20 transition-all"></span>
+        <span class="uppercase tracking-widest font-bold">CALENDRIER DES ÉVÉNEMENTS</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+      </a>
+    </div>
+  </div>
+
+  {/* Maps Modal */}
+  <template x-if="isMapOpen">
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+      <div 
+        @click="isMapOpen = false"
+        class="absolute inset-0 bg-surface/80 backdrop-blur-sm transition-opacity"
+      ></div>
+      
+      <div 
+        class="relative w-full max-w-5xl h-[80vh] bg-surface rounded-[2.5rem] shadow-2xl overflow-hidden border border-white/10 glass-card ki-aura-dark p-2 transform scale-100 transition-all"
+        @click.away="isMapOpen = false"
+      >
+        {/* Close Button */}
+        <div class="absolute top-6 right-6 z-10">
+          <button 
+            @click="isMapOpen = false"
+            class="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl font-bold"
+            aria-label="Fermer la carte"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Zoom Controls */}
+        <div class="absolute bottom-24 right-6 z-10 flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
+            <button 
+              @click="mapZoom = Math.min(mapZoom + 1, 21)"
+              class="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl font-bold text-xl"
+              title="Zoom avant"
+            >
+              +
+            </button>
+            <button 
+              @click="mapZoom = Math.max(mapZoom - 1, 1)"
+              class="w-12 h-12 rounded-full bg-bg-main flex items-center justify-center text-slate-800 hover:bg-slate-100 transition-all shadow-xl font-bold text-xl"
+              title="Zoom arrière"
+            >
+              −
+            </button>
+          </div>
+        </div>
+
+        <iframe
+          :src="`https://maps.google.com/maps?q=43.2719266,5.3916423&z=${mapZoom}&output=embed`"
+          width="100%"
+          height="100%"
+          style="border: 0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="rounded-[2rem]"
+          title="Google Maps Dojo Saint-Giniez"
+        ></iframe>
+      </div>
+    </div>
+  </template>
+</section>

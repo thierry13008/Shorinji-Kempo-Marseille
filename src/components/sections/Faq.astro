@@ -1,0 +1,94 @@
+---
+// FAQ section with Accordions (DL + Alpine + ARIA)
+const faqItems = [
+  { q: "À quel âge peut-on commencer le Shorinji Kempo ?", a: "Le Shorinji Kempo est accessible dès 9 ans. Nous proposons des cours adaptés pour les enfants, les adolescents et les adultes. Il n'y a pas d'âge maximum pour débuter. La sécurité et l'accueil des débutants sont nos priorités absolues." },
+  { q: "Faut-il être déjà sportif pour commencer ?", a: "Absolument pas ! Le Shorinji Kempo s'adapte à tous les niveaux. La progression est graduelle et respectueuse de votre rythme. Nos débutants viennent souvent sans aucune expérience sportive préalable." },
+  { q: "Est-ce dangereux ? Y a-t-il des risques de blessures ?", a: "La sécurité est notre priorité. Les techniques sont enseignées avec contrôle et bienveillance. Nous utilisons des protections et le taux de blessures est extrêmement faible. On apprend à se protéger, pas à se blesser." },
+  { q: "Peut-on essayer gratuitement avant de s'inscrire ?", a: "Oui ! Nous offrons une séance d'essai gratuite pour découvrir le Shorinji Kempo en toute tranquillité. Aucune obligation d'inscription. Venez simplement avec une tenue de sport confortable." },
+  { q: "Quel est le tarif des cours ?", a: "Nos tarifs sont transparents. Cotisations adultes : à partir de 195€ hors licences, enfants 150€ hors licences. Possibilité de payer au trimestre, se renseigner auprès du professeur." },
+  { q: "Que faut-il apporter pour le premier cours ?", a: "Pour votre premier cours, un simple jogging et un t-shirt suffisent. Vous pratiquerez pieds nus sur des tatamis. Pensez simplement à apporter une bouteille d'eau et votre sourire !" }
+];
+---
+<section class="py-48 bg-bg-secondary relative overflow-hidden" aria-labelledby="faq-title">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-mono text-sm">FAQ</span>
+      <h2 id="faq-title" class="text-surface text-4xl md:text-6xl font-medium mb-6">Questions Fréquentes</h2>
+      <p class="text-slate-600 text-xl font-medium">Tout ce qu'il faut savoir avant de franchir les portes du dojo. La sécurité et l'accueil des débutants sont nos priorités.</p>
+      
+      <div class="mt-8 flex flex-col md:flex-row justify-center items-center gap-6">
+        <div class="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-primary-gold w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-[#111111] font-mono">Débutants bienvenus – sécurité assurée</span>
+        </div>
+        <div class="flex items-center gap-2 px-6 py-3 bg-bg-main border border-slate-100 rounded-full shadow-sm hover:shadow-md transition-all duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-primary-gold w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-[#111111] font-mono font-bold">100% Bienveillance & Respect</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="relative group">
+        <div class="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white ki-aura-light">
+          <img 
+            src="https://i.ibb.co/5X3v6dSz/olivierwebp.webp" 
+            alt="Pratique saine du Shorinji Kempo au dojo Saint Giniez Marseille 13008" 
+            class="w-full h-full object-cover aspect-[4/5] lg:aspect-square transition-transform duration-700 group-hover:scale-105"
+            referrerpolicy="no-referrer"
+            loading="lazy"
+            width={800}
+            height={800}
+          />
+          <div class="absolute inset-0 bg-primary-gold/10 mix-blend-overlay"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-surface/40 via-transparent to-transparent"></div>
+        </div>
+        {/* Decorative Glow */}
+        <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-gold/20 rounded-full blur-3xl -z-10"></div>
+      </div>
+
+      <dl class="space-y-4">
+        {faqItems.map((item, idx) => (
+          <div 
+            x-data="{ open: false }"
+            class="glass-card-light rounded-[32px] overflow-hidden border border-slate-200 shadow-sm ki-aura-light hover:border-primary-gold/30 transition-all duration-500 bg-white"
+          >
+            <dt>
+              <button 
+                @click="open = !open"
+                class="w-full flex justify-between items-center p-8 text-left text-surface hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-[#FFD700] rounded-t-[32px]"
+                :aria-expanded="open.toString()"
+                aria-controls={`faq-answer-${idx}`}
+              >
+                <span class="font-bold text-lg pr-8 group-hover:translate-x-2 transition-transform duration-300 select-none text-slate-900 group-hover:text-primary-gold">{item.q}</span>
+                <div 
+                  class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-500 text-slate-800"
+                  :class="open ? 'bg-primary-gold border-primary-gold text-black rotate-180' : 'group-hover:border-primary-gold group-hover:text-primary-gold'"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                </div>
+              </button>
+            </dt>
+            <dd 
+              id={`faq-answer-${idx}`}
+              x-show="open"
+              x-transition:enter="transition ease-out duration-200"
+              x-transition:enter-start="opacity-0 scale-95"
+              x-transition:enter-end="opacity-100 scale-100"
+              x-transition:leave="transition ease-in duration-150"
+              x-transition:leave-start="opacity-100 scale-100"
+              x-transition:leave-end="opacity-0 scale-95"
+              x-bind:aria-hidden="(!open).toString()"
+              class="p-8 pt-0 text-slate-700 leading-[1.6] text-lg border-t border-slate-100 mt-2"
+            >
+              {item.a}
+              <div class="mt-6 flex items-center gap-2 text-primary-gold/60 text-xs font-bold uppercase tracking-widest font-mono">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg> 100% Sécurisé & Bienveillant
+              </div>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>

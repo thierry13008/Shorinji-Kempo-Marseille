@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const comparisons = [
+    {
+      slug: "shorinji-kempo-vs-karate",
+      title: "Shorinji Kempo vs Karaté : Lequel est fait pour vous ? | Marseille",
+      metaTitle: "Shorinji Kempo vs Karaté : Lequel est fait pour vous ?",
+      description: "Shorinji Kempo vs Karaté : découvrez pourquoi le Shorinji Kempo est le choix des adultes qui cherchent la self-défense sans compétition. Essayez gratuitement à Marseille Saint-Giniez.",
+      opponent: "Karaté",
+      introTitle: "Vous hésitez entre Shorinji Kempo et Karaté à Marseille ? Lisez ceci.",
+      introLines: [
+        "Les deux sont japonais. Les deux font travailler le corps et l'esprit. Mais la ressemblance s'arrête là. L'un vous prépare à la compétition. L'autre vous prépare à la vie."
+      ],
+      oppCardTitle: "Le Karaté : performer sous le regard des autres",
+      oppCardText: "En Karaté, le but est clair : maîtriser des techniques pour marquer des points. Les katas sont évalués. Les kumités sont jugés. Il y a un gagnant et un perdant. C'est excellent pour la confiance et la discipline. Mais tout le monde n'a pas envie de se mesurer aux autres.",
+      kempoCardTitle: "Le Shorinji Kempo : se dépasser sans se comparer",
+      kempoCardText: "Ici, pas de médailles. Pas de podium. Votre seul adversaire, c'est vous-même. Le Shorinji Kempo part d'un principe simple : la vraie force, c'est de savoir se protéger ET protéger les autres. Vous apprenez des techniques redoutables (frappes, clés, projections). Mais vous apprenez surtout à rester calme, à désamorcer un conflit. C'est de la self-défense adulte. Pas de la bagarre.",
+      benefitTitle: "Ce que le Shorinji Kempo vous apporte à Saint-Giniez que le Karaté ne vous donnera pas",
+      benefits: [
+        { title: "Zéro compétition", desc: "pas de stress, pas de jugement, on progresse à son rythme" },
+        { title: "100% self-défense", desc: "apprenez à vous protéger dans la rue, pas sur un tatami de compétition" },
+        { title: "Travail à deux, pas l'un contre l'autre", desc: "on progresse ensemble, les débutants sont portés par les avancés" },
+        { title: "Philosophie zen", desc: "méditation, respiration, sérénité. Vous repartez apaisé" },
+        { title: "Accessible à tous", desc: "femme, homme, 25 ou 55 ans, sportif ou non. Le Shorinji Kempo s'adapte à vous" }
+      ],
+      imagineText: "C'est vendredi soir, 20h. Vous entrez au dojo. Le calme. L'odeur du bois. Les saluts échangés avec bienveillance. Pendant 1h30, vous oubliez tout. Vous travaillez votre corps. Vous canalisez votre mental. Vous repartez vidé du stress, plein d'énergie. C'est ça, le Shorinji Kempo.",
+      conclusionTitle: "Le seul vrai perdant, c'est celui qui n'essaie pas",
+      conclusionText: "Premier cours gratuit. Aucun engagement. Équipement prêté. Juste vous, le tatami, et la découverte de ce que votre corps et votre esprit peuvent accomplir ensemble."
+    },
+    {
+      slug: "shorinji-kempo-vs-judo",
+      title: "Shorinji Kempo vs Judo : Lequel choisir ? | Marseille",
+      metaTitle: "Shorinji Kempo vs Judo : Lequel choisir ?",
+      description: "Shorinji Kempo vs Judo : self-défense complète ou sport olympique ? Découvrez pourquoi les adultes choisissent le Shorinji Kempo. Essayez gratuitement à Marseille.",
+      opponent: "Judo",
+      introTitle: "Vous hésitez entre Shorinji Kempo et Judo à Marseille ?",
+      introLines: [
+        "Deux arts martiaux japonais, deux approches radicalement différentes du combat et du développement personnel."
+      ],
+      oppCardTitle: "Le Judo : la voie de la souplesse... et de la compétition",
+      oppCardText: "Créé par Jigoro Kano en 1882, le Judo est un sport olympique. Projections, immobilisations, étranglements. Le but : déséquilibrer et maîtriser l'adversaire au sol. Mais le Judo est avant tout une discipline de compétition. On gagne par ippon. On perd par immobilisation.",
+      kempoCardTitle: "Le Shorinji Kempo : l'art de se défendre debout comme au sol",
+      kempoCardText: "Le Shorinji Kempo intègre les projections du Judo (Juho) mais y ajoute les frappes (Goho). Vous savez vous défendre debout ET au sol. Et surtout : pas de compétition. On travaille la technique pour elle-même, pour être prêt dans la vraie vie.",
+      benefitTitle: "Ce que le Shorinji Kempo vous apporte à Saint-Giniez que le Judo ne vous donnera pas",
+      benefits: [
+        { title: "Pas de compétition obligatoire", desc: "on pratique pour soi, pas pour un podium" },
+        { title: "Self-défense complète", desc: "debout + sol, frappes + projections" },
+        { title: "Adapté aux adultes", desc: "pas besoin d'avoir 20 ans et un corps de gymnaste" },
+        { title: "Méditation et philosophie zen incluses", desc: "un accompagnement global de l'esprit" },
+        { title: "Moins de blessures", desc: "pas de chutes répétitives de compétition" }
+      ],
+      imagineText: "Vous apprenez à projeter un adversaire. Mais aussi à frapper si nécessaire. Vous n'êtes pas limité à une seule distance de combat. Vous êtes complet. C'est ça, la méthode Shorinji Kempo.",
+      conclusionTitle: "Prêt pour une approche complète ?",
+      conclusionText: "Premier cours gratuit. Aucun engagement. Venez essayer l'alliance totale entre techniques dures de percussion et techniques souples de clés d'articulation."
+    },
+    {
+      slug: "shorinji-kempo-vs-aikido",
+      title: "Shorinji Kempo vs Aïkido : Lequel choisir ? | Marseille",
+      metaTitle: "Shorinji Kempo vs Aïkido : Lequel choisir ?",
+      description: "Shorinji Kempo vs Aïkido : deux arts martiaux non-compétitifs, mais lequel est le plus efficace en self-défense ? Essayez gratuitement à Marseille Saint-Giniez.",
+      opponent: "Aïkido",
+      introTitle: "Vous hésitez entre Shorinji Kempo et Aïkido à Marseille ?",
+      introLines: [
+        "Deux arts martiaux japonais non-compétitifs, basés sur la self-défense et la philosophie. Pourtant, leur approche du combat est radicalement différente."
+      ],
+      oppCardTitle: "L'Aïkido : la voie de l'harmonie... parfois trop théorique",
+      oppCardText: "Fondé par Morihei Ueshiba, l'Aïkido utilise la force de l'adversaire contre lui-même. Des mouvements circulaires sublimes, une philosophie de paix. Mais en situation réelle, l'Aïkido est souvent critiqué pour son manque d'efficacité : pas de frappes réelles, des attaques codifiées, peu de résistance.",
+      kempoCardTitle: "Le Shorinji Kempo : l'harmonie, oui. L'efficacité, toujours.",
+      kempoCardText: "Le Shorinji Kempo partage les valeurs de l'Aïkido : non-violence, respect, développement spirituel. Mais il y ajoute un réalisme martial : les frappes sont réelles, les défenses sont testées, les techniques fonctionnent même sous pression.",
+      benefitTitle: "Ce que le Shorinji Kempo vous apporte à Saint-Giniez que l'Aïkido ne vous donnera pas",
+      benefits: [
+        { title: "Des frappes réelles (Goho)", desc: "en plus des clés et projections (Juho)" },
+        { title: "Une self-défense testée et réaliste", desc: "construite pour des réponses directes de rue" },
+        { title: "Un apprentissage progressif", desc: "pas besoin de 10 ans de pratique pour acquérir des bases solides" },
+        { title: "Des partenaires réactifs", desc: "on étudie la technique face à une vraie résistance" },
+        { title: "L'harmonie conjuguée à l'impact", desc: "la même philosophie de paix, avec une efficacité martiale" }
+      ],
+      imagineText: "Le Shorinji Kempo est d'une richesse technique inouïe. Il combine à merveille les frappes dures et rapides avec la souplesse des clés d'immobilisation pour maîtriser sans détruire.",
+      conclusionTitle: "Choisir l'harmonie efficace",
+      conclusionText: "Incorporez de la clarté technique et une efficacité authentique dans votre vie de tous les jours en rejoignant notre dojo du Prado."
+    },
+    {
+      slug: "shorinji-kempo-vs-kung-fu",
+      title: "Shorinji Kempo vs Kung Fu : Lequel choisir ? | Marseille",
+      metaTitle: "Shorinji Kempo vs Kung Fu : Lequel choisir ?",
+      description: "Shorinji Kempo vs Kung Fu : deux héritiers de Shaolin, mais un seul est structuré pour la self-défense moderne. Essayez gratuitement à Marseille.",
+      opponent: "Kung Fu",
+      introTitle: "Vous hésitez entre Shorinji Kempo et Kung Fu à Marseille ?",
+      introLines: [
+        "Le Shorinji Kempo tire ses racines du Kung Fu de Shaolin. Mais en 1500 ans, les deux arts ont pris des chemins très différents."
+      ],
+      oppCardTitle: "Le Kung Fu : un art, un spectacle... mais quelle école ?",
+      oppCardText: "Le Kung Fu chinois est multiple : Wushu acrobatique, Wing Chun, Tai Chi... Difficile de savoir ce qu'on va apprendre. Certaines écoles sont excellentes, d'autres font du spectacle. Et beaucoup se concentrent sur les formes (taolu) plus que sur l'application martiale réelle.",
+      kempoCardTitle: "Le Shorinji Kempo : l'héritage de Shaolin, structuré et moderne",
+      kempoCardText: "Doshin So a repris l'essence du Kung Fu de Shaolin et l'a structurée en une méthode cohérente. Même racine spirituelle, mais un enseignement standardisé, reconnu dans le monde entier par la WSKO. Vous savez exactement ce que vous apprenez, et pourquoi.",
+      benefitTitle: "Ce que le Shorinji Kempo vous apporte à Saint-Giniez que le Kung Fu ne vous donnera pas",
+      benefits: [
+        { title: "Une méthode structurée", desc: "reconnaissable et reconnue dans le monde entier" },
+        { title: "Self-défense réaliste", desc: "conçue pour l'efficacité directe, non pour l'esthétique du spectacle" },
+        { title: "Pas d'écoles fantaisistes", desc: "un suivi rigoureux de professeurs diplômés par la WSKO" },
+        { title: "La philosophie zen préservée", desc: "pas de folklore vide de sens, mais un vrai art de vivre quotidien" },
+        { title: "Une progression claire", desc: "balisée par des passages de grade rigoureux (kyus et dans)" }
+      ],
+      imagineText: "Le plaisir de s'entraîner sur un programme d'enseignement complet, hérité de Shaolin mais repensé au XXIe siècle pour la sécurité personnelle.",
+      conclusionTitle: "Retrouvez l'essence de Shaolin",
+      conclusionText: "Découvrez notre enseignement authentique près de l'avenue du Prado à Marseille 13008."
+    }
+  ];
+
+  return comparisons.map(item => ({
+    params: { slug: item.slug },
+    props: { data: item }
+  }));
+}
+
+const { data } = Astro.props;
+const { slug } = Astro.params;
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://shorinji-kempo-marseille.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Encyclopédie",
+      "item": "https://shorinji-kempo-marseille.vercel.app/encyclopedie"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": `Shorinji Kempo vs ${data.opponent}`,
+      "item": `https://shorinji-kempo-marseille.vercel.app/encyclopedie/${slug}`
+    }
+  ]
+};
+---
+<BaseLayout 
+  title={data.title} 
+  description={data.description}
+  canonical={`https://shorinji-kempo-marseille.vercel.app/encyclopedie/${slug}`}
+  bodyClass="bg-bg-main"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbData)} />
+
+  {/* Fixed Background */}
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <img 
+      class="w-full h-full object-cover opacity-80" 
+      src="https://i.ibb.co/tMwSy8WG/fond-page-marseillewebp.webp" 
+      alt={`comparatif shorinji kempo vs ${slug} Marseille 13008`}
+      referrerpolicy="no-referrer"
+      loading="lazy"
+      width={1920}
+      height={1080}
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
+  </div>
+
+  <main class="relative z-10 pt-32 pb-20 overflow-hidden">
+    <div class="container mx-auto px-6 mb-8 flex justify-center">
+      <div class="flex items-center gap-2 text-[14px] text-ivory-silk/60 font-medium">
+        <a href="/" class="hover:text-primary-gold transition-colors">Accueil</a>
+        <span>/</span>
+        <a href="/encyclopedie" class="hover:text-primary-gold transition-colors">Encyclopédie</a>
+        <span>/</span>
+        <span class="text-primary-gold font-semibold">vs {data.opponent}</span>
+      </div>
+    </div>
+
+    {/* HERO SECTION */}
+    <section class="container mx-auto px-6 mb-20 text-center">
+      <div class="max-w-4xl mx-auto">
+        <span class="inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.243.58 1.8l-3.978 2.89a1 1 0 00-.36 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.88a1 1 0 00-1.176 0l-3.976 2.88c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.36-1.118l-3.979-2.89c-.77-.557-.37-1.8.58-1.8h4.908a1 1 0 00.95-.69l1.519-4.674z"></path></svg> 
+          Encyclopédie Martiale de Saint-Giniez
+        </span>
+        <h1 class="text-white text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight">
+          Shorinji Kempo <span class="text-primary-gold italic">vs</span> {data.opponent}
+        </h1>
+        <p class="text-ivory-silk/90 text-2xl md:text-3xl font-bold max-w-2xl mx-auto">
+          Lequel est fait pour vous ?
+        </p>
+      </div>
+    </section>
+
+    {/* INTRODUCTION */}
+    <section class="container mx-auto px-6 mb-20">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-card p-8 md:p-12 relative overflow-hidden group">
+          <h2 class="text-primary-gold text-2xl md:text-3xl font-black mb-8">
+            {data.introTitle}
+          </h2>
+          <div class="space-y-6 text-ivory-silk/80 text-lg md:text-xl leading-relaxed">
+            {data.introLines.map((line) => (
+              <p>{line}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* COMPARISON SECTIONS */}
+    <section class="container mx-auto px-6 mb-20">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <div class="glass-card p-8 h-full border-white/5 hover:border-white/10 transition-all duration-500 hover:-translate-y-1">
+          <h2 class="text-white text-2xl font-bold mb-6 italic">{data.oppCardTitle}</h2>
+          <p class="text-ivory-silk/70 leading-relaxed text-lg">
+            {data.oppCardText}
+          </p>
+        </div>
+        
+        <div class="glass-card p-8 h-full border-primary-gold/20 hover:border-primary-gold/40 transition-all duration-500 bg-primary-gold/5 hover:-translate-y-1">
+          <h2 class="text-primary-gold text-2xl font-bold mb-6 italic">{data.kempoCardTitle}</h2>
+          <p class="text-ivory-silk/80 leading-relaxed text-lg">
+            {data.kempoCardText}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* ADVANTAGES LIST */}
+    <section class="container mx-auto px-6 mb-20">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-card p-8 md:p-12 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <h2 class="text-white text-3xl font-extrabold mb-10 text-center tracking-tight">{data.benefitTitle}</h2>
+          <div class="grid md:grid-cols-1 gap-6">
+            {data.benefits.map((benefit) => (
+              <div class="group flex gap-5 items-center p-6 bg-white/5 rounded-[24px] border border-white/5 hover:border-primary-gold/30 hover:bg-white/10 transition-all duration-500">
+                <div class="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center text-primary-gold shrink-0 group-hover:scale-110 transition-transform duration-500 text-xl">
+                  ✓
+                </div>
+                <div>
+                  <p class="text-white font-bold text-lg mb-1">{benefit.title}</p>
+                  <p class="text-ivory-silk/50">{benefit.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* EMOTIONAL SECTION */}
+    <section class="container mx-auto px-6 mb-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-white text-3xl font-bold mb-8 italic opacity-60">Imaginez...</h2>
+        <div class="glass-card p-10 md:p-16 bg-surface-high/40 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-primary-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <p class="text-ivory-silk/90 text-2xl md:text-3xl leading-relaxed italic relative z-10 font-medium">
+            "{data.imagineText}"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* CONCLUSION */}
+    <section class="container mx-auto px-6 mb-12">
+      <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 text-center relative overflow-hidden group border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary-gold/10 rounded-full blur-[120px] group-hover:bg-primary-gold/20 transition-colors duration-1000"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary-gold/5 rounded-full blur-[120px]"></div>
+        <div class="relative z-10">
+          <h2 class="text-white text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tight italic">{data.conclusionTitle}</h2>
+          <p class="text-ivory-silk/70 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            {data.conclusionText}
+          </p>
+          <a 
+            href="/shorinji-kempo-marseille" 
+            class="cta-button bg-primary-gold text-surface-high font-black px-12 py-6 rounded-2xl inline-flex items-center gap-4 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary-gold/30 duration-500 uppercase tracking-widest text-sm"
+          >
+            Essayez le Shorinji Kempo à Marseille Saint-Giniez
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+          <p class="mt-8 text-ivory-silk/40 font-bold uppercase tracking-widest text-xs">Sessions Adultes & Mixte — Tout Marseille 13008</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

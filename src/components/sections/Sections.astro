@@ -1,0 +1,87 @@
+---
+// Personas / Sections of Dojo
+---
+<section class="py-48 bg-bg-main relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-24">
+      <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-mono text-sm">Pour qui ?</span>
+      <h2 class="text-surface text-4xl md:text-6xl font-medium mb-6">Le Shorinji Kempo est fait pour vous</h2>
+      <p class="max-w-2xl mx-auto text-slate-600 text-xl">Que vous cherchiez la sérénité, la force ou la discipline, trouvez votre voie parmi nos sections dédiées.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {[
+        {
+          tag: "Enfants & Ados (9-13 ans)",
+          title: "L’école de la confiance pour votre enfant.",
+          desc: "Offrez-lui un cadre structurant pour grandir sereinement et s'affirmer face aux défis de la vie.",
+          img: "https://i.ibb.co/SXV9VmSK/Photo-enfants-webp.webp",
+          cta: "Réserver son essai gratuit",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>`,
+          bg: "bg-bg-main"
+        },
+        {
+          tag: "Adultes Débutants",
+          title: "Retrouvez l’équilibre et évacuez le stress.",
+          desc: "Votre bulle de décompression à Marseille. Apprenez à vous défendre dans une ambiance 100% bienveillante.",
+          img: "https://i.ibb.co/mCFNLxmk/Photo-adulte-d-butant-WEBP.webp",
+          featured: true,
+          cta: "Je commence maintenant",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>`,
+          bg: "bg-surface"
+        },
+        {
+          tag: "Pratiquant Confirmé",
+          title: "Exigence Technique & Lignage Officiel.",
+          desc: "Donnez une nouvelle dimension à votre parcours martial au sein d'une structure reconnue mondialement (WSKO).",
+          img: "https://i.ibb.co/DHjfM33S/Photo-adultes-confirm-s-webp.webp",
+          cta: "Rejoindre le dojo",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>`,
+          bg: "bg-bg-secondary"
+        }
+      ].map((card) => {
+        return (
+          <div
+            class={`group p-10 rounded-[48px] transition-all duration-750 flex flex-col border ${card.bg} ${card.featured ? "text-white border-white/10 md:scale-105 shadow-[0_40px_80px_rgba(0,0,0,0.2)]" : "border-slate-100 shadow-xl shadow-surface/5"}`}
+          >
+            <div class="mb-8 overflow-hidden rounded-[32px] aspect-video relative">
+              <img 
+                src={card.img} 
+                alt={card.title} 
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                referrerpolicy="no-referrer" 
+                loading="lazy" 
+                width={400}
+                height={225}
+              />
+              <div class="absolute top-4 right-4 drop-shadow-lg bg-black/60 p-2.5 rounded-full border border-primary-gold/30">
+                <Fragment set:html={card.icon} />
+              </div>
+            </div>
+            
+            <div class="flex-grow text-center">
+              <div class="micro-copy mb-4 font-bold uppercase tracking-widest text-primary-gold font-mono text-xs">{card.tag}</div>
+              <h3 class={`mb-6 text-2xl md:text-3xl font-medium leading-tight ${card.featured ? "text-white" : "text-surface"}`}>
+                {card.title}
+              </h3>
+              <p class={`mb-10 text-lg leading-relaxed ${card.featured ? "text-ivory-silk/70" : "text-slate-700"}`}>
+                {card.desc}
+              </p>
+            </div>
+            
+            <a 
+              href="/#contact"
+              class={`w-full font-bold py-5 rounded-2xl transition-all uppercase tracking-widest text-sm mt-auto flex items-center justify-center hover:scale-[1.05] active:scale-95 font-mono ${card.featured ? "cta-button text-black bg-primary-gold" : "cta-secondary"}`}
+            >
+              {card.cta}
+            </a>
+          </div>
+        );
+      })}
+    </div>
+    
+    <p class="text-sm text-slate-400 text-center mt-16 px-4 font-bold font-mono">
+      <a href="/shorinji-kempo-marseille" class="hover:text-primary-gold transition-colors">Découvrez notre dojo au cœur de Marseille Saint-Giniez</a>
+    </p>
+  </div>
+</section>

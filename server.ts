@@ -1,24 +1,20 @@
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
-import { fileURLToPath } from "url";
 import fetch from "node-fetch";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
   // Headers for SEO
-  app.use((req, res, next) => {
+  app.use((_req, res, next) => {
     res.setHeader("X-Robots-Tag", "index, follow");
     next();
   });
 
   // Sitemap routes
-  app.get(["/sitemap.xml", "/sitemap"], async (req, res) => {
+  app.get(["/sitemap.xml", "/sitemap"], async (_req, res) => {
     const staticPages = [
       { url: "/", priority: "1.0", freq: "monthly" },
       { url: "/contact", priority: "0.8", freq: "yearly" },
@@ -79,7 +75,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (req, res) => {
+    app.get("*", (_req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }

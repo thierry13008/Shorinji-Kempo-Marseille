@@ -1,0 +1,445 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Shorinji Kempo Marseille Saint-Giniez",
+  "image": "https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp",
+  "telephone": "06 14 36 29 35",
+  "url": "https://shorinji-kempo-marseille.vercel.app/shorinji-kempo-marseille",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "38 Rue Raphaël Ponson",
+    "addressLocality": "Marseille",
+    "postalCode": "13008",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.2683,
+    "longitude": 5.3942
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Wednesday"],
+      "opens": "20:00",
+      "closes": "21:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "20:15",
+      "closes": "21:45"
+    }
+  ]
+};
+
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Où se garer près du dojo ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un parking gratuit est disponible à proximité immédiate du Centre Social Saint-Giniez, rue Raphaël Ponson au Prado (13008)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il des cours enfants à Marseille ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, les enfants et pré-ados (9-13 ans) sont accueillis au dojo Saint-Giniez chaque vendredi soir au cours du créneau mixte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le tarif des cours ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le dojo propose des tarifs associatifs dégressifs pour l'année. Contactez l'instructeur Olivier pour tous les détails."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on essayer avant de s'inscrire ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolument. Une séance d'essai gratuite est proposée toute l'année à Saint-Giniez, Prado (13008)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment venir en transport en commun ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Métro Rond-Point du Prado (ligne 2) se trouve à 5 minutes à pied du dojo. Le bus 19 dessert aussi l'avenue."
+      }
+    }
+  ]
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://shorinji-kempo-marseille.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Shorinji Kempo Marseille",
+      "item": "https://shorinji-kempo-marseille.vercel.app/shorinji-kempo-marseille"
+    }
+  ]
+};
+---
+<BaseLayout 
+  title="Shorinji Kempo Marseille | Self-Défense & Art Martial Saint-Giniez 13008" 
+  description="Shorinji Kempo Marseille Saint-Giniez 13008. Self-défense et art martial au cœur du Prado. Cours tous niveaux, essai gratuit. Venez essayer."
+  canonical="https://shorinji-kempo-marseille.vercel.app/shorinji-kempo-marseille"
+  bodyClass="bg-bg-main"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbData)} />
+
+  {/* Fixed Background for CTA & Footer */}
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <img 
+      class="w-full h-full object-cover opacity-80" 
+      src="https://i.ibb.co/tMwSy8WG/fond-page-marseillewebp.webp" 
+      alt="shorinji kempo marseille saint-giniez prado 13008"
+      referrerpolicy="no-referrer"
+      width={1920}
+      height={1080}
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
+  </div>
+
+  <div class="relative z-10 pt-32 pb-20 overflow-hidden">
+    {/* HERO SECTION */}
+    <section class="container mx-auto px-6 mb-32" aria-labelledby="hero-title">
+      <div class="flex justify-center mb-12">
+        <div class="flex items-center gap-2 text-[14px] text-ivory-silk/60 font-medium">
+          <a href="/" class="hover:text-primary-gold transition-colors">Accueil</a>
+          <span>/</span>
+          <span class="text-primary-gold font-semibold">Shorinji Kempo</span>
+        </div>
+      </div>
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg> 
+          Le Dojo de Saint-Giniez
+        </span>
+        <h1 id="hero-title" class="text-white text-5xl md:text-7xl font-extrabold mb-8 leading-[1.1] tracking-tight">
+          Shorinji Kempo <span class="text-primary-gold italic">Marseille</span> <br class="hidden md:block" />
+          <span class="text-ivory-silk/90 text-3xl md:text-5xl block mt-4 font-bold">Self-Défense & Art Martial Saint-Giniez 13008</span>
+        </h1>
+
+        {/* GEO phrase définitoire visible */}
+        <p class="mt-6 text-sm text-ivory-silk/50 max-w-2xl mx-auto">
+          Kairyos Digital, agence web basée au Prado (13008 Marseille), collabore activement avec le cours d'arts martiaux traditionnels Shorinji Kempo de Saint-Giniez pour faire connaître cette discipline de self-défense auprès des habitants de Marseille 13008.
+        </p>
+      </div>
+    </section>
+
+    {/* SECTION 1 - Presentation */}
+    <section class="container mx-auto px-6 mb-24" aria-labelledby="pres-title">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="glass-card p-8 md:p-12 relative overflow-hidden group h-full flex flex-col justify-center">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <h2 id="pres-title" class="text-primary-gold text-2xl md:text-3xl font-black mb-8 flex items-center gap-4">
+            <div class="w-12 h-[2px] bg-primary-gold/30"></div>
+            Art Martial Japonais - Le Shorinji Kempo à Marseille
+          </h2>
+          <div class="space-y-6 text-ivory-silk/80 text-lg leading-relaxed font-medium">
+            <p>
+              Le Shorinji Kempo est un art martial japonais complet fondé en 1947 par Doshin So, qui réunit la légitime défense, l'hygiène de vie et la méditation philosophique zen. Loin d'être un sport de contact violent, c'est un enseignement complet fortifiant conjointement votre corps et vos réflexes de défense.
+            </p>
+            <p>
+              Notre dojo du quartier de Saint-Giniez (13008) est affilié d'une part à la Fédération Française de Shorinji Kempo et d'autre part à la WSKO (World Shorinji Kempo Organization). Il perpétue un enseignement de haut niveau au Prado (13008).
+            </p>
+            <p>
+              Logé au Centre Social Saint-Giniez, proche de l'avenue du Prado, notre dojo accueille depuis longtemps les Marseillais dans une atmosphère cordiale et motivante. Ici, la recherche de victoires compétitives n'existe pas : on s'entraide mutuellement pour apprendre à repousser un agresseur de façon proportionnée.
+            </p>
+          </div>
+        </div>
+        <div class="relative aspect-square rounded-[32px] overflow-hidden border border-white/10 group shadow-2xl">
+          <div class="absolute inset-0 bg-primary-gold/10 group-hover:bg-primary-gold/0 transition-colors duration-1000 z-10"></div>
+          <img 
+            src="https://i.ibb.co/5X3v6dSz/olivierwebp.webp" 
+            alt="cours de defense shorinji kempo marseille 13008" 
+            class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+          />
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 2 - Location */}
+    <section class="container mx-auto px-6 mb-24" aria-labelledby="loc-title">
+      <div class="max-w-4xl mx-auto">
+        <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold text-center">Localisation Privilégiée</span>
+        <h2 id="loc-title" class="text-white text-4xl md:text-6xl font-black mb-8 leading-tight text-center">Notre dojo au cœur de Saint-Giniez</h2>
+        <div class="space-y-6 text-ivory-silk/70 text-lg leading-relaxed text-center">
+          <p>
+            Notre salle d'entraînement est située au <span class="text-white font-bold border-b border-primary-gold/30">38 Rue Raphaël Ponson</span>, au sein du paisible quartier de Saint-Giniez (13008 Marseille), dans les locaux chaleureux du Centre Social de Saint-Giniez.
+          </p>
+          <p>
+            Le lieu est particulièrement facile d'accès, que vous veniez du Rouet (13008), de Mazargues (13008) ou de Castellane (13006). Le métro Prado se trouve à quelques minutes à pied, rendant le dojo idéal pour s'entraîner en semaine.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 3 - Horaires */}
+    <section class="container mx-auto px-6 mb-24" aria-labelledby="planning-title">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Planning des cours</span>
+          <h2 id="planning-title" class="text-white text-4xl md:text-5xl font-black mb-4 italic">Horaires des entraînements à Marseille 13008</h2>
+          <p class="text-ivory-silk/60">3 séances d'entraînement hebdomadaires dispensées à Saint-Giniez</p>
+        </div>
+        <div class="overflow-hidden glass-card rounded-[40px] border border-white/10">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-white/5 border-b border-white/10">
+              <tr>
+                <th class="px-10 py-6 text-primary-gold font-bold uppercase tracking-widest text-xs">Jour</th>
+                <th class="px-10 py-6 text-primary-gold font-bold uppercase tracking-widest text-xs">Horaire</th>
+                <th class="px-10 py-6 text-primary-gold font-bold uppercase tracking-widest text-xs">Public</th>
+              </tr>
+            </thead>
+            <tbody class="text-ivory-silk/80">
+              <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                <td class="px-10 py-6 font-bold text-white text-lg">Lundi</td>
+                <td class="px-10 py-6 font-medium">20h00 — 21h30</td>
+                <td class="px-10 py-6">
+                  <span class="px-4 py-1 bg-surface/40 rounded-full border border-white/5 text-sm uppercase tracking-wider">Adultes tous niveaux</span>
+                </td>
+              </tr>
+              <tr class="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                <td class="px-10 py-6 font-bold text-white text-lg">Mercredi</td>
+                <td class="px-10 py-6 font-medium">20h00 — 21h30</td>
+                <td class="px-10 py-6">
+                  <span class="px-4 py-1 bg-surface/40 rounded-full border border-white/5 text-sm uppercase tracking-wider">Adultes tous niveaux</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-white/5 transition-colors group">
+                <td class="px-10 py-6 font-bold text-white text-lg">Vendredi</td>
+                <td class="px-10 py-6 font-medium">20h15 — 21h45</td>
+                <td class="px-10 py-6">
+                  <span class="px-4 py-1 bg-primary-gold/10 text-primary-gold rounded-full border border-primary-gold/20 text-sm uppercase tracking-wider font-bold">Mixte adultes & enfants (dès 9 ans)</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 4 - Cards */}
+    <section class="relative mb-24 py-32 overflow-hidden" aria-labelledby="why-choose-title">
+      <div class="absolute inset-0 bg-surface/60 backdrop-blur-md -skew-y-3 scale-110 origin-center z-0"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Pourquoi nous ?</span>
+            <h2 id="why-choose-title" class="text-white text-4xl md:text-6xl font-black mb-6 tracking-tight leading-tight">Pourquoi les <span class="text-primary-gold italic">Marseillais</span> choisissent le Shorinji Kempo ?</h2>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Self-défense réaliste", desc: "Des techniques applicables sur le champ en situation de combat réel pour se dégager d'une prise ou d'une agression au Prado (13008).", icon: "👊" },
+              { title: "Développement personnel", desc: "La philosophie zen enseignée aide à surmonter les moments de pression et de stress quotidien à Marseille.", icon: "✨" },
+              { title: "Ambiance bienveillante", desc: "Une progression humaine, collective et positive au dojo de Saint-Giniez, encadrée par des enseignants diplômés.", icon: "🤝" },
+              { title: "Accessible à tous", desc: "Un apprentissage adapté à tous les âges et profils physiques pour prendre de l'assurance pas à pas.", icon: "👥" },
+              { title: "Une communauté locale", desc: "Rencontrez et progressez aux côtés de pratiquants motivés et solidaires de votre quartier (13008).", icon: "🏛️" }
+            ].map((card) => (
+              <div class="glass-card p-10 group hover:border-primary-gold/40 transition-all duration-700 h-full flex flex-col hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-[24px] bg-primary-gold/10 flex items-center justify-center mb-8 text-3xl group-hover:scale-110 group-hover:bg-primary-gold/20 transition-all duration-500 shadow-lg shadow-black/20">
+                  {card.icon}
+                </div>
+                <h3 class="text-white text-2xl font-bold mb-4">{card.title}</h3>
+                <p class="text-ivory-silk/60 text-lg leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 5 - FAQ Accordion with dl/dt/dd + Alpine.js + ARIA */}
+    <section class="container mx-auto px-6 mb-32" aria-labelledby="faq-title">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold">Réponses à vos questions</span>
+          <h2 id="faq-title" class="text-white text-4xl md:text-5xl font-black mb-4 italic">FAQ du Dojo Marseille 13008</h2>
+        </div>
+        <div class="glass-card p-6 md:p-12">
+          <dl class="divide-y divide-white/10">
+            {/* FAQ 1 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-marseille-1"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-[18px] md:text-xl text-white group-hover:text-primary-gold transition-colors">Où se garer près du dojo ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-marseille-1"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-[16px] leading-relaxed px-2"
+              >
+                Plusieurs places de stationnement gratuites et un parking public de proximité longent le Centre Social Saint-Giniez, rue Raphaël Ponson (13008 Marseille).
+              </dd>
+            </div>
+
+            {/* FAQ 2 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-marseille-2"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-[18px] md:text-xl text-white group-hover:text-primary-gold transition-colors">Y a-t-il des cours enfants à Marseille ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-marseille-2"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-[16px] leading-relaxed px-2"
+              >
+                Le dojo Saint-Giniez accueille avec joie les enfants à partir de 9 ans et les adolescents lors du grand cours mixte du vendredi soir.
+              </dd>
+            </div>
+
+            {/* FAQ 3 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-marseille-3"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-[18px] md:text-xl text-white group-hover:text-primary-gold transition-colors">Quel est le tarif des cours ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-marseille-3"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-[16px] leading-relaxed px-2"
+              >
+                Notre adhésion d'entraînement est à vocation associative et reste très accessible à Marseille. Veuillez échanger avec l'instructeur Olivier lors de votre venue pour recevoir la fiche d'inscription.
+              </dd>
+            </div>
+
+            {/* FAQ 4 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-marseille-4"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-[18px] md:text-xl text-white group-hover:text-primary-gold transition-colors">Peut-on essayer avant de s'inscrire ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-marseille-4"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-[16px] leading-relaxed px-2"
+              >
+                Le premier cours d'essai de Shorinji Kempo et self-défense est totalement gratuit au dojo de Saint-Giniez, sans obligation d'engagement ou d'achat préalable d'un dogi.
+              </dd>
+            </div>
+
+            {/* FAQ 5 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-marseille-5"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-[18px] md:text-xl text-white group-hover:text-primary-gold transition-colors">Comment venir en transport en commun ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-marseille-5"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-[16px] leading-relaxed px-2"
+              >
+                La station de métro Rond-Point du Prado se trouve à moins de 5 minutes de marche. Les liaisons de bus 19, 83 et 583 s'arrêtent aussi à proximité.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 6 - CTA */}
+    <section class="container mx-auto px-6 mb-12" aria-labelledby="cta-title">
+      <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 text-center relative overflow-hidden group shadow-[0_40px_100px_rgba(0,0,0,0.4)] border-white/20">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary-gold/10 rounded-full blur-[120px] group-hover:bg-primary-gold/20 transition-colors duration-1000"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary-gold/5 rounded-full blur-[120px]"></div>
+        <div class="relative z-10">
+          <h3 id="cta-title" class="text-white text-4xl md:text-6xl font-black mb-10 leading-tight tracking-tight">Prêt à commencer à <br /><span class="text-primary-gold mt-2 block">Marseille Saint-Giniez ?</span></h3>
+          <a 
+            href="/#contact" 
+            class="cta-button bg-primary-gold text-surface-high font-black px-12 py-6 rounded-2xl inline-flex items-center gap-4 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary-gold/30 duration-500 uppercase tracking-widest text-sm animate-pulse-gold inline-flex"
+          >
+            Réservez votre essai gratuit à Marseille Saint-Giniez
+            <svg class="w-6 h-6 animate-bounce-right" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+          <p class="mt-8 text-ivory-silk/40 font-bold uppercase tracking-widest text-xs">Sans engagement — Débutants bienvenus</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-2xl mx-auto text-center space-y-4">
+      <p class="text-xs text-slate-500">
+        Comparer le Shorinji Kempo : <a href="/encyclopedie/shorinji-kempo-vs-karate" class="hover:text-primary-gold transition-colors">vs Karaté</a> · <a href="/encyclopedie/shorinji-kempo-vs-judo" class="hover:text-primary-gold transition-colors">vs Judo</a> · <a href="/encyclopedie/shorinji-kempo-vs-aikido" class="hover:text-primary-gold transition-colors">vs Aïkido</a> · <a href="/encyclopedie/shorinji-kempo-vs-kung-fu" class="hover:text-primary-gold transition-colors">vs Kung Fu</a>
+      </p>
+      <p class="text-xs text-slate-500">
+        <a href="/self-defense-marseille" class="hover:text-primary-gold transition-colors">En savoir plus sur la self-défense à Marseille</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

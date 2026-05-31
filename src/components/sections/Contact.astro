@@ -1,0 +1,101 @@
+---
+// Contact section
+const CONTACT_INFO = {
+  address: "38 Rue Raphaël Ponson, 13008 Marseille - Centre Social Saint-Giniez",
+  phone: "06 89 09 05 44",
+  email: "shorinjikempomarseille@gmail.com",
+};
+---
+<section id="contact" class="relative py-48 bg-transparent overflow-hidden">
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <div class="text-center mb-20">
+      <span class="micro-copy text-primary-gold mb-4 block uppercase tracking-widest font-bold font-mono text-sm">Dernière Étape</span>
+      <h2 class="text-white text-4xl md:text-6xl font-black mb-6">Prêt à transformer votre quotidien ?</h2>
+      <p class="text-ivory-silk/60 text-xl max-w-2xl mx-auto">Rejoignez les pratiquants qui ont déjà franchi le pas. Votre première séance est offerte, sans aucun engagement.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <div class="space-y-10">
+        <div class="bg-white/5 border border-white/10 p-10 rounded-[40px] space-y-8">
+          <h3 class="text-white text-2xl font-bold mb-6">Pourquoi réserver maintenant ?</h3>
+          {[
+            { title: "Sans engagement", desc: "Venez essayer, ressentez l'énergie, et décidez ensuite." },
+            { title: "Accessible débutant", desc: "Aucune expérience préalable n'est nécessaire." },
+            { title: "Places limitées", desc: "Nous limitons le nombre de nouveaux par cours pour un meilleur suivi." }
+          ].map((item) => (
+            <div class="flex gap-6">
+              <div class="w-12 h-12 rounded-xl bg-primary-gold/10 flex items-center justify-center shrink-0 border border-primary-gold/20 text-primary-gold text-lg">
+                ✓
+              </div>
+              <div>
+                <h3 class="text-white font-bold mb-1 text-lg">{item.title}</h3>
+                <p class="text-ivory-silk/60 text-base">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div class="flex items-center gap-6 p-8 bg-primary-gold/5 border border-primary-gold/20 rounded-[32px]">
+          <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-gold bg-surface-high p-2 flex items-center justify-center">
+            <img 
+              src="https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp" 
+              alt="Marseille Shorinji Kempo" 
+              class="w-full h-full object-contain" 
+              referrerpolicy="no-referrer" 
+              width={64}
+              height={64}
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p class="text-white font-bold text-lg">Une question ?</p>
+            <p class="text-ivory-silk/60">Contactez-nous ci-dessous</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <div class="glass-card ki-aura-dark p-10 md:p-12 rounded-[48px] border border-primary-gold/20">
+          <h3 class="text-white text-2xl font-bold mb-2">Envoyez-nous un message</h3>
+          <p class="text-ivory-silk/60 mb-8 font-bold uppercase tracking-widest text-xs font-mono">Remplissez le formulaire ci-dessous</p>
+          
+          <div class="w-full overflow-hidden rounded-xl">
+            <iframe 
+              src="https://tally.so/embed/vG0JyA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+              loading="lazy" 
+              width="100%" 
+              height="423" 
+              style="border:0;" 
+              title="Nous contacter directement"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="glass-card ki-aura-dark p-10 rounded-[24px] border border-primary-gold/20 text-center">
+          <p class="text-[#CCCCCC] flex items-center justify-center gap-4 mb-6">
+            <span class="h-px bg-white/10 flex-1"></span>
+            <span class="micro-copy uppercase tracking-widest text-white font-mono text-xs">ou contactez-nous directement</span>
+            <span class="h-px bg-white/10 flex-1"></span>
+          </p>
+          <a 
+            href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
+            class="w-full bg-white text-surface font-black py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all text-[16px] uppercase tracking-widest shadow-xl group font-mono text-black"
+          >
+            <div class="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" class="text-black w-[20px] h-[20px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            {CONTACT_INFO.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function(d,g,y,s,e){
+    if(d.getElementById(g))return;
+    e=d.createElement(s);e.id=g;e.src=y;e.defer=true;
+    d.body.appendChild(e);
+  })(document,'tally-js','https://tally.so/widgets/embed.js','script');
+</script>

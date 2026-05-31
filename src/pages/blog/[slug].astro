@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/shorinjikempomarseille.wordpress.com/posts';
+  const FALLBACK_POSTS = [
+    {
+      id: 101,
+      date: new Date().toISOString(),
+      slug: 'fallback-1',
+      title: { rendered: "Actualités du Club - Mise à jour en cours" },
+      content: { rendered: "<p>Nous mettons à jour nos derniers articles. Revenez dans quelques instants pour découvrir les nouveautés du dojo.</p>" },
+      excerpt: { rendered: "Nous mettons à jour nos derniers articles. Revenez dans quelques instants pour découvrir les nouveautés du dojo." }
+    },
+    {
+      id: 102,
+      date: new Date().toISOString(),
+      slug: 'fallback-2',
+      title: { rendered: "Shorinji Kempo : Esprit et Technique" },
+      content: { rendered: "<p>La pratique martiale au service du développement personnel et de la cohésion sociale.</p>" },
+      excerpt: { rendered: "La pratique martiale au service du développement personnel et de la cohésion sociale." }
+    },
+    {
+      id: 103,
+      date: new Date().toISOString(),
+      slug: 'fallback-3',
+      title: { rendered: "Événements à venir" },
+      content: { rendered: "<p>Consultez régulièrement notre calendrier pour ne manquer aucun stage ou passage de grade.</p>" },
+      excerpt: { rendered: "Consultez régulièrement notre calendrier pour ne manquer aucun stage ou passage de grade." }
+    }
+  ];
+
+  let postEntries = [];
+  try {
+    const response = await fetch(`${WP_API_URL}?per_page=20&_embed`, {
+      headers: { 'User-Agent': 'Astro Client' }
+    });
+    if (response.ok) {
+      postEntries = await response.json();
+    } else {
+      postEntries = FALLBACK_POSTS;
+    }
+  } catch (e) {
+    postEntries = FALLBACK_POSTS;
+  }
+
+  // Ensure unique slugs
+  const uniqueSlugs = new Set<string>();
+  const filtered = postEntries.filter((p: any) => {
+    if (uniqueSlugs.has(p.slug)) return false;
+    uniqueSlugs.add(p.slug);
+    return true;
+  });
+
+  return filtered.map((post: any) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props as Props;
+const { slug } = Astro.params;
+
+const decodeHtml = (str: string) => {
+  return str
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+};
+
+const titleDecoded = decodeHtml(post.title.rendered);
+const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+---
+<BaseLayout 
+  title={`${titleDecoded} | Blog Shorinji Kempo Marseille`} 
+  description={post.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace(/&#8211;/g, '–').replace(/&#8217;/g, "'").substring(0, 155)}
+  canonical={post.link ?? `https://shorinji-kempo-marseille.vercel.app/blog/${slug}`}
+  bodyClass="bg-bg-main"
+>
+  {/* Scrollytelling Progress Bar */}
+  <div
+    class="fixed top-0 left-0 right-0 h-1 bg-primary-gold z-50 origin-left transition-all duration-100"
+    id="scroll-progress-bar"
+    style="width: 0%;"
+  ></div>
+
+  <script is:inline>
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+      const bar = document.getElementById('scroll-progress-bar');
+      if (bar) bar.style.width = progress + '%';
+    }, { passive: true });
+  </script>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shorinji-kempo-marseille.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://shorinji-kempo-marseille.vercel.app/blog" },
+      { "@type": "ListItem", "position": 3, "name": titleDecoded, "item": `https://shorinji-kempo-marseille.vercel.app/blog/${slug}` }
+    ]
+  })} />
+
+  <div class="pt-32 pb-20 min-h-screen bg-surface selection:bg-primary-gold selection:text-surface">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      {/* Sidebar Actions (Sticky) */}
+      <aside class="hidden lg:block lg:col-span-1">
+        <div class="sticky top-40 flex flex-col gap-6 items-center">
+          <button class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-ivory-silk/60 hover:text-primary-gold hover:border-primary-gold/40 transition-all" aria-label="Partager cet article">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 10.742l4.828-2.414m0 0a3 3 0 10-3.62-3.62l-4.829 2.413m0 0a3 3 0 100 4.122m0 0l4.829 2.414m0 0a3 3 0 103.62-3.62"></path></svg>
+          </button>
+          <button class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-ivory-silk/60 hover:text-primary-gold hover:border-primary-gold/40 transition-all" aria-label="Sauvegarder">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
+          </button>
+          <button class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-ivory-silk/60 hover:text-primary-gold hover:border-primary-gold/40 transition-all" aria-label="Commenter">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="lg:col-span-11">
+        <div class="mb-8">
+          <div class="flex items-center gap-2 text-[14px] text-ivory-silk/60 font-medium">
+            <a href="/" class="hover:text-primary-gold transition-colors">Accueil</a>
+            <span>/</span>
+            <a href="/blog" class="hover:text-primary-gold transition-colors">Blog</a>
+            <span>/</span>
+            <span class="text-primary-gold font-semibold max-w-[200px] truncate">{titleDecoded}</span>
+          </div>
+        </div>
+
+        <a 
+          href="/blog" 
+          class="inline-flex items-center gap-2 text-primary-gold text-[10px] font-label uppercase tracking-[0.3em] mb-12 hover:-translate-x-1 transition-transform group"
+        >
+          <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          Retour au blog
+        </a>
+
+        <article class="max-w-3xl">
+          <div class="flex items-center gap-4 mb-8">
+            <span class="text-[10px] font-label uppercase tracking-widest text-[#111111] bg-primary-gold font-bold px-4 py-1.5 rounded-full">
+              {new Date(post.date).getFullYear()}
+            </span>
+            <span class="text-xs text-ivory-silk/60 font-medium">
+              {new Date(post.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
+            </span>
+            <span class="text-xs text-ivory-silk/60 font-medium flex items-center gap-2 ml-auto">
+              <svg class="w-3.5 h-3.5 text-primary-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              4 min de lecture
+            </span>
+          </div>
+
+          <h1 class="text-white text-4xl md:text-6xl font-black mb-12 leading-tight tracking-tight italic">
+            {titleDecoded}
+          </h1>
+
+          {featuredImage && (
+            <div class="aspect-[16/9] rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl mb-16">
+              <img 
+                src={featuredImage} 
+                alt={titleDecoded} 
+                class="w-full h-full object-cover"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+          )}
+
+          {/* WordPress HTML Content Renderer */}
+          <div class="prose prose-invert prose-gold max-w-none text-ivory-silk/80 text-lg md:text-xl leading-relaxed space-y-8 prose-headings:text-white prose-a:text-primary-gold hover:prose-a:underline">
+            <Fragment set:html={post.content.rendered} />
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Custom WordPress Content Styling alignment */
+  .prose-invert figure {
+    margin: 2.5rem 0;
+  }
+  .prose-invert figcaption {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    margin-top: 0.75rem;
+  }
+  .prose-invert img {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+</style>

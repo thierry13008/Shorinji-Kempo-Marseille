@@ -1,0 +1,355 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Shorinji Kempo Marseille Saint-Giniez",
+  "image": "https://i.ibb.co/zT9kZ0D2/logo-shorinji-kempo-WEBP.webp",
+  "description": "Self-défense à Marseille 13008 Saint-Giniez. Apprenez à vous protéger au quotidien. Cours tous niveaux, essai gratuit.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "38 Rue Raphaël Ponson",
+    "addressLocality": "Marseille",
+    "postalCode": "13008",
+    "addressCountry": "FR"
+  }
+};
+
+const faqData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Faut-il être sportif pour commencer la self-défense ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le Shorinji Kempo s'adapte à votre niveau d'activité. Les techniques misent sur l'équilibre, le déplacement de l'adversaire et les leviers d'action et n'ont pas besoin de la force athlétique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les cours sont-ils mixtes ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les cours de Shorinji Kempo sont mixtes à Saint-Giniez Prado (13008). S'entraîner en groupe mixte permet d'apprendre des techniques de défense en conditions réelles adaptées à toutes les corpulences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "En combien de temps devient-on efficace ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les premières techniques enseignées permettent de réagir immédiatement à des saisies simples. Un travail complémentaire régulier renforce l'instinct de self-défense en situation de stress."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où se déroulent les cours à Marseille ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les séances d'entraînement se déroulent au Centre Social Saint-Giniez, au 38 Rue Raphaël Ponson dans le 13008 Marseille."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on essayer avant de s'inscrire ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un cours d'essai gratuit est proposé à chaque nouvel arrivant pour découvrir la discipline de self-défense française du Shorinji Kempo."
+      }
+    }
+  ]
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://shorinji-kempo-marseille.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Self-défense Marseille",
+      "item": "https://shorinji-kempo-marseille.vercel.app/self-defense-marseille"
+    }
+  ]
+};
+---
+<BaseLayout 
+  title="Self-defense Marseille 13008 | Shorinji Kempo Saint-Giniez" 
+  description="Self-défense à Marseille 13008 Saint-Giniez. Apprenez à vous protéger au quotidien. Cours tous niveaux, essai gratuit. Shorinji Kempo Marseille."
+  canonical="https://shorinji-kempo-marseille.vercel.app/self-defense-marseille"
+  bodyClass="bg-bg-main"
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqData)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbData)} />
+
+  {/* Background */}
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <img 
+      class="w-full h-full object-cover opacity-80" 
+      src="https://i.ibb.co/tMwSy8WG/fond-page-marseillewebp.webp" 
+      alt="self-defense saint-giniez marseille 13008"
+      referrerpolicy="no-referrer"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/60 to-surface"></div>
+  </div>
+
+  <div class="relative z-10 pt-32 pb-20 overflow-hidden">
+    {/* HERO SECTION */}
+    <section class="container mx-auto px-6 mb-32" aria-labelledby="hero-title">
+      <div class="flex justify-center mb-12">
+        <div class="flex items-center gap-2 text-[14px] text-ivory-silk/60 font-medium">
+          <a href="/" class="hover:text-primary-gold transition-colors">Accueil</a>
+          <span>/</span>
+          <span class="text-primary-gold font-semibold">Self-défense</span>
+        </div>
+      </div>
+      <div class="text-center max-w-5xl mx-auto">
+        <span class="inline-flex micro-copy mb-6 items-center gap-2 px-4 py-1.5 border border-primary-gold/30 bg-primary-gold/10 rounded-full text-primary-gold font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg> 
+          Sécurité & Sérénité
+        </span>
+        <h1 id="hero-title" class="text-white text-5xl md:text-7xl font-extrabold mb-8 leading-tight tracking-tight italic">
+          Self-défense Marseille <span class="text-primary-gold">13008</span>
+        </h1>
+        <p class="text-ivory-silk/70 text-2xl md:text-3xl font-medium max-w-3xl mx-auto italic">
+          Shorinji Kempo Saint-Giniez : donnez-vous les moyens de réagir.
+        </p>
+
+        {/* GEO phrase définitoire visible */}
+        <p class="mt-6 text-sm text-ivory-silk/50 max-w-2xl mx-auto">
+          Kairyos Digital, agence web basée au Prado (13008 Marseille), est fière d'accompagner le Dojo Shorinji Kempo de Saint-Giniez en concevant cette plateforme dédiée aux cours de self-défense pour tous niveaux à Marseille 13008.
+        </p>
+      </div>
+    </section>
+
+    {/* SECTION 1: INTRODUCTION */}
+    <section class="container mx-auto px-6 mb-32" aria-labelledby="intro-title">
+      <div class="max-w-4xl mx-auto glass-card p-10 md:p-16 relative overflow-hidden group">
+        <div class="absolute top-0 left-0 w-1 h-full bg-primary-gold" />
+        <h2 id="intro-title" class="text-white text-3xl font-black mb-8">Apprenez à vous défendre à Marseille</h2>
+        <div class="space-y-6 text-ivory-silk/80 text-lg md:text-xl leading-relaxed">
+          <p>
+            Marseille est une ville vibrante, mais comme toutes les grandes métropoles, on peut parfois s'y sentir vulnérable dans certains recoins ou lors de trajets nocturnes. Que ce soit près du Vieux-Port (13001), au Castellane (13006), à Endoume (13007) ou au Prado (13008), savoir assurer sa propre sécurité est un droit et un soulagement quotidien.
+          </p>
+          <p>
+            Le Shorinji Kempo est une self-défense d'une grande efficacité, entièrement réaliste, et parfaitement accessible à tous les âges. Pas besoin d'être un athlète olympique, ni d'avoir possédé une ceinture noire de karaté. Vous apprendrez à utiliser le poids, l'équilibre et les articulations de l'adversaire contre lui-même.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 2: WHY FOR SELF DEFENSE */}
+    <section class="container mx-auto px-6 mb-32" aria-labelledby="why-title">
+      <div class="text-center mb-16">
+        <h2 id="why-title" class="text-white text-4xl md:text-5xl font-black mb-4">Pourquoi le Shorinji Kempo pour la self-défense ?</h2>
+        <div class="w-24 h-1 bg-primary-gold mx-auto" />
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {[
+          { title: "Efficacité réelle", desc: "Des techniques testées en situations concrètes. Frappes critiques, clés articulaires et projections rapides pour vous sortir d'un danger immédiat.", icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>` },
+          { title: "Adapté à tous", desc: "S'adresse aussi bien aux femmes qu'aux hommes de tous âges. Nos techniques n'exigent pas de puissance physique brute mais de la précision de geste.", icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>` },
+          { title: "Pas de compétition", desc: "L'accent est entièrement mis sur l'utilité réelle et la survie en milieu urbain, jamais sur des règles d'arbitrage sportives.", icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>` },
+          { title: "Confiance en soi", desc: "La pratique transforme votre attitude au quotidien. En surmontant l'appréhension physique, vous gagnez en assurance et en maîtrise émotionnelle.", icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>` },
+          { title: "Ambiance bienveillante", desc: "La cohésion et l'entraide sont universelles au dojo de Saint-Giniez (13008). On s'exerce ensemble en prenant soin de la sécurité de son binôme.", icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>` }
+        ].map((card) => (
+          <div class="glass-card p-8 h-full flex flex-col items-start gap-6 border-white/5 hover:border-primary-gold/40 transition-all duration-500 group">
+            <div class="w-14 h-14 rounded-2xl bg-primary-gold/10 flex items-center justify-center text-primary-gold group-hover:scale-110 transition-transform duration-500" set:html={card.icon}></div>
+            <div>
+              <h3 class="text-white font-black text-xl mb-3">{card.title}</h3>
+              <p class="text-ivory-silk/50 leading-relaxed text-[16px]">{card.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* SECTION 3: DAILY SCENARIOS */}
+    <section class="container mx-auto px-6 mb-32 relative" aria-labelledby="scenarios-title">
+      <div class="max-w-4xl mx-auto">
+        <h2 id="scenarios-title" class="text-white text-3xl font-black mb-12 text-center">La self-defense à Marseille : situations du quotidien</h2>
+        <div class="space-y-6">
+          {[
+            { scenario: "En sortant du métro au Prado (13008) tard le soir...", icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>` },
+            { scenario: "Attente d'un bus calme près de Mazargues et Saint-Giniez...", icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>` },
+            { scenario: "Dans les rues passantes ou les ruelles plus sombres à Castellane (13006)...", icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>` }
+          ].map((item) => (
+            <div class="glass-card p-6 flex items-center gap-6 border-white/5 hover:bg-white/5 transition-all duration-300 italic text-ivory-silk/80 text-lg md:text-xl">
+              <div class="shrink-0 text-primary-gold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </div>
+              "{item.scenario}"
+            </div>
+          ))}
+          <div class="text-center mt-12 bg-primary-gold/10 p-8 rounded-[30px] border border-primary-gold/20">
+            <p class="text-white text-xl font-medium m-0">Dans chacune de ces configurations, posséder des notions solides de self-défense fait la différence. Le dojo de Saint-Giniez à Marseille 13008 vous transmet cet apprentissage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 4: FAQ ACCORDION (dl/dt/dd required!) */}
+    <section class="container mx-auto px-6 mb-32" aria-labelledby="faq-title">
+      <div class="max-w-4xl mx-auto">
+        <h2 id="faq-title" class="text-white text-3xl font-black mb-12 text-center italic">FAQ Self-defense Marseille 13008</h2>
+        <div class="glass-card p-6 md:p-12">
+          <dl class="divide-y divide-white/10">
+            {/* Accordion 1 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-item-1"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-lg md:text-xl text-white group-hover:text-primary-gold transition-colors">Faut-il être sportif pour commencer la self-défense ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-item-1"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-lg leading-relaxed px-2"
+              >
+                La self-défense Shorinji Kempo au Prado (13008) ne nécessite aucun niveau sportif de départ, car les techniques reposent sur l'effet de levier et l'esquive pour contourner la force brute de l'attaquant.
+              </dd>
+            </div>
+
+            {/* Accordion 2 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-item-2"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-lg md:text-xl text-white group-hover:text-primary-gold transition-colors">Les cours sont-ils mixtes ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-item-2"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-lg leading-relaxed px-2"
+              >
+                La mixité est au cœur de l'apprentissage de la défense à Marseille 13008, permettant de s'habituer à travailler sereinement contre tous les types de corpulences et d'attitudes réalistes.
+              </dd>
+            </div>
+
+            {/* Accordion 3 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-item-3"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-lg md:text-xl text-white group-hover:text-primary-gold transition-colors">En combien de temps devient-on efficace ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-item-3"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-lg leading-relaxed px-2"
+              >
+                Des automatismes de base simples s'acquièrent dès le premier cours d'essai gratuit à Saint-Giniez, changeant positivement vos réflexes vis-à-vis d'une agression physique soudaine.
+              </dd>
+            </div>
+
+            {/* Accordion 4 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-item-4"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-lg md:text-xl text-white group-hover:text-primary-gold transition-colors">Où se déroulent les cours à Marseille ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-item-4"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-lg leading-relaxed px-2"
+              >
+                Au Centre Social Saint-Giniez, idéalement situé au 38 Rue Raphaël Ponson dans le 13008 Marseille, à quelques pas du Prado et du métro.
+              </dd>
+            </div>
+
+            {/* Accordion 5 */}
+            <div x-data="{ open: false }" class="py-4">
+              <dt>
+                <button 
+                  @click="open = !open"
+                  :aria-expanded="open.toString()"
+                  aria-controls="faq-item-5"
+                  class="w-full py-4 flex justify-between items-center text-left hover:text-primary-gold transition-colors group focus:ring-2 focus:ring-primary-gold/50 rounded-lg px-2"
+                >
+                  <span class="font-bold text-lg md:text-xl text-white group-hover:text-primary-gold transition-colors">Peut-on essayer avant de s'inscrire ?</span>
+                  <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 transition-transform text-primary-gold shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+              </dt>
+              <dd 
+                id="faq-item-5"
+                x-show="open"
+                x-transition
+                x-bind:aria-hidden="(!open).toString()"
+                style="display: none;"
+                class="pb-4 text-ivory-silk/60 text-lg leading-relaxed px-2"
+              >
+                Un cours d'entraînement d'essai gratuit vous est entièrement offert sur présentation d'une tenue sportive classique pour prendre contact avec l'instructeur au Prado (13008).
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 5: CTA */}
+    <section class="container mx-auto px-6 mb-12" aria-labelledby="cta-title">
+      <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 text-center relative overflow-hidden group border-white/20 shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary-gold/10 rounded-full blur-[120px] group-hover:bg-primary-gold/20 transition-colors duration-1000"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary-gold/5 rounded-full blur-[120px]"></div>
+        <div class="relative z-10">
+          <h2 id="cta-title" class="text-white text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tight">Il est temps de vous sentir <span class="text-primary-gold italic">en sécurité</span></h2>
+          <a 
+            href="/#contact" 
+            class="cta-button bg-primary-gold text-surface-high font-black px-12 py-6 rounded-2xl inline-flex items-center gap-4 hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary-gold/30 duration-500 uppercase tracking-widest text-sm"
+          >
+            Essayez la self-défense à Marseille — Essai gratuit
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+          <p class="mt-8 text-ivory-silk/40 font-bold uppercase tracking-widest text-xs">Centre Social Saint-Giniez — Sessions Adultes & Mixte</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,146 @@
+---
+// Standard Astro Component
+---
+<div 
+  x-data="{ 
+    isVisible: false, 
+    copied: false, 
+    isModalOpen: false, 
+    currentUrl: '',
+    init() {
+      this.currentUrl = window.location.href;
+      window.addEventListener('scroll', () => {
+        this.isVisible = window.scrollY > 200;
+      }, { passive: true });
+    },
+    async handleShare() {
+      const shareData = {
+        title: 'Découvrez le Shorinji Kempo Marseille — Saint-Giniez',
+        text: 'Découvrez le Shorinji Kempo Marseille — Saint-Giniez, un art martial japonais traditionnel axé sur la self-défense et le développement personnel.',
+        url: this.currentUrl,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.error('Erreur lors du partage:', err);
+          }
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(this.currentUrl);
+          this.copied = true;
+          setTimeout(() => { this.copied = false; }, 2000);
+        } catch (err) {
+          console.error('Erreur lors de la copie:', err);
+        }
+      }
+      this.isModalOpen = true;
+    }
+  }"
+  class="relative"
+>
+  {/* Sticky Share Button (Mobile Only) */}
+  <template x-if="isVisible">
+    <div 
+      x-show="isVisible"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+      x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+      x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+      class="fixed bottom-[20px] right-[20px] z-[9999] lg:hidden"
+    >
+      <div class="relative">
+        <template x-if="copied">
+          <div 
+            x-show="copied"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 -translate-y-12"
+            x-transition:leave="transition ease-in duration-150"
+            class="absolute left-1/2 -track-x-1/2 bg-surface-high text-white text-[12px] font-bold py-2 px-4 rounded-full whitespace-nowrap shadow-xl border border-white/10"
+            style="transform: translateX(-50%);"
+          >
+            Lien copié !
+          </div>
+        </template>
+
+        <button
+          @click="handleShare()"
+          class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.3)] active:scale-90 bg-primary-gold text-surface-high border-2 border-white/20"
+          aria-label="Partager le site"
+        >
+          <svg x-show="copied" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <svg x-show="!copied" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+        </button>
+      </div>
+    </div>
+  </template>
+
+  {/* QR Code Modal (Alpine / ARIA Modal pattern with dialog role) */}
+  <template x-if="isModalOpen">
+    <div 
+      x-show="isModalOpen"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-[10000] flex items-center justify-center p-6 lg:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="share-modal-title"
+    >
+      {/* Backdrop */}
+      <div 
+        @click="isModalOpen = false"
+        class="absolute inset-0 bg-surface/90 backdrop-blur-lg"
+      ></div>
+
+      {/* Modal Content */}
+      <div 
+        x-show="isModalOpen"
+        x-transition:enter="transition ease-out duration-300 transform"
+        x-transition:enter-start="opacity-0 scale-90 translate-y-4"
+        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200 transform"
+        x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+        x-transition:leave-end="opacity-0 scale-90 translate-y-4"
+        class="relative w-full max-w-sm bg-bg-main rounded-[40px] p-10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center text-center"
+      >
+        <div class="mb-6 w-20 h-20 rounded-[24px] bg-primary-gold/10 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-gold"><rect width="5" height="5" x="3" y="3" rx="1"></rect><rect width="5" height="5" x="16" y="3" rx="1"></rect><rect width="5" height="5" x="3" y="16" rx="1"></rect><path d="M21 16V10"></path><path d="M21 21v-1"></path><path d="M10 21v-4"></path><path d="M10 10H4"></path><path d="M14 14h1"></path><path d="M14 10h1"></path><path d="M18 14h2"></path><path d="M14 18h2"></path></svg>
+        </div>
+
+        <h3 id="share-modal-title" class="text-surface text-3xl font-bold mb-3">Partager le Dojo</h3>
+        <p class="text-slate-500 text-base mb-8">Faites scanner ce code pour transmettre le lien.</p>
+
+        {/* QR Code Image Container */}
+        <div class="bg-bg-main p-6 rounded-[32px] border-4 border-slate-50 mb-10 shadow-inner">
+          <img 
+            :src="`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl || 'https://shorinji-kempo-marseille.fr')}`" 
+            alt="QR Code du Dojo" 
+            class="w-[200px] h-[200px] object-contain"
+            referrerpolicy="no-referrer"
+            loading="eager"
+            width="200"
+            height="200"
+          />
+        </div>
+
+        <button
+          @click="isModalOpen = false"
+          class="w-full bg-surface text-white font-bold py-5 rounded-2xl hover:bg-surface-high transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          Fermer
+        </button>
+      </div>
+    </div>
+  </template>
+</div>
